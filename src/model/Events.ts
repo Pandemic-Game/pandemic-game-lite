@@ -1,11 +1,13 @@
 import { GameState, Reputation } from './GameState';
 import { Response } from './Response';
-import { Feedback } from './Feedback';
+import { Component, FC } from 'react';
 
 export interface Event {
     id: string;
     name: string;
     description: string;
+    eventMainComponent: Component<any> | FC<any>;
+    eventDetailComponent: Component<any> | FC<any>;
     canRun: (gameState: GameState) => boolean;
     responses: Response[];
 }
@@ -13,6 +15,6 @@ export interface Event {
 export interface CompletedEvent {
     event: Event;
     response: Response;
-    feedback: Feedback;
+    playerChoiceId: string; // id of the response the player chose
     reputation: Reputation[];
 }
