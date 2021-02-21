@@ -1,11 +1,11 @@
 import { GameState } from '../model/GameState';
-import { Event, CompletedEvent } from '../model/Events';
+import { Event } from '../model/Events';
 import { Response, ResponseSelectionResult } from '../model/Response';
 import cloneDeep from 'lodash/cloneDeep';
 import { Simulator } from '../simulator/Simulator';
 import { PlayerActions, Scenario } from '../simulator/SimulatorModel';
 
-export const isGameState = (nextTurn: Event[] | GameState): nextTurn is GameState => {
+export const isGameState = (nextTurn: Event | GameState): nextTurn is GameState => {
     return (nextTurn as any)?.turnNumber !== undefined;
 };
 
@@ -44,7 +44,7 @@ export class GameController {
      * Advances the game to the next turn. Returns any new events for that turn, or the game state signifying that the game's
      * narrative has concluded, and the player can review his choices.
      */
-    public nextTurn(): Event[] | GameState {
+    public nextTurn(): Event | GameState {
         if (!this.canProceedToNextTurn()) {
             throw new Error(
                 'Cannot proceed to next turn. There are still pending events the player needs to respond to.'
@@ -59,7 +59,8 @@ export class GameController {
             // The story has run its course, game will end and the game state will be returned so the player can review his choices
             return cloneDeep(this.gameState);
         } else {
-            return cloneDeep(this.eventsToRespond);
+            // TODO: change this, as this is a bit of a hack
+            return cloneDeep(this.eventsToRespond[0]);
         }
     }
 
@@ -70,7 +71,7 @@ export class GameController {
         return this.gameState;
     }
 
-    public respondToEvent(responseId: string): CompletedEvent {
+    public respondToEvent(responseId: string): ResponseSelectionResult {
         const response = this.storyEvents.flatMap((it) => it.responses).find((it) => it.id === responseId);
         if (!response) {
             throw new Error(`Cannot find response with id: ${responseId}`);
@@ -93,18 +94,7 @@ export class GameController {
         // Update the game state
         this.gameState.indicators = result.updatedIndicators;
         this.saveResponseToHistory(response, result);
-        //To-Do: Change history to save CompletedEvent objects instead
-
-        const thisEvent = this.storyEvents.find((it) => it.id === response.eventId);
-        if (!thisEvent) {
-            throw Error("Invalid event id")
-        }
-        return {
-            event: thisEvent,
-            response: response,
-            playerChoiceId: responseId,
-            reputation: result.updatedIndicators.reputation
-        };
+        return cloneDeep(result);
     }
 
     /**

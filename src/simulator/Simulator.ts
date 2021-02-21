@@ -46,7 +46,7 @@ export class Simulator {
     nextTurn(playerActions: PlayerActions, daysToAdvance: number = 1): SimulatorMetrics {
         // The simulator MUST advance at least one day
         if (daysToAdvance < 1) {
-            throw Error("Invalid next turn paramenter. `daysToAdvance` needs to be greater than or equal to 1.");
+            throw new Error("Invalid next turn paramenter. `daysToAdvance` needs to be greater than or equal to 1.");
         }
 
         // Store player previous player turn

@@ -1,4 +1,3 @@
-import { Component, FC } from 'react';
 import { Response, ResponseSelectionResult } from './Response';
 
 export interface GameState {
@@ -22,8 +21,5 @@ export interface ResponseHistory {
 
 export interface Reputation {
     id: string;
-    name: string;
-    icon: string;
-    description: string;
-    reputationComponent: Component<any> | FC<any>
+    reputationComponent: () => JSX.Element
 }
