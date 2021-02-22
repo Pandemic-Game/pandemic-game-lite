@@ -26,7 +26,7 @@ export const resp1: Response = {
         lockdownCosts: 1000,
         medicalCosts: 1000,
     },
-    socialMediaResponse: <Title value='responses1' />,
+    socialMediaResponse: <Title value='socialMediaResponses1' />,
     getNextEvent: () => {return test2},
     ending: null
 }
@@ -41,7 +41,7 @@ export const resp2: Response = {
         lockdownCosts: 2000,
         medicalCosts: 2000,
     },
-    socialMediaResponse:  <Title value='responses2' />,
+    socialMediaResponse:  <Title value='socialMediaResponses2' />,
     getNextEvent: () => {return test2},
     ending: null
 }
@@ -56,7 +56,7 @@ export const resp3: Response = {
         lockdownCosts: 1000,
         medicalCosts: 1000,
     },
-    socialMediaResponse: <Title value='responses3' />,
+    socialMediaResponse: <Title value='socialMediaResponses3' />,
     getNextEvent: () => {return ending},
     ending: ending1
 }
@@ -71,7 +71,7 @@ export const resp4: Response = {
         lockdownCosts: 2000,
         medicalCosts: 2000,
     },
-    socialMediaResponse:  <Title value='responses4' />,
+    socialMediaResponse:  <Title value='socialMediaResponses4' />,
     getNextEvent: () => {return ending},
     ending: ending2
 }

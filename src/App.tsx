@@ -25,7 +25,6 @@ const narrative: Event[] = [Story.test1];
 
 const App = () => {
 
-  const [turn, setTurn] = useState<number>(0);
   const [indicators, setIndicators] = useState<Indicators>({ // Load initial scenario
     supportForLastResponse: scenario.initialPublicSupport,
     oppositionToLastResponse: 100-scenario.initialPublicSupport,
@@ -34,26 +33,28 @@ const App = () => {
     medicalCosts: scenario.initialMedicalCosts
   });
   const [event, setEvent] = useState<Event>(narrative[0]); // Load first event
-  const [response, setResponse] = useState<Response>(narrative[0].response1); // Silence warning with placeholder
+  const [response, setResponse] = useState<Response>();
   const [history, setHistory] = useState<History[]>([]);
   const [view, setView] = useState('start');
   const [ending, setEnding] = useState<Reputation>();
 
   // Applies the response and advances to the next turn
   const processPlayerChoice = (playerChoice: Response) => {
-    setTurn(turn+1);
+
+    // Update gamestate
     setResponse(playerChoice);
-    setIndicators(response.updatedIndicators);
+    setIndicators(playerChoice.updatedIndicators);
     
     // Show new event or if at end show ending
-    if (response.ending) {
-      setEnding(response.ending)
+    if (playerChoice.ending) {
+      setEnding(playerChoice.ending)
     } else {
-      setEvent(response.getNextEvent())
+      setEvent(playerChoice.getNextEvent())
     }
 
     // TO-DO: add history
 
+    // Show feedback for choice
     setView('feedback'); 
   }
 
