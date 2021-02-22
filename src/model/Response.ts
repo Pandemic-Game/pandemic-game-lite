@@ -1,21 +1,19 @@
-import { Component, FC } from 'react';
-import { PlayerActions } from '../simulator/SimulatorModel';
-import { GameState, Indicators, Reputation } from './GameState';
+import { Indicators } from './Indicators';
+import {Event} from './Event'
+import { Reputation } from './Reputation';
 
 export interface Response {
     id: string;
-    eventId: string;
-    isApplicable: (gameState: GameState) => boolean;
-    onSelect: (gameState: GameState) => ResponseSelectionResult;
-}
-
-export interface Feedback {
-    responseSocialMediaComponent: (onDismiss: () => void) => JSX.Element
-}
-
-export interface ResponseSelectionResult {
+    label: string;
+    getParentEvent: () => Event;
     updatedIndicators: Indicators;
-    feedback: Feedback;
-    reputations: Reputation[];
-    playerActions: PlayerActions;
+    socialMediaResponse: JSX.Element;
+    getNextEvent: () => Event;
+    ending: Reputation | null;
+}
+
+export interface History {
+    event: Event;
+    response: Response;
+    indicators: Indicators;
 }

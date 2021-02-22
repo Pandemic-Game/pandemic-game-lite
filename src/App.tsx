@@ -1,117 +1,79 @@
 import { useState } from 'react';
 import './App.css';
-import { GameController, isGameState } from './controller/GameController';
-import { Event } from './model/Events';
-import { GameState, ResponseHistory } from './model/GameState';
-import { Response, ResponseSelectionResult } from './model/Response';
-import { TestEvent } from './narrative/TwoChoiceNarrative';
-import { US } from './scenarios/US';
+import { Event } from './model/Event';
+import { Response, History } from './model/Response';
+import { Reputation } from './model/Reputation';
+import { Indicators } from './model/Indicators';
+import {UK} from './controller/Scenario';
+import * as Story from './assets/story';
 
-/**
- * Displays a new event
- */
-interface DisplayNextEventProps {
-  event: Event,
-  onPlayerChoice: (response: Response) => void
-}
+// Components
+import {Introduction} from './components/views/start';
+import {EventScreen} from './components/views/event';
+import {FeedbackScreen} from './components/views/feedback';
 
-const DisplayNextEvent: React.FC<DisplayNextEventProps> = (props: DisplayNextEventProps) => {
-  const { event, onPlayerChoice } = props
-  return (<div>{event.eventMainComponent(onPlayerChoice)}</div>)
-}
-
-/**
- * Displays the outcomes of a player choice
- */
-interface DisplayResponseProps {
-  eventResponse: ResponseSelectionResult,
-  onDismiss: () => void
-}
-
-const DisplayResponseOutcomes: React.FC<DisplayResponseProps> = (props: DisplayResponseProps) => {
-  const { eventResponse, onDismiss } = props
-  //TODO: add interactions to navigate on the detail of the response
-  return (<div>
-    {eventResponse.feedback.responseSocialMediaComponent(onDismiss)}
-  </div>)
-}
-
-/**
- * End game screed
- */
-interface GameEndProps { gameState: GameState }
-
-const DisplayEndGame: React.FC<GameEndProps> = (props: GameEndProps) => {
-  //TODO: we should make this easier, but for now it works
-  const lastEntry: ResponseHistory = props.gameState.responseHistory[props.gameState.responseHistory.length - 1];
-  const reputation = lastEntry.responses[0].result.reputations[0];
-
-  return (<div>
-    <h1>Your game has ended. You are:</h1>
-    {reputation.reputationComponent()}
-  </div>)
+function EndScreen(props: any){
+  return <div>{props.ending.id}</div>
 }
 
 /**
  * Main game loop
  */
-const GameModes = {
-  NextEvent: "NextEvent",
-  DisplayResponseOutcomes: "DisplayResponseOutcomes",
-  GameEnd: "GameEnd",
-}
 
-const narrative = [TestEvent]
-const gameController = new GameController(US, narrative);
-const firstEvent = gameController.nextTurn()
+const scenario = UK;
+const narrative: Event[] = [Story.test1];
+
 const App = () => {
 
-  const [nextEvent, setNextEvent] = useState(firstEvent)
-  const [currentResponse, setCurrentResponse] = useState<ResponseSelectionResult | undefined>(undefined)
-  const [currentMode, setCurrentMode] = useState(GameModes.NextEvent)
+  const [turn, setTurn] = useState<number>(0);
+  const [indicators, setIndicators] = useState<Indicators>({ // Load initial scenario
+    supportForLastResponse: scenario.initialPublicSupport,
+    oppositionToLastResponse: 100-scenario.initialPublicSupport,
+    newCases: scenario.initialNumInfected,
+    lockdownCosts: scenario.initialEconomicCosts,
+    medicalCosts: scenario.initialMedicalCosts
+  });
+  const [event, setEvent] = useState<Event>(narrative[0]); // Load first event
+  const [response, setResponse] = useState<Response>(narrative[0].response1); // Silence warning with placeholder
+  const [history, setHistory] = useState<History[]>([]);
+  const [view, setView] = useState('start');
+  const [ending, setEnding] = useState<Reputation>();
 
   // Applies the response and advances to the next turn
-  const processPlayerChoice = (response: Response) => {
-    const nextResponse = gameController.respondToEvent(response.id)
-    setCurrentResponse(nextResponse);
-    setNextEvent(gameController.nextTurn())
-    setCurrentMode(GameModes.DisplayResponseOutcomes)
-  }
-
-  // Controls the game loop after the outcomes of a response have been processed.
-  const showNextEvent = () => {
-    if (isGameState(nextEvent)) {
-      setCurrentMode(GameModes.GameEnd)
+  const processPlayerChoice = (playerChoice: Response) => {
+    setTurn(turn+1);
+    setResponse(playerChoice);
+    setIndicators(response.updatedIndicators);
+    
+    // Show new event or if at end show ending
+    if (response.ending) {
+      setEnding(response.ending)
     } else {
-      setCurrentMode(GameModes.NextEvent)
-    }
-  }
-
-  // Game mode slection
-  if (currentMode === GameModes.GameEnd) {
-    if (isGameState(nextEvent)) {
-      return <DisplayEndGame gameState={nextEvent} />
-    } else {
-      throw new Error("Game has ended but game state is not set")
+      setEvent(response.getNextEvent())
     }
 
-  } else if (currentMode === GameModes.NextEvent) {
-    if (!isGameState(nextEvent)) {
-      return <DisplayNextEvent
-        onPlayerChoice={processPlayerChoice}
-        event={nextEvent} />;
+    // TO-DO: add history
+
+    setView('feedback'); 
+  }
+
+  // Show new event
+  const nextTurn = () => {
+    if(ending){
+      setView('end');
     } else {
-      throw new Error("Game has not ended but received end result")
-    }
-  } else {
-    if (currentResponse) {
-      return <DisplayResponseOutcomes
-        onDismiss={() => { showNextEvent() }}
-        eventResponse={currentResponse} />;
-    } else {
-      throw new Error("Expecting a response. None received")
+      setView('event');
     }
   }
+
+  // Game mode selection
+  switch(view){
+    case 'start': return <Introduction onContinue={() => {setView('event')}}/>;
+    case 'event': return <EventScreen event={event} onClick = {processPlayerChoice} />;
+    case 'feedback': return <FeedbackScreen response={response} onClick={nextTurn} />;
+    case 'end': return <EndScreen ending={ending} />; // Reputations are end events
+  }
+
 }
 
 export default App;
