@@ -5,7 +5,7 @@ import * as Gfx from '../infographics';
 import {Event} from '../../model/Event';
 
 export function EventScreen(props: {event: Event, onClick: Function}){
-    return <div>
+    return <div className='bg-yellow-500 flex-column p-2'>
         <Txt.Title value={props.event.title} />
         <Txt.Paragraph value={props.event.description} />
         <Btn.Rounded value={props.event.response1.label} onClick={()=>{props.onClick(props.event.response1)}} />

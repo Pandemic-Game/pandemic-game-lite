@@ -5,7 +5,7 @@ import * as Gfx from '../infographics';
 import { Reputation } from '../../model/Reputation';
 
 export function EventScreen(props: {ending: Reputation, onClick: Function}){
-    return <div>
+    return <div className='flex-column p-2'>
         {props.ending.reputationComponent}
         <Btn.Rounded value={'View all profiles'} onClick={()=>{props.onClick()}} />
     </div> 

@@ -9,7 +9,7 @@ export interface Response {
     updatedIndicators: Indicators;
     socialMediaResponse: JSX.Element;
     getNextEvent: () => Event;
-    ending: Reputation | null;
+    ending: Reputation;
 }
 
 export interface History {

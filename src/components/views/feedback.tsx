@@ -2,11 +2,12 @@ import React from 'react';
 import * as Btn from '../buttons';
 import * as Txt from '../text';
 import * as Gfx from '../infographics';
+import {Response} from '../../model/Response';
 
-export function FeedbackScreen(props: any){
+export function FeedbackScreen(props: {response: Response, onClick: Function}){
     const e = props.response;
     const i = e.updatedIndicators;
-    return <div>
+    return <div className='flex-column p-2'>
         <Txt.Title value={e.getParentEvent().title} />
         <Txt.Title value={e.label} />
         {e.socialMediaResponse}

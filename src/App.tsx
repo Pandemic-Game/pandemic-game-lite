@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './App.css';
+import "tailwindcss/tailwind.css";
+
 import { Event } from './model/Event';
 import { Response, History } from './model/Response';
 import { Reputation } from './model/Reputation';
@@ -33,7 +35,7 @@ const App = () => {
     medicalCosts: scenario.initialMedicalCosts
   });
   const [event, setEvent] = useState<Event>(narrative[0]); // Load first event
-  const [response, setResponse] = useState<Response>();
+  const [response, setResponse] = useState<Response>(narrative[0].response1); // Silences TS shouting at me
   const [history, setHistory] = useState<History[]>([]);
   const [view, setView] = useState('start');
   const [ending, setEnding] = useState<Reputation>();
@@ -46,10 +48,10 @@ const App = () => {
     setIndicators(playerChoice.updatedIndicators);
     
     // Show new event or if at end show ending
-    if (playerChoice.ending) {
-      setEnding(playerChoice.ending)
-    } else {
+    if (playerChoice.ending === Story.notAtEnd) {
       setEvent(playerChoice.getNextEvent())
+    } else {
+      setEnding(playerChoice.ending)
     }
 
     // TO-DO: add history
@@ -69,7 +71,7 @@ const App = () => {
 
   // Game mode selection
   switch(view){
-    case 'start': return <Introduction onContinue={() => {setView('event')}}/>;
+    case 'start': return <Introduction onClick={() => {setView('event')}}/>;
     case 'event': return <EventScreen event={event} onClick = {processPlayerChoice} />;
     case 'feedback': return <FeedbackScreen response={response} onClick={nextTurn} />;
     case 'end': return <EndScreen ending={ending} />; // Reputations are end events

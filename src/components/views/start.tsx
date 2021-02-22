@@ -9,15 +9,15 @@ const introductionText = `
     Will your country survive COVID-19?
 `
 
-export function Introduction(props) {
+export function Introduction(props: {onClick: Function}) {
     return(
-        <div className='Introduction View yellow'> 
+        <div className='Introduction View yellow flex-column p-2'> 
             <Txt.BigTitle value={'Pandemic Game'} />
             <Txt.Paragraph value={introductionText} />
             <Btn.Rounded 
                 value='Play the game' 
                 className='default'
-                onClick={props.onContinue}
+                onClick={props.onClick}
             />
         </div>
     );

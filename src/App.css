@@ -1,38 +1,107 @@
-.App {
-  text-align: center;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Colors */
+:root {
+    --primary: #F0D300;
+    --secondary: #5F256E;
+    --dark: #222222;
+    --light: #ffffff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Fonts */
+*{
+    color: var(--dark);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Fullscreen */
+html, body, .App, .Game, .View, #root {
+    height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Views */
+.View{
+    padding: 2rem;
+}
+.View.yellow{
+    background-color: var(--primary);
+}
+.View.purple{
+    background-color: var(--primary);
 }
 
-.App-link {
-  color: #61dafb;
+/* Styles for individual components */
+
+/* Shapes */
+.HorizontalLine{
+    border-bottom: 2px solid black;
+    margin-left: 20; 
+    margin-right: 20;
+    padding: 1rem;
+    width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Text */
+.BigTitle{
+
+}
+.Title{
+
+}
+.Paragraph{
+    
+}
+.SpeechBubble{
+
+}
+
+/* Buttons */
+.RoundedButton{
+
+}
+.RoundedButton.default{
+    background-color: var(--secondary);
+    color: var(--light)
+}
+.RoundedButton.alt{
+    background-color: var(--primary);
+}
+.SneakyButton{
+    background: none;
+    border: none;
+}
+.ViewSourceButton{
+    background: none;
+    border: none;
+    color: red;
+}
+
+/* Infographics */
+.SupportBar{
+    
+}
+.SupportBar.Bar{
+    height: 20px;
+    text-align: center;
+    border-radius: 5px 0 0 5px;
+}
+.CaseCircle{
+    border-radius: 50%;
+}
+.CaseCircle.Old{
+    background-color: yellow;
+}
+.CaseCircle.New{
+    background-color: red;
+}
+
+/* Reactions */
+.Reaction{
+    position: relative;
+}
+.ReactionFace{
+    position: absolute;
+    top: 0;
+    left: 0;
 }

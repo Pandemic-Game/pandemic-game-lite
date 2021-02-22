@@ -4,6 +4,11 @@ import {Reputation} from '../model/Reputation';
 import {Response} from '../model/Response';
 
 // Endings
+export const notAtEnd: Reputation = {
+    id: 'notAtEnd',
+    reputationComponent: <Title value='notAtEnd' />
+}
+
 export const ending1: Reputation = {
     id: 'ending1',
     reputationComponent: <Title value='ending1' />
@@ -28,7 +33,7 @@ export const resp1: Response = {
     },
     socialMediaResponse: <Title value='socialMediaResponses1' />,
     getNextEvent: () => {return test2},
-    ending: null
+    ending: notAtEnd
 }
 export const resp2: Response = {
     id: 'resp2',
@@ -43,7 +48,7 @@ export const resp2: Response = {
     },
     socialMediaResponse:  <Title value='socialMediaResponses2' />,
     getNextEvent: () => {return test2},
-    ending: null
+    ending: notAtEnd
 }
 export const resp3: Response = {
     id: 'resp3',
