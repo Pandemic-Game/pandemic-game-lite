@@ -6,7 +6,7 @@ import { Event } from './model/Event';
 import { Response, History } from './model/Response';
 import { Reputation } from './model/Reputation';
 import { Indicators } from './model/Indicators';
-import {UK} from './controller/Scenario';
+import {UK} from './model/Scenario';
 import * as Story from './assets/story';
 
 // Components
@@ -22,19 +22,16 @@ function EndScreen(props: any){
  * Main game loop
  */
 
-const scenario = UK;
-const narrative: Event[] = [Story.test1];
-
 const App = () => {
 
   const [indicators, setIndicators] = useState<Indicators>({ // Load initial scenario
-    supportForLastResponse: scenario.initialPublicSupport,
-    oppositionToLastResponse: 100-scenario.initialPublicSupport,
-    newCases: scenario.initialNumInfected,
-    lockdownCosts: scenario.initialEconomicCosts,
-    medicalCosts: scenario.initialMedicalCosts
+    supportForLastResponse: UK.initialPublicSupport,
+    oppositionToLastResponse: 100-UK.initialPublicSupport,
+    newCases: UK.initialNumInfected,
+    lockdownCosts: UK.initialEconomicCosts,
+    medicalCosts: UK.initialMedicalCosts
   });
-  const [event, setEvent] = useState<Event>(narrative[0]); // Load first event
+  const [event, setEvent] = useState<Event>(Story.test1); // Load first event
   const [response, setResponse] = useState<Response>(narrative[0].response1); // Silences TS shouting at me
   const [history, setHistory] = useState<History[]>([]);
   const [view, setView] = useState('start');
