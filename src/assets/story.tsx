@@ -7,12 +7,12 @@ import {Response} from '../model/Response';
 export const notAtEnd: Reputation = {
     id: 'notAtEnd',
     reputationComponent: <Title value='notAtEnd' />
-}
+};
 
 export const ending1: Reputation = {
     id: 'ending1',
     reputationComponent: <Title value='ending1' />
-}
+};
 
 export const ending2: Reputation = {
 id: 'ending2',
@@ -34,7 +34,7 @@ export const resp1: Response = {
     socialMediaResponse: <Title value='socialMediaResponses1' />,
     getNextEvent: () => {return test2},
     ending: notAtEnd
-}
+};
 export const resp2: Response = {
     id: 'resp2',
     label: 'response 2',
@@ -49,7 +49,7 @@ export const resp2: Response = {
     socialMediaResponse:  <Title value='socialMediaResponses2' />,
     getNextEvent: () => {return test2},
     ending: notAtEnd
-}
+};
 export const resp3: Response = {
     id: 'resp3',
     label: 'response 3',
@@ -64,7 +64,7 @@ export const resp3: Response = {
     socialMediaResponse: <Title value='socialMediaResponses3' />,
     getNextEvent: () => {return ending},
     ending: ending1
-}
+};
 export const resp4: Response = {
     id: 'resp4',
     label: 'response 4',
@@ -79,7 +79,7 @@ export const resp4: Response = {
     socialMediaResponse:  <Title value='socialMediaResponses4' />,
     getNextEvent: () => {return ending},
     ending: ending2
-}
+};
 
 // Story events
 export const test1: Event = {
