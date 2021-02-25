@@ -10,7 +10,7 @@ import {UK} from './model/Scenario';
 import * as Story from './assets/story';
 
 // Components
-import {Introduction} from './components/views/start';
+import {Splash, Introduction} from './components/views/start';
 import {EventScreen} from './components/views/event';
 import {FeedbackScreen} from './components/views/feedback';
 
@@ -32,7 +32,7 @@ const App = () => {
     medicalCosts: UK.initialMedicalCosts
   });
   const [event, setEvent] = useState<Event>(Story.test1); // Load first event
-  const [response, setResponse] = useState<Response>(narrative[0].response1); // Silences TS shouting at me
+  const [response, setResponse] = useState<Response>(Story.test1.response1); // Silences TS shouting at me
   const [history, setHistory] = useState<History[]>([]);
   const [view, setView] = useState('start');
   const [ending, setEnding] = useState<Reputation>();
@@ -68,7 +68,8 @@ const App = () => {
 
   // Game mode selection
   switch(view){
-    case 'start': return <Introduction onClick={() => {setView('event')}}/>;
+    case 'start': return <Splash onClick={() => {setView('introduction')}}/>;
+    case 'introduction': return <Introduction onClick={() => {setView('event')}}/>;
     case 'event': return <EventScreen event={event} onClick = {processPlayerChoice} />;
     case 'feedback': return <FeedbackScreen response={response} onClick={nextTurn} />;
     case 'end': return <EndScreen ending={ending} />; // Reputations are end events

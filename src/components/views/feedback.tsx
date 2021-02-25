@@ -7,9 +7,11 @@ import {Response} from '../../model/Response';
 export function FeedbackScreen(props: {response: Response, onClick: Function}){
     const e = props.response;
     const i = e.updatedIndicators;
-    return <div className='flex-column p-2'>
-        <Txt.Title value={e.getParentEvent().title} />
-        <Txt.Title value={e.label} />
+    return <div className='h-full p-2 flex flex-col justify-between items-center bg-purple-900'>
+        <div>
+            <Txt.Title value={e.getParentEvent().title} col={'white'} />
+            <Txt.Title value={e.label} col={'white'} />
+        </div>
         {e.socialMediaResponse}
         <Gfx.SupportBar support={i.newCases} dontKnow={10} oppose={900-i.newCases} />
         <Btn.Rounded value={'Continue'} onClick={()=>{props.onClick()}} />
