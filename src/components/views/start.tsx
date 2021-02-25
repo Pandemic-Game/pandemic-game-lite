@@ -63,6 +63,7 @@ export function Introduction(props: {onClick: Function}) {
                 value='Start'
                 bg='purple-900'
                 col='white'
+                animate='bounce'
                 onClick={props.onClick}
             />
         </div>
