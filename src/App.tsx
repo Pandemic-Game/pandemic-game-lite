@@ -11,12 +11,9 @@ import * as Story from './assets/story';
 
 // Components
 import {Splash, Introduction} from './components/views/start';
-import {EventScreen} from './components/views/event';
-import {FeedbackScreen} from './components/views/feedback';
-
-function EndScreen(props: any){
-  return <div>{props.ending.id}</div>
-}
+import {EventScreen, EventExtra} from './components/views/event';
+import {FeedbackScreen1, FeedbackScreen2, FeedbackExtra} from './components/views/feedback';
+import {YourLeadershipStyle, AllLeadershipStyles, ViewLeadershipStyle} from './components/views/end';
 
 /**
  * Main game loop
@@ -35,7 +32,7 @@ const App = () => {
   const [response, setResponse] = useState<Response>(Story.test1.response1); // Silences TS shouting at me
   const [history, setHistory] = useState<History[]>([]);
   const [view, setView] = useState('start');
-  const [ending, setEnding] = useState<Reputation>();
+  const [ending, setEnding] = useState<Reputation>(Story.notAtEnd);
 
   // Applies the response and advances to the next turn
   const processPlayerChoice = (playerChoice: Response) => {
@@ -54,25 +51,50 @@ const App = () => {
     // TO-DO: add history
 
     // Show feedback for choice
-    setView('feedback'); 
+    setView('feedback1'); 
   }
 
   // Show new event
   const nextTurn = () => {
     if(ending){
-      setView('end');
+      setView('yourLeadershipStyle');
     } else {
-      setView('event');
+      setView('feedback1');
     }
   }
 
   // Game mode selection
   switch(view){
-    case 'start': return <Splash onClick={() => {setView('introduction')}}/>;
-    case 'introduction': return <Introduction onClick={() => {setView('event')}}/>;
-    case 'event': return <EventScreen event={event} onClick = {processPlayerChoice} />;
-    case 'feedback': return <FeedbackScreen response={response} onClick={nextTurn} />;
-    case 'end': return <EndScreen ending={ending} />; // Reputations are end events
+    // Intro screens
+    case 'start': return <Splash onClick={() => { setView('introduction') }}/>;
+    case 'introduction': return <Introduction onClick={() => { setView('event') }}/>;
+
+    // Event screens
+    case 'event': return <EventScreen 
+      event = {event}
+      onClickResponse = {processPlayerChoice}
+      onClickExtraInfo = {() => { setView('eventExtra') }}
+    />;
+    case 'eventExtra': return <EventExtra 
+      event = {event}
+      onClick = {() => { setView('event') }}
+    />;
+
+    // Feedback screens
+    case 'feedback1': return <FeedbackScreen1 response={response} onClick={() => {  setView('feedback2') }} />;
+    case 'feedback2': return <FeedbackScreen2 
+      response = {response}
+      onClickContinue = {nextTurn}
+      onClickExtra = {() => { setView('feedbackExtra') }}
+    />;
+    case 'feedbackExtra': return <FeedbackExtra response={response} onClick={() => { setView('feedback2') }} />;
+
+    // End screen
+    case 'yourLeadershipStyle': return <YourLeadershipStyle ending={ending} onClick={() => { setView('yourLeadershipStyle') }} />;
+    case 'allLeadershipStyles': return <AllLeadershipStyles 
+      onClick={(selectedLeadershipStyle: Reputation) => { setEnding(selectedLeadershipStyle); setView('viewLeadershipStyle') }} 
+    />; 
+    case 'viewLeadershipStyle': return <ViewLeadershipStyle reputation={ending} onClick={() => { setView('allLeadershipStyles') }} />; // Reputations are end events
   }
 
 }

@@ -15,8 +15,8 @@ export const ending1: Reputation = {
 };
 
 export const ending2: Reputation = {
-id: 'ending2',
-reputationComponent: <Title value='ending2' />
+    id: 'ending2',
+    reputationComponent: <Title value='ending2' />
 };
 
 // Responses

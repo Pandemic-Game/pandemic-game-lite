@@ -1,5 +1,19 @@
 
 export interface Reputation {
     id: string;
-    reputationComponent: JSX.Element;
+    name: string; 
+    example: {
+        name: string;
+        description: string;
+    };
+    icon: string;
+    description: string;
+    values: {
+        public: number;
+        economy: number;
+        healthcare: number;
+    };
+    style: {
+        col: string;
+    }
 }

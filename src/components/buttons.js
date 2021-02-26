@@ -8,7 +8,18 @@ import ButtonSneakySVG_alt from '../assets/SVG/ButtonSneaky_Alt.svg';
 export function Rounded(props) {
 	return (
 		<button 
-			className={`m-2 p-2 rounded bg-${props.bg} text-3xl text-${props.col} font-custom animate-${props.animate}`}
+			className={`m-2 p-3 w-full rounded-full bg-${props.bg} text-3xl text-${props.col} font-custom animate-${props.animate}`}
+			onClick={props.onClick}
+		>
+			{props.value}
+		</button>
+	);
+}
+
+export function Bouncy(props) {
+	return (
+		<button 
+			className={`m-2 p-3 rounded-full bg-${props.bg} text-3xl text-${props.col} font-custom animate-bounce`}
 			onClick={props.onClick}
 		>
 			{props.value}
@@ -19,29 +30,27 @@ export function Rounded(props) {
 // Extra info
 export function Sneaky(props) {
 	return (
-		<button 
-			className={`p-2 rounded bg-${props.bg} text-3xl text-${props.col} font-custom`}
+		<img className={'flex flex-col h-auto w-64'} 
+			src={ButtonSneakySVG} 
+			alt="Psst need some help deciding?" 
 			onClick={props.onClick}
-		>
-			<img className={'h-auto w-96'} src={ButtonSneakySVG} alt="Psst need some help deciding?" />
-		</button>
+		/>
 	);
 }
 export function SneakyFeedback(props) {
 	return (
-		<button 
-			className={`p-2 rounded bg-${props.bg} text-3xl text-${props.col} font-custom`}
+		<img className={'flex flex-col h-auto w-64'} 
+			src={ButtonSneakySVG_alt} 
+			alt="Psst wanna see some data?" 
 			onClick={props.onClick}
-		>
-			<img className={'h-auto w-96'} src={ButtonSneakySVG_alt} alt="Psst wanna see some data?" />
-		</button>
+		/>
 	);
 }
 
 export function ViewSource(props){
 	return (
 		<button 
-			className={`p-1 bg-none col-${props.col} animate-pulse`}
+			className={`m-2 text-red-700 animate-pulse`}
 			onClick={props.onClick}
 		>
 			<FontAwesomeIcon icon={faQuestionCircle} />
