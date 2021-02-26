@@ -1,23 +1,7 @@
 import { Event } from '../model/Event';
 import {Title} from '../components/text';
-import {Reputation} from '../model/Reputation';
 import {Response} from '../model/Response';
-
-// Endings
-export const notAtEnd: Reputation = {
-    id: 'notAtEnd',
-    reputationComponent: <Title value='notAtEnd' />
-};
-
-export const ending1: Reputation = {
-    id: 'ending1',
-    reputationComponent: <Title value='ending1' />
-};
-
-export const ending2: Reputation = {
-    id: 'ending2',
-    reputationComponent: <Title value='ending2' />
-};
+import {GenghisCannot} from '../components/leaderStyles';
 
 // Responses
 export const resp1: Response = {
@@ -33,7 +17,7 @@ export const resp1: Response = {
     },
     socialMediaResponse: <Title value='socialMediaResponses1' />,
     getNextEvent: () => {return test2},
-    ending: notAtEnd
+    ending: ''
 };
 export const resp2: Response = {
     id: 'resp2',
@@ -48,7 +32,7 @@ export const resp2: Response = {
     },
     socialMediaResponse:  <Title value='socialMediaResponses2' />,
     getNextEvent: () => {return test2},
-    ending: notAtEnd
+    ending: ''
 };
 export const resp3: Response = {
     id: 'resp3',
@@ -63,7 +47,7 @@ export const resp3: Response = {
     },
     socialMediaResponse: <Title value='socialMediaResponses3' />,
     getNextEvent: () => {return ending},
-    ending: ending1
+    ending: 'GenghisCannot'
 };
 export const resp4: Response = {
     id: 'resp4',
@@ -78,7 +62,7 @@ export const resp4: Response = {
     },
     socialMediaResponse:  <Title value='socialMediaResponses4' />,
     getNextEvent: () => {return ending},
-    ending: ending2
+    ending: 'GenghisCannot'
 };
 
 // Story events
@@ -107,5 +91,5 @@ export const test2: Event = {
     response2: resp4
 };
 
-// Blank event to silence errors
+// Blank event returned on ending to silence errors
 export const ending: Event = { id: '', title: '', description: '', extraDetails: {public: '',business: '',medical: '',},response1: resp1,response2: resp2}

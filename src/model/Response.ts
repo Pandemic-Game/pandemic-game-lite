@@ -1,6 +1,5 @@
 import { Indicators } from './Indicators';
 import {Event} from './Event'
-import { Reputation } from './Reputation';
 
 export interface Response {
     id: string;
@@ -9,7 +8,7 @@ export interface Response {
     updatedIndicators: Indicators;
     socialMediaResponse: JSX.Element;
     getNextEvent: () => Event;
-    ending: Reputation;
+    ending: string;
 }
 
 export interface History {

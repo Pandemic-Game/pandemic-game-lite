@@ -25,6 +25,14 @@ export function Subtitle(props) {
     );
 } 
 
+export function SectionTitle(props) {
+    return (
+        <h1 className={`m-4 p-4 flex text-3xl text-center text-${props.col} font-custom border-b-2 border-${props.col}`}>
+            {props.value}
+        </h1>
+    );
+}
+
 export function Paragraph(props) { // Line break split into new p for new line
     return (
         <div className={`max-w-lg flex flex-col text-lg text-left text-${props.col} font-sans font-medium`}>
@@ -35,7 +43,7 @@ export function Paragraph(props) { // Line break split into new p for new line
 
 export function Text(props) { // Line break split into new p for new line
     return (
-        <p className={`max-w-lg text-lg text-left text-${props.col} font-sans font-medium`}> {props.value}</p>
+        <p className={`max-w-lg text-lg text-${props.col} font-sans font-medium`}> {props.value}</p>
     );
 }
 
