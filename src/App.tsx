@@ -3,7 +3,7 @@ import './App.css';
 import "tailwindcss/tailwind.css";
 
 import { Event } from './model/Event';
-import { Response, History } from './model/Response';
+import { Response, History, ResponseItem } from './model/Response';
 import { Indicators } from './model/Indicators';
 import {UK} from './model/Scenario';
 import * as Story from './assets/story';
@@ -13,6 +13,7 @@ import {Splash, Introduction} from './components/views/start';
 import {EventScreen, EventExtra} from './components/views/event';
 import {FeedbackScreen1, FeedbackScreen2, FeedbackExtra} from './components/views/feedback';
 import {Ending, AllEndings, ViewEnding} from './components/views/end';
+import {Tweet, News, Meme} from './components/socialFeedback';
 import * as LeaderStyle from './components/leaderStyles';
 
 /**
@@ -70,6 +71,22 @@ const App = () => {
     }
   }
 
+  // Show feedback
+  const showFeedback = (feedback:ResponseItem[]): JSX.Element => {
+    function constructElement(it: ResponseItem){
+      switch(it.type){
+        case 'tweet': return <Tweet fb={it} />;
+        case 'meme': return  <Meme fb={it} />;
+        case 'article': return  <News fb={it} />;
+      };
+    }
+    return <div className='w-full p-2 m-2 flex flex-col justify-center items-center '>
+      {constructElement( feedback[0] )}
+      {constructElement( feedback[1] )}
+      {constructElement( feedback[2] )}
+    </div>
+  }
+
   // Game mode selection
   switch(view){
     // Intro screens
@@ -88,7 +105,11 @@ const App = () => {
     />;
 
     // Feedback screens
-    case 'feedback1': return <FeedbackScreen1 response={response} onClick={() => {  setView('feedback2') }} />;
+    case 'feedback1': return <FeedbackScreen1 
+      response={ response }
+      feedback={ showFeedback(response.socialMediaResponse) }
+      onClick={() => {  setView('feedback2') }} 
+    />;
     case 'feedback2': return <FeedbackScreen2 
       response = {response}
       onClickContinue = {nextTurn}

@@ -5,18 +5,14 @@ import * as Gfx from '../infographics';
 import * as Lines from '../lines';
 import {Response} from '../../model/Response';
 
-export function FeedbackScreen1(props: {response: Response, onClick: Function}){
+export function FeedbackScreen1(props: {response: Response, feedback: JSX.Element, onClick: Function}){
     return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-purple-900'>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={props.response.getParentEvent().title} col={'white'} />
             <Txt.Title value={props.response.label} col={'white'} />
         </div>
-        {props.response.socialMediaResponse}
-        <Gfx.SupportBar 
-            support={props.response.updatedIndicators.supportForLastResponse} 
-            dontKnow={100 - props.response.updatedIndicators.supportForLastResponse - props.response.updatedIndicators.oppositionToLastResponse} 
-            oppose={props.response.updatedIndicators.oppositionToLastResponse} 
-        />
+        <Gfx.SupportBar indicators={props.response.updatedIndicators} />
+        {props.feedback}
         <Btn.Rounded 
             value={'Continue'} 
             col='gray-900'

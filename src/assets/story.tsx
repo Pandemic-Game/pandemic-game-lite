@@ -1,7 +1,6 @@
 import { Event } from '../model/Event';
-import {Title} from '../components/text';
 import {Response} from '../model/Response';
-import {GenghisCannot} from '../components/leaderStyles';
+import ExampleMeme from '../assets/GIF/meme-example.gif'
 
 // Responses
 export const resp1: Response = {
@@ -15,7 +14,26 @@ export const resp1: Response = {
         lockdownCosts: 1000,
         medicalCosts: 1000,
     },
-    socialMediaResponse: <Title value='socialMediaResponses1' />,
+    socialMediaResponse: [
+        {
+            type: 'tweet',
+            isHappy: true,
+            head: 'example person',
+            content: 'example tweet'
+        },
+        {
+            type: 'meme',
+            isHappy: true,
+            head: 'example head meme',
+            content: ExampleMeme
+        },
+        {
+            type: 'article',
+            isHappy: true,
+            head: 'example head',
+            content: 'EXMAPLE OF A HEADLINE: BREAKING'
+        }
+    ],
     getNextEvent: () => {return test2},
     ending: ''
 };
@@ -30,7 +48,26 @@ export const resp2: Response = {
         lockdownCosts: 2000,
         medicalCosts: 2000,
     },
-    socialMediaResponse:  <Title value='socialMediaResponses2' />,
+    socialMediaResponse:  [
+        {
+            type: 'tweet',
+            isHappy: true,
+            head: 'example person',
+            content: 'example tweet'
+        },
+        {
+            type: 'meme',
+            isHappy: true,
+            head: 'example head meme',
+            content: 'example meme'
+        },
+        {
+            type: 'article',
+            isHappy: true,
+            head: 'example head',
+            content: 'EXMAPLE OF A HEADLINE: BREAKING'
+        }
+    ],
     getNextEvent: () => {return test2},
     ending: ''
 };
@@ -45,7 +82,26 @@ export const resp3: Response = {
         lockdownCosts: 1000,
         medicalCosts: 1000,
     },
-    socialMediaResponse: <Title value='socialMediaResponses3' />,
+    socialMediaResponse: [
+        {
+            type: 'tweet',
+            isHappy: true,
+            head: 'example head',
+            content: 'example content'
+        },
+        {
+            type: 'tweet',
+            isHappy: true,
+            head: 'example head',
+            content: 'example content'
+        },
+        {
+            type: 'tweet',
+            isHappy: true,
+            head: 'example head',
+            content: 'example content'
+        }
+    ],
     getNextEvent: () => {return ending},
     ending: 'GenghisCannot'
 };
@@ -60,7 +116,26 @@ export const resp4: Response = {
         lockdownCosts: 2000,
         medicalCosts: 2000,
     },
-    socialMediaResponse:  <Title value='socialMediaResponses4' />,
+    socialMediaResponse:  [
+        {
+            type: 'tweet',
+            isHappy: true,
+            head: 'example head',
+            content: 'example content'
+        },
+        {
+            type: 'tweet',
+            isHappy: true,
+            head: 'example head',
+            content: 'example content'
+        },
+        {
+            type: 'tweet',
+            isHappy: true,
+            head: 'example head',
+            content: 'example content'
+        }
+    ],
     getNextEvent: () => {return ending},
     ending: 'GenghisCannot'
 };

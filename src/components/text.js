@@ -60,13 +60,3 @@ export function SpeechBubble(props){
         </div>
     );
 }
-
-export function Reaction(props){
-    return (
-        <div className='Reaction'>
-            <i className={`ReactionFace ${props.face}`}></i>
-            <h5 style={{fontWeight: 'bold'}}> {props.title} </h5>
-            <p> {props.paragraph} </p>
-        </div>
-    );
-}

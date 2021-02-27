@@ -1,12 +1,19 @@
 import { Indicators } from './Indicators';
 import {Event} from './Event'
 
+export interface ResponseItem {
+    type: 'tweet' | 'meme' | 'article',
+    isHappy: boolean,
+    head: string,
+    content: string
+}
+
 export interface Response {
     id: string;
     label: string;
     getParentEvent: () => Event;
     updatedIndicators: Indicators;
-    socialMediaResponse: JSX.Element;
+    socialMediaResponse: ResponseItem[];
     getNextEvent: () => Event;
     ending: string;
 }

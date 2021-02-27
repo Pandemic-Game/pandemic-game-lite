@@ -3,7 +3,6 @@ import {Event} from '../../model/Event';
 import { faUserMd, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import * as Btn from '../buttons';
 import * as Txt from '../text';
-import * as Gfx from '../infographics';
 import * as Lines from '../lines';
 
 export function EventScreen(props: 
