@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Fullscreen */
+html, body, .App, .Game, .View, #root, .AnimateOnChange {
+  height: 100%;
+}
 
 body {
   margin: 0;

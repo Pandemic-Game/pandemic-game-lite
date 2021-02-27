@@ -1,8 +1,11 @@
 import React from 'react';
 import * as Txt from './text';
+import * as Lines from './lines';
 import { Indicators } from '../model/Indicators';
+import lockdownCoin from '../assets/SVG/coin-lockdown.svg';
+import medicalCoin from '../assets/SVG/coin-medical.svg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
+import {faThumbsUp, faThumbsDown, faCircle} from '@fortawesome/free-solid-svg-icons';
 
 // Public support
 
@@ -29,73 +32,92 @@ export function SupportBar(props: {indicators: Indicators}){
 }
 
 // Cases
-export function CaseCircle(props:{col: string}){
-    return(
-        <span className={`p-2 rounded-full bg-${props.col}`}></span>
-    )
+export function CaseCircle(props:{ type: 'increase' | 'decrease' | 'default' }){
+    switch(props.type){
+        case 'default': return <FontAwesomeIcon icon={faCircle} size='lg' color={'yellow'} className='m-1' />;
+        case 'decrease': return <FontAwesomeIcon icon={faCircle} size='lg' color={'grey'} className='m-1 animate-pulse' />;
+        case 'increase': return ( 
+            <div className='m-1 relative'>
+                <FontAwesomeIcon icon={faCircle} size='lg' color={'red'} />
+                <span className={`absolute top-0 left-0 animate-ping`} >
+                    <FontAwesomeIcon icon={faCircle} size='lg' color={'dark-red'} />
+                </span>
+            </div>
+        );
+    };
 }
 
-function CaseCircles(props: {indicators: Indicators}){
-    const circles = [];
-    for(let i=0; i < props.indicators.newCases; i++){
-        circles.push( <CaseCircle col={'yellow-500'}/> )
+function CaseCircles(props: {thisTurn: Indicators, lastTurn: Indicators}){
+    const circles:JSX.Element[] = [];
+    for(let i=0; i < (props.thisTurn.newCases > props.lastTurn.newCases ? props.thisTurn.newCases : props.lastTurn.newCases); i++){
+        circles.push( <CaseCircle type='default' /> )
     }
-    for(let i=0; i < props.indicators.newCases; i++){
-        circles.push( <CaseCircle col={'red-500'}/> )
+    for(let i=0; i < Math.max(0, props.thisTurn.newCases - props.lastTurn.newCases); i++){
+        circles.push( <CaseCircle type='increase' /> )
+    }
+    for(let i=0; i < Math.max(0, props.lastTurn.newCases - props.thisTurn.newCases); i++){
+        circles.push( <CaseCircle type='decrease' /> )
     }
     return(
-        <div>
+        <div className='flex flex-row flex-wrap justify-start items-start'>
             {circles}
         </div>
     )
 }
 
-export function CaseGraphic(props: {indicators: Indicators}){
+export function CaseGraphic(props: {thisTurn: Indicators, lastTurn: Indicators}){
+    const title = () => props.thisTurn.newCases>props.lastTurn.newCases ? 'COVID-19 cases are rising!' : 'COVID-19 cases are falling'; 
     return (
-        <div className='w-100 d-flex flex-column justify-content-center align-items-center'>
-            <div className='d-flex flex-row'>
-                <h5> Cases </h5>
-                <div>
-                    <CaseCircle col={'yellow-500'}/> Cases 
-                    <CaseCircle col={'red-500'}/> New Cases 
+        <div className='w-100 flex flex-col justify-between items-center text-white'>
+            <Txt.Subtitle value={ title() } />
+            <div className='m-2 p-2 flex flex-col justify-start items-start'>
+                <div className='mb-2 pb-2 flex flex-col justify-start items-start'>
+                    <div className='flex flex-row flex-wrap justify-start items-start'>
+                        <CaseCircle type='default' />
+                        <Txt.TextLite value='Cases per 10,000 population' />
+                    </div>
+                    <div className='flex flex-row justify-start items-start'>
+                        { 
+                            props.thisTurn.newCases>props.lastTurn.newCases ? 
+                            <div className='flex flex-row flex-wrap justify-start items-start'>
+                                <CaseCircle type='increase' /> <Txt.TextLite value='Increase from last month' />
+                            </div>
+                            :
+                            <div className='flex flex-row flex-wrap justify-start items-start'>
+                                <CaseCircle type='decrease' /> <Txt.TextLite value='Reduction from last month' /> 
+                            </div>
+                        }
+                    </div>
                 </div>
-            </div>
-            <CaseCircles indicators={props.indicators} />
-            <div className='d-flex flex-row'>
-                <span className='HorizontalLine'></span>
-                <span style={{fontSize: '1.2rem'}}> props.indicators.newCases </span> in 1000
-            </div>
+                <CaseCircles thisTurn={props.thisTurn} lastTurn={props.lastTurn} />
+                <div className='w-full flex flex-row justify-around items-center'>
+                    <Lines.Hr /> <p className='w-40'>{props.thisTurn.newCases} in 10000</p>
+                </div>
+            </div>           
         </div>
     );
 }
 
 // Economy
 export function EconomyGraphic(props: {indicators: Indicators}){
+    const title = () => props.indicators.medicalCosts>props.indicators.lockdownCosts ? 'Medical costs are high!' : 'Economy'; 
+    const calculateArea = (value: number):number => Math.sqrt( value / 3.14 ) * 2;
     return(
-        <div className='w-100 d-flex flex-column justify-content-center align-items-center'>
-
-            <h5> Costs </h5>
-            
-            <div className='w-100 d-flex flex-row justify-content-center align-items-center'>
-                <img 
-                    src='' 
-                    alt='Medical Costs'
-                    className='Cost' 
-                    style={{height: props.indicators.medicalCosts}}
-                />
-                <img 
-                    src='' 
-                    alt='Lockdown Costs'
-                    className='Cost' 
-                    style={{height: props.indicators.lockdownCosts}}
-                />
-            </div>
-
-            <div className='HorizontalLine'></div>
-
-            <div className='d-flex flex-row'>
-                <h5>Medical costs: {props.indicators.medicalCosts}</h5>
-                <h5>Lockdown costs: {props.indicators.lockdownCosts}</h5>
+        <div className='w-full flex flex-col justify-center items-center text-white'>
+            <Txt.Subtitle value={ title() } />
+            <div className='flex flex-row justify-center items-center'>
+                <div className='flex flex-col justify-center items-center'>
+                    <img src={medicalCoin} style={{height: calculateArea(props.indicators.medicalCosts) }} alt='Medical Costs'/>
+                    <Lines.Hr />
+                    <p className='p-2 text-lg font-medium'>Medical costs </p>
+                    <Txt.Text value={`$${props.indicators.medicalCosts}`} />
+                </div>
+                <div className='flex flex-col justify-center items-center'>                    
+                    <img src={lockdownCoin} style={{height: calculateArea(props.indicators.lockdownCosts) }} alt='Lockdown Costs'/>
+                    <Lines.Hr />
+                    <p className='p-2 text-lg font-medium'>Lockdown costs </p>
+                    <Txt.Text value={`$${props.indicators.lockdownCosts}`} />
+                </div>
             </div>
         </div>
     )

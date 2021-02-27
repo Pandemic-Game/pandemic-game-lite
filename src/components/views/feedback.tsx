@@ -4,6 +4,7 @@ import * as Txt from '../text';
 import * as Gfx from '../infographics';
 import * as Lines from '../lines';
 import {Response} from '../../model/Response';
+import { Indicators } from '../../model/Indicators';
 
 export function FeedbackScreen1(props: {response: Response, feedback: JSX.Element, onClick: Function}){
     return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-purple-900'>
@@ -22,21 +23,20 @@ export function FeedbackScreen1(props: {response: Response, feedback: JSX.Elemen
     </div> 
 }
 
-export function FeedbackScreen2(props: {response: Response, onClickContinue: Function, onClickExtra: Function}){
+export function FeedbackScreen2(props: 
+{
+    response: Response,
+    indicatorsLastTurn: Indicators,
+    onClickContinue: Function, 
+    onClickExtra: Function
+}){
     return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-purple-900'>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={props.response.getParentEvent().title} col={'white'} />
             <Txt.Title value={props.response.label} col={'white'} />
         </div>
-        <div>
-            Cases
-            <p>{props.response.updatedIndicators.newCases}</p>
-        </div>
-        <div>
-            Economy
-            <p>{props.response.updatedIndicators.lockdownCosts}</p>
-            <p>{props.response.updatedIndicators.medicalCosts}</p>
-        </div>
+        <Gfx.CaseGraphic thisTurn={props.response.updatedIndicators} lastTurn={props.indicatorsLastTurn} /> 
+        <Gfx.EconomyGraphic indicators={props.response.updatedIndicators} />
         <Btn.Rounded 
             value={'Continue'} 
             col='gray-900'

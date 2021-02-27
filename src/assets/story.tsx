@@ -10,7 +10,7 @@ export const resp1: Response = {
     updatedIndicators: {
         supportForLastResponse: 40,
         oppositionToLastResponse: 30,
-        newCases: 1000,
+        newCases: 6,
         lockdownCosts: 1000,
         medicalCosts: 1000,
     },
@@ -44,7 +44,7 @@ export const resp2: Response = {
     updatedIndicators: {
         supportForLastResponse: 30,
         oppositionToLastResponse: 40,
-        newCases: 2000,
+        newCases: 8,
         lockdownCosts: 2000,
         medicalCosts: 2000,
     },
@@ -78,7 +78,7 @@ export const resp3: Response = {
     updatedIndicators: {
         supportForLastResponse: 40,
         oppositionToLastResponse: 30,
-        newCases: 1000,
+        newCases: 9,
         lockdownCosts: 1000,
         medicalCosts: 1000,
     },
@@ -112,7 +112,7 @@ export const resp4: Response = {
     updatedIndicators: {
         supportForLastResponse: 30,
         oppositionToLastResponse: 40,
-        newCases: 2000,
+        newCases: 4,
         lockdownCosts: 2000,
         medicalCosts: 2000,
     },

@@ -43,7 +43,12 @@ export function Paragraph(props) { // Line break split into new p for new line
 
 export function Text(props) { // Line break split into new p for new line
     return (
-        <p className={`max-w-lg text-lg text-${props.col} font-sans font-medium`}> {props.value}</p>
+        <p className={`max-w-lg text-lg text-${props.col} font-sans font-medium`}> {props.value} </p>
+    );
+}
+export function TextLite(props) { // Line break split into new p for new line
+    return (
+        <p className={`max-w-lg text-lg text-${props.col} font-sans font-light`}> {props.value} </p>
     );
 }
 

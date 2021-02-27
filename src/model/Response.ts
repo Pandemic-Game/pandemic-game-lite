@@ -19,7 +19,7 @@ export interface Response {
 }
 
 export interface History {
+    turn: number;
     event: Event;
     response: Response;
-    indicators: Indicators;
 }

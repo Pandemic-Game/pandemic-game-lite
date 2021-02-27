@@ -1,13 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
 import EndCoronaVirusLogo from '../../assets/PNG/ecvlogo.png';
 import WarningCircle from '../../assets/SVG/WarningCircle.svg';
 import WarningCircleOuter from '../../assets/SVG/WarningCircleOuter.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import * as Btn from '../buttons';
 import * as Txt from '../text';
-import * as Gfx from '../infographics';
 
 export function Splash(props: {onClick: Function}) {
     return(

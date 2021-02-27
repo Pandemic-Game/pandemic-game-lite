@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import './App.css';
 import "tailwindcss/tailwind.css";
-
+import cloneDeep from 'lodash/cloneDeep';
 import { Event } from './model/Event';
 import { Response, History, ResponseItem } from './model/Response';
 import { Indicators } from './model/Indicators';
 import {UK} from './model/Scenario';
 import * as Story from './assets/story';
-
-// Components
+import * as LeaderStyle from './components/leaderStyles';
+import {Tweet, News, Meme} from './components/socialFeedback';
 import {Splash, Introduction} from './components/views/start';
 import {EventScreen, EventExtra} from './components/views/event';
 import {FeedbackScreen1, FeedbackScreen2, FeedbackExtra} from './components/views/feedback';
 import {Ending, AllEndings, ViewEnding} from './components/views/end';
-import {Tweet, News, Meme} from './components/socialFeedback';
-import * as LeaderStyle from './components/leaderStyles';
+
+// Load story
+const firstEvent = Story.test1;
 
 /**
  * Main game loop
@@ -22,19 +23,19 @@ import * as LeaderStyle from './components/leaderStyles';
 
 const App = () => {
 
-  const [indicators, setIndicators] = useState<Indicators>({ // Load initial scenario
-    supportForLastResponse: UK.initialPublicSupport,
-    oppositionToLastResponse: 100-UK.initialPublicSupport,
-    newCases: UK.initialNumInfected,
-    lockdownCosts: UK.initialEconomicCosts,
-    medicalCosts: UK.initialMedicalCosts
-  });
-  const [event, setEvent] = useState<Event>(Story.test1); // Load first event
-  const [response, setResponse] = useState<Response>(Story.test1.response1); // Silences TS shouting at me
-  const [history, setHistory] = useState<History[]>([]);
+  const [history, setHistory] = useState<Response[]>([]);
+  const [event, setEvent] = useState<Event>(firstEvent); // Load first event
   const [view, setView] = useState('start');
   const [ending, setEnding] = useState<string>('');
   
+  const initialScenario: Indicators = { // Load initial scenario
+    supportForLastResponse: UK.initialPublicSupport,
+    oppositionToLastResponse: 100-UK.initialPublicSupport,
+    newCases: UK.initialNumInfected / UK.totalPopulation * 10000,
+    lockdownCosts: UK.initialEconomicCosts,
+    medicalCosts: UK.initialMedicalCosts
+  }
+
   const endings: Record<string, {ele: JSX.Element, bg: string}> = {
     'GenghisCannot': {ele: <LeaderStyle.GenghisCannot />, bg: 'yellow-500'},
     'FlipFlopper': {ele: <LeaderStyle.GenghisCannot />, bg: 'red-500'},
@@ -42,21 +43,19 @@ const App = () => {
     'EconomicSavior': {ele: <LeaderStyle.GenghisCannot />, bg: 'blue-500'}
   };
 
+  const response = ():Response => cloneDeep( history[history.length - 1] );
+  const lastMonth = ():Indicators => history.length===1 ? initialScenario : cloneDeep( history[history.length - 1].updatedIndicators );
+
   // Applies the response and advances to the next turn
   const processPlayerChoice = (playerChoice: Response) => {
+    setHistory(history.concat(playerChoice));
 
-    // Update gamestate
-    setResponse(playerChoice);
-    setIndicators(playerChoice.updatedIndicators);
-    
     // Show new event or if at end show ending
     if (playerChoice.ending) {
       setEnding(playerChoice.ending)
     } else {
       setEvent(playerChoice.getNextEvent())
     }
-
-    // TO-DO: add history
 
     // Show feedback for choice
     setView('feedback1'); 
@@ -72,7 +71,7 @@ const App = () => {
   }
 
   // Show feedback
-  const showFeedback = (feedback:ResponseItem[]): JSX.Element => {
+  const socialFeedback = (feedback:ResponseItem[]): JSX.Element => {
     function constructElement(it: ResponseItem){
       switch(it.type){
         case 'tweet': return <Tweet fb={it} />;
@@ -106,16 +105,20 @@ const App = () => {
 
     // Feedback screens
     case 'feedback1': return <FeedbackScreen1 
-      response={ response }
-      feedback={ showFeedback(response.socialMediaResponse) }
+      response={ response() }
+      feedback={ socialFeedback( response().socialMediaResponse ) }
       onClick={() => {  setView('feedback2') }} 
     />;
     case 'feedback2': return <FeedbackScreen2 
-      response = {response}
+      response = { response() }
+      indicatorsLastTurn={ lastMonth() } 
       onClickContinue = {nextTurn}
       onClickExtra = {() => { setView('feedbackExtra') }}
     />;
-    case 'feedbackExtra': return <FeedbackExtra response={response} onClick={() => { setView('feedback2') }} />;
+    case 'feedbackExtra': return <FeedbackExtra 
+      response={ response() } 
+      onClick={() => { setView('feedback2') }} 
+    />;
 
     // End screen
     case 'end': return <Ending leaderStyle={endings[ending]} onClick={() => { setView('allEndings') }}/>;
