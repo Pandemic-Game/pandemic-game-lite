@@ -47,7 +47,7 @@ export function FeedbackScreen2(props:
     </div> 
 }
 
-export function FeedbackExtra(props: {response: Response, onClick: Function}){
+export function FeedbackExtra(props: {response: Response, onClickBack: Function, onClickSource: Function }){
     return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-purple-900'>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Title value={'Some data'} col='white' />
@@ -59,27 +59,52 @@ export function FeedbackExtra(props: {response: Response, onClick: Function}){
             <Txt.Subtitle value={'Public support'} col='white' />
             <h5 className='text-yellow-500'>Is affected by:</h5>
             <div className='p-2 flex flex-row items-start'>
-                <Btn.ViewSource /> <p>Public support or opposition for introducing policies</p>
+                <Btn.ViewSource sourceDetails={{
+                    sourceName: 'XXX',
+                    link: 'XXX',
+                    description: 'XXX'
+                }} onClick={props.onClickSource} />
+                <p>Public support or opposition for introducing policies</p>
             </div>
-            <Lines.Hr my='4'/>
+            <Lines.Hr my={4} col='white' />
 
             <Txt.Subtitle value={'COVID-19 cases'} col='white' />
             <h5 className='text-yellow-500'>Is affected by:</h5>
             <div className='p-2 flex flex-row items-start'>
-                <Btn.ViewSource /> <p>Policies which affect the infection rate, such as lockdown</p>
+                <Btn.ViewSource sourceDetails={{
+                    sourceName: 'XXX',
+                    link: 'XXX',
+                    description: 'XXX'
+                }} onClick={props.onClickSource} />
+                <p>Policies which affect the infection rate, such as lockdown</p>
             </div>
             <div className='p-2 flex flex-row items-start'>
-                <Btn.ViewSource /> <p>6% of the population are effectively immunised per month (little effect in early 2021)</p>
+                <Btn.ViewSource sourceDetails={{
+                    sourceName: 'XXX',
+                    link: 'XXX',
+                    description: 'XXX'
+                }} onClick={props.onClickSource} />
+                <p>6% of the population are effectively immunised per month (little effect in early 2021)</p>
             </div>
-            <Lines.Hr my='4'/>
+            <Lines.Hr my={4} col='white' />
             
             <Txt.Subtitle value={'Economy'} col='white' />
             <h5 className='text-yellow-500'>Is affected by:</h5>
             <div className='p-2 flex flex-row items-start'>
-                <Btn.ViewSource /> <p>The cost of lockdown (1/3 the usual business income)</p>
+                <Btn.ViewSource sourceDetails={{
+                    sourceName: 'XXX',
+                    link: 'XXX',
+                    description: 'XXX'
+                }} onClick={props.onClickSource} />
+                <p>The cost of lockdown (1/3 the usual business income)</p>
             </div>
             <div className='p-2 flex flex-row items-start'>
-                <Btn.ViewSource /> <p>The costs of hospitalisations (20% of cases) and deaths (1% of cases) as a result of COVID-19</p>
+                <Btn.ViewSource sourceDetails={{
+                    sourceName: 'XXX',
+                    link: 'XXX',
+                    description: 'XXX'
+                }} onClick={props.onClickSource} />
+                <p>The costs of hospitalisations (20% of cases) and deaths (1% of cases) as a result of COVID-19</p>
             </div>
         </div>
 
@@ -87,7 +112,7 @@ export function FeedbackExtra(props: {response: Response, onClick: Function}){
             value={'Back to the game'} 
             col='gray-900'
             bg='yellow-500'
-            onClick={()=>{ props.onClick()} } 
+            onClick={()=>{ props.onClickBack()} } 
             animate='bounce' 
         />
         

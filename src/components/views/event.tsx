@@ -13,12 +13,12 @@ export function EventScreen(props:
 }){
     return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-yellow-400'>
         <div className='flex flex-col justify-between items-center'>
-            <Txt.Subtitle value={'Event:'} />
+            <Txt.Subtitle value={'Event:'}  col='black'/>
             <Txt.Title value={props.event.title} col='gray-900' />
         </div>
-        <Txt.Paragraph value={props.event.description} />
+        <Txt.Paragraph value={props.event.description}  col='black'/>
         <div className='w-4/5 flex flex-col justify-between items-center '>
-            <Lines.Hr col={'black'}/>
+            <Lines.Hr my={0} col='black'/>
             <Btn.Rounded 
                 value={props.event.response1.label}
                 bg={'purple-900'}
@@ -32,26 +32,41 @@ export function EventScreen(props:
                 col={'white'}
                 onClick={()=>{props.onClickResponse(props.event.response2)}} 
             />
-            <Lines.Hr col={'black'}/>
+            <Lines.Hr my={0} col='black'/>
         </div>
         <Btn.Sneaky onClick={()=>{props.onClickExtraInfo()}} />
     </div> 
 }
 
-export function EventExtra(props: {event: Event, onClick: Function}){
+export function EventExtra(props: {event: Event, onClickSource: Function, onClickBack: Function}){
     return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-yellow-400'>
         <div className='flex flex-col justify-between items-center'>
-            <Txt.Subtitle value={'Event:'} />
+            <Txt.Subtitle value={'Event:'}  col='black'/>
             <Txt.Title value={props.event.title} col='gray-900' />
         </div>
-        <Txt.SpeechBubble comment={props.event.extraDetails.public} person='Joe the Regular Joe' icon={faUser} />
-        <Txt.SpeechBubble comment={props.event.extraDetails.business} person='Bob the Businessman' icon={faUserTie} />
-        <Txt.SpeechBubble comment={props.event.extraDetails.medical} person ='Daisy the Doctor' icon={faUserMd} />
+        <Txt.SpeechBubble 
+            extraDetail={props.event.extraDetails.public} 
+            person='Joe the Regular Joe'
+            icon={faUser} 
+            onClick = {props.onClickSource}
+        />
+        <Txt.SpeechBubble 
+            extraDetail={props.event.extraDetails.business} 
+            person='Bob the Businessman' 
+            icon={faUserTie} 
+            onClick = {props.onClickSource}
+        />
+        <Txt.SpeechBubble 
+            extraDetail={props.event.extraDetails.medical} 
+            person ='Daisy the Doctor' 
+            icon={faUserMd} 
+            onClick = {props.onClickSource}
+        />
         <Btn.Bouncy 
             value={'Back'} 
             bg={'purple-900'}
             col={'white'}
-            onClick={()=>{props.onClick()}} 
+            onClick={()=>{props.onClickBack()}} 
         />
     </div> 
 }

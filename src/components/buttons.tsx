@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import ButtonSneakySVG from '../assets/SVG/ButtonSneaky.svg';
 import ButtonSneakySVG_alt from '../assets/SVG/ButtonSneaky_Alt.svg';
+import { SourceDetails } from '../model/Event';
 
 // Primary button
-export function Rounded(props) {
+export function Rounded(props: any) {
 	return (
 		<button 
 			className={`m-2 p-3 w-full rounded-full bg-${props.bg} text-3xl text-${props.col} font-custom animate-${props.animate}`}
@@ -16,7 +17,7 @@ export function Rounded(props) {
 	);
 }
 
-export function Bouncy(props) {
+export function Bouncy(props: any) {
 	return (
 		<button 
 			className={`m-2 p-3 rounded-full bg-${props.bg} text-3xl text-${props.col} font-custom animate-bounce`}
@@ -28,7 +29,7 @@ export function Bouncy(props) {
 }
 
 // Extra info
-export function Sneaky(props) {
+export function Sneaky(props: any) {
 	return (
 		<img className={'flex flex-col h-auto w-64'} 
 			src={ButtonSneakySVG} 
@@ -37,7 +38,7 @@ export function Sneaky(props) {
 		/>
 	);
 }
-export function SneakyFeedback(props) {
+export function SneakyFeedback(props: any) {
 	return (
 		<img className={'flex flex-col h-auto w-64'} 
 			src={ButtonSneakySVG_alt} 
@@ -47,13 +48,17 @@ export function SneakyFeedback(props) {
 	);
 }
 
-export function ViewSource(props){
-	return (
-		<button 
-			className={`m-2 text-red-700 animate-pulse`}
-			onClick={props.onClick}
-		>
-			<FontAwesomeIcon icon={faQuestionCircle} />
-		</button>
-	);
+export function ViewSource(props: {sourceDetails: SourceDetails | null, onClick: any}){
+    if(props.sourceDetails==null){
+        return <></>
+    } else {
+		return (
+			<button 
+				className={`m-2 text-red-700 animate-pulse`}
+				onClick={() => {props.onClick( props.sourceDetails )}}
+			>
+				<FontAwesomeIcon icon={faQuestionCircle} />
+			</button>
+		);
+	}
 };

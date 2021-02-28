@@ -3,9 +3,9 @@ import {faLaughBeam, faAngry} from '@fortawesome/free-solid-svg-icons';
 import {ResponseItem} from '../model/Response';
 import * as Txt from './text';
 
-export function Tweet(props: {fb: ResponseItem}){
+export function Tweet(props: {fb: ResponseItem, animation: string}){
     return (
-        <div className='w-auto p-2 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl'>
+        <div className={`w-auto p-2 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl ${props.animation}`}>
             <div className='absolute -top-2 -left-2 rounded-full bg-white'>
                 <FontAwesomeIcon 
                     icon={props.fb.isHappy ? faLaughBeam : faAngry} 
@@ -14,14 +14,14 @@ export function Tweet(props: {fb: ResponseItem}){
                 />
             </div>
             <h5> {props.fb.head} </h5>
-            <Txt.Text value={props.fb.content} />
+            <Txt.Text value={props.fb.content}  col='black'/>
         </div>
     )
 }
 
-export function News(props: {fb: ResponseItem}){
+export function News(props: {fb: ResponseItem, animation: string}){
     return (
-        <div className='w-auto p-2 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl'>
+        <div className={`w-auto p-2 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl ${props.animation}`}>
             <div className='absolute -top-2 -left-2 rounded-full bg-white'>
                 <FontAwesomeIcon 
                     icon={props.fb.isHappy ? faLaughBeam : faAngry} 
@@ -30,14 +30,14 @@ export function News(props: {fb: ResponseItem}){
                 />
             </div>
             <h5 className='text-left'> {props.fb.head} </h5>
-            <Txt.Text value={props.fb.content} />
+            <Txt.Text value={props.fb.content}  col='black'/>
         </div>
     );
 }
 
-export function Meme(props: {fb: ResponseItem}){
+export function Meme(props: {fb: ResponseItem, animation: string}){
     return (
-        <div className='w-auto p-2 m-2 flex flex-col justify-center items-center relative bg-white rounded-xl'>
+        <div className={`w-auto p-2 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl ${props.animation}`}>
             <div className='absolute -top-2 -left-2 rounded-full bg-white'>
                 <FontAwesomeIcon 
                     icon={props.fb.isHappy ? faLaughBeam : faAngry} 
@@ -45,7 +45,7 @@ export function Meme(props: {fb: ResponseItem}){
                     size='lg'
                 />
             </div>
-            <Txt.Text value={props.fb.head} />
+            <Txt.Text value={props.fb.head}  col='black'/>
             <img 
                 src={props.fb.content}
                 className='h-60 w-auto'

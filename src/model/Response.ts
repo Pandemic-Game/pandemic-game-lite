@@ -1,5 +1,5 @@
 import { Indicators } from './Indicators';
-import {Event} from './Event'
+import {Event, SourceDetails} from './Event'
 
 export interface ResponseItem {
     type: 'tweet' | 'meme' | 'article',
@@ -9,13 +9,13 @@ export interface ResponseItem {
 }
 
 export interface Response {
-    id: string;
     label: string;
     getParentEvent: () => Event;
     updatedIndicators: Indicators;
     socialMediaResponse: ResponseItem[];
     getNextEvent: () => Event;
     ending: string;
+    sourceDetails: SourceDetails;
 }
 
 export interface History {

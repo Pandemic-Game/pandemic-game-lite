@@ -4,12 +4,13 @@ import BarPublic from '../assets/SVG/bar-public.svg';
 import BarHealth from '../assets/SVG/bar-health.svg';
 import * as Btn from './buttons';
 import * as Txt from './text';
+import { SourceDetails } from '../model/Event';
 
 function LeadershipStyle(props: {
     name: string; 
     example: {
         name: string;
-        description: string;
+        sourceDetails: SourceDetails
     };
     icon: string;
     description: string;
@@ -21,32 +22,43 @@ function LeadershipStyle(props: {
     style: {
         bg: string;
         col: string;
-    }
+    };
+    onClickSource: Function;
 }) {
     return <div className={`min-h-full p-2 m-2 flex flex-col justify-between items-center text-${props.style.col}`}>
         <Txt.Title value={props.name} col='black' />
-        <img src={props.icon} className='m-2' alt='Leadership style icon'/>
 
-        <Txt.Text value={`A ${props.name} you may know:`} />
-        <div className='flex flex-row'> <Txt.Text value={props.example.name} /> <Btn.ViewSource /> </div>
+        <Txt.Text value={`A ${props.name} you may know:`}  col='black'/>
+        <div className='flex flex-row'> 
+            <Txt.Text value={props.example.name}  col='black'/> 
+            <Btn.ViewSource 
+                sourceDetails={props.example.sourceDetails} 
+                onClick={props.onClickSource} 
+            /> 
+        </div>
 
         <div className='flex flex-row justify-center align-start'>
             <img src={BarPublic} alt='Focus on public'/>
             <img src={BarEconomy} alt='Focus on economy'/>
             <img src={BarHealth} alt='Focus on health'/>
         </div>
-        <Txt.Paragraph value={props.description} />
+        <Txt.Paragraph value={props.description}  col='black'/>
     </div> 
+    // To-Do: Implement icons: <img src={props.icon} className='m-2' alt='Leadership style icon'/>
     // To-Do: Example description extra info popover
 }
 
-export function GenghisCannot(){
+export function GenghisCannot(props:{onClickSource: Function}){
     return(
         <LeadershipStyle             
             name = 'Genghis Cannot'
             example = {{
                 name: 'Donald Trump (USA)',
-                description: 'Former president Trump refused to acknowledge the seriousness of COVID and instead of locking down he suggested injecting cleaning chemicals'
+                sourceDetails: {
+                    sourceName: 'Their response to COVID-19',
+                    link: 'bbcnews.com/',
+                    description: 'TFormer president Trump refused to acknowledge the seriousness of COVID and instead of locking down he suggested injecting cleaning chemicals'
+                }
             }}
             icon = ''
             description = {`
@@ -62,6 +74,7 @@ export function GenghisCannot(){
                 bg: 'yellow-500',
                 col: 'black'
             }}
+            onClickSource = {props.onClickSource}
         />
     )
 }

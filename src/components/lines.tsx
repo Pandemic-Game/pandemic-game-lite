@@ -9,7 +9,7 @@ export function OR(){
     )
 }
 
-export function Hr(props){
+export function Hr(props: {my: number, col: string}){
     return (
         <hr className={`m-2 my-${props.my} w-full border-${props.col} border-t-2`}/> 
     )

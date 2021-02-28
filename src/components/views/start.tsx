@@ -7,7 +7,7 @@ import * as Txt from '../text';
 
 export function Splash(props: {onClick: Function}) {
     return(
-        <div className='min-h-full p-2 flex flex-col justify-around items-center bg-yellow-400'> 
+        <div className='min-h-full p-2 flex flex-col justify-around items-center bg-yellow-400'>
             <a 
                 href='https://www.endcoronavirus.org'
                 rel='noreferrer'
@@ -22,11 +22,11 @@ export function Splash(props: {onClick: Function}) {
             </a>
             <Txt.BigTitle value={'Pandemic Game'} />
             <div className='flex flex-col justify-center items-center'>
-                <Txt.Subtitle value={'You are a World Leader.'}/>
+                <Txt.Subtitle value={'You are a World Leader.'} col='black'/>
                 <p className='m-2 text-center font-sans font-medium'>
                     Your job is to navigate the first few months of 2021. The decisions you make will polarize different parts of society, from the public to businesses and healthcare. 
                 </p>
-                <Txt.Subtitle value={'What type of leader are you?'}/>
+                <Txt.Subtitle value={'What type of leader are you?'} col='black'/>
             </div>
             <Btn.Bouncy 
                 value='Play the game' 
@@ -43,10 +43,10 @@ export function Introduction(props: {onClick: Function}) {
     return(
         <div className='min-h-full p-2 flex flex-col justify-between items-center bg-yellow-400'> 
             <div className='flex flex-col justify-between items-center'>
-                <Txt.Subtitle value={'El presidente!'} />
+                <Txt.Subtitle value={'El presidente!'}  col='black'/>
                 <Txt.Title value='A situation requires your attention!' col='gray-900' />
             </div>
-            <div className='m-2 p-2 flex flex-row items-start'>
+            <div className='animate__animated animate__fadeIn  m-2 p-2 flex flex-row items-start'>
                 <div className='m-2 p-2 flex flex-row'>
 			        <img className={'h-auto w-14 z-10'} src={WarningCircle} alt="WarningCircle" />
 			        <img className={'h-auto w-14 relative right-11 z-0 animate-ping'} src={WarningCircleOuter} alt="WarningCircle animation" />
@@ -57,11 +57,11 @@ export function Introduction(props: {onClick: Function}) {
                     The way you respond to the pandemic in the next few months will have consequences.
                     
                     You can probably do this in the next 5 minutes.
-                `} />
+                `} col='black' />
             </div>
             <div className='flex flex-col justify-center items-center'>
-                <Btn.ViewSource />
-                <Txt.Subtitle value={'This game is based on real data so look out for the question icon to inspect our evidence'} />
+                <Btn.ViewSource onClick={()=>{}} sourceDetails={{sourceName: '', link: '', description: ''}} />
+                <Txt.Subtitle value={'This game is based on real data so look out for the question icon to inspect our evidence'}  col='black'/>
             </div>
             <Btn.Bouncy 
                 value='Start'
