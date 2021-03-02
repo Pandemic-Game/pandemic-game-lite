@@ -30,7 +30,7 @@ export const resp1: Response = {
             type: 'article',
             isHappy: true,
             head: 'example head',
-            content: 'EXMAPLE OF A HEADLINE: BREAKING'
+            content: 'EXAMPLE OF A HEADLINE: BREAKING'
         }
     ],
     getNextEvent: () => {return test2},

@@ -17,9 +17,3 @@ export interface Response {
     ending: string;
     sourceDetails: SourceDetails;
 }
-
-export interface History {
-    turn: number;
-    event: Event;
-    response: Response;
-}

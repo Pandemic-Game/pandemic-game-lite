@@ -2,11 +2,11 @@ import { useState } from 'react';
 import './App.css';
 import "tailwindcss/tailwind.css";
 import cloneDeep from 'lodash/cloneDeep';
-import { Event, ExtraDetail, SourceDetails } from './model/Event';
-import { Response, History, ResponseItem } from './model/Response';
+import { Event, SourceDetails } from './model/Event';
+import { Response, ResponseItem } from './model/Response';
 import { Indicators } from './model/Indicators';
 import {UK} from './model/Scenario';
-import * as Story from './assets/story';
+import * as Story from './assets/events';
 import * as LeaderStyle from './components/leaderStyles';
 import {Tweet, News, Meme} from './components/socialFeedback';
 import {Splash, Introduction} from './components/views/start';
@@ -16,7 +16,7 @@ import {FeedbackScreen1, FeedbackScreen2, FeedbackExtra} from './components/view
 import {Ending, AllEndings, ViewEnding} from './components/views/end';
 
 // Load story
-const firstEvent = Story.test1;
+const firstEvent = Story.evt_0_0;
 
 /**
  * Main game loop
