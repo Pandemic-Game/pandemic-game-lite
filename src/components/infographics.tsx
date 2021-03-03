@@ -21,7 +21,7 @@ export function SupportBar(props: {indicators: Indicators}){
                 <Txt.Subtitle value={`${support}%`}  col='black'/>
             </div>
             <div className='flex flex-row justify-center items-center text-center bg-gray-50' style={{width: `${undecided}%`}}> 
-                <Txt.Subtitle value={`${undecided}%`}  col='black'/>
+                <Txt.Subtitle value={`.`}  col='black'/>
             </div>
             <div className='flex flex-row justify-center items-center text-center rounded-r-xl bg-red-500' style={{width: `${opposition}%`}}> 
                 <FontAwesomeIcon icon={faThumbsDown} size='lg'/>

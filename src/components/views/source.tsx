@@ -10,6 +10,8 @@ export function SourceScreen(props: {sourceDetails: SourceDetails, onClick: Func
             <a 
                 href={props.sourceDetails.link} 
                 className='text-blue' 
+                target='_blank'
+                rel='noreferrer'
             > 
                 {props.sourceDetails.sourceName}  
             </a>

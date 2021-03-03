@@ -6,12 +6,13 @@ import * as Lines from '../lines';
 import {Response} from '../../model/Response';
 import { Indicators } from '../../model/Indicators';
 
-export function FeedbackScreen1(props: {response: Response, feedback: JSX.Element, onClick: Function}){
+export function FeedbackScreen1(props: {response: Response, feedback: JSX.Element, onClick: Function, onClickSource: Function}){
     return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-purple-900'>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={props.response.getParentEvent().title} col={'white'} />
             <Txt.Title value={props.response.label} col={'white'} />
         </div>
+        <Btn.ViewSource sourceDetails={props.response.sourceDetails} onClick={props.onClickSource} />
         <Gfx.SupportBar indicators={props.response.updatedIndicators} />
         {props.feedback}
         <Btn.Rounded 
@@ -60,9 +61,9 @@ export function FeedbackExtra(props: {response: Response, onClickBack: Function,
             <h5 className='text-yellow-500'>Is affected by:</h5>
             <div className='p-2 flex flex-row items-start'>
                 <Btn.ViewSource sourceDetails={{
-                    sourceName: 'XXX',
-                    link: 'XXX',
-                    description: 'XXX'
+                    sourceName: 'YouGov',
+                    link: 'https://yougov.co.uk',
+                    description: 'YouGov is a global public opinion and data company. They conduct surveys on public opinions including reactions to new policies.'
                 }} onClick={props.onClickSource} />
                 <p>Public support or opposition for introducing policies</p>
             </div>
@@ -72,17 +73,17 @@ export function FeedbackExtra(props: {response: Response, onClickBack: Function,
             <h5 className='text-yellow-500'>Is affected by:</h5>
             <div className='p-2 flex flex-row items-start'>
                 <Btn.ViewSource sourceDetails={{
-                    sourceName: 'XXX',
-                    link: 'XXX',
-                    description: 'XXX'
+                    sourceName: 'EpidemicForecasting.Org',
+                    link: 'http://epidemicforecasting.org',
+                    description: 'EpidemicForecasting.org was created by a team of research scholars from the Future of Humanity Institute, University of Oxford, with collaborators from Australian National University, Harvard University and a number of volunteer data scientists and developers from Google, GitLab and other organisations.'
                 }} onClick={props.onClickSource} />
                 <p>Policies which affect the infection rate, such as lockdown</p>
             </div>
             <div className='p-2 flex flex-row items-start'>
                 <Btn.ViewSource sourceDetails={{
-                    sourceName: 'XXX',
-                    link: 'XXX',
-                    description: 'XXX'
+                    sourceName: 'Gov UK',
+                    link: 'https://coronavirus.data.gov.uk/details/vaccinations',
+                    description: '6% of the population are effectively immunised (50% of people with just the 1st jab) per month'
                 }} onClick={props.onClickSource} />
                 <p>6% of the population are effectively immunised per month (little effect in early 2021)</p>
             </div>
@@ -92,17 +93,17 @@ export function FeedbackExtra(props: {response: Response, onClickBack: Function,
             <h5 className='text-yellow-500'>Is affected by:</h5>
             <div className='p-2 flex flex-row items-start'>
                 <Btn.ViewSource sourceDetails={{
-                    sourceName: 'XXX',
-                    link: 'XXX',
-                    description: 'XXX'
+                    sourceName: '',
+                    link: '',
+                    description: ''
                 }} onClick={props.onClickSource} />
                 <p>The cost of lockdown (1/3 the usual business income)</p>
             </div>
             <div className='p-2 flex flex-row items-start'>
                 <Btn.ViewSource sourceDetails={{
-                    sourceName: 'XXX',
-                    link: 'XXX',
-                    description: 'XXX'
+                    sourceName: '',
+                    link: '',
+                    description: ''
                 }} onClick={props.onClickSource} />
                 <p>The costs of hospitalisations (20% of cases) and deaths (1% of cases) as a result of COVID-19</p>
             </div>

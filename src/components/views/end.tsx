@@ -59,7 +59,7 @@ export function AllEndings(props: {onClick: Function}){
                     bg='blue-500'
                     col='white'
                     value={'COVID-Bane'} 
-                    onClick={()=>{props.onClick('CovidBane')}} />
+                    onClick={()=>{props.onClick('CovidTerminator')}} />
                 <p className='font-bold'>X in X people are Y</p>
                 <Txt.Text value='COVID eliminators seek to achieve a zero-covid world by implementing strict lockdowns (e.g., Jacinda Ardern, New Zealand)'  col='black'/>
             </div>
@@ -68,7 +68,7 @@ export function AllEndings(props: {onClick: Function}){
                     bg='green-600'
                     col='white'
                     value={'Economic Savior'} 
-                    onClick={()=>{props.onClick('EconomicSavior')}} />
+                    onClick={()=>{props.onClick('BusinessGuru')}} />
                 <p className='font-bold'>X in X people are Y</p>
                 <Txt.Text value='Economy savers deal first with COVID so that businesses can open up (e.g., Chung Seye-Kyun, South Korea)'  col='black'/>
             </div>

@@ -9,7 +9,7 @@ export const evt_0_0: Event = {
             sourceDetails: {
                 sourceName: `YouGov `,
                 link: `https://docs.cdn.yougov.com/pkv90of78k/SunOnSunday_CoronaResults_210115.pdf`,
-                description: `76% of UK respondants  think others are complying less with the second (Winter 2020) lockdowns compared with the first (Spring 2019) lockdowns`
+                description: `76% of UK respondants think others are complying less with the second (Winter 2020) lockdowns compared with the first (Spring 2019) lockdowns`
             }
         },
         business: {
@@ -416,7 +416,7 @@ export const evt_2_1: Event = {
         getNextEvent: () => {
             return ending
         },
-        ending: 'GenghisCannot',
+        ending: 'FlipFlopper',
         sourceDetails: {
             sourceName: ``,
             link: ``,
@@ -522,7 +522,7 @@ export const evt_2_2: Event = {
         getNextEvent: () => {
             return ending
         },
-        ending: 'GenghisCannot',
+        ending: 'FlipFlopper',
         sourceDetails: {
             sourceName: ``,
             link: ``,
@@ -590,7 +590,7 @@ export const evt_2_3: Event = {
         getNextEvent: () => {
             return ending
         },
-        ending: `GenghisCannot`,
+        ending: `BusinessGuru`,
         sourceDetails: {
             sourceName: ``,
             link: ``,
@@ -628,7 +628,7 @@ export const evt_2_3: Event = {
         getNextEvent: () => {
             return ending
         },
-        ending: `GenghisCannot`,
+        ending: `CovidTerminator`,
         sourceDetails: {
             sourceName: ``,
             link: ``,

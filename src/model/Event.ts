@@ -8,7 +8,7 @@ export interface SourceDetails {
 
 export interface ExtraDetail {
     speech: string;
-    sourceDetails: SourceDetails | null;
+    sourceDetails: SourceDetails;
 }
 
 export interface Event {

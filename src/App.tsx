@@ -45,9 +45,9 @@ const App = () => {
 
   const endings: Record<string, {ele: JSX.Element, bg: string}> = {
     'GenghisCannot': {ele: <LeaderStyle.GenghisCannot onClickSource={showSource} />, bg: 'yellow-500'},
-    'FlipFlopper': {ele: <LeaderStyle.GenghisCannot  onClickSource={showSource} />, bg: 'red-500'},
-    'CovidBane': {ele: <LeaderStyle.GenghisCannot  onClickSource={showSource} />, bg: 'green-500'},
-    'EconomicSavior': {ele: <LeaderStyle.GenghisCannot  onClickSource={showSource} />, bg: 'blue-500'}
+    'FlipFlopper': {ele: <LeaderStyle.FlipFlopper  onClickSource={showSource} />, bg: 'red-500'},
+    'CovidTerminator': {ele: <LeaderStyle.CovidTerminator  onClickSource={showSource} />, bg: 'green-500'},
+    'BusinessGuru': {ele: <LeaderStyle.BusinessGuru  onClickSource={showSource} />, bg: 'blue-500'}
   };
 
   const getLastResponse = ():Response => cloneDeep( history[history.length - 1] );
@@ -114,6 +114,7 @@ const App = () => {
       response={ getLastResponse() }
       feedback={ getSocialFeedback( getLastResponse().socialMediaResponse ) }
       onClick={() => show('feedback2')}
+      onClickSource={() => {show( previousView )}}
     />;
     case 'feedback2': return <FeedbackScreen2 
       response = { getLastResponse() }

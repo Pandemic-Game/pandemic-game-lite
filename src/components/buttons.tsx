@@ -48,8 +48,8 @@ export function SneakyFeedback(props: any) {
 	);
 }
 
-export function ViewSource(props: {sourceDetails: SourceDetails | null, onClick: any}){
-    if(props.sourceDetails==null){
+export function ViewSource(props: {sourceDetails: SourceDetails, onClick: any}){
+    if(props.sourceDetails.sourceName===``){
         return <></>
     } else {
 		return (
