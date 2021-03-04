@@ -17,7 +17,7 @@ export const evt_0_0: Event = {
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
-                description: ``
+                description: `26% of people want businesses to stay open and a lockdown will hurt business for a month or so`
             }
         },
         medical: {
@@ -219,9 +219,9 @@ export const evt_1_2: Event = {
         public: {
             speech: `My mate Paul just ended his relationship and blamed COVID. Apparently it's happened to other people too.`,
             sourceDetails: {
-                sourceName: ``,
-                link: ``,
-                description: ``
+                sourceName: `YouGov`,
+                link: `https://docs.cdn.yougov.com/4v7zasn014/International%20COVID%20personal%20impact[1].pdf`,
+                description: `2% of relationships ended due to COVID in the UK`
             }
         },
         business: {
@@ -235,9 +235,9 @@ export const evt_1_2: Event = {
         medical: {
             speech: `One in three people have admitted to feeling lonely during the pandemic. Socialisation would help wellbeing but increase cases.`,
             sourceDetails: {
-                sourceName: ``,
-                link: ``,
-                description: ``
+                sourceName: `YouGov`,
+                link: `https://yougov.co.uk/topics/health/survey-results/daily/2020/10/09/26286/3`,
+                description: `During pandemic, 33% of UK citizens reported feeling lonely, while 28% reported not being affected.`
             }
         }
     },
@@ -537,9 +537,9 @@ export const evt_2_3: Event = {
         public: {
             speech: `I'm not one to complain about mental health but I'm not doing great. Apparently, young people more likely to be depressed now.`,
             sourceDetails: {
-                sourceName: ``,
-                link: ``,
-                description: ``
+                sourceName: `YouGov`,
+                link: `https://yougov.co.uk/topics/lifestyle/articles-reports/2021/02/04/yougov-2020-personality-study-impact-covid-19`,
+                description: `53% of people in UK have revealed a decrease in mental health, of which two-thirds (63%) report feeling anxious at least several times a month since March. 46% of 16-24 year olds say they have experienced loneliness every week since March, which is significantly more than other age groups.`
             }
         },
         business: {
@@ -638,9 +638,9 @@ export const evt_2_3: Event = {
 };
 
 // Blank event returned on ending to silence errors
-export const ending: Event = { 
-    title: '', 
-    description: '', 
+export const ending: Event = {
+    title: '',
+    description: '',
     extraDetails: {
         public: {
             speech: '',
