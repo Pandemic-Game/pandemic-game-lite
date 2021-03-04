@@ -34,9 +34,9 @@ const App = () => {
   const initialScenario: Indicators = { // Load initial scenario
     supportForLastResponse: UK.initialPublicSupport,
     oppositionToLastResponse: 100-UK.initialPublicSupport,
-    newCases: Math.round( UK.initialNumInfected / UK.totalPopulation * 30 * 1000 ),
-    lockdownCosts: UK.initialEconomicCosts,
-    medicalCosts: UK.initialMedicalCosts
+    newCases: Math.round( UK.initialNumInfected / UK.totalPopulation * 30 * 1000 ), // Monthly cases per 1000 people
+    lockdownCosts: 11,
+    medicalCosts: 26
   }
 
   // Controls
@@ -89,7 +89,7 @@ const App = () => {
   switch(view){
     // Intro screens
     case 'start': return <Splash onClick={() => { show('introduction') }}/>;
-    case 'introduction': return <Introduction onClick={() => { show('event') }}/>;
+    case 'introduction': return <Introduction onClickContinue={() => { show('event') }} onClickSource={showSource}/>;
 
     // Event screens
     case 'event': return <EventScreen 

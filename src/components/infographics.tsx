@@ -15,15 +15,15 @@ export function SupportBar(props: {indicators: Indicators}){
     const undecided = 100 - support - opposition;
     return (
         <div className='animate__animated animate__jackInTheBox w-full p-2 flex flex-row justify-center items-center'>
-            <div className='flex flex-row justify-center items-center text-center rounded-l-xl bg-green-500' style={{width: `${support}%`}}> 
+            <div className='h-full flex flex-row justify-center items-center text-center rounded-l-xl bg-green-500 z-20 overflow-visible' style={{width: `${support}%`}}> 
                 <FontAwesomeIcon icon={faThumbsUp} size='lg'/>
                 <i className="fas fa-thumbs-up"></i> 
                 <Txt.Subtitle value={`${support}%`}  col='black'/>
             </div>
-            <div className='flex flex-row justify-center items-center text-center bg-gray-50' style={{width: `${undecided}%`}}> 
-                <Txt.Subtitle value={`.`}  col='black'/>
+            <div className='h-full flex flex-row justify-center items-center text-center bg-gray-50 z-10 overflow-visible' style={{width: `${undecided}%`}}> 
+                <Txt.Subtitle value={`.`}  col='white'/>
             </div>
-            <div className='flex flex-row justify-center items-center text-center rounded-r-xl bg-red-500' style={{width: `${opposition}%`}}> 
+            <div className='h-full flex flex-row justify-center items-center text-center rounded-r-xl bg-red-500 z-20 overflow-visible' style={{width: `${opposition}%`}}> 
                 <FontAwesomeIcon icon={faThumbsDown} size='lg'/>
                 <Txt.Subtitle value={`${opposition}%`}  col='black'/>
             </div>
@@ -111,36 +111,34 @@ export function CaseGraphic(props: {thisTurn: Indicators, lastTurn: Indicators})
 // Economy
 export function EconomyGraphic(props: {indicators: Indicators}){
     const getTitle = () => props.indicators.medicalCosts>props.indicators.lockdownCosts ? 'Medical costs are high!' : 'Economy'; 
-    const calculateArea = (value: number):number => Math.sqrt( value / 3.14 ) * 2;
+    const calculateArea = (value: number):number => Math.sqrt( value*100 / 3.14 ) * 2;
     return(
-        <div className='w-full flex flex-col justify-center items-center text-white animate__delay-3s animate__animated animate__fadeIn'>
+        <div className='w-full m-2 flex flex-col justify-center items-center text-white animate__delay-3s animate__animated animate__fadeIn'>
             <Txt.Subtitle value={ getTitle() }  col='white'/>
-            <div className='flex flex-row justify-center items-center'>
-                <div className='flex flex-col justify-center items-center'>
+            <div className='flex flex-row'>
+                <div className='flex flex-col items-center'>
+                    <p className='p-2 text-lg font-medium'>Medical costs </p>
+                    <div className='animate__delay-3s animate__animated animate__bounceIn'>
+                        <Txt.Text value={`$${props.indicators.medicalCosts} Billion`}  col='white'/>
+                    </div>
                     <img 
                         src={medicalCoin} 
                         style={{height: calculateArea(props.indicators.medicalCosts) }} 
                         alt='Medical Costs'
                         className='animate__delay-1s animate__animated animate__bounceIn'
                     />
-                    <Lines.Hr my={0} col='white' />
-                    <p className='p-2 text-lg font-medium'>Medical costs </p>
-                    <div className='animate__delay-3s animate__animated animate__bounceIn'>
-                        <Txt.Text value={`$${props.indicators.medicalCosts}`}  col='white'/>
-                    </div>
                 </div>
-                <div className='flex flex-col justify-center items-center'>                    
+                <div className='mb-4 flex flex-col items-center'>   
+                    <p className='p-2 text-lg font-medium'>Lockdown costs </p>
+                    <div className='animate__delay-4s animate__animated animate__bounceIn'>
+                        <Txt.Text value={`$${props.indicators.lockdownCosts} Billion`}  col='white'/>
+                    </div>                 
                     <img 
                         src={lockdownCoin} 
                         style={{height: calculateArea(props.indicators.lockdownCosts) }} 
                         alt='Lockdown Costs'
                         className='animate__delay-4s animate__animated animate__bounceIn'
                     />
-                    <Lines.Hr my={0} col='white'/>
-                    <p className='p-2 text-lg font-medium'>Lockdown costs </p>
-                    <div className='animate__delay-4s animate__animated animate__bounceIn'>
-                        <Txt.Text value={`$${props.indicators.lockdownCosts}`}  col='white'/>
-                    </div>
                 </div>
             </div>
         </div>

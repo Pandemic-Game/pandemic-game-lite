@@ -56,16 +56,16 @@ export function TextLite(props: {value: string, col: string}) { // Line break sp
 
 export function SpeechBubble(props: {extraDetail: ExtraDetail, person: string, icon: any, onClick: Function}){
     return (
-        <div className='w-4/5 flex flex-col text-lg text-left font-sans font-medium'>
+        <div className='w-4/5 m-2 flex flex-col text-lg text-left font-sans font-medium'>
             <div>
                 <p className='m-2 p-2 bg-white rounded-xl'>
                     {props.extraDetail.speech}
+                    <Btn.ViewSource sourceDetails={props.extraDetail.sourceDetails} onClick={props.onClick} />
                 </p>
-                <Btn.ViewSource sourceDetails={props.extraDetail.sourceDetails} onClick={props.onClick} />
             </div>
             <div className='flex flex-row align-center'>
                 <FontAwesomeIcon icon={props.icon} size='2x' />
-                <p className='mx-2 text-gray-50'> {props.person} </p>
+                <p className='mx-2 text-black'> {props.person} </p>
             </div>
         </div>
     );

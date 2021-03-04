@@ -4,6 +4,8 @@ import { faUserMd, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import * as Btn from '../buttons';
 import * as Txt from '../text';
 import * as Lines from '../lines';
+import WarningCircle from '../../assets/SVG/WarningCircle.svg';
+import WarningCircleOuter from '../../assets/SVG/WarningCircleOuter.svg';
 
 export function EventScreen(props: 
 {
@@ -16,7 +18,13 @@ export function EventScreen(props:
             <Txt.Subtitle value={'Event:'}  col='black'/>
             <Txt.Title value={props.event.title} col='gray-900' />
         </div>
-        <Txt.Paragraph value={props.event.description}  col='black'/>
+        <div className='animate__animated animate__fadeIn m-2 p-2 flex flex-row items-start'>
+            <div className='m-2 p-2 flex flex-row'>
+                <img className={'h-auto w-14 z-10'} src={WarningCircle} alt="WarningCircle" />
+                <img className={'h-auto w-14 relative right-5 z-0 animate-ping'} src={WarningCircleOuter} alt="WarningCircle animation" />
+            </div>
+            <Txt.Paragraph value={props.event.description}  col='black'/>
+        </div>
         <div className='w-4/5 flex flex-col justify-between items-center '>
             <Lines.Hr my={0} col='black'/>
             <Btn.Rounded 

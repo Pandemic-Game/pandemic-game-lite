@@ -37,9 +37,9 @@ export const evt_0_0: Event = {
         updatedIndicators: {
             supportForLastResponse: 11,
             oppositionToLastResponse: 85,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 45,
+            lockdownCosts: 11,
+            medicalCosts: 40
         },
         socialMediaResponse: [{
             type: `article`,
@@ -75,9 +75,9 @@ export const evt_0_0: Event = {
         updatedIndicators: {
             supportForLastResponse: 85,
             oppositionToLastResponse: 11,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 4.5,
+            lockdownCosts: 11,
+            medicalCosts: 20
         },
         socialMediaResponse: [{
             type: `article`,
@@ -143,9 +143,9 @@ export const evt_1_1: Event = {
         updatedIndicators: {
             supportForLastResponse: 23,
             oppositionToLastResponse: 67,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 90,
+            lockdownCosts: 104,
+            medicalCosts: 11
         },
         socialMediaResponse: [{
             type: `article`,
@@ -181,9 +181,9 @@ export const evt_1_1: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 80,
+            lockdownCosts: 11,
+            medicalCosts: 104
         },
         socialMediaResponse: [{
             type: `article`,
@@ -249,9 +249,9 @@ export const evt_1_2: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 14,
+            lockdownCosts: 11,
+            medicalCosts: 3
         },
         socialMediaResponse: [{
             type: `article`,
@@ -287,9 +287,9 @@ export const evt_1_2: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 1,
+            lockdownCosts: 11,
+            medicalCosts: 5
         },
         socialMediaResponse: [{
             type: `article`,
@@ -355,9 +355,9 @@ export const evt_2_1: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 90,
+            lockdownCosts: 11,
+            medicalCosts: 104
         },
         socialMediaResponse: [{
             type: `article`,
@@ -393,9 +393,9 @@ export const evt_2_1: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 15,
+            lockdownCosts: 11,
+            medicalCosts: 61
         },
         socialMediaResponse: [{
             type: `article`,
@@ -461,9 +461,9 @@ export const evt_2_2: Event = {
         updatedIndicators: {
             supportForLastResponse: 26,
             oppositionToLastResponse: 60,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 90,
+            lockdownCosts: 11,
+            medicalCosts: 39
         },
         socialMediaResponse: [{
             type: `article`,
@@ -499,9 +499,9 @@ export const evt_2_2: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 3.6,
+            lockdownCosts: 11,
+            medicalCosts: 15
         },
         socialMediaResponse: [{
             type: `article`,
@@ -567,9 +567,9 @@ export const evt_2_3: Event = {
         updatedIndicators: {
             supportForLastResponse: 84,
             oppositionToLastResponse: 12,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 1,
+            lockdownCosts: 11,
+            medicalCosts: 0.5
         },
         socialMediaResponse: [{
             type: `article`,
@@ -605,9 +605,9 @@ export const evt_2_3: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 0,
+            lockdownCosts: 11,
+            medicalCosts: 0
         },
         socialMediaResponse: [{
             type: `article`,

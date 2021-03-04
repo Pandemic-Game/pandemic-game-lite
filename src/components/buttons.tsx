@@ -54,7 +54,7 @@ export function ViewSource(props: {sourceDetails: SourceDetails, onClick: any}){
     } else {
 		return (
 			<button 
-				className={`m-2 text-red-700 animate-pulse`}
+				className={`m-2 text-red-500 animate-pulse`}
 				onClick={() => {props.onClick( props.sourceDetails )}}
 			>
 				<FontAwesomeIcon icon={faQuestionCircle} />

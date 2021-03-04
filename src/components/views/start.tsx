@@ -39,7 +39,7 @@ export function Splash(props: {onClick: Function}) {
 }
 
 
-export function Introduction(props: {onClick: Function}) {
+export function Introduction(props: {onClickContinue: Function, onClickSource: Function}) {
     return(
         <div className='min-h-full p-2 flex flex-col justify-between items-center bg-yellow-400'> 
             <div className='flex flex-col justify-between items-center'>
@@ -60,14 +60,20 @@ export function Introduction(props: {onClick: Function}) {
                 `} col='black' />
             </div>
             <div className='flex flex-col justify-center items-center'>
-                <Btn.ViewSource onClick={()=>{}} sourceDetails={{sourceName: '', link: '', description: ''}} />
-                <Txt.Subtitle value={'This game is based on real data so look out for the question icon to inspect our evidence'}  col='black'/>
+                <Btn.ViewSource onClick={props.onClickSource} sourceDetails={
+                    {
+                        sourceName: 'Interactive data model', 
+                        link: 'http://pandemic-game-prod.s3-website.us-east-2.amazonaws.com', 
+                        description: 'These screens will show you our sources. For example, our data model is based on US and UK data, including extensive polls of the UK population as well as COVID and economic data from UK and US sources.'
+                    }
+                } />
+                <Txt.Subtitle value={'This game is based on real data. Look out for question mark icons and press them to inspect our evidence'}  col='black'/>
             </div>
             <Btn.Bouncy 
                 value='Start'
                 bg='purple-900'
                 col='white'
-                onClick={props.onClick}
+                onClick={props.onClickContinue}
             />
         </div>
     );
