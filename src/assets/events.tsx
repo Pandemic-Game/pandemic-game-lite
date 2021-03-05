@@ -62,9 +62,9 @@ export const evt_0_0: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
+            description: `Data for a 'second' lockdown this year suggests 85% of people support this.`
         }
     },
     response2: {
@@ -100,9 +100,9 @@ export const evt_0_0: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+          sourceName: `YouGov`,
+          link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
+          description: `Data for a 'second' lockdown this year suggests 85% of people support this.`
         }
     }
 };
@@ -168,9 +168,9 @@ export const evt_1_1: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
+            description: `Data from the lockdown suggests 67% of people supported closing schools and universities.`
         }
     },
     response2: {
@@ -206,9 +206,9 @@ export const evt_1_1: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+          sourceName: `YouGov`,
+          link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
+          description: `Data from the lockdown suggests 67% of people supported closing schools and universities.`
         }
     }
 };
@@ -274,9 +274,9 @@ export const evt_1_2: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/11/02042/2`,
+            description: `People are relatively split on having to stay inside is making them lonely AND whether to have strict policing. So, in this situations the response would be split.`
         }
     },
     response2: {
@@ -312,9 +312,9 @@ export const evt_1_2: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+          sourceName: `YouGov`,
+          link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/11/02042/2`,
+          description: `People are relatively split on having to stay inside is making them lonely AND whether to have strict policing. So, in this situations the response would be split.`
         }
     }
 };
@@ -382,7 +382,7 @@ export const evt_2_1: Event = {
         sourceDetails: {
             sourceName: ``,
             link: ``,
-            description: ``
+            description: `People will be split, they've gotten used to freedom because of sunk cost fallacy - now they have invested in freedom they're more likely to hold steadfast in their views.`
         }
     },
     response2: {
@@ -420,7 +420,7 @@ export const evt_2_1: Event = {
         sourceDetails: {
             sourceName: ``,
             link: ``,
-            description: ``
+            description: `People will be split, they've gotten used to freedom because of sunk cost fallacy - now they have invested in freedom they're more likely to hold steadfast in their views.`
         }
     }
 };
@@ -486,9 +486,9 @@ export const evt_2_2: Event = {
         },
         ending: 'GenghisCannot',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
+            description: `As with the first event, data for a 'second' lockdown this year suggests 85% of people support this. This is similar to the current event since it is a response to rising covid cases, therefore a similar value is used here but adjusted for more lockdown fatigue (15% modifier) so 11 --> 26 & 85 --> 70 / from school the sunk cost fallacy would provide this 15%.`
         }
     },
     response2: {
@@ -524,9 +524,9 @@ export const evt_2_2: Event = {
         },
         ending: 'FlipFlopper',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
+            description: `As with the first event, data for a 'second' lockdown this year suggests 85% of people support this. This is similar to the current event since it is a response to rising covid cases, therefore a similar value is used here but adjusted for more lockdown fatigue (15% modifier) so 11 --> 26 & 85 --> 70 / from school the sunk cost fallacy would provide this 15%.`
         }
     }
 };
@@ -592,9 +592,9 @@ export const evt_2_3: Event = {
         },
         ending: `BusinessGuru`,
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://docs.cdn.yougov.com/fn83kzrj9i/International%20COVID%20personal%20impact.pdf`,
+            description: `Mental health was deemed atleast as important as physical health, according to a UK survey so 84% would be likely to support relaxing lockdown.`
         }
     },
     response2: {
@@ -630,9 +630,9 @@ export const evt_2_3: Event = {
         },
         ending: `CovidTerminator`,
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+          sourceName: `YouGov`,
+          link: `https://docs.cdn.yougov.com/fn83kzrj9i/International%20COVID%20personal%20impact.pdf`,
+          description: `Mental health was deemed atleast as important as physical health, according to a UK survey so 84% would be likely to support relaxing lockdown.`
         }
     }
 };
