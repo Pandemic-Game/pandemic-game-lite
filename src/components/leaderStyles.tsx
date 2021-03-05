@@ -119,7 +119,7 @@ export function BusinessGuru(props:{onClickSource: Function}){
                 sourceDetails: {
                     sourceName: 'Their response to COVID-19',
                     link: 'https://www.bbc.co.uk/news/world-asia-51836898',
-                    description: 'Under Chung Sye-Kyun‘s leadership no lockdowns, roadblocks or restrictions of movement were put in place.’
+                    description: 'Under Chung Sye-Kyun‘s leadership no lockdowns, roadblocks or restrictions of movement were put in place.'
                 }
             }}
             icon = ''

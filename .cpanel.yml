@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/morenost/public_html/pandemic-game
-    - /bin/cp -R build/* $DEPLOYPATH
+    - /bin/cp -R * $DEPLOYPATH
