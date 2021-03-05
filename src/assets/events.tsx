@@ -37,9 +37,9 @@ export const evt_0_0: Event = {
         updatedIndicators: {
             supportForLastResponse: 11,
             oppositionToLastResponse: 85,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 45,
+            lockdownCosts: 11,
+            medicalCosts: 40
         },
         socialMediaResponse: [{
             type: `article`,
@@ -62,9 +62,9 @@ export const evt_0_0: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
+            description: `Data for a 'second' lockdown this year suggests 85% of people support this.`
         }
     },
     response2: {
@@ -75,9 +75,9 @@ export const evt_0_0: Event = {
         updatedIndicators: {
             supportForLastResponse: 85,
             oppositionToLastResponse: 11,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 4.5,
+            lockdownCosts: 11,
+            medicalCosts: 20
         },
         socialMediaResponse: [{
             type: `article`,
@@ -100,9 +100,9 @@ export const evt_0_0: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+          sourceName: `YouGov`,
+          link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
+          description: `Data for a 'second' lockdown this year suggests 85% of people support this.`
         }
     }
 };
@@ -143,9 +143,9 @@ export const evt_1_1: Event = {
         updatedIndicators: {
             supportForLastResponse: 23,
             oppositionToLastResponse: 67,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 90,
+            lockdownCosts: 104,
+            medicalCosts: 11
         },
         socialMediaResponse: [{
             type: `article`,
@@ -168,9 +168,9 @@ export const evt_1_1: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
+            description: `Data from the lockdown suggests 67% of people supported closing schools and universities.`
         }
     },
     response2: {
@@ -181,9 +181,9 @@ export const evt_1_1: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 80,
+            lockdownCosts: 11,
+            medicalCosts: 104
         },
         socialMediaResponse: [{
             type: `article`,
@@ -206,9 +206,9 @@ export const evt_1_1: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+          sourceName: `YouGov`,
+          link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
+          description: `Data from the lockdown suggests 67% of people supported closing schools and universities.`
         }
     }
 };
@@ -249,9 +249,9 @@ export const evt_1_2: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 14,
+            lockdownCosts: 11,
+            medicalCosts: 3
         },
         socialMediaResponse: [{
             type: `article`,
@@ -274,9 +274,9 @@ export const evt_1_2: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/11/02042/2`,
+            description: `People are relatively split on having to stay inside is making them lonely AND whether to have strict policing. So, in this situations the response would be split.`
         }
     },
     response2: {
@@ -287,9 +287,9 @@ export const evt_1_2: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 1,
+            lockdownCosts: 11,
+            medicalCosts: 5
         },
         socialMediaResponse: [{
             type: `article`,
@@ -312,9 +312,9 @@ export const evt_1_2: Event = {
         },
         ending: '',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+          sourceName: `YouGov`,
+          link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/11/02042/2`,
+          description: `People are relatively split on having to stay inside is making them lonely AND whether to have strict policing. So, in this situations the response would be split.`
         }
     }
 };
@@ -355,9 +355,9 @@ export const evt_2_1: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 90,
+            lockdownCosts: 11,
+            medicalCosts: 104
         },
         socialMediaResponse: [{
             type: `article`,
@@ -382,7 +382,7 @@ export const evt_2_1: Event = {
         sourceDetails: {
             sourceName: ``,
             link: ``,
-            description: ``
+            description: `People will be split, they've gotten used to freedom because of sunk cost fallacy - now they have invested in freedom they're more likely to hold steadfast in their views.`
         }
     },
     response2: {
@@ -393,9 +393,9 @@ export const evt_2_1: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 15,
+            lockdownCosts: 11,
+            medicalCosts: 61
         },
         socialMediaResponse: [{
             type: `article`,
@@ -420,7 +420,7 @@ export const evt_2_1: Event = {
         sourceDetails: {
             sourceName: ``,
             link: ``,
-            description: ``
+            description: `People will be split, they've gotten used to freedom because of sunk cost fallacy - now they have invested in freedom they're more likely to hold steadfast in their views.`
         }
     }
 };
@@ -461,9 +461,9 @@ export const evt_2_2: Event = {
         updatedIndicators: {
             supportForLastResponse: 26,
             oppositionToLastResponse: 60,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 90,
+            lockdownCosts: 11,
+            medicalCosts: 39
         },
         socialMediaResponse: [{
             type: `article`,
@@ -486,9 +486,9 @@ export const evt_2_2: Event = {
         },
         ending: 'GenghisCannot',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
+            description: `As with the first event, data for a 'second' lockdown this year suggests 85% of people support this. This is similar to the current event since it is a response to rising covid cases, therefore a similar value is used here but adjusted for more lockdown fatigue (15% modifier) so 11 --> 26 & 85 --> 70 / from school the sunk cost fallacy would provide this 15%.`
         }
     },
     response2: {
@@ -499,9 +499,9 @@ export const evt_2_2: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 3.6,
+            lockdownCosts: 11,
+            medicalCosts: 15
         },
         socialMediaResponse: [{
             type: `article`,
@@ -524,9 +524,9 @@ export const evt_2_2: Event = {
         },
         ending: 'FlipFlopper',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
+            description: `As with the first event, data for a 'second' lockdown this year suggests 85% of people support this. This is similar to the current event since it is a response to rising covid cases, therefore a similar value is used here but adjusted for more lockdown fatigue (15% modifier) so 11 --> 26 & 85 --> 70 / from school the sunk cost fallacy would provide this 15%.`
         }
     }
 };
@@ -567,9 +567,9 @@ export const evt_2_3: Event = {
         updatedIndicators: {
             supportForLastResponse: 84,
             oppositionToLastResponse: 12,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 1,
+            lockdownCosts: 11,
+            medicalCosts: 0.5
         },
         socialMediaResponse: [{
             type: `article`,
@@ -592,9 +592,9 @@ export const evt_2_3: Event = {
         },
         ending: `BusinessGuru`,
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+            sourceName: `YouGov`,
+            link: `https://docs.cdn.yougov.com/fn83kzrj9i/International%20COVID%20personal%20impact.pdf`,
+            description: `Mental health was deemed atleast as important as physical health, according to a UK survey so 84% would be likely to support relaxing lockdown.`
         }
     },
     response2: {
@@ -605,9 +605,9 @@ export const evt_2_3: Event = {
         updatedIndicators: {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            newCases: 0,
+            lockdownCosts: 11,
+            medicalCosts: 0
         },
         socialMediaResponse: [{
             type: `article`,
@@ -630,9 +630,9 @@ export const evt_2_3: Event = {
         },
         ending: `CovidTerminator`,
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: ``
+          sourceName: `YouGov`,
+          link: `https://docs.cdn.yougov.com/fn83kzrj9i/International%20COVID%20personal%20impact.pdf`,
+          description: `Mental health was deemed atleast as important as physical health, according to a UK survey so 84% would be likely to support relaxing lockdown.`
         }
     }
 };
