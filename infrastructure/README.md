@@ -8,7 +8,7 @@ After setting up `ckd` make sure you have the correct credentials setup on your 
 
 ## Creating the infrastructure:
 
-Run `cdk deploy`.
+Run `cdk deploy --all`.
 
 ## Integration with the CI/CD pipeline:
 
