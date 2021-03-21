@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Btn from '../buttons';
 import * as Txt from '../text';
 import * as Gfx from '../infographics';
 import * as Lines from '../lines';
-import {Response} from '../../model/Response';
+import { Response } from '../../model/Response';
 import { Indicators } from '../../model/Indicators';
+import { useThemeContext } from '../../ThemeProvider';
 
-export function FeedbackScreen1(props: {response: Response, feedback: JSX.Element, onClick: Function, onClickSource: Function}){
+export function FeedbackScreen1(props: { response: Response, feedback: JSX.Element, onClick: Function, onClickSource: Function }) {
+    const bgColorClass = "bg-purple-900"
+    const context = useThemeContext()
+
+    useEffect(() => {
+        context.changeBgColorClass(bgColorClass)
+    })
+
     const responseText = props.response.updatedIndicators.supportForLastResponse > 50 ? 'People liked that!' : 'Ooh... That was controversial!';
-    return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-purple-900'>
+    return <div className={`min-h-full p-2 flex flex-col justify-between items-center ${bgColorClass}`}>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={props.response.getParentEvent().title} col={'white'} />
             <Txt.Title value={props.response.label} col={'white'} />
@@ -19,41 +27,55 @@ export function FeedbackScreen1(props: {response: Response, feedback: JSX.Elemen
         </div>
         <Gfx.SupportBar indicators={props.response.updatedIndicators} />
         {props.feedback}
-        <Btn.Rounded 
-            value={'Continue'} 
+        <Btn.Rounded
+            value={'Continue'}
             col='gray-900'
             bg='yellow-500'
-            onClick={()=>{props.onClick()}}
+            onClick={() => { props.onClick() }}
         />
-    </div> 
+    </div>
 }
 
-export function FeedbackScreen2(props: 
-{
-    response: Response,
-    indicatorsLastTurn: Indicators,
-    onClickContinue: Function, 
-    onClickExtra: Function
-}){
-    return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-purple-900'>
+export function FeedbackScreen2(props:
+    {
+        response: Response,
+        indicatorsLastTurn: Indicators,
+        onClickContinue: Function,
+        onClickExtra: Function
+    }) {
+    const bgColorClass = "bg-purple-900"
+    const context = useThemeContext()
+
+    useEffect(() => {
+        context.changeBgColorClass(bgColorClass)
+    })
+
+    return <div className={`min-h-full p-2 flex flex-col justify-between items-center ${bgColorClass}`}>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={props.response.getParentEvent().title} col={'white'} />
             <Txt.Title value={props.response.label} col={'white'} />
         </div>
-        <Gfx.CaseGraphic thisTurn={props.response.updatedIndicators} lastTurn={props.indicatorsLastTurn} /> 
+        <Gfx.CaseGraphic thisTurn={props.response.updatedIndicators} lastTurn={props.indicatorsLastTurn} />
         <Gfx.EconomyGraphic indicators={props.response.updatedIndicators} />
-        <Btn.Rounded 
-            value={'Continue'} 
+        <Btn.Rounded
+            value={'Continue'}
             col='gray-900'
             bg='yellow-500'
-            onClick={()=>{props.onClickContinue()}}
+            onClick={() => { props.onClickContinue() }}
         />
         <Btn.SneakyFeedback onClick={() => { props.onClickExtra() }} />
-    </div> 
+    </div>
 }
 
-export function FeedbackExtra(props: {response: Response, onClickBack: Function, onClickSource: Function }){
-    return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-purple-900'>
+export function FeedbackExtra(props: { response: Response, onClickBack: Function, onClickSource: Function }) {
+    const bgColorClass = "bg-purple-900"
+    const context = useThemeContext()
+
+    useEffect(() => {
+        context.changeBgColorClass(bgColorClass)
+    })
+
+    return <div className={`min-h-full p-2 flex flex-col justify-between items-center ${bgColorClass}`}>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Title value={'Some data'} col='white' />
         </div>
@@ -75,13 +97,13 @@ export function FeedbackExtra(props: {response: Response, onClickBack: Function,
 
             <div className='w-full flex flex-row justify-between'>
                 <Txt.Subtitle value={'COVID-19 cases'} col='white' />
-                <a 
+                <a
                     className='text-yellow-200'
                     href='http://pandemic-game-prod.s3-website.us-east-2.amazonaws.com'
                     target='_blank'
                     rel='noreferrer'
                 >
-                    <button 
+                    <button
                         className={`p-1 rounded-lg bg-yellow-500 text-md text-black font-custom`}
                     >
                         View data model
@@ -106,17 +128,17 @@ export function FeedbackExtra(props: {response: Response, onClickBack: Function,
                 <p>6% of the population are effectively immunised per month (no significant effect in early 2021)</p>
             </div>
             <Lines.Hr my={4} col='white' />
-            
+
 
             <div className='w-full flex flex-row justify-between'>
                 <Txt.Subtitle value={'Economy'} col='white' />
-                <a 
+                <a
                     className='text-yellow-200'
                     href='http://pandemic-game-prod.s3-website.us-east-2.amazonaws.com'
                     target='_blank'
                     rel='noreferrer'
                 >
-                    <button 
+                    <button
                         className={`p-1 rounded-lg bg-yellow-500 text-md text-black font-custom`}
                     >
                         View data model
@@ -142,14 +164,14 @@ export function FeedbackExtra(props: {response: Response, onClickBack: Function,
             </div>
         </div>
 
-        <Btn.Rounded 
-            value={'Back to the game'} 
+        <Btn.Rounded
+            value={'Back to the game'}
             col='gray-900'
             bg='yellow-500'
-            onClick={()=>{ props.onClickBack()} } 
-            animate='bounce' 
+            onClick={() => { props.onClickBack() }}
+            animate='bounce'
         />
-        
+
         <div className='mt-6'></div>
         <Txt.Subtitle value={'In the real world:'} col='yellow-400' />
         <div className='p-2 m-2 flex flex-col justify-between items-start font-sans'>
@@ -165,5 +187,5 @@ export function FeedbackExtra(props: {response: Response, onClickBack: Function,
                 <li>Other differences that non-European / non-American countries may face</li>
             </ul>
         </div>
-    </div> 
+    </div>
 }

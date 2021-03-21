@@ -4,7 +4,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap');
 @import "~animate.css/animate.css";
 
-/* Fullscreen */
-html, body, .App, .Game, .View, #root, .AnimateOnChange {
-    height: 100%;
-}
+

@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Layout } from './layout';
+import { ThemeProvider } from './ThemeProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-      <App />
+    <ThemeProvider bgColorClass="bg-yellow-400">
+      <Layout>
+        <App />
+      </Layout>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
