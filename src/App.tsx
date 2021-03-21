@@ -44,10 +44,10 @@ const App = () => {
   const showSource = (src: SourceDetails) => { setSourceToView(src); show('sources') };
 
   const endings: Record<string, { ele: JSX.Element, bg: string }> = {
-    'GenghisCannot': { ele: <LeaderStyle.GenghisCannot onClickSource={showSource} />, bg: 'yellow-500' },
-    'FlipFlopper': { ele: <LeaderStyle.FlipFlopper onClickSource={showSource} />, bg: 'red-500' },
-    'CovidTerminator': { ele: <LeaderStyle.CovidTerminator onClickSource={showSource} />, bg: 'green-500' },
-    'BusinessGuru': { ele: <LeaderStyle.BusinessGuru onClickSource={showSource} />, bg: 'blue-500' }
+    'GenghisCannot': { ele: <LeaderStyle.GenghisCannot onClickSource={showSource} />, bg: 'bg-yellow-500' },
+    'FlipFlopper': { ele: <LeaderStyle.FlipFlopper onClickSource={showSource} />, bg: 'bg-red-500' },
+    'CovidTerminator': { ele: <LeaderStyle.CovidTerminator onClickSource={showSource} />, bg: 'bg-green-500' },
+    'BusinessGuru': { ele: <LeaderStyle.BusinessGuru onClickSource={showSource} />, bg: 'bg-blue-500' }
   };
 
   const getLastResponse = (): Response => cloneDeep(history[history.length - 1]);

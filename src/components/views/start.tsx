@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import EndCoronaVirusLogo from '../../assets/PNG/ecvlogo.png';
-import WarningCircle from '../../assets/SVG/WarningCircle.svg';
-import WarningCircleOuter from '../../assets/SVG/WarningCircleOuter.svg';
 import { useThemeContext } from '../../ThemeProvider';
 import * as Btn from '../buttons';
 import * as Txt from '../text';
+import { WarningSign } from '../warning-sign';
 
 export function Splash(props: { onClick: Function }) {
     const bgColorClass = "bg-yellow-400"
@@ -56,8 +55,7 @@ export function Introduction(props: { onClickContinue: Function, onClickSource: 
             </div>
             <div className='animate__animated animate__fadeIn  m-2 p-2 flex flex-row items-start'>
                 <div className='m-2 p-2 flex flex-row'>
-                    <img className={'h-auto w-14 z-10'} src={WarningCircle} alt="WarningCircle" />
-                    <img className={'h-auto w-14 relative right-11 z-0 animate-ping'} src={WarningCircleOuter} alt="WarningCircle animation" />
+                    <WarningSign />
                 </div>
                 <Txt.Paragraph value={`   
                     Vaccines for COVID-19 have been developed but they will take a while to work.

@@ -10,7 +10,7 @@ export function Ending(props: { leaderStyle: { ele: JSX.Element, bg: string }, o
         context.changeBgColorClass(props.leaderStyle.bg)
     })
 
-    return <div className={`min-h-full p-2 flex flex-col justify-between items-center bg-${props.leaderStyle.bg}`}>
+    return <div className={`p-2 flex flex-col justify-between items-center bg-${props.leaderStyle.bg}`}>
         <Txt.Subtitle value={'Your leadership style is:'} col='black' />
         {props.leaderStyle.ele}
         <Btn.Bouncy
@@ -26,6 +26,7 @@ export function ViewEnding(props: { leaderStyle: { ele: JSX.Element, bg: string 
     const context = useThemeContext()
 
     useEffect(() => {
+        console.log("Setting bg for: ", props.leaderStyle)
         context.changeBgColorClass(props.leaderStyle.bg)
     })
 
@@ -76,7 +77,7 @@ export function AllEndings(props: { onClick: Function }) {
             <Txt.SectionTitle value='The forward-thinkers:' col='gray-700' />
             <div className='max-w-xs p-2 m-2 flex flex-col justify-center items-center' >
                 <Btn.Rounded
-                    bg='blue-500'
+                    bg='green-600'
                     col='white'
                     value={'COVID-Bane'}
                     onClick={() => { props.onClick('CovidTerminator') }} />
@@ -85,7 +86,7 @@ export function AllEndings(props: { onClick: Function }) {
             </div>
             <div className='max-w-xs p-2 m-2 flex flex-col justify-center items-center' >
                 <Btn.Rounded
-                    bg='green-600'
+                    bg='blue-500'
                     col='white'
                     value={'Economic Savior'}
                     onClick={() => { props.onClick('BusinessGuru') }} />
