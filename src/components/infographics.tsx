@@ -39,43 +39,51 @@ export function CaseCircle(props: { type: 'increase' | 'decrease' | 'default', a
                 icon={faCircle}
                 size='lg'
                 color={'yellow'}
-                className='m-1 animate__animated animate__fadeIn'
-                style={{ animationDelay: `${props.animationDelay}s` }}
+                className='m-1'
             />
         );
         case 'decrease': return (
-            <span className='animate__animated animate__fadeIn' style={{ animationDelay: `${props.animationDelay}s` }}>
-                <FontAwesomeIcon
-                    icon={faCircle}
-                    size='lg'
-                    color={'grey'}
-                    className='m-1 animate-pulse '
-                />
-            </span>
+            <FontAwesomeIcon
+                icon={faCircle}
+                size='lg'
+                color={'yellow'}
+                className='m-1 animate__animated animate__fadeOut'
+                style={{ animationDelay: `${props.animationDelay}s`}}
+            />
         );
         case 'increase': return (
-            <div className='m-1 relative animate__animated animate__fadeIn' style={{ animationDelay: `${props.animationDelay}s` }}>
-                <FontAwesomeIcon icon={faCircle} size='lg' color={'red'} />
-                <span className={`absolute top-0 left-0 animate-ping`} >
-                    <FontAwesomeIcon icon={faCircle} size='lg' color={'dark-red'} />
-                </span>
-            </div>
+            <FontAwesomeIcon
+                icon={faCircle}
+                size='lg'
+                color={'yellow'}
+                className='m-1 animate__animated animate__fadeIn'
+                style={{ animationDelay: `${props.animationDelay}s`}}
+            />
         );
     };
 }
 
-function CaseCircles(props: { thisTurn: Indicators, lastTurn: Indicators }) {
-    const delay = () => 1 + (circles.length / 10) // 1 = 1s delay on parent animation
+function CaseCircles(props: { thisTurn: Indicators, lastTurn: Indicators, delay: number }) {
+    const casesAreIncreasing = props.thisTurn.newCases > props.lastTurn.newCases;
     const circles: JSX.Element[] = [];
-    for (let i = 0; i < (props.thisTurn.newCases < props.lastTurn.newCases ? props.thisTurn.newCases : props.lastTurn.newCases); i++) {
-        circles.push(<CaseCircle key={`default-${i}`} type='default' animationDelay={delay()} />)
+
+    // Animate in change in cases this turn 
+    if(casesAreIncreasing){ // If cases increasing
+        for (let i = 0; i < props.lastTurn.newCases; i++) {
+            circles.push(<CaseCircle key={`default-${i}`} type='default' animationDelay={0} />)
+        }
+        for (let i = 0; i < Math.max(0, props.thisTurn.newCases - props.lastTurn.newCases); i++) {
+            circles.push(<CaseCircle key={`increase-${i}`} type='increase' animationDelay={ props.delay + (i / 10) } />)
+        }
+    } else { // If cases decreasing
+        for (let i = 0; i < props.thisTurn.newCases; i++) {
+            circles.push(<CaseCircle key={`default-${i}`} type='default' animationDelay={0} />)
+        }
+        for (let i = 0; i < Math.max(0, props.lastTurn.newCases - props.thisTurn.newCases); i++) {
+            circles.push(<CaseCircle key={`decrease-${i}`} type='decrease' animationDelay={ props.delay + ((props.lastTurn.newCases - props.thisTurn.newCases - i) / 10) } />)
+        }
     }
-    for (let i = 0; i < Math.max(0, props.thisTurn.newCases - props.lastTurn.newCases); i++) {
-        circles.push(<CaseCircle key={`increase-${i}`} type='increase' animationDelay={delay()} />)
-    }
-    for (let i = 0; i < Math.max(0, props.lastTurn.newCases - props.thisTurn.newCases); i++) {
-        circles.push(<CaseCircle key={`decrease-${i}`} type='decrease' animationDelay={delay()} />)
-    }
+
     return (
         <div className='flex flex-row flex-wrap justify-start items-start'>
             {circles}
@@ -85,23 +93,23 @@ function CaseCircles(props: { thisTurn: Indicators, lastTurn: Indicators }) {
 
 export function CaseGraphic(props: { thisTurn: Indicators, lastTurn: Indicators }) {
     const getTitle = () => props.thisTurn.newCases > props.lastTurn.newCases ? 'COVID-19 cases are rising!' : 'COVID-19 cases are falling';
+    const delay = 2;
     return (
         <div className='w-100 flex flex-col justify-between items-center text-white'>
             <Txt.Subtitle value={getTitle()} col='white' />
             <div className='m-2 p-2 flex flex-col justify-start items-start animate__delay-1s animate__animated animate__fadeIn'>
                 <div className='w-auto flex flex-col justify-center items-start'>
-                    <CaseCircles thisTurn={props.thisTurn} lastTurn={props.lastTurn} />
+                    <CaseCircles thisTurn={props.thisTurn} lastTurn={props.lastTurn} delay={delay} />
                     <div className='flex flex-row items-center'>
                         <Lines.Hr my={4} col='white' />
                         <p className='w-80'>{props.thisTurn.newCases} cases per 1000</p>
                     </div>
                 </div>
-                <div className='flex flex-row flex-wrap justify-start items-start'>
-                    {props.thisTurn.newCases > props.lastTurn.newCases ?
-                        <CaseCircle type='increase' animationDelay={0} />
-                        : <CaseCircle type='decrease' animationDelay={0} />
-                    }
-                    <p className='w-80'> Last month: {props.lastTurn.newCases}</p>
+                <div className='flex flex-col flex-wrap justify-start items-start'>
+                    <p> Last month: {props.lastTurn.newCases} cases</p>
+                    <strong className='animate__animated animate__fadeIn' style={{ animationDelay: `${delay}s`}}>
+                        This month: {props.thisTurn.newCases} cases
+                    </strong>
                 </div>
             </div>
         </div>
