@@ -179,8 +179,8 @@ export const evt_1_1: Event = {
             return evt_2_2
         },
         updatedIndicators: {
-            supportForLastResponse: 50,
-            oppositionToLastResponse: 50,
+            supportForLastResponse: 67,
+            oppositionToLastResponse: 23,
             newCases: 80,
             lockdownCosts: 11,
             medicalCosts: 104
@@ -202,7 +202,7 @@ export const evt_1_1: Event = {
             content: `ALL THAT STUDYING FOR NOTHING 😭😭`
         }],
         getNextEvent: () => {
-            return ending
+            return evt_2_2
         },
         ending: '',
         sourceDetails: {
