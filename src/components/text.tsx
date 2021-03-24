@@ -37,11 +37,43 @@ export function SectionTitle(props: { value: string, col: string }) {
 
 export function Paragraph(props: { value: string, col: string }) { // Line break split into new p for new line
     return (
-        <div className={`max-w-lg flex flex-col text-lg text-left text-${props.col} font-sans font-medium`}>
+        <div className={`max-w-lg flex flex-col text-lg text-left text-${props.col} font-sans font-medium`}
+        >
             {props.value.split(/(?:\r\n|\r|\n)/g).map((str, idx) => <p key={idx} className='m-1'>{str}</p>)}
         </div>
     );
 }
+
+export function ProphecyTitle(props: { value: string, col: string | undefined }) {
+    return (
+        <h1 
+            className={`m-2 p-2 flex text-4xl text-center text-${props.col} border-b-2 border-${props.col} font-bold`}
+            style={{fontFamily: 'Amatic SC'}}
+        >
+            {props.value}
+        </h1>
+    );
+}
+export function ProphecySubTitle(props: { value: string, col: string | undefined }) {
+    return (
+        <h1 
+            className={`m-2 p-2 flex text-3xl text-center text-${props.col} font-bold`}
+            style={{fontFamily: 'Amatic SC'}}
+        >
+            {props.value}
+        </h1>
+    );
+}
+export function Prophecy(props: { value: string, col: string }) { // Line break split into new p for new line
+    return (
+        <div className={`max-w-lg flex flex-col text-xl text-left text-${props.col} font-sans font-semibold`}
+            style={{fontFamily: 'Josefin Slab'}}
+        >
+            {props.value.split(/(?:\r\n|\r|\n)/g).map((str, idx) => <p key={idx} className='m-1'>{str}</p>)}
+        </div>
+    );
+}
+
 
 export function Text(props: { value: string, col: string }) { // Line break split into new p for new line
     return (

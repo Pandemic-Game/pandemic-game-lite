@@ -38,7 +38,7 @@ export const evt_0_0: Event = {
             supportForLastResponse: 11,
             oppositionToLastResponse: 85,
             newCases: 45,
-            lockdownCosts: 11,
+            lockdownCosts: 0,
             medicalCosts: 40
         },
         socialMediaResponse: [{
@@ -144,8 +144,8 @@ export const evt_1_1: Event = {
             supportForLastResponse: 23,
             oppositionToLastResponse: 67,
             newCases: 90,
-            lockdownCosts: 104,
-            medicalCosts: 11
+            lockdownCosts: 0,
+            medicalCosts: 104
         },
         socialMediaResponse: [{
             type: `article`,
@@ -183,7 +183,7 @@ export const evt_1_1: Event = {
             oppositionToLastResponse: 23,
             newCases: 80,
             lockdownCosts: 11,
-            medicalCosts: 104
+            medicalCosts: 94
         },
         socialMediaResponse: [{
             type: `article`,
@@ -250,7 +250,7 @@ export const evt_1_2: Event = {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
             newCases: 14,
-            lockdownCosts: 11,
+            lockdownCosts: 0,
             medicalCosts: 3
         },
         socialMediaResponse: [{
@@ -356,7 +356,7 @@ export const evt_2_1: Event = {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
             newCases: 90,
-            lockdownCosts: 11,
+            lockdownCosts: 0,
             medicalCosts: 104
         },
         socialMediaResponse: [{
@@ -462,7 +462,7 @@ export const evt_2_2: Event = {
             supportForLastResponse: 26,
             oppositionToLastResponse: 60,
             newCases: 90,
-            lockdownCosts: 11,
+            lockdownCosts: 0,
             medicalCosts: 39
         },
         socialMediaResponse: [{
@@ -532,7 +532,7 @@ export const evt_2_2: Event = {
 };
 export const evt_2_3: Event = {
     title: `Where Is My Mind?`,
-    description: `There are increasing reports that lockdown is negatively effecting people's wellbeing and mental health. Charities have started advocating for relaxed restrictions regarding individuals in crisis.`,
+    description: `There are increasing reports that lockdown is negatively effecting people's wellbeing and mental health. Charities have started advocating for relaxing restrictions.`,
     extraDetails: {
         public: {
             speech: `I'm not one to complain about mental health but I'm not doing great. Apparently, young people more likely to be depressed now.`,
@@ -568,7 +568,7 @@ export const evt_2_3: Event = {
             supportForLastResponse: 84,
             oppositionToLastResponse: 12,
             newCases: 1,
-            lockdownCosts: 11,
+            lockdownCosts: 5.5,
             medicalCosts: 0.5
         },
         socialMediaResponse: [{

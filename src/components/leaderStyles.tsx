@@ -1,7 +1,5 @@
 import React from 'react';
-import BarEconomy from '../assets/SVG/bar-economy.svg';
-import BarPublic from '../assets/SVG/bar-public.svg';
-import BarHealth from '../assets/SVG/bar-health.svg';
+import IconForGenghisCannot from '../assets/SVG/IconForGenghisCannot.svg';
 import * as Btn from './buttons';
 import * as Txt from './text';
 import { SourceDetails } from '../model/Event';
@@ -26,8 +24,13 @@ function LeadershipStyle(props: {
     onClickSource: Function;
 }) {
     return <div className={`min-h-full p-2 m-2 flex flex-col justify-between items-center text-${props.style.col}`}>
-        <Txt.Title value={props.name} col='black' />
-
+    
+        <Txt.Title value={props.name} col='black' /> 
+        <img 
+            src={props.icon} 
+            style={{width: '25%'}}
+            alt='Focus on public'
+        />
         <Txt.Text value={`A ${props.name} you may know:`}  col='black'/>
         <div className='flex flex-row'>
             <Txt.Text value={props.example.name}  col='black'/>
@@ -37,12 +40,10 @@ function LeadershipStyle(props: {
             />
         </div>
 
-        <div className='flex flex-row justify-center align-start'>
-            <img src={BarPublic} alt='Focus on public'/>
-            <img src={BarEconomy} alt='Focus on economy'/>
-            <img src={BarHealth} alt='Focus on health'/>
-        </div>
-        <Txt.Paragraph value={props.description}  col='black'/>
+        <Txt.ProphecySubTitle value='Epilogue prophecy:' col='black'/>
+
+        <Txt.Prophecy value={props.description}  col='black'/>
+
     </div>
     // To-Do: Implement icons: <img src={props.icon} className='m-2' alt='Leadership style icon'/>
     // To-Do: Example description extra info popover
@@ -60,10 +61,15 @@ export function GenghisCannot(props:{onClickSource: Function}){
                     description: 'Former president Trump refused to acknowledge the seriousness of COVID and instead of locking down he suggested injecting cleaning chemicals'
                 }
             }}
-            icon = ''
+            icon = {IconForGenghisCannot}
             description = {`
-                Once Ghengis Cannots make a choice, they don't listen to new evidence from any side. They value their own opinions over just about anything and anyone.
-                The Ghengis Cannot response isn't particularly effective for the economy or COVID-19 cases or the public. You're a free agent, man.
+                The tale of the Ghengis Cannot is one sapped in wrath and sorrow. Putting pride before all else, they risked everything to appear invincible.
+
+                It did not end well.
+                
+                Months into the pandemic, the Ghengis Cannot lost everything. The people's confidence. The support of their round table. And, most importantly, their title.
+                
+                Their people rebelled, putting another leader in Ghengis's place. One they hope will put their safety first. Cases are finally beginning to fall, all while Ghengis shuts themself away in a palace. Silent, shamed, and alone.
             `}
             values = {{
                 public: 75,
@@ -93,8 +99,15 @@ export function CovidTerminator(props:{onClickSource: Function}){
             }}
             icon = ''
             description = {`
-                COVID Terminators are the heroes we don't deserve. They are strict with lockdown policies and prioritise advice from healthcare officials to contain COVID as quickly as possible.
-                The COVID Terminator's response is extremely effective for lowering COVID-19 cases and encourage a ZERO COVID scenario.
+                All hail the Covid Terminator! Savior of the lands! Guardian of the people! Bask in their glory and wonder!
+
+                The pandemic was short-lived thanks to the Terminator's actions.
+
+                When once their methods were criticised as harsh and cruel by their people, now the populous sings the Terminator's praises asthe disease is purged from their land.
+
+                Even the pesky economists are placated. A trying task, indeed.
+
+                The Covid Terminator is the envy of all the world. Black Death whom? You do not know of she.
             `}
             values = {{
                 public: 75,
@@ -124,8 +137,13 @@ export function BusinessGuru(props:{onClickSource: Function}){
             }}
             icon = ''
             description = {`
-                Business Gurus want to grow and protect the economy at all costs. To them, a thriving economy proves that society can't be hindered by a pesky little virus.
-                The Business Guru response isn't very effective for lowering COVID-19 cases and has mixed reactions from the public.
+                Feast thine eyes upon the Business Guru, liberator of coin purses!
+
+                At first, their choice to prioritise the exchange of goods and services seemed a fairy tale. But with a little faith, trust, and precautionary measure, their land just may survive yet.
+
+                As the pandemic continues, the people are warming to their Business Guru. They see now the method to the madness - the forward-thinking that saved thousands of professions.
+
+                There is still much to do in lowering case numbers, but for now, citizens can take comfort in having a prosperous land in which to return.
             `}
             values = {{
                 public: 75,
@@ -155,8 +173,13 @@ export function FlipFlopper(props:{onClickSource: Function}){
             }}
             icon = ''
             description = {`
-                Flip-floppers value public opinion most. So when the public turns lockdown, they open things up. When the public wants to stay inside, they issue lockdown orders.
-                The Flip-flopper response isn't particularly effective for the economy or COVID-19 cases.
+                And so it was. The Flip-Flopper spent the remaining months of the pandemic trying to appease the  populous by bending to their will and their will alone.
+
+                The Flop-Flopper's ever-changing  methods led to many a confused citizen debating on face covering protocol and in-person tavern dining.
+                
+                Instead of building rapport with their people, it seems Lord Flip Flopper lost sight of what was truly important - putting an end to this dastardly disease.
+                
+                Only time will tell if Lord Flip Flopper will lose their title or if the people will give them a second chance.
             `}
             values = {{
                 public: 75,
