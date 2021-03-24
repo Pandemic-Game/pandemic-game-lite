@@ -126,26 +126,26 @@ export function EconomyGraphic(props: { indicators: Indicators }) {
             <div className='flex flex-row'>
                 <div className='flex flex-col items-center'>
                     <p className='p-2 text-lg font-medium'>Medical costs </p>
-                    <div className='animate__delay-3s animate__animated animate__bounceIn'>
+                    <div className=''>
                         <Txt.Text value={`$${props.indicators.medicalCosts} Billion`} col='white' />
                     </div>
                     <img
                         src={medicalCoin}
                         style={{ height: calculateArea(props.indicators.medicalCosts) }}
                         alt='Medical Costs'
-                        className='animate__delay-1s animate__animated animate__bounceIn'
+                        className=''
                     />
                 </div>
                 <div className='mb-4 flex flex-col items-center'>
                     <p className='p-2 text-lg font-medium'>Lockdown costs </p>
-                    <div className='animate__delay-4s animate__animated animate__bounceIn'>
+                    <div className=''>
                         <Txt.Text value={`$${props.indicators.lockdownCosts} Billion`} col='white' />
                     </div>
                     <img
                         src={lockdownCoin}
                         style={{ height: calculateArea(props.indicators.lockdownCosts) }}
                         alt='Lockdown Costs'
-                        className='animate__delay-4s animate__animated animate__bounceIn'
+                        className=''
                     />
                 </div>
             </div>

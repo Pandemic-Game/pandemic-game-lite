@@ -57,13 +57,13 @@ export function FeedbackScreen2(props:
         </div>
         <Gfx.CaseGraphic thisTurn={props.response.updatedIndicators} lastTurn={props.indicatorsLastTurn} />
         <Gfx.EconomyGraphic indicators={props.response.updatedIndicators} />
+        <Btn.SneakyFeedback onClick={() => { props.onClickExtra() }} />
         <Btn.Rounded
             value={'Continue'}
             col='gray-900'
             bg='yellow-500'
             onClick={() => { props.onClickContinue() }}
         />
-        <Btn.SneakyFeedback onClick={() => { props.onClickExtra() }} />
     </div>
 }
 

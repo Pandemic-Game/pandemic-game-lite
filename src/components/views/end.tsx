@@ -11,7 +11,8 @@ export function Ending(props: { leaderStyle: { ele: JSX.Element, bg: string }, o
     })
 
     return <div className={`p-2 flex flex-col justify-between items-center bg-${props.leaderStyle.bg}`}>
-        <Txt.Subtitle value={'Your leadership style is:'} col='black' />
+        <Txt.ProphecyTitle value={'The end.'} col='black' />
+        <Txt.ProphecySubTitle value={'You achieved the ending:'} col='black' />
         {props.leaderStyle.ele}
         <Btn.Bouncy
             col={'white'}
