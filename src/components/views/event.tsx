@@ -31,7 +31,7 @@ export function EventScreen(props:
             </div>
             <Txt.Paragraph value={props.event.description} col='black' />
         </div>
-        <div className='w-4/5 flex mt-8 flex-col justify-between items-center '>
+        <div className='w-4/5 flex mt-4 flex-col justify-between items-center '>
             <Lines.Hr my={0} col='black' />
             <Btn.Rounded
                 value={props.event.response1.label}

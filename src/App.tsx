@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import "tailwindcss/tailwind.css";
 import cloneDeep from 'lodash/cloneDeep';
@@ -14,6 +14,7 @@ import { SourceScreen } from './components/views/source';
 import { EventScreen, EventExtra } from './components/views/event';
 import { FeedbackScreen1, FeedbackScreen2, FeedbackExtra } from './components/views/feedback';
 import { Ending, AllEndings, ViewEnding } from './components/views/end';
+import FontFaceObserver from "fontfaceobserver";
 
 // Load story
 const firstEvent = Story.evt_0_0;
@@ -22,7 +23,7 @@ const firstEvent = Story.evt_0_0;
  * Main game loop
 */
 
-const App = () => {
+const GameLoop = () => {
 
   const [history, setHistory] = useState<Response[]>([]);
   const [event, setEvent] = useState<Event>(firstEvent); // Load first event
@@ -140,7 +141,26 @@ const App = () => {
       leaderStyle={endings[ending]}
       onClick={() => { show('allEndings') }}
     />;
+    default: return <></>
   }
+}
+
+const App = () => {
+
+  const [fontReady, setFontReady] = useState(false);
+
+  useEffect(() => {
+    const font = new FontFaceObserver('Bebas Neue')
+    font.load().then(() => {
+      setFontReady(true);
+    }).catch((err: Error) => {
+      console.error("FONT NOT READY")
+      console.error(err)
+      setFontReady(true)
+    })
+  })
+
+  return <>{fontReady && <GameLoop />}</>
 }
 
 export default App;

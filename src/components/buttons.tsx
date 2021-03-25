@@ -2,7 +2,7 @@ import React from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import ButtonSneaky from '../assets/PNG/Psst2.png';
-import ButtonSneakySVG_alt from '../assets/SVG/ButtonSneaky_Alt.svg';
+import ButtonSneakySVG_alt from '../assets/PNG/psst_data.png';
 import { SourceDetails } from '../model/Event';
 
 // Primary button

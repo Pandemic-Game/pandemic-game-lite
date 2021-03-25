@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export function BigTitle(props: { value: string }) {
     return (
-        <h1 className='m-4 p-2 flex text-7xl text-center font-custom'>
+        <h1 className='m-4 p-2 text-7xl text-center font-custom'>
             {props.value}
         </h1>
     );
@@ -29,7 +29,7 @@ export function Subtitle(props: { value: string, col: string }) {
 
 export function SectionTitle(props: { value: string, col: string }) {
     return (
-        <h1 className={`m-4 p-4 flex text-3xl text-center text-${props.col} font-custom border-b-2 border-${props.col}`}>
+        <h1 className={`m-4 p-4 text-3xl text-center text-${props.col} font-custom border-b-2 border-${props.col}`}>
             {props.value}
         </h1>
     );
