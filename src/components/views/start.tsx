@@ -14,33 +14,43 @@ export function Splash(props: { onClick: Function }) {
     })
 
     return (
-        <div className={`min-h-full p-2 flex flex-col justify-around items-center ${bgColorClass}`}>
-            <a
-                href='https://www.endcoronavirus.org'
-                rel='noreferrer'
-                target='_blank'
-                className='text-blue-900'
-            >
-                <img
-                    src={EndCoronaVirusLogo}
-                    alt='EndCoronaVirusLogo'
-                    className='m-2 w-auto h-14 rounded-lg'>
-                </img>
-            </a>
-            <Txt.BigTitle value={'Pandemic Game'} />
-            <div className='flex flex-col justify-center items-center'>
+        <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
+            <div className="m-2">
+                <a
+                    href='https://www.endcoronavirus.org'
+                    rel='noreferrer'
+                    target='_blank'
+                    className='text-blue-900'
+                >
+                    <img
+                        src={EndCoronaVirusLogo}
+                        alt='EndCoronaVirusLogo'
+                        className='m-2 w-auto h-14 rounded-lg'>
+                    </img>
+                </a>
+            </div>
+
+            <div className="m-2">
+                <Txt.BigTitle value={'Pandemic Game'} />
+            </div>
+
+
+            <div className='flex m-2 flex-col justify-center items-center'>
                 <Txt.Subtitle value={'You are a World Leader.'} col='black' />
                 <p className='m-2 text-center font-sans font-medium'>
-                    Your job is to navigate the first few months of 2021. The decisions you make will polarize different parts of society, from the public to businesses and healthcare.
+                    Your job is to navigate the first few months of 2021.
+                    The decisions you make will polarize different parts of society, from the public to businesses and healthcare.
                 </p>
                 <Txt.Subtitle value={'What type of leader are you?'} col='black' />
             </div>
-            <Btn.Bouncy
-                value='Play the game'
-                bg='purple-900'
-                col='white'
-                onClick={props.onClick}
-            />
+            <div style={{ marginTop: "auto" }}>
+                <Btn.Bouncy
+                    value='Play the game'
+                    bg='purple-900'
+                    col='white'
+                    onClick={props.onClick}
+                />
+            </div>
         </div>
     );
 }
@@ -48,7 +58,7 @@ export function Splash(props: { onClick: Function }) {
 
 export function Introduction(props: { onClickContinue: Function, onClickSource: Function }) {
     return (
-        <div className='min-h-full p-2 flex flex-col justify-between items-center bg-yellow-400'>
+        <div className='min-h-full p-2 flex flex-col items-center bg-yellow-400'>
             <div className='flex flex-col justify-between items-center'>
                 <Txt.Subtitle value={'El presidente!'} col='black' />
                 <Txt.Title value='A situation requires your attention!' col='gray-900' />
@@ -75,12 +85,15 @@ export function Introduction(props: { onClickContinue: Function, onClickSource: 
                 } />
                 <Txt.Subtitle value={'This game is based on real data. Look out for question mark icons and press them to inspect our evidence'} col='black' />
             </div>
-            <Btn.Bouncy
-                value='Start'
-                bg='purple-900'
-                col='white'
-                onClick={props.onClickContinue}
-            />
-        </div>
+
+            <div style={{ marginTop: "auto" }}>
+                <Btn.Bouncy
+                    value='Start'
+                    bg='purple-900'
+                    col='white'
+                    onClick={props.onClickContinue}
+                />
+            </div>
+        </div >
     );
 }

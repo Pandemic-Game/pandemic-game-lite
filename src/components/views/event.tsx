@@ -20,7 +20,7 @@ export function EventScreen(props:
         context.changeBgColorClass(bgColorClass)
     })
 
-    return <div className={`min-h-full p-2 flex flex-col justify-between items-center ${bgColorClass}`}>
+    return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={'Event:'} col='black' />
             <Txt.Title value={props.event.title} col='gray-900' />
@@ -31,7 +31,7 @@ export function EventScreen(props:
             </div>
             <Txt.Paragraph value={props.event.description} col='black' />
         </div>
-        <div className='w-4/5 flex flex-col justify-between items-center '>
+        <div className='w-4/5 flex mt-8 flex-col justify-between items-center '>
             <Lines.Hr my={0} col='black' />
             <Btn.Rounded
                 value={props.event.response1.label}
@@ -48,12 +48,14 @@ export function EventScreen(props:
             />
             <Lines.Hr my={0} col='black' />
         </div>
-        <Btn.Sneaky onClick={() => { props.onClickExtraInfo() }} />
+        <div style={{ marginTop: "auto" }}>
+            <Btn.Sneaky onClick={() => { props.onClickExtraInfo() }} />
+        </div>
     </div>
 }
 
 export function EventExtra(props: { event: Event, onClickSource: Function, onClickBack: Function }) {
-    return <div className='min-h-full p-2 flex flex-col justify-between items-center bg-yellow-400'>
+    return <div className='min-h-full p-2 flex flex-col items-center bg-yellow-400'>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={'Event:'} col='black' />
             <Txt.Title value={props.event.title} col='gray-900' />
@@ -76,11 +78,13 @@ export function EventExtra(props: { event: Event, onClickSource: Function, onCli
             icon={faUserMd}
             onClick={props.onClickSource}
         />
-        <Btn.Bouncy
-            value={'Back'}
-            bg={'purple-900'}
-            col={'white'}
-            onClick={() => { props.onClickBack() }}
-        />
+        <div style={{ marginTop: "auto" }}>
+            <Btn.Bouncy
+                value={'Back'}
+                bg={'purple-900'}
+                col={'white'}
+                onClick={() => { props.onClickBack() }}
+            />
+        </div>
     </div>
 }

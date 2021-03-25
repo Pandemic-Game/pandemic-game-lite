@@ -29,7 +29,9 @@ export function SourceScreen(props: { sourceDetails: SourceDetails, onClick: Fun
                     {props.sourceDetails.sourceName}
                 </a>
             </div>
-            <Btn.Bouncy value='Back' onClick={props.onClick} />
+            <div style={{ marginTop: "auto" }}>
+                <Btn.Bouncy value='Back' onClick={props.onClick} />
+            </div>
         </div>
     )
 }
