@@ -102,13 +102,13 @@ export function CaseGraphic(props: { thisTurn: Indicators, lastTurn: Indicators 
                     <CaseCircles thisTurn={props.thisTurn} lastTurn={props.lastTurn} delay={delay} />
                     <div className='flex flex-row items-center'>
                         <Lines.Hr my={4} col='white' />
-                        <p className='w-80'>{props.thisTurn.newCases} cases per 1000</p>
+                        <p className='w-80'>{props.thisTurn.newCases} in 1000</p>
                     </div>
                 </div>
                 <div className='flex flex-col flex-wrap justify-start items-start'>
-                    <p> Last month: {props.lastTurn.newCases} cases</p>
+                    <p> Last month: {props.lastTurn.newCases} cases (/1000 per month)</p>
                     <strong className='animate__animated animate__fadeIn' style={{ animationDelay: `${delay}s`}}>
-                        This month: {props.thisTurn.newCases} cases
+                        This month: {props.thisTurn.newCases} cases (/1000 per month)
                     </strong>
                 </div>
             </div>
@@ -132,7 +132,7 @@ export function EconomyGraphic(props: { indicators: Indicators }) {
                     <img
                         src={medicalCoin}
                         style={{ height: calculateArea(props.indicators.medicalCosts) }}
-                        alt='Medical Costs'
+                        alt='Medical costs'
                         className=''
                     />
                 </div>
@@ -144,7 +144,7 @@ export function EconomyGraphic(props: { indicators: Indicators }) {
                     <img
                         src={lockdownCoin}
                         style={{ height: calculateArea(props.indicators.lockdownCosts) }}
-                        alt='Lockdown Costs'
+                        alt='Lost business activity'
                         className=''
                     />
                 </div>
