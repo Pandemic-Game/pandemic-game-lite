@@ -44,7 +44,7 @@ export function AllEndings(props: { onClick: Function }) {
         context.changeBgColorClass(bgColorClass)
     })
 
-    return <div className={`min-h-full flex flex-col justify-between items-center text-center ${bgColorClass}`}>
+    return <div className={`min-h-full flex flex-col items-center text-center ${bgColorClass}`}>
         <div className='p-2 flex flex-col justify-between items-center '>
             <Txt.Subtitle value='Find out about the other' col='black' />
             <Txt.Title value='Leadership styles:' col='black' />
@@ -98,6 +98,15 @@ export function AllEndings(props: { onClick: Function }) {
         <div className='max-w-xs p-2 m-2 flex flex-col justify-center items-center'>
             <Txt.Subtitle value='How do we calculate these?' col='black' />
             <Txt.Text value='We showed you a scenario where you could have responded in different ways. Your responses have consequences later down the line, like a story tree.' col='black' />
+        </div>
+
+        <div style={{ marginTop: "auto" }}>
+            <Btn.Bouncy
+                value={'Play again'}
+                bg={'purple-900'}
+                col={'white'}
+                onClick={() => { window.location.reload() }}
+            />
         </div>
     </div>
 }

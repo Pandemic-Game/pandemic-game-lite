@@ -48,7 +48,7 @@ export function CaseCircle(props: { type: 'increase' | 'decrease' | 'default', a
                 size='lg'
                 color={'yellow'}
                 className='m-1 animate__animated animate__fadeOut'
-                style={{ animationDelay: `${props.animationDelay}s`}}
+                style={{ animationDelay: `${props.animationDelay}s` }}
             />
         );
         case 'increase': return (
@@ -57,7 +57,7 @@ export function CaseCircle(props: { type: 'increase' | 'decrease' | 'default', a
                 size='lg'
                 color={'yellow'}
                 className='m-1 animate__animated animate__fadeIn'
-                style={{ animationDelay: `${props.animationDelay}s`}}
+                style={{ animationDelay: `${props.animationDelay}s` }}
             />
         );
     };
@@ -68,19 +68,19 @@ function CaseCircles(props: { thisTurn: Indicators, lastTurn: Indicators, delay:
     const circles: JSX.Element[] = [];
 
     // Animate in change in cases this turn 
-    if(casesAreIncreasing){ // If cases increasing
+    if (casesAreIncreasing) { // If cases increasing
         for (let i = 0; i < props.lastTurn.newCases; i++) {
             circles.push(<CaseCircle key={`default-${i}`} type='default' animationDelay={0} />)
         }
         for (let i = 0; i < Math.max(0, props.thisTurn.newCases - props.lastTurn.newCases); i++) {
-            circles.push(<CaseCircle key={`increase-${i}`} type='increase' animationDelay={ props.delay + (i / 10) } />)
+            circles.push(<CaseCircle key={`increase-${i}`} type='increase' animationDelay={props.delay + (i / 10)} />)
         }
     } else { // If cases decreasing
         for (let i = 0; i < props.thisTurn.newCases; i++) {
             circles.push(<CaseCircle key={`default-${i}`} type='default' animationDelay={0} />)
         }
         for (let i = 0; i < Math.max(0, props.lastTurn.newCases - props.thisTurn.newCases); i++) {
-            circles.push(<CaseCircle key={`decrease-${i}`} type='decrease' animationDelay={ props.delay + ((props.lastTurn.newCases - props.thisTurn.newCases - i) / 10) } />)
+            circles.push(<CaseCircle key={`decrease-${i}`} type='decrease' animationDelay={props.delay + ((props.lastTurn.newCases - props.thisTurn.newCases - i) / 10)} />)
         }
     }
 
@@ -107,7 +107,7 @@ export function CaseGraphic(props: { thisTurn: Indicators, lastTurn: Indicators 
                 </div>
                 <div className='flex flex-col flex-wrap justify-start items-start'>
                     <p> Last month: {props.lastTurn.newCases} cases</p>
-                    <strong className='animate__animated animate__fadeIn' style={{ animationDelay: `${delay}s`}}>
+                    <strong className='animate__animated animate__fadeIn' style={{ animationDelay: `${delay}s` }}>
                         This month: {props.thisTurn.newCases} cases
                     </strong>
                 </div>

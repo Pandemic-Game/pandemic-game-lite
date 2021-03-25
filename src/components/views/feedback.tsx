@@ -16,7 +16,7 @@ export function FeedbackScreen1(props: { response: Response, feedback: JSX.Eleme
     })
 
     const responseText = props.response.updatedIndicators.supportForLastResponse > 50 ? 'People liked that!' : 'Ooh... That was controversial!';
-    return <div className={`min-h-full p-2 flex flex-col justify-between items-center ${bgColorClass}`}>
+    return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={props.response.getParentEvent().title} col={'white'} />
             <Txt.Title value={props.response.label} col={'white'} />
@@ -26,13 +26,17 @@ export function FeedbackScreen1(props: { response: Response, feedback: JSX.Eleme
             <Btn.ViewSource sourceDetails={props.response.sourceDetails} onClick={props.onClickSource} />
         </div>
         <Gfx.SupportBar indicators={props.response.updatedIndicators} />
-        {props.feedback}
-        <Btn.Rounded
-            value={'Continue'}
-            col='gray-900'
-            bg='yellow-500'
-            onClick={() => { props.onClick() }}
-        />
+        <div className="mt-8 mb-8">
+            {props.feedback}
+        </div>
+        <div style={{ marginTop: "auto" }}>
+            <Btn.Rounded
+                value={'Continue'}
+                col='gray-900'
+                bg='yellow-500'
+                onClick={() => { props.onClick() }}
+            />
+        </div>
     </div>
 }
 
@@ -50,20 +54,24 @@ export function FeedbackScreen2(props:
         context.changeBgColorClass(bgColorClass)
     })
 
-    return <div className={`min-h-full p-2 flex flex-col justify-between items-center ${bgColorClass}`}>
+    return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={props.response.getParentEvent().title} col={'white'} />
             <Txt.Title value={props.response.label} col={'white'} />
         </div>
         <Gfx.CaseGraphic thisTurn={props.response.updatedIndicators} lastTurn={props.indicatorsLastTurn} />
         <Gfx.EconomyGraphic indicators={props.response.updatedIndicators} />
-        <Btn.Rounded
-            value={'Continue'}
-            col='gray-900'
-            bg='yellow-500'
-            onClick={() => { props.onClickContinue() }}
-        />
-        <Btn.SneakyFeedback onClick={() => { props.onClickExtra() }} />
+        <div style={{ marginTop: "auto" }}>
+            <Btn.Rounded
+                value={'Continue'}
+                col='gray-900'
+                bg='yellow-500'
+                onClick={() => { props.onClickContinue() }}
+            />
+            <div className="mt-2">
+                <Btn.SneakyFeedback onClick={() => { props.onClickExtra() }} />
+            </div>
+        </div>
     </div>
 }
 
