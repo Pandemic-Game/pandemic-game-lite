@@ -31,7 +31,7 @@ function LeadershipStyle(props: {
             style={{width: '25%'}}
             alt='Focus on public'
         />
-        <Txt.Text value={`A ${props.name} you may know:`}  col='black'/>
+        <Txt.Text value={`Example of a ${props.name}:`}  col='black'/>
         <div className='flex flex-row'>
             <Txt.Text value={props.example.name}  col='black'/>
             <Btn.ViewSource
@@ -54,7 +54,7 @@ export function GenghisCannot(props:{onClickSource: Function}){
         <LeadershipStyle
             name = 'Genghis Cannot'
             example = {{
-                name: 'Donald Trump (USA)',
+                name: 'United States of America',
                 sourceDetails: {
                     sourceName: 'Their response to COVID-19',
                     link: 'https://www.bbc.co.uk/news/world-us-canada-52407177',
@@ -90,11 +90,11 @@ export function CovidTerminator(props:{onClickSource: Function}){
         <LeadershipStyle
             name = 'Covid Terminator'
             example = {{
-                name: 'Jacinda Ardern (NZ)',
+                name: 'New Zealand',
                 sourceDetails: {
                     sourceName: 'Their response to COVID-19',
                     link: 'https://www.bbc.co.uk/news/world-asia-53274085',
-                    description: 'New Zealand‘s tactic of locking down early and closing borders resulted in comparatively lower cases and deaths in the country.'
+                    description: 'Jacinda Ardern‘s tactic of locking New Zealand down early and closing borders resulted in comparatively lower cases and deaths in the country.'
                 }
             }}
             icon = ''
@@ -128,11 +128,11 @@ export function BusinessGuru(props:{onClickSource: Function}){
         <LeadershipStyle
             name = 'Business Guru'
             example = {{
-                name: 'Chung Sye-Kyun (SK)',
+                name: 'South Korea',
                 sourceDetails: {
                     sourceName: 'Their response to COVID-19',
                     link: 'https://www.bbc.co.uk/news/world-asia-51836898',
-                    description: 'Under Chung Sye-Kyun‘s leadership no lockdowns, roadblocks or restrictions of movement were put in place.'
+                    description: 'Under Chung Sye-Kyun‘s proficient leadership and management of low COVID-19 cases no lockdowns, roadblocks or restrictions of movement were put in place. Consequently, they are one of the only economies to grow, not shrink, during the pandemic.'
                 }
             }}
             icon = ''
@@ -164,11 +164,11 @@ export function FlipFlopper(props:{onClickSource: Function}){
         <LeadershipStyle
             name = 'Flip-flopper'
             example = {{
-                name: 'Boris Johnson (UK)',
+                name: 'United Kingdom',
                 sourceDetails: {
                     sourceName: 'Their response to COVID-19',
                     link: 'https://www.theguardian.com/business/2021/jan/25/uk-response-covid-19-u-turns',
-                    description: 'From delaying the initial lockdown to opening it up again with restrictions in place, the UK has been in and out of lockdowns ever since.'
+                    description: 'From delaying the initial lockdown to opening it up again with restrictions in place, the UK has been in and out of lockdowns ever since. Prime minister Boris Johnson has been ridiculed for his "flip-flopping" attitude to lockdown.'
                 }
             }}
             icon = ''

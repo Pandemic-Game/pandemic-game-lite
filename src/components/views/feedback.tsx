@@ -129,11 +129,11 @@ export function FeedbackExtra(props: { response: Response, onClickBack: Function
             </div>
             <div className='p-2 flex flex-row items-start'>
                 <Btn.ViewSource sourceDetails={{
-                    sourceName: 'Click to see model for all data',
+                    sourceName: 'Our data model',
                     link: 'https://github.com/felix19350/pandemic-game-narrative-poc/blob/feature/integrated-simulator/src/scenarios/UK.ts',
-                    description: '6% of the population are effectively immunised per month in the UK (GOV UK). We take into account the 50% effectiveness of the 1st jab (BMJ) and the natural immunity of the population to COVID (10%).'
+                    description: 'In our data model for cases and economy we make the assumption that once hospital capacity is reached individuals start self-isolating even if the government has not issued lockdown.'
                 }} onClick={props.onClickSource} />
-                <p>6% of the population are effectively immunised per month (no significant effect in early 2021)</p>
+                <p>People self-isolate when cases are extremely high</p>
             </div>
             <Lines.Hr my={4} col='white' />
 
@@ -197,3 +197,15 @@ export function FeedbackExtra(props: { response: Response, onClickBack: Function
         </div>
     </div>
 }
+
+/* 
+Immunity not calculated due to no significant effect in early 2021
+<div className='p-2 flex flex-row items-start'>
+    <Btn.ViewSource sourceDetails={{
+        sourceName: 'Click to see model for all data',
+        link: 'https://github.com/felix19350/pandemic-game-narrative-poc/blob/feature/integrated-simulator/src/scenarios/UK.ts',
+        description: '6% of the population are effectively immunised per month in the UK (GOV UK). We take into account the 50% effectiveness of the 1st jab (BMJ) and the natural immunity of the population to COVID (10%).'
+    }} onClick={props.onClickSource} />
+    <p>6% of the population are effectively immunised per month</p>
+</div>
+*/

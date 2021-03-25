@@ -31,6 +31,7 @@ const GameLoop = () => {
   const [previousView, setPreviousView] = useState<string>('start');
   const [ending, setEnding] = useState<string>('');
   const [sourceToView, setSourceToView] = useState<SourceDetails>({ sourceName: '', link: '', description: '' });
+  const [firstTimePlaying, setFirstTimePlaying] = useState<Boolean>(true);
 
   const initialScenario: Indicators = { // Load initial scenario
     supportForLastResponse: UK.initialPublicSupport,
@@ -45,10 +46,10 @@ const GameLoop = () => {
   const showSource = (src: SourceDetails) => { setSourceToView(src); show('sources') };
 
   const endings: Record<string, { ele: JSX.Element, bg: string }> = {
-    'GenghisCannot': { ele: <LeaderStyle.GenghisCannot onClickSource={showSource} />, bg: 'bg-yellow-500' },
-    'FlipFlopper': { ele: <LeaderStyle.FlipFlopper onClickSource={showSource} />, bg: 'bg-red-500' },
-    'CovidTerminator': { ele: <LeaderStyle.CovidTerminator onClickSource={showSource} />, bg: 'bg-green-500' },
-    'BusinessGuru': { ele: <LeaderStyle.BusinessGuru onClickSource={showSource} />, bg: 'bg-blue-500' }
+    'GenghisCannot': { ele: <LeaderStyle.GenghisCannot onClickSource={showSource} />, bg: 'bg-yellow-400' },
+    'FlipFlopper': { ele: <LeaderStyle.FlipFlopper onClickSource={showSource} />, bg: 'bg-red-200' },
+    'CovidTerminator': { ele: <LeaderStyle.CovidTerminator onClickSource={showSource} />, bg: 'bg-green-400' },
+    'BusinessGuru': { ele: <LeaderStyle.BusinessGuru onClickSource={showSource} />, bg: 'bg-blue-400' }
   };
 
   const getLastResponse = (): Response => cloneDeep(history[history.length - 1]);
@@ -86,6 +87,24 @@ const GameLoop = () => {
     </div>
   }
 
+  // Reset game
+  const reset = () => {
+    setHistory([]);
+    setEvent(firstEvent);
+    setView('start'); 
+    setEnding('');
+    setFirstTimePlaying(false);
+  }
+
+  /* Example of using setFirstTimePlaying to send only a player's first playthrough as data to database 
+  (because this is most likely to be their actual attempt)
+  if(firstTimePlaying){
+    // RECORD DATA
+  } else {
+    // DO NOT RECORD DATA
+  }
+  */
+
   // Game mode selection
   switch (view) {
     // Intro screens
@@ -115,7 +134,7 @@ const GameLoop = () => {
       response={getLastResponse()}
       feedback={getSocialFeedback(getLastResponse().socialMediaResponse)}
       onClick={() => show('feedback2')}
-      onClickSource={() => { show(previousView) }}
+      onClickSource={showSource}
     />;
     case 'feedback2': return <FeedbackScreen2
       response={getLastResponse()}
@@ -136,6 +155,7 @@ const GameLoop = () => {
     />;
     case 'allEndings': return <AllEndings
       onClick={(name: string) => { setEnding(name); show('viewEnding') }}
+      onReplay={reset}
     />;
     case 'viewEnding': return <ViewEnding
       leaderStyle={endings[ending]}
