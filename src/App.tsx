@@ -73,17 +73,16 @@ const GameLoop = () => {
   // Show feedback
   const getSocialFeedback = (feedback: ResponseItem[]): JSX.Element => {
     function constructElement(it: ResponseItem, i: number) {
-      console.log(`animate__delay-${i}`)
       switch (it.type) {
-        case 'tweet': return <Tweet fb={it} animation={`animate__delay-${i}s	animate__animated animate__backInDown`} />;
-        case 'meme': return <Meme fb={it} animation={`animate__delay-${i}s	animate__animated animate__backInDown`} />;
-        case 'article': return <News fb={it} animation={`animate__delay-${i}s	animate__animated animate__backInDown`} />;
+        case 'tweet': return <Tweet fb={it} animation={`animate__delay-${i}s	animate__animated animate__bounceIn`} />;
+        case 'meme': return <Meme fb={it} animation={`animate__delay-${i}s	animate__animated animate__bounceIn`} />;
+        case 'article': return <News fb={it} animation={`animate__delay-${i}s	animate__animated animate__bounceIn`} />;
       };
     }
-    return <div className='w-full p-2 m-2 flex flex-col justify-center items-center '>
-      {constructElement(feedback[0], 1)}
-      {constructElement(feedback[1], 2)}
-      {constructElement(feedback[2], 3)}
+    return <div className='max-w-full w-full p-2 m-2 flex flex-col justify-center items-center '>
+      {constructElement(feedback[0], 0)}
+      {constructElement(feedback[1], 1)}
+      {constructElement(feedback[2], 2)}
     </div>
   }
 
@@ -134,13 +133,13 @@ const GameLoop = () => {
       response={getLastResponse()}
       feedback={getSocialFeedback(getLastResponse().socialMediaResponse)}
       onClick={() => show('feedback2')}
-      onClickSource={showSource}
     />;
     case 'feedback2': return <FeedbackScreen2
       response={getLastResponse()}
       indicatorsLastTurn={getIndicatorsLastMonth()}
       onClickContinue={() => ending ? show('end') : show('event')}
       onClickExtra={() => show('feedbackExtra')}
+      onClickSource={showSource}
     />;
     case 'feedbackExtra': return <FeedbackExtra
       response={getLastResponse()}

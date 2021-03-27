@@ -58,7 +58,7 @@ export function GenghisCannot(props:{onClickSource: Function}){
                 sourceDetails: {
                     sourceName: 'Their response to COVID-19',
                     link: 'https://www.bbc.co.uk/news/world-us-canada-52407177',
-                    description: 'Former president Trump refused to acknowledge the seriousness of COVID and instead of locking down he suggested injecting cleaning chemicals'
+                    description: 'Former president Trump refused to lock down the USA in 2020.'
                 }
             }}
             icon = {IconForGenghisCannot}

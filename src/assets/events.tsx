@@ -640,11 +640,11 @@ export const evt_2_3: Event = {
             type: `article`,
             isHappy: true,
             head: `Stock Box`,
-            content: `Business eye reopening as COVID cases continue to drop`
+            content: `Businesses are reopening as COVID cases continue to drop`
         }, {
-            type: `tweet`,
+            type: `meme`,
             isHappy: false,
-            head: ` Nate the Great @SoleSurvivor`,
+            head: ` ...`,
             content: `https://i.kym-cdn.com/photos/images/newsfeed/001/298/697/ab0.jpg`
         }],
         getNextEvent: () => {

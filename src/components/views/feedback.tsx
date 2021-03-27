@@ -7,7 +7,7 @@ import { Response } from '../../model/Response';
 import { Indicators } from '../../model/Indicators';
 import { useThemeContext } from '../../ThemeProvider';
 
-export function FeedbackScreen1(props: { response: Response, feedback: JSX.Element, onClick: Function, onClickSource: Function }) {
+export function FeedbackScreen1(props: { response: Response, feedback: JSX.Element, onClick: Function }) {
     const bgColorClass = "bg-purple-900"
     const context = useThemeContext()
 
@@ -15,18 +15,12 @@ export function FeedbackScreen1(props: { response: Response, feedback: JSX.Eleme
         context.changeBgColorClass(bgColorClass)
     })
 
-    const responseText = props.response.updatedIndicators.supportForLastResponse > 50 ? 'People liked that!' : 'Ooh... That was controversial!';
     return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
         <div className='flex flex-col justify-between items-center'>
-            <Txt.Subtitle value={props.response.getParentEvent().title} col={'white'} />
-            <Txt.Title value={props.response.label} col={'white'} />
-        </div>
-        <div className='flex flex-row justify-center items-center'>
-            <Txt.Subtitle value={responseText} col={'white'} />
-            <Btn.ViewSource sourceDetails={props.response.sourceDetails} onClick={props.onClickSource} />
-        </div>
-        <Gfx.SupportBar indicators={props.response.updatedIndicators} />
-        <div className="mt-8 mb-8">
+            <Txt.Subtitle value={props.response.label} col={'white'} />
+            <Txt.Title value={'The immediate reaction...'} col={'white'} />
+        </div>    
+        <div className="m-2">
             {props.feedback}
         </div>
         <div style={{ marginTop: "auto" }}>
@@ -45,7 +39,8 @@ export function FeedbackScreen2(props:
         response: Response,
         indicatorsLastTurn: Indicators,
         onClickContinue: Function,
-        onClickExtra: Function
+        onClickExtra: Function,
+        onClickSource: Function
     }) {
     const bgColorClass = "bg-purple-900"
     const context = useThemeContext()
@@ -53,14 +48,26 @@ export function FeedbackScreen2(props:
     useEffect(() => {
         context.changeBgColorClass(bgColorClass)
     })
-
+    
     return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
         <div className='flex flex-col justify-between items-center'>
-            <Txt.Subtitle value={props.response.getParentEvent().title} col={'white'} />
-            <Txt.Title value={props.response.label} col={'white'} />
+            <Txt.Subtitle value={props.response.label} col={'white'} />
         </div>
-        <Gfx.CaseGraphic thisTurn={props.response.updatedIndicators} lastTurn={props.indicatorsLastTurn} />
-        <Gfx.EconomyGraphic indicators={props.response.updatedIndicators} />
+        <Gfx.CaseGraphic 
+            thisTurn={props.response.updatedIndicators} 
+            lastTurn={props.indicatorsLastTurn}
+            delay={0}
+        />
+        <Gfx.EconomyGraphic 
+            indicators={props.response.updatedIndicators} 
+            delay={4}
+        />
+        <Gfx.SupportBar 
+            indicators={props.response.updatedIndicators} 
+            response={props.response} 
+            onClickSource={props.onClickSource} 
+            delay={7}
+        />
         <div style={{ marginTop: "auto" }}>
             <div className="mt-2">
                 <Btn.SneakyFeedback onClick={() => { props.onClickExtra() }} />
@@ -88,7 +95,7 @@ export function FeedbackExtra(props: { response: Response, onClickBack: Function
             <Txt.Title value={'Some data'} col='white' />
         </div>
 
-        <Txt.Subtitle value={'In the game:'} col='yellow-400' />
+        <Txt.Subtitle value={'How our data model works:'} col='yellow-400' />
         <div className='p-2 m-2 flex flex-col justify-between items-start text-white font-medium font-sans'>
 
             <Txt.Subtitle value={'Public support'} col='white' />
@@ -179,22 +186,6 @@ export function FeedbackExtra(props: { response: Response, onClickBack: Function
             onClick={() => { props.onClickBack() }}
             animate='bounce'
         />
-
-        <div className='mt-6'></div>
-        <Txt.Subtitle value={'In the real world:'} col='yellow-400' />
-        <div className='p-2 m-2 flex flex-col justify-between items-start font-sans'>
-            <h5 className='text-white font-medium'>The above is true in the real world but there are other important factors to consider:</h5>
-            <ul className='p-2 m-2 text-gray-300 list-disc'>
-                <li>Delayed preventative treatments and assessments which will result in more serious interventions required for more severe health outcomes (for example increased and more severe cancer diagnoses)</li>
-                <li>The health impacts of lockdown (such as from a sedentary lifestyle)</li>
-                <li>The behavioural and mental health impacts of lockdown (such as increased depression and drinking)</li>
-                <li>The long-term effects of COVID on health ("long-covid") and of poorer diets and limited exercise (e.g., child obesity increase)</li>
-                <li>The effects of disrupted training and education</li>
-                <li>The long term situation once enough people get vaccinated</li>
-                <li>Geopolitical factors affecting transmission rates such as population density, poverty and civil obedience</li>
-                <li>Other differences that non-European / non-American countries may face</li>
-            </ul>
-        </div>
     </div>
 }
 
