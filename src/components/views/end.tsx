@@ -12,7 +12,13 @@ export function Ending(props: { leaderStyle: { ele: JSX.Element, bg: string }, o
 
     return <div className={`p-2 flex flex-col justify-between items-center bg-${props.leaderStyle.bg}`}>
         <Txt.ProphecyTitle value={'The end.'} col='black' />
-        <Txt.ProphecySubTitle value={'You achieved the ending:'} col='black' />
+        <Txt.ProphecySubTitle value={'You achieved the ending:'} col='black'/>
+        <Btn.Rounded 
+            value='Open back up safely!' 
+            bg='yellow-600' 
+            class='animate__animated animate__tada' 
+            disabled={false}
+        />
         {props.leaderStyle.ele}
         <Btn.Bouncy
             col={'white'}

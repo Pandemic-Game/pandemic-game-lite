@@ -690,32 +690,32 @@ export const ending: Event = {
         }
     },
     response1: {
-        label: `No exceptions`,
+        label: ``,
         getParentEvent: () => {
             return evt_2_3
         },
         updatedIndicators: {
-            supportForLastResponse: 50,
-            oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            supportForLastResponse: 0,
+            oppositionToLastResponse: 0,
+            newCases: 0,
+            lockdownCosts: 0,
+            medicalCosts: 0
         },
         socialMediaResponse: [{
             type: `article`,
             isHappy: true,
             head: `Medicine Today`,
-            content: `COVID cases reach ZERO. Is COVID gone for good?`
+            content: ``
         }, {
             type: `article`,
             isHappy: true,
             head: `Stock Box`,
-            content: `Business eye reopening as COVID cases continue to drop`
+            content: ``
         }, {
             type: `tweet`,
             isHappy: false,
-            head: ` Nate the Great @SoleSurvivor`,
-            content: `https://i.kym-cdn.com/photos/images/newsfeed/001/298/697/ab0.jpg`
+            head: ` `,
+            content: ``
         }],
         getNextEvent: () => {
             return ending
@@ -728,32 +728,32 @@ export const ending: Event = {
         }
     },
     response2: {
-        label: `No exceptions`,
+        label: ``,
         getParentEvent: () => {
             return evt_2_3
         },
         updatedIndicators: {
-            supportForLastResponse: 50,
-            oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            supportForLastResponse: 0,
+            oppositionToLastResponse: 0,
+            newCases: 0,
+            lockdownCosts: 0,
+            medicalCosts: 0
         },
         socialMediaResponse: [{
             type: `article`,
             isHappy: true,
-            head: `Medicine Today`,
-            content: `COVID cases reach ZERO. Is COVID gone for good?`
+            head: ` `,
+            content: ``
         }, {
             type: `article`,
             isHappy: true,
-            head: `Stock Box`,
-            content: `Business eye reopening as COVID cases continue to drop`
+            head: ``,
+            content: ``
         }, {
             type: `tweet`,
             isHappy: false,
-            head: ` Nate the Great @SoleSurvivor`,
-            content: `https://i.kym-cdn.com/photos/images/newsfeed/001/298/697/ab0.jpg`
+            head: ` `,
+            content: ``
         }],
         getNextEvent: () => {
             return ending
