@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import EndCoronaVirusLogo from '../../assets/PNG/ecvlogo.png';
+import GameLogo from '../../assets/SVG/gamelogo.svg';
 import { useThemeContext } from '../../ThemeProvider';
 import * as Btn from '../buttons';
 import * as Txt from '../text';
@@ -29,20 +30,18 @@ export function Splash(props: { onClick: Function }) {
                     </img>
                 </a>
             </div>
-
-            <div className="m-2">
-                <Txt.BigTitle value={'Pandemic Game'} />
+            <div className="m-2 flex m-2 flex-col justify-center items-center" style={{ marginTop: "auto" }}>
+                <img
+                    src={GameLogo}
+                    alt='GameLogo'
+                    className='m-2 w-auto h-20 rounded-lg'>
+                </img>
+                <Txt.Subtitle value={'A five minute game to end lockdown.'} col='black' />
             </div>
-
-
-            <div className='flex m-2 flex-col justify-center items-center'>
-                <Txt.Subtitle value={'You are a World Leader.'} col='black' />
-                <p className='m-2 text-center font-sans font-medium'>
-                    Your job is to navigate the first few months of 2021.
-                    The decisions you make will polarize different parts of society, from the public to businesses and healthcare.
-                </p>
-                <Txt.Subtitle value={'What type of leader are you?'} col='black' />
-            </div>
+            <p className='m-2 text-center font-sans font-medium'>
+                How would you end COVID-19 lockdowns?
+                Lead your country, navigate the first few months of 2021 and find out.
+            </p>
             <div style={{ marginTop: "auto" }}>
                 <Btn.Bouncy
                     value='Play the game'
@@ -58,34 +57,33 @@ export function Splash(props: { onClick: Function }) {
 
 export function Introduction(props: { onClickContinue: Function, onClickSource: Function }) {
     return (
-        <div className='min-h-full p-2 flex flex-col items-center bg-yellow-400'>
+        <div className='min-h-full p-2 flex flex-col justify-center items-center bg-yellow-400'>
             <div className='flex flex-col justify-between items-center'>
                 <Txt.Subtitle value={'El presidente!'} col='black' />
-                <Txt.Title value='A situation requires your attention!' col='gray-900' />
+                <Txt.Title value='How to play' col='gray-900' />
             </div>
-            <div className='animate__animated animate__fadeIn  m-2 p-2 flex flex-row items-start'>
-                <div className='m-2 p-2 flex flex-row'>
-                    <WarningSign />
+            <div className='max-w-md p-6 flex flex-col justify-start items-start text-left list-disc m-2 font-sans animate__animated animate__fadeIn'>
+                <Txt.Subtitle value='Your goal' col='black' />
+                <li className='p-2 pb-4'>Be out of lockdown in 3 months time</li>
+                <Txt.Subtitle value='Respond to events' col='black' />             
+                <li className='p-2 pb-0'>Each month, you will encounter an event </li>
+                <li className='p-2'>You will have a limited choice of responses (you won't be able to change society all at once!) </li>
+                <Txt.Subtitle value='Be careful...' col='black' />       
+                <li className='p-2'>One wrong step can put you in an out-of-control situation with no good choices available! </li>
+            </div>
+            <div className='m-auto flex flex-col justify-center items-center'>
+                <div className='flex flex-row justify-center items-center'>
+                    <Txt.Subtitle value={`Made with real data`} col='black' />
+                    <Btn.ViewSource onClick={props.onClickSource} sourceDetails={
+                        {
+                            sourceName: 'Interactive data model',
+                            link: 'http://pandemic-game-prod.s3-website.us-east-2.amazonaws.com',
+                            description: 'These screens will show you our sources. For example, our data model is based on extensive polls of the UK population as well as epidemiological and economic data from UK and US sources.'
+                        }
+                    } />
                 </div>
-                <Txt.Paragraph value={`   
-                    Vaccines for COVID-19 have been developed but they will take a while to work.
-                    
-                    The way you respond to the pandemic in the next few months will have consequences.
-                    
-                    You can probably do this in the next 5 minutes.
-                `} col='black' />
+                <p className='text-center'>(press the red question marks if you don't believe us!)</p>
             </div>
-            <div className='flex flex-col justify-center items-center'>
-                <Btn.ViewSource onClick={props.onClickSource} sourceDetails={
-                    {
-                        sourceName: 'Interactive data model',
-                        link: 'http://pandemic-game-prod.s3-website.us-east-2.amazonaws.com',
-                        description: 'These screens will show you our sources. For example, our data model is based on US and UK data, including extensive polls of the UK population as well as COVID and economic data from UK and US sources.'
-                    }
-                } />
-                <Txt.Subtitle value={'This game is based on real data. Look out for question mark icons and press them to inspect our evidence'} col='black' />
-            </div>
-
             <div style={{ marginTop: "auto" }}>
                 <Btn.Bouncy
                     value='Start'
@@ -94,6 +92,6 @@ export function Introduction(props: { onClickContinue: Function, onClickSource: 
                     onClick={props.onClickContinue}
                 />
             </div>
-        </div >
+        </div>
     );
 }

@@ -31,6 +31,11 @@ export function EventScreen(props:
             </div>
             <Txt.Paragraph value={props.event.description} col='black' />
         </div>
+        <div className='animate__animated animate__fadeInDown animate__delay-2s' style={{ marginTop: "auto" }}>
+            <div className='animate__animated animate__pulse animate__delay-5s'>
+                <Btn.Sneaky onClick={() => { props.onClickExtraInfo() }} />
+            </div>
+        </div>
         <div className='w-4/5 flex mt-4 flex-col justify-between items-center '>
             <Lines.Hr my={0} col='black' />
             <Btn.Rounded
@@ -47,9 +52,6 @@ export function EventScreen(props:
                 onClick={() => { props.onClickResponse(props.event.response2) }}
             />
             <Lines.Hr my={0} col='black' />
-        </div>
-        <div style={{ marginTop: "auto" }}>
-            <Btn.Sneaky onClick={() => { props.onClickExtraInfo() }} />
         </div>
     </div>
 }
