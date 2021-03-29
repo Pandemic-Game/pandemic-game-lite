@@ -21,6 +21,9 @@ import {
 import { Ending, AllEndings, ViewEnding } from "./components/views/end";
 import FontFaceObserver from "fontfaceobserver";
 import { ToastContainer } from "react-toastify";
+import { Img, ImgCache } from "./ImageCache";
+import EndCoronaVirusLogo from "./assets/PNG/ecvlogo.png";
+import GameLogo from "./assets/SVG/gamelogo.svg";
 
 // Load story
 const firstEvent = Story.evt_0_0;
@@ -257,25 +260,75 @@ const GameLoop: React.FC = () => {
   }
 };
 
-const App: React.FC = () => {
-  const [fontReady, setFontReady] = useState(false);
+const Loading: React.FC = () => {
+  console.log("Loading");
+  return <h1>Loading...</h1>;
+};
 
+const wrapPromise = (promise: Promise<unknown>) => {
+  let status = "pending";
+  let result: unknown;
+  let suspender = promise.then(
+    (r) => {
+      status = "success";
+      result = r;
+    },
+    (e) => {
+      console.error("Error loading");
+      console.log(e);
+      status = "error";
+      result = e;
+    }
+  );
+  return {
+    read() {
+      if (status === "pending") {
+        throw suspender;
+      } else if (status === "error") {
+        throw result;
+      } else if (status === "success") {
+        return result;
+      }
+    },
+  };
+};
+
+const preloadAssets = () => {
+  const assets = [
+    new FontFaceObserver("Bebas Neue").load(),
+    new FontFaceObserver("Playfair Display").load(),
+    ImgCache.read("https://source.unsplash.com/random/4000x2000"),
+    ImgCache.read(EndCoronaVirusLogo),
+    ImgCache.read(GameLogo),
+  ];
+
+  return wrapPromise(Promise.all(assets));
+};
+
+const preloader = preloadAssets();
+const Game: React.FC = () => {
   useEffect(() => {
-    const font = new FontFaceObserver("Bebas Neue");
-    font
-      .load()
-      .then(() => {
-        setFontReady(true);
-      })
-      .catch((err: Error) => {
-        setFontReady(true);
-      });
-  });
+    console.log("Re-rendering");
+    preloader.read();
+  }, []);
+  return (
+    <>
+      <Img
+        src="https://source.unsplash.com/random/4000x2000"
+        alt="a very big image"
+      />
+      <GameLoop />
+    </>
+  );
+};
 
+const App: React.FC = () => {
   return (
     <>
       <ToastContainer />
-      {fontReady && <GameLoop />}
+      <React.Suspense fallback={<Loading />}>
+        <Game />
+      </React.Suspense>
     </>
   );
 };
