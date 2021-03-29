@@ -9,8 +9,9 @@ import { SourceDetails } from '../model/Event';
 export function Rounded(props: any) {
 	return (
 		<button
-			className={`m-2 p-3 w-full rounded-full bg-${props.bg} text-3xl text-${props.col} font-custom animate-${props.animate}`}
+			className={`m-2 p-3 w-full rounded-full bg-${props.bg} text-3xl text-${props.col} font-custom animate-${props.animate} ${props.class}`}
 			onClick={props.onClick}
+			disabled={props.disabled}
 		>
 			{props.value}
 		</button>

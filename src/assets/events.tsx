@@ -9,7 +9,7 @@ export const evt_0_0: Event = {
             sourceDetails: {
                 sourceName: `YouGov `,
                 link: `https://docs.cdn.yougov.com/pkv90of78k/SunOnSunday_CoronaResults_210115.pdf`,
-                description: `76% of UK respondants think others are complying less with the second (Winter 2020) lockdowns compared with the first (Spring 2019) lockdowns`
+                description: `76% of UK respondents think others are complying less with the second (Winter 2020) lockdowns compared with the first (Spring 2019) lockdowns`
             }
         },
         business: {
@@ -38,7 +38,7 @@ export const evt_0_0: Event = {
             supportForLastResponse: 11,
             oppositionToLastResponse: 85,
             newCases: 45,
-            lockdownCosts: 11,
+            lockdownCosts: 0,
             medicalCosts: 40
         },
         socialMediaResponse: [{
@@ -64,7 +64,7 @@ export const evt_0_0: Event = {
         sourceDetails: {
             sourceName: `YouGov`,
             link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
-            description: `Data for a 'second' lockdown this year suggests 85% of people support this.`
+            description: `85% of UK respondents say that they support the implementation of a second lockdown in early 2021 for the UK.`
         }
     },
     response2: {
@@ -102,7 +102,7 @@ export const evt_0_0: Event = {
         sourceDetails: {
           sourceName: `YouGov`,
           link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
-          description: `Data for a 'second' lockdown this year suggests 85% of people support this.`
+          description: `85% of UK respondents say that they support the implementation of a second lockdown in early 2021 for the UK.`
         }
     }
 };
@@ -144,8 +144,8 @@ export const evt_1_1: Event = {
             supportForLastResponse: 23,
             oppositionToLastResponse: 67,
             newCases: 90,
-            lockdownCosts: 104,
-            medicalCosts: 11
+            lockdownCosts: 0,
+            medicalCosts: 104
         },
         socialMediaResponse: [{
             type: `article`,
@@ -170,7 +170,7 @@ export const evt_1_1: Event = {
         sourceDetails: {
             sourceName: `YouGov`,
             link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
-            description: `Data from the lockdown suggests 67% of people supported closing schools and universities.`
+            description: `67% of UK respondents in early 2021 support closing schools and universities.`
         }
     },
     response2: {
@@ -183,7 +183,7 @@ export const evt_1_1: Event = {
             oppositionToLastResponse: 23,
             newCases: 80,
             lockdownCosts: 11,
-            medicalCosts: 104
+            medicalCosts: 94
         },
         socialMediaResponse: [{
             type: `article`,
@@ -208,7 +208,7 @@ export const evt_1_1: Event = {
         sourceDetails: {
           sourceName: `YouGov`,
           link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
-          description: `Data from the lockdown suggests 67% of people supported closing schools and universities.`
+          description: `67% of UK respondents in early 2021 support closing schools and universities.`
         }
     }
 };
@@ -221,7 +221,7 @@ export const evt_1_2: Event = {
             sourceDetails: {
                 sourceName: `YouGov`,
                 link: `https://docs.cdn.yougov.com/4v7zasn014/International%20COVID%20personal%20impact[1].pdf`,
-                description: `2% of relationships ended due to COVID in the UK`
+                description: `2% of UK respondents in early 2021 claim that they had one or more relationships ruined and that 'COVID-19 was the main reason'.`
             }
         },
         business: {
@@ -237,7 +237,7 @@ export const evt_1_2: Event = {
             sourceDetails: {
                 sourceName: `YouGov`,
                 link: `https://yougov.co.uk/topics/health/survey-results/daily/2020/10/09/26286/3`,
-                description: `During pandemic, 33% of UK citizens reported feeling lonely, while 28% reported not being affected.`
+                description: `By early 2021, 33% of UK citizens reported feeling lonely, while 28% reported that they had not.`
             }
         }
     },
@@ -250,7 +250,7 @@ export const evt_1_2: Event = {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
             newCases: 14,
-            lockdownCosts: 11,
+            lockdownCosts: 0,
             medicalCosts: 3
         },
         socialMediaResponse: [{
@@ -275,8 +275,8 @@ export const evt_1_2: Event = {
         ending: '',
         sourceDetails: {
             sourceName: `YouGov`,
-            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/11/02042/2`,
-            description: `People are relatively split on having to stay inside is making them lonely AND whether to have strict policing. So, in this situations the response would be split.`
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2020/10/09/26286/3`,
+            description: `The split reaction here is meant to model how lockdown fatigue can make people change their mind on lockdown. Taken together with the split opinion on whether they have felt lonely during the pandemic (source linked), this choice was estimated to split public support.`
         }
     },
     response2: {
@@ -313,8 +313,8 @@ export const evt_1_2: Event = {
         ending: '',
         sourceDetails: {
           sourceName: `YouGov`,
-          link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/11/02042/2`,
-          description: `People are relatively split on having to stay inside is making them lonely AND whether to have strict policing. So, in this situations the response would be split.`
+          link: `https://yougov.co.uk/topics/health/survey-results/daily/2020/10/09/26286/3`,
+          description: `The split reaction here is meant to model how lockdown fatigue can make people change their mind on lockdown. Taken together with the split opinion on whether they have felt lonely during the pandemic (source linked), this choice was estimated to split public support.`
         }
     }
 };
@@ -356,7 +356,7 @@ export const evt_2_1: Event = {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
             newCases: 90,
-            lockdownCosts: 11,
+            lockdownCosts: 0,
             medicalCosts: 104
         },
         socialMediaResponse: [{
@@ -380,9 +380,15 @@ export const evt_2_1: Event = {
         },
         ending: 'GenghisCannot',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: `People will be split, they've gotten used to freedom because of sunk cost fallacy - now they have invested in freedom they're more likely to hold steadfast in their views.`
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/11/02042/2`,
+            description: `
+                The split reaction here is intended to model sunk cost fallacy. Loosely based on the roughly half of the USA 
+                who supported former President Trump and his no-lockdown approach to the pandemic. Arguably this is because
+                that they had invested in him so they were more likely to hold steadfast in their views. There is some evidence that 
+                the public in other countries would similarly defend the status-quo on COVID-19 policies, for example UK respondents 
+                agreed that most people were not obeying lockdown (YouGov) but did not agree that it should be enforced (source linked).
+            `
         }
     },
     response2: {
@@ -418,9 +424,15 @@ export const evt_2_1: Event = {
         },
         ending: 'FlipFlopper',
         sourceDetails: {
-            sourceName: ``,
-            link: ``,
-            description: `People will be split, they've gotten used to freedom because of sunk cost fallacy - now they have invested in freedom they're more likely to hold steadfast in their views.`
+            sourceName: `YouGov`,
+            link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/11/02042/2`,
+            description: `
+                The split reaction here is intended to model sunk cost fallacy. Loosely based on the roughly half of the USA 
+                who supported former President Trump and his no-lockdown approach to the pandemic. Arguably this is because
+                that they had invested in him so they were more likely to hold steadfast in their views. There is some evidence that 
+                the public in other countries would similarly defend the status-quo on COVID-19 policies, for example UK respondents 
+                agreed that most people were not obeying lockdown (YouGov) but did not agree that it should be enforced (source linked).
+            `
         }
     }
 };
@@ -462,7 +474,7 @@ export const evt_2_2: Event = {
             supportForLastResponse: 26,
             oppositionToLastResponse: 60,
             newCases: 90,
-            lockdownCosts: 11,
+            lockdownCosts: 0,
             medicalCosts: 39
         },
         socialMediaResponse: [{
@@ -488,7 +500,12 @@ export const evt_2_2: Event = {
         sourceDetails: {
             sourceName: `YouGov`,
             link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
-            description: `As with the first event, data for a 'second' lockdown this year suggests 85% of people support this. This is similar to the current event since it is a response to rising covid cases, therefore a similar value is used here but adjusted for more lockdown fatigue (15% modifier) so 11 --> 26 & 85 --> 70 / from school the sunk cost fallacy would provide this 15%.`
+            description: `
+                85% of UK respondents in early 2021 supported a second lockdown. 
+                However, in order to model the effects of passing time, a 15% mallus was applied 
+                which reduces support for this based on either lockdown fatigue (if you previously chose lockdown), 
+                or sunk cost fallacy (entrenchment in the status-quo if you did not previously chose lockdown).
+            `
         }
     },
     response2: {
@@ -526,20 +543,25 @@ export const evt_2_2: Event = {
         sourceDetails: {
             sourceName: `YouGov`,
             link: `https://yougov.co.uk/topics/health/survey-results/daily/2021/01/05/dee1c/1`,
-            description: `As with the first event, data for a 'second' lockdown this year suggests 85% of people support this. This is similar to the current event since it is a response to rising covid cases, therefore a similar value is used here but adjusted for more lockdown fatigue (15% modifier) so 11 --> 26 & 85 --> 70 / from school the sunk cost fallacy would provide this 15%.`
+            description: `
+                85% of UK respondents in early 2021 supported a second lockdown. 
+                However, in order to model the effects of passing time, a 15% mallus was applied 
+                which reduces support for this based on either lockdown fatigue (if you previously chose lockdown), 
+                or sunk cost fallacy (entrenchment in the status-quo if you did not previously chose lockdown).
+            `
         }
     }
 };
 export const evt_2_3: Event = {
     title: `Where Is My Mind?`,
-    description: `There are increasing reports that lockdown is negatively effecting people's wellbeing and mental health. Charities have started advocating for relaxed restrictions regarding individuals in crisis.`,
+    description: `There are increasing reports that lockdown is negatively effecting people's wellbeing and mental health. Charities have started advocating for relaxing restrictions.`,
     extraDetails: {
         public: {
             speech: `I'm not one to complain about mental health but I'm not doing great. Apparently, young people more likely to be depressed now.`,
             sourceDetails: {
                 sourceName: `YouGov`,
                 link: `https://yougov.co.uk/topics/lifestyle/articles-reports/2021/02/04/yougov-2020-personality-study-impact-covid-19`,
-                description: `53% of people in UK have revealed a decrease in mental health, of which two-thirds (63%) report feeling anxious at least several times a month since March. 46% of 16-24 year olds say they have experienced loneliness every week since March, which is significantly more than other age groups.`
+                description: `53% of UK respondents in early 2021 indicated that their mental health had deteriorated, of which two-thirds (63%) report feeling anxious at least several times a month since March.`
             }
         },
         business: {
@@ -568,7 +590,7 @@ export const evt_2_3: Event = {
             supportForLastResponse: 84,
             oppositionToLastResponse: 12,
             newCases: 1,
-            lockdownCosts: 11,
+            lockdownCosts: 5.5,
             medicalCosts: 0.5
         },
         socialMediaResponse: [{
@@ -594,7 +616,7 @@ export const evt_2_3: Event = {
         sourceDetails: {
             sourceName: `YouGov`,
             link: `https://docs.cdn.yougov.com/fn83kzrj9i/International%20COVID%20personal%20impact.pdf`,
-            description: `Mental health was deemed atleast as important as physical health, according to a UK survey so 84% would be likely to support relaxing lockdown.`
+            description: `84% of UK respondents in early 2021 believe that mental health is at least as important as physical health so would be likely to support relaxing lockdown for this reason.`
         }
     },
     response2: {
@@ -618,11 +640,11 @@ export const evt_2_3: Event = {
             type: `article`,
             isHappy: true,
             head: `Stock Box`,
-            content: `Business eye reopening as COVID cases continue to drop`
+            content: `Businesses are reopening as COVID cases continue to drop`
         }, {
-            type: `tweet`,
+            type: `meme`,
             isHappy: false,
-            head: ` Nate the Great @SoleSurvivor`,
+            head: ` ...`,
             content: `https://i.kym-cdn.com/photos/images/newsfeed/001/298/697/ab0.jpg`
         }],
         getNextEvent: () => {
@@ -632,7 +654,7 @@ export const evt_2_3: Event = {
         sourceDetails: {
           sourceName: `YouGov`,
           link: `https://docs.cdn.yougov.com/fn83kzrj9i/International%20COVID%20personal%20impact.pdf`,
-          description: `Mental health was deemed atleast as important as physical health, according to a UK survey so 84% would be likely to support relaxing lockdown.`
+          description: `84% of UK respondents in early 2021 believe that mental health is at least as important as physical health so would be likely to support relaxing lockdown for this reason.`
         }
     }
 };
@@ -668,32 +690,32 @@ export const ending: Event = {
         }
     },
     response1: {
-        label: `No exceptions`,
+        label: ``,
         getParentEvent: () => {
             return evt_2_3
         },
         updatedIndicators: {
-            supportForLastResponse: 50,
-            oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            supportForLastResponse: 0,
+            oppositionToLastResponse: 0,
+            newCases: 0,
+            lockdownCosts: 0,
+            medicalCosts: 0
         },
         socialMediaResponse: [{
             type: `article`,
             isHappy: true,
             head: `Medicine Today`,
-            content: `COVID cases reach ZERO. Is COVID gone for good?`
+            content: ``
         }, {
             type: `article`,
             isHappy: true,
             head: `Stock Box`,
-            content: `Business eye reopening as COVID cases continue to drop`
+            content: ``
         }, {
             type: `tweet`,
             isHappy: false,
-            head: ` Nate the Great @SoleSurvivor`,
-            content: `https://i.kym-cdn.com/photos/images/newsfeed/001/298/697/ab0.jpg`
+            head: ` `,
+            content: ``
         }],
         getNextEvent: () => {
             return ending
@@ -706,32 +728,32 @@ export const ending: Event = {
         }
     },
     response2: {
-        label: `No exceptions`,
+        label: ``,
         getParentEvent: () => {
             return evt_2_3
         },
         updatedIndicators: {
-            supportForLastResponse: 50,
-            oppositionToLastResponse: 50,
-            newCases: 9.99,
-            lockdownCosts: 8.88,
-            medicalCosts: 7.77
+            supportForLastResponse: 0,
+            oppositionToLastResponse: 0,
+            newCases: 0,
+            lockdownCosts: 0,
+            medicalCosts: 0
         },
         socialMediaResponse: [{
             type: `article`,
             isHappy: true,
-            head: `Medicine Today`,
-            content: `COVID cases reach ZERO. Is COVID gone for good?`
+            head: ` `,
+            content: ``
         }, {
             type: `article`,
             isHappy: true,
-            head: `Stock Box`,
-            content: `Business eye reopening as COVID cases continue to drop`
+            head: ``,
+            content: ``
         }, {
             type: `tweet`,
             isHappy: false,
-            head: ` Nate the Great @SoleSurvivor`,
-            content: `https://i.kym-cdn.com/photos/images/newsfeed/001/298/697/ab0.jpg`
+            head: ` `,
+            content: ``
         }],
         getNextEvent: () => {
             return ending
