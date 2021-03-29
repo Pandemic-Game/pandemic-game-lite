@@ -9,6 +9,8 @@ jobs:
     name: Deploy /build to S3 bucket
     runs-on: ubuntu-latest
     environment: production
+    env:
+      REACT_APP_VERSION: ${{ github.sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
