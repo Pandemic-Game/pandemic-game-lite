@@ -12,7 +12,11 @@ import * as LeaderStyle from "./components/leaderStyles";
 import { Tweet, News, Meme } from "./components/socialFeedback";
 import { Splash, Introduction } from "./components/views/start";
 import { SourceScreen } from "./components/views/source";
-import { EventScreen, EventExtra, EventResponse } from "./components/views/event";
+import {
+  EventScreen,
+  EventExtra,
+  EventResponse,
+} from "./components/views/event";
 import {
   FeedbackScreen1,
   FeedbackScreen2,
@@ -34,6 +38,7 @@ import iconGenghis from "./assets/SVG/icon-genghis.svg";
 import iconGuru from "./assets/SVG/icon-guru.svg";
 import iconTerminator from "./assets/SVG/icon-terminator.svg";
 import { toast } from "react-toastify";
+import { useDataCollectorContext } from "./services/DataCollectorProvider";
 
 // Load story
 const firstEvent = Story.evt_0_0;
@@ -48,13 +53,19 @@ const GameLoop: React.FC = () => {
   const [previousView, setPreviousView] = useState<string>("start");
   const [ending, setEnding] = useState<string>("");
   const [delayUntilOpening, setDelayUntilOpening] = useState<number>(5);
-  const [canOpenAllRestrictions, setCanOpenAllRestrictions] = useState<boolean>(false);
-  const [openAllRestrictions, setOpenAllRestrictions] = useState<boolean>(false);
+  const [canOpenAllRestrictions, setCanOpenAllRestrictions] = useState<boolean>(
+    false
+  );
+  const [openAllRestrictions, setOpenAllRestrictions] = useState<boolean>(
+    false
+  );
   const [sourceToView, setSourceToView] = useState<SourceDetails>({
     sourceName: "",
     link: "",
     description: "",
   });
+
+  const dataCollectorContext = useDataCollectorContext();
 
   const initialScenario: Indicators = {
     // Load initial scenario
@@ -78,30 +89,37 @@ const GameLoop: React.FC = () => {
     show("sources");
   };
 
-  const endings: Record<string, { ele: JSX.Element; bg: string, winTitle: string, winDescription:string }> = {
+  const endings: Record<
+    string,
+    { ele: JSX.Element; bg: string; winTitle: string; winDescription: string }
+  > = {
     GenghisCannot: {
       ele: <LeaderStyle.GenghisCannot onClickSource={showSource} />,
       bg: "bg-yellow-400",
       winTitle: "Based on your choices you can’t open back up for a long time!",
-      winDescription: "You have a high number of cases, lots of people are ending up in hospital and even dying. People are scared."
+      winDescription:
+        "You have a high number of cases, lots of people are ending up in hospital and even dying. People are scared.",
     },
     FlipFlopper: {
       ele: <LeaderStyle.FlipFlopper onClickSource={showSource} />,
       bg: "bg-red-200",
       winTitle: "Based on your choices you can’t open back up yet",
-      winDescription: "By re-opening too early, cases will rise, leading to a need for restrictions in the future."
+      winDescription:
+        "By re-opening too early, cases will rise, leading to a need for restrictions in the future.",
     },
     CovidTerminator: {
       ele: <LeaderStyle.CovidTerminator onClickSource={showSource} />,
       bg: "bg-green-400",
       winTitle: "Based on your choices you can safely open up!",
-      winDescription: "Cases have gone to zero. People are satisfied and demand a return to normality! With no need for further restrictions the only sensible option is to re-open"
+      winDescription:
+        "Cases have gone to zero. People are satisfied and demand a return to normality! With no need for further restrictions the only sensible option is to re-open",
     },
     BusinessGuru: {
       ele: <LeaderStyle.BusinessGuru onClickSource={showSource} />,
       bg: "bg-blue-400",
       winTitle: "Based on your choices you will be able to open up.. soon",
-      winDescription: "While navigating the trade-off between re-opening businesses yet keeping cases low, the end of the pandemic is in sight. Through continued cycles of opening and closing, with some patience, the end will come."
+      winDescription:
+        "While navigating the trade-off between re-opening businesses yet keeping cases low, the end of the pandemic is in sight. Through continued cycles of opening and closing, with some patience, the end will come.",
     },
   };
 
@@ -121,10 +139,9 @@ const GameLoop: React.FC = () => {
     if (playerChoice.ending) {
       setEnding(playerChoice.ending);
       setDelayUntilOpening(playerChoice.updatedIndicators.newCases * 5);
-      setTimeout( function(){
+      setTimeout(function () {
         setCanOpenAllRestrictions(true);
-        }, (playerChoice.updatedIndicators.newCases + 1) * 1000
-      );
+      }, (playerChoice.updatedIndicators.newCases + 1) * 1000);
     } else {
       setEvent(playerChoice.getNextEvent());
     }
@@ -197,12 +214,7 @@ const GameLoop: React.FC = () => {
 
     // Event screens
     case "event":
-      return (
-        <EventScreen
-          event={event}
-          onClick={() => show("eventExtra")}
-        />
-      );
+      return <EventScreen event={event} onClick={() => show("eventExtra")} />;
     case "eventExtra":
       return (
         <EventExtra
@@ -212,12 +224,7 @@ const GameLoop: React.FC = () => {
         />
       );
     case "eventResponse":
-      return (
-        <EventResponse
-          event={event}
-          onClick={processPlayerChoice}
-        />
-      );
+      return <EventResponse event={event} onClick={processPlayerChoice} />;
 
     // View sources show
     case "sources":
@@ -244,7 +251,17 @@ const GameLoop: React.FC = () => {
         <FeedbackScreen2
           response={getLastResponse()}
           indicatorsLastTurn={getIndicatorsLastMonth()}
-          onClickContinue={() => (ending ? show("end") : show("event"))}
+          onClickContinue={() => {
+            if (ending) {
+              dataCollectorContext.dataCollector.sendGameEndSignal(
+                ending,
+                history
+              );
+              show("end");
+            } else {
+              show("event");
+            }
+          }}
           onClickExtra={() => show("feedbackExtra")}
           onClickSource={showSource}
         />
@@ -268,12 +285,18 @@ const GameLoop: React.FC = () => {
           canOpenAllRestrictions={canOpenAllRestrictions}
           onClick={{
             openButton: {
-              enabled: function(){setOpenAllRestrictions(true)},
-              disabled: function(){toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`)}
+              enabled: function () {
+                setOpenAllRestrictions(true);
+              },
+              disabled: function () {
+                toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`);
+              },
             },
-            continue: function(){show("leaderStyle")}
-        }}
-      />
+            continue: function () {
+              show("leaderStyle");
+            },
+          }}
+        />
       );
     case "leaderStyle":
       return (
@@ -285,12 +308,7 @@ const GameLoop: React.FC = () => {
         />
       );
     case "allEndings":
-      return (
-        <AllEndings
-          onClick={showSource}
-          onReplay={reset}
-        />
-      );
+      return <AllEndings onClick={showSource} onReplay={reset} />;
     default:
       return <></>;
   }
@@ -334,9 +352,6 @@ const preloadAssets = () => {
     ImageCacheInstance.read(iconGenghis),
     ImageCacheInstance.read(iconGuru),
     ImageCacheInstance.read(iconTerminator),
-    /*ImageCacheInstance.read(
-      `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy.gif`
-    ), - 6MB asset!!!*/
     ImageCacheInstance.read(
       `https://giphy.com/gifs/hulu-cbs-star-trek-the-next-generation-3o7TKCskhXtrq3nsBy`
     ),
@@ -363,6 +378,8 @@ const preloadAssets = () => {
 const App: React.FC = () => {
   const [ready, setReady] = useState(false);
 
+  const dataCollectorContext = useDataCollectorContext();
+
   useEffect(() => {
     preloadAssets()
       .catch((err) => {
@@ -370,10 +387,10 @@ const App: React.FC = () => {
         setReady(true);
       })
       .then(() => {
-        console.log("RESOURCES READY");
+        dataCollectorContext.dataCollector.sendGameStartSignal();
         setReady(true);
       });
-  }, []);
+  }, [dataCollectorContext.dataCollector]);
 
   return (
     <>

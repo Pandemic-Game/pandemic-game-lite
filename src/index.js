@@ -5,14 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Layout } from "./layout";
 import { ThemeProvider } from "./ThemeProvider";
+import { DataCollectorProvider } from "./services/DataCollectorProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider bgColorClass="bg-yellow-400">
-      <Layout>
-        <App />
-      </Layout>
-    </ThemeProvider>
+    <DataCollectorProvider>
+      <ThemeProvider bgColorClass="bg-yellow-400">
+        <Layout>
+          <App />
+        </Layout>
+      </ThemeProvider>
+    </DataCollectorProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
