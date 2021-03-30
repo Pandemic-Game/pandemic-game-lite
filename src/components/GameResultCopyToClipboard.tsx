@@ -19,7 +19,7 @@ export const EndResultCopyToClipboard: React.FC<Props> = (props: Props) => {
       <CopyToClipboard
         text={props.textToCopy}
         onCopy={() => {
-          toast.success("Copied to clipboard");
+          toast.success("Link copied to clipboard");
         }}
       >
         <Rounded bg={props.bg} col={props.col} value={props.btnLabel} />

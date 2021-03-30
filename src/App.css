@@ -4,4 +4,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;500&display=swap');
 @import "~animate.css/animate.css";
 
+@keyframes grow {
+    from { width: 0% }
+    to { width: 100% }
+}
+@keyframes appear {
+    0% { opacity: 0 }
+    99% { opacity: 0 }
+    100% { opacity: 1 }
+}
 

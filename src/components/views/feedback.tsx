@@ -66,9 +66,9 @@ export function FeedbackScreen2(props:
             indicators={props.response.updatedIndicators} 
             response={props.response} 
             onClickSource={props.onClickSource} 
-            delay={7}
+            delay={6}
         />
-        <div style={{ marginTop: "auto" }}>
+        <div className='flex flex-col justify-center align-center' style={{ marginTop: "auto" }}>
             <div className="mt-2">
                 <Btn.SneakyFeedback onClick={() => { props.onClickExtra() }} />
             </div>
@@ -91,12 +91,8 @@ export function FeedbackExtra(props: { response: Response, onClickBack: Function
     })
 
     return <div className={`min-h-full p-2 flex flex-col justify-between items-center ${bgColorClass}`}>
-        <div className='flex flex-col justify-between items-center'>
-            <Txt.Title value={'Some data'} col='white' />
-        </div>
-
-        <Txt.Subtitle value={'How our data model works:'} col='yellow-400' />
-        <div className='p-2 m-2 flex flex-col justify-between items-start text-white font-medium font-sans'>
+        <Txt.Title value={'How our data model works:'} col='white' />
+        <div className='p-2 m-2 flex flex-col justify-start items-start text-white font-medium font-sans'>
 
             <Txt.Subtitle value={'Public support'} col='white' />
             <h5 className='text-yellow-500'>Is affected by:</h5>
@@ -106,7 +102,15 @@ export function FeedbackExtra(props: { response: Response, onClickBack: Function
                     link: 'https://yougov.co.uk',
                     description: 'YouGov is a global public opinion and data company. They conduct surveys on public opinions including reactions to new policies.'
                 }} onClick={props.onClickSource} />
-                <p>Public support or opposition for introducing policies</p>
+                <p>Public opinion of introducing policies (survey data)</p>
+            </div>
+            <div className='p-2 flex flex-row items-start'>
+                <Btn.ViewSource sourceDetails={{
+                    sourceName: 'Wiki',
+                    link: 'https://en.wikipedia.org/wiki/Sunk_cost',
+                    description: 'The longer restrictions continue the harder people will find it to cope (lockdown fatigue). Additionally, once people have invested in a course of action they resist changing their mind (sunk cost fallacy: for more info see link). These phenomena affect how much people support implementing and continuing restrictions.'
+                }} onClick={props.onClickSource} />
+                <p>Psychological effects of lockdown fatigue and sunk cost fallacy</p>
             </div>
             <Lines.Hr my={4} col='white' />
 
@@ -167,7 +171,7 @@ export function FeedbackExtra(props: { response: Response, onClickBack: Function
                     link: 'https://www.spectator.co.uk/article/the-true-cost-of-coronavirus-on-our-economy',
                     description: 'Estimates place the cost of lockdown on the economy around 20-30% of the usual business income'
                 }} onClick={props.onClickSource} />
-                <p>The cost of lockdown (20-30% the usual business income)</p>
+                <p>The cost of lost business revenue (~20-30% when restrictions in place)</p>
             </div>
             <div className='p-2 flex flex-row items-start'>
                 <Btn.ViewSource sourceDetails={{

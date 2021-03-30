@@ -10,8 +10,7 @@ import { WarningSign } from '../warning-sign';
 export function EventScreen(props:
     {
         event: Event,
-        onClickResponse: Function,
-        onClickExtraInfo: Function
+        onClick: Function
     }) {
     const bgColorClass = "bg-yellow-400"
     const context = useThemeContext()
@@ -31,27 +30,13 @@ export function EventScreen(props:
             </div>
             <Txt.Paragraph value={props.event.description} col='black' />
         </div>
-        <div className='animate__animated animate__fadeInDown animate__delay-2s' style={{ marginTop: "auto" }}>
-            <div className='animate__animated animate__pulse animate__delay-5s'>
-                <Btn.Sneaky onClick={() => { props.onClickExtraInfo() }} />
-            </div>
-        </div>
-        <div className='w-4/5 flex mt-4 flex-col justify-between items-center '>
-            <Lines.Hr my={0} col='black' />
-            <Btn.Rounded
-                value={props.event.response1.label}
-                bg={'purple-900'}
-                col={'white'}
-                onClick={() => { props.onClickResponse(props.event.response1) }}
+        <div style={{marginTop: 'auto'}}>
+            <Btn.Bouncy
+                value='Consult advisors'
+                bg={'yellow-600'}
+                col={'black'}
+                onClick={() => { props.onClick() }}
             />
-            <Lines.OR />
-            <Btn.Rounded
-                value={props.event.response2.label}
-                bg={'purple-900'}
-                col={'white'}
-                onClick={() => { props.onClickResponse(props.event.response2) }}
-            />
-            <Lines.Hr my={0} col='black' />
         </div>
     </div>
 }
@@ -67,26 +52,73 @@ export function EventExtra(props: { event: Event, onClickSource: Function, onCli
             person='Joe the Regular Joe'
             icon={faUser}
             onClick={props.onClickSource}
+            delay={0}
         />
         <Txt.SpeechBubble
             extraDetail={props.event.extraDetails.business}
             person='Bob the Businessman'
             icon={faUserTie}
             onClick={props.onClickSource}
+            delay={1}
         />
         <Txt.SpeechBubble
             extraDetail={props.event.extraDetails.medical}
             person='Daisy the Doctor'
             icon={faUserMd}
             onClick={props.onClickSource}
+            delay={2}
         />
         <div style={{ marginTop: "auto" }}>
-            <Btn.Bouncy
-                value={'Back'}
+            <Btn.Rounded
+                value={'Respond'}
                 bg={'purple-900'}
                 col={'white'}
                 onClick={() => { props.onClickBack() }}
             />
+        </div>
+    </div>
+}
+
+export function EventResponse(props:
+    {
+        event: Event,
+        onClick: Function
+    }) {
+    const bgColorClass = "bg-yellow-400"
+    const context = useThemeContext()
+
+    useEffect(() => {
+        context.changeBgColorClass(bgColorClass)
+    })
+
+    return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
+        <div className='flex flex-col justify-between items-center'>
+            <Txt.Subtitle value={'Event:'} col='black' />
+            <Txt.Title value={props.event.title} col='gray-900' />
+        </div>
+        <div className='animate__animated animate__fadeIn m-2 p-2 flex flex-row items-start'>
+            <div className='m-2 p-2 flex flex-row'>
+                <WarningSign />
+            </div>
+            <Txt.Paragraph value={props.event.description} col='black' />
+        </div>
+        <div className='w-4/5 flex mt-4 flex-col justify-between items-center '>
+            <Txt.Title value={'Choose your response'} col='black' />
+            <Lines.Hr my={0} col='black' />
+            <Btn.Rounded
+                value={props.event.response1.label}
+                bg={'purple-900'}
+                col={'white'}
+                onClick={() => { props.onClick(props.event.response1) }}
+            />
+            <Lines.OR />
+            <Btn.Rounded
+                value={props.event.response2.label}
+                bg={'purple-900'}
+                col={'white'}
+                onClick={() => { props.onClick(props.event.response2) }}
+            />
+            <Lines.Hr my={0} col='black' />
         </div>
     </div>
 }

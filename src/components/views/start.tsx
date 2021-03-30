@@ -5,6 +5,7 @@ import { Img } from "../../ImageCache";
 import { useThemeContext } from "../../ThemeProvider";
 import * as Btn from "../buttons";
 import * as Txt from "../text";
+import * as Line from "../lines";
 
 export function Splash(props: { onClick: Function }) {
   const bgColorClass = "bg-yellow-400";
@@ -33,7 +34,7 @@ export function Splash(props: { onClick: Function }) {
         </a>
       </div>
       <div
-        className="m-2 flex m-2 flex-col justify-center items-center"
+        className="m-2 flex m-2 flex-col justify-center text-center items-center"
         style={{ marginTop: "auto" }}
       >
         <Img
@@ -45,11 +46,10 @@ export function Splash(props: { onClick: Function }) {
           value={"A five minute game to end lockdown."}
           col="black"
         />
+      <br></br>
+      <Txt.Text value='How would you end COVID-19 lockdowns?' col='black' />
+      <Txt.Text value='Lead your country, navigate the first few months of 2021 and find out.' col='black' />
       </div>
-      <p className="m-2 text-center font-sans font-medium">
-        How would you end COVID-19 lockdowns? Lead your country, navigate the
-        first few months of 2021 and find out.
-      </p>
       <div style={{ marginTop: "auto" }}>
         <Btn.Bouncy
           value="Play the game"
@@ -87,9 +87,12 @@ export function Introduction(props: {
           choices available!{" "}
         </li>
       </div>
-      <div className="m-auto flex flex-col justify-center items-center">
+      <div className="max-w-xs m-auto mb-4 flex flex-col justify-center items-center">
+        <Txt.Subtitle value={`Made with real data`} col="black" />
         <div className="flex flex-row justify-center items-center">
-          <Txt.Subtitle value={`Made with real data`} col="black" />
+          <p className="text-center">
+            (Press the red buttons if you don't believe us!)
+          </p>
           <Btn.ViewSource
             onClick={props.onClickSource}
             sourceDetails={{
@@ -97,13 +100,10 @@ export function Introduction(props: {
               link:
                 "http://pandemic-game-prod.s3-website.us-east-2.amazonaws.com",
               description:
-                "These screens will show you our sources. For example, our data model is based on extensive polls of the UK population as well as epidemiological and economic data from UK and US sources.",
+                "We are transparent with our data so that you can make your own conclusions from this game. These screens will show you our sources. For example, this game is heavily based on our previous model of how COVID-19 restrictions affect the economy and case count.",
             }}
           />
         </div>
-        <p className="text-center">
-          (press the red question marks if you don't believe us!)
-        </p>
       </div>
       <div style={{ marginTop: "auto" }}>
         <Btn.Bouncy

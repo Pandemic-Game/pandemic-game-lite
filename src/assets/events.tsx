@@ -2,18 +2,18 @@ import {Event} from '../model/Event';
 
 export const evt_0_0: Event = {
     title: `Welcome to the jungle`,
-    description: `24 in 1000 people have caught COVID-19 this month and the number of new cases of are rising. You are being pressured to make a response to the situation by either enforcing a lockdown or remaining open.`,
+    description: `24 in 1000 people have caught COVID-19 this month and the number of new cases is rising. You are being pressured to make a response to the situation by either enforcing restrictions or remaining open.`,
     extraDetails: {
         public: {
-            speech: `If you wanna close bars, restaurants and other businesses I support you, but people probably won't obey lockdown as much as last time`,
+            speech: `If you wanna close businesses, that's cool, but people probably won't obey restrictions as much the longer it goes on.`,
             sourceDetails: {
                 sourceName: `YouGov `,
                 link: `https://docs.cdn.yougov.com/pkv90of78k/SunOnSunday_CoronaResults_210115.pdf`,
-                description: `76% of UK respondents think others are complying less with the second (Winter 2020) lockdowns compared with the first (Spring 2019) lockdowns`
+                description: `76% of UK respondents think others complied less with the second (Winter 2020) lockdowns compared with the first (Spring 2019) lockdowns.`
             }
         },
         business: {
-            speech: `Lockdown will hurt businesses in the short-term!`,
+            speech: `"Closing businesses for a short time is tolerable, if displaced workers get unemployment payments, but this won't be sustainable long-term.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -30,7 +30,7 @@ export const evt_0_0: Event = {
         }
     },
     response1: {
-        label: `Remain open`,
+        label: `Keep everything open`,
         getParentEvent: () => {
             return evt_0_0
         },
@@ -38,7 +38,7 @@ export const evt_0_0: Event = {
             supportForLastResponse: 11,
             oppositionToLastResponse: 85,
             newCases: 45,
-            lockdownCosts: 0,
+            lockdownCosts: 1,
             medicalCosts: 40
         },
         socialMediaResponse: [{
@@ -47,15 +47,15 @@ export const evt_0_0: Event = {
             head: `Daily Bugle`,
             content: `New cases rising sharply`
         }, {
-            type: `tweet`,
+            type: `meme`,
             isHappy: true,
-            head: `Sally Hanson @ManiPedi223`,
-            content: `Idk what I would do without my weekly nail appointment #TreatYourself`
+            head: `TFW I can actually see my friends`,
+            content: `https://giphy.com/gifs/hulu-cbs-star-trek-the-next-generation-3o7TKCskhXtrq3nsBy`
         }, {
             type: `tweet`,
             isHappy: false,
-            head: `Queen Bae @PutARingOnIt`,
-            content: `If you love COVID so much, why don't you MARRY IT?`
+            head: `Chan Chan Man @ChanandalerBong`,
+            content: `Could the COVID cases BE any higher???`
         }],
         getNextEvent: () => {
             return evt_1_1
@@ -68,7 +68,7 @@ export const evt_0_0: Event = {
         }
     },
     response2: {
-        label: `Lock it down`,
+        label: `Let's close non-essential businesses..`,
         getParentEvent: () => {
             return evt_0_0
         },
@@ -108,7 +108,7 @@ export const evt_0_0: Event = {
 };
 export const evt_1_1: Event = {
     title: `2 KOOL 4 SKOOL`,
-    description: `Exams are coming up! Opening up the schools and universities for exams would create a spike in cases. Continuing with distance learning would postpone exams or cancel them altogether`,
+    description: `Exams are coming up. Keeping schools and universities open would create a spike in cases. However, continuing with distance learning will interrupt exams and teaching`,
     extraDetails: {
         public: {
             speech: `Sure, opening schools sounds great, but putting our kids at risk right now without the proper precautions is shady af.`,
@@ -119,7 +119,7 @@ export const evt_1_1: Event = {
             }
         },
         business: {
-            speech: `Opening schools is a risk, but it is the first step in reopening our economy and getting everything back to normal operations.`,
+            speech: `Lots of businesses rely on students for customers, and if they don't they still rely on qualified and trained employees!`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -127,7 +127,7 @@ export const evt_1_1: Event = {
             }
         },
         medical: {
-            speech: `Opening schools and universities is the single biggest factor contributing to an increase in cases.`,
+            speech: `Opening schools and universities is the single fastest way to increase cases.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -144,7 +144,7 @@ export const evt_1_1: Event = {
             supportForLastResponse: 23,
             oppositionToLastResponse: 67,
             newCases: 90,
-            lockdownCosts: 0,
+            lockdownCosts: 1,
             medicalCosts: 104
         },
         socialMediaResponse: [{
@@ -156,11 +156,11 @@ export const evt_1_1: Event = {
             type: `tweet`,
             isHappy: false,
             head: `Kevin @KoolKevin22`,
-            content: `My kids CANNOT be trusted to wear a mask all day. This is RIDICULOUS.`
+            content: `My kids CANNOT be expected to wear a mask all day. This is RIDICULOUS.`
         }, {
             type: `tweet`,
             isHappy: true,
-            head: `Kared @GlitterMommy`,
+            head: `Kared @AllBoutThatGlitter`,
             content: `The kids are back in school!!! #HelloFreedom #Winning`
         }],
         getNextEvent: () => {
@@ -214,7 +214,7 @@ export const evt_1_1: Event = {
 };
 export const evt_1_2: Event = {
     title: `Cabin Fever`,
-    description: `People are tired of being in lockdown. There are increasing reports of nonessential travelling, citizens meeting in large groups, and ignoring social distancing mandates.`,
+    description: `People are itching to get back to their normal lives. For some, it's becoming a need. Many have lost their jobs and others, particularly young people, are ignoring the restrictions anyway.`,
     extraDetails: {
         public: {
             speech: `My mate Paul just ended his relationship and blamed COVID. Apparently it's happened to other people too.`,
@@ -225,7 +225,7 @@ export const evt_1_2: Event = {
             }
         },
         business: {
-            speech: `Businesses are suffering in lockdown, but the only way to get back to a normal economy is to end the pandemic.`,
+            speech: `The only way to get back to a normal economy is to end the pandemic but the unemployment rate is really high... people are really suffering.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -233,7 +233,7 @@ export const evt_1_2: Event = {
             }
         },
         medical: {
-            speech: `One in three people have admitted to feeling lonely during the pandemic. Socialisation would help wellbeing but increase cases.`,
+            speech: `Cases are falling very fast! That said, we have to consider the effects of things like loneliness or we may end up with a mental health crisis...`,
             sourceDetails: {
                 sourceName: `YouGov`,
                 link: `https://yougov.co.uk/topics/health/survey-results/daily/2020/10/09/26286/3`,
@@ -242,7 +242,7 @@ export const evt_1_2: Event = {
         }
     },
     response1: {
-        label: `Let my people go!`,
+        label: `Let my people work!`,
         getParentEvent: () => {
             return evt_1_2
         },
@@ -250,7 +250,7 @@ export const evt_1_2: Event = {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
             newCases: 14,
-            lockdownCosts: 0,
+            lockdownCosts: 1,
             medicalCosts: 3
         },
         socialMediaResponse: [{
@@ -300,7 +300,7 @@ export const evt_1_2: Event = {
             type: `tweet`,
             isHappy: true,
             head: `Drac Ula @DefinitelyNotAVampire`,
-            content: `Come on, guys. Being inside isn't THAT bad. 😅`
+            content: `Come on, ya'll. Being inside isn't THAT bad. 😅`
         }, {
             type: `tweet`,
             isHappy: false,
@@ -320,10 +320,10 @@ export const evt_1_2: Event = {
 };
 export const evt_2_1: Event = {
     title: `But at what cost?`,
-    description: `Experts are yelling at you to lock down the nation. Doctors, epidemiologists, economists, and even your dentist is telling you to tighten restrictions! While the rest of the world is in lockdown, your people have enjoyed their freedom.`,
+    description: `Experts are recommending much stronger restrictions, immediately. Doctors, epidemiologists, economists, and even your dentist are telling you to get those case numbers down. This is a tough choice. While the rest of the world has reduced their infection rate via careful restrictions, your people have at least enjoyed something resembling a normal lifestyle.`,
     extraDetails: {
         public: {
-            speech: `LOCKDOWN!!!!`,
+            speech: `We enjoy our freedom. Please don't take that away! Pretty, pretty please!`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -331,7 +331,7 @@ export const evt_2_1: Event = {
             }
         },
         business: {
-            speech: `LOCKDOWN!!!!`,
+            speech: `We haven't really been affected by restrictions yet and we're not gonna start now.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -339,7 +339,7 @@ export const evt_2_1: Event = {
             }
         },
         medical: {
-            speech: `LOCKDOWN!!!!`,
+            speech: `Hospital capacity is completely maxed out - so maxed out that people have started self-isolating on their own.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -348,7 +348,7 @@ export const evt_2_1: Event = {
         }
     },
     response1: {
-        label: `...nah`,
+        label: `No. We stay the course.`,
         getParentEvent: () => {
             return evt_2_1
         },
@@ -356,24 +356,24 @@ export const evt_2_1: Event = {
             supportForLastResponse: 50,
             oppositionToLastResponse: 50,
             newCases: 90,
-            lockdownCosts: 0,
+            lockdownCosts: 1,
             medicalCosts: 104
         },
         socialMediaResponse: [{
             type: `article`,
             isHappy: false,
-            head: `Financial Enquirer`,
-            content: `Turns out it's hard to run a business when COVID exists`
+            head: `The Quarterly Prophet`,
+            content: `As cases rise, concerned citizens turn to self-isolation`
         }, {
             type: `meme`,
             isHappy: true,
-            head: `Will Wallace @ScotlandPride`,
+            head: `Lynyrd Skynyrd @FreeBird72`,
             content: `https://media1.giphy.com/media/6901DbEbbm4o0/giphy.gif`
         }, {
             type: `tweet`,
             isHappy: false,
-            head: `Uncle Joe @UnityRulez`,
-            content: `WHY WON'T YOU LISTEN TO EXPERTS?! #ComeOnMan`
+            head: `Navi @EyyOcarina`,
+            content: `Hey, listen! Listen to experts!`
         }],
         getNextEvent: () => {
             return ending
@@ -392,7 +392,7 @@ export const evt_2_1: Event = {
         }
     },
     response2: {
-        label: `Tick tock it's lockdown o'clock`,
+        label: `Tick tock it's restriction o'clock`,
         getParentEvent: () => {
             return evt_2_1
         },
@@ -438,10 +438,10 @@ export const evt_2_1: Event = {
 };
 export const evt_2_2: Event = {
     title: `Bad Moon Rising`,
-    description: `The number of COVID-19 cases has reached an all-time high. Some claim this is due to ignoring guidelines, others point fingers at the lockdown restrictions being too relaxed or too strict.`,
+    description: `The number of COVID-19 cases has reached an all-time high. Hospitals are filling up quickly. The media is flooded with climbing case numbers. Your citizens are becoming worried.`,
     extraDetails: {
         public: {
-            speech: `Have you seen those case numbers? Lock it down. LOCK IT ALL DOWN.`,
+            speech: `Have you seen those case numbers? I'm scared to go out... `,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -457,7 +457,7 @@ export const evt_2_2: Event = {
             }
         },
         medical: {
-            speech: `We must keep restrictions in place. If we lift them, the cases will continue to rise astronomically.`,
+            speech: `If we do not put restrictions the cases will rise even higher. Close it down. CLOSE IT ALL DOWN.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -466,7 +466,7 @@ export const evt_2_2: Event = {
         }
     },
     response1: {
-        label: `FREEDOM!`,
+        label: `Things are in hand. As you were.`,
         getParentEvent: () => {
             return evt_2_2
         },
@@ -474,14 +474,14 @@ export const evt_2_2: Event = {
             supportForLastResponse: 26,
             oppositionToLastResponse: 60,
             newCases: 90,
-            lockdownCosts: 0,
+            lockdownCosts: 1,
             medicalCosts: 39
         },
         socialMediaResponse: [{
             type: `article`,
             isHappy: false,
-            head: `Financial Enquirer`,
-            content: `Turns out it's hard to run a business when COVID exists`
+            head: `Quarterly Prophet`,
+            content: `As cases rise, concerned citizens turn to self-isolation`
         }, {
             type: `tweet`,
             isHappy: false,
@@ -490,8 +490,8 @@ export const evt_2_2: Event = {
         }, {
             type: `meme`,
             isHappy: true,
-            head: `Will Wallace @ScotlandPride`,
-            content: `https://i.kym-cdn.com/photos/images/newsfeed/001/846/426/fc0.gif`
+            head: `us vs covid restrictions`,
+            content: `https://giphy.com/gifs/fail-failing-what-teachers-think-1BQdjXovIqSLS`
         }],
         getNextEvent: () => {
             return ending
@@ -503,13 +503,13 @@ export const evt_2_2: Event = {
             description: `
                 85% of UK respondents in early 2021 supported a second lockdown. 
                 However, in order to model the effects of passing time, a 15% mallus was applied 
-                which reduces support for this based on either lockdown fatigue (if you previously chose lockdown), 
-                or sunk cost fallacy (entrenchment in the status-quo if you did not previously chose lockdown).
+                which reduces support for this based on either lockdown fatigue (if you previously chose to implement restrictions), 
+                or sunk cost fallacy (entrenchment in the status-quo if you did not previously chose to implement restrictions).
             `
         }
     },
     response2: {
-        label: `LOCKDOWN!`,
+        label: `STOP THE BUSINESSES!`,
         getParentEvent: () => {
             return evt_2_2
         },
@@ -524,7 +524,7 @@ export const evt_2_2: Event = {
             type: `article`,
             isHappy: false,
             head: `The Daily Planet`,
-            content: `Inconsistent lockdown policies cause mass public confusion`
+            content: `Inconsistent response to pandemic causes mass confusion`
         }, {
             type: `article`,
             isHappy: false,
@@ -534,7 +534,7 @@ export const evt_2_2: Event = {
             type: `tweet`,
             isHappy: true,
             head: `Henry the Hippo @HelpfulHenry`,
-            content: `I don't want to go into lockdown but I do want to end COVID sooooooooo`
+            content: `To everyone struggling with staying inside, just know we're ending the pandemic 💪`
         }],
         getNextEvent: () => {
             return ending
@@ -546,15 +546,15 @@ export const evt_2_2: Event = {
             description: `
                 85% of UK respondents in early 2021 supported a second lockdown. 
                 However, in order to model the effects of passing time, a 15% mallus was applied 
-                which reduces support for this based on either lockdown fatigue (if you previously chose lockdown), 
-                or sunk cost fallacy (entrenchment in the status-quo if you did not previously chose lockdown).
+                which reduces support for this based on either lockdown fatigue (if you previously chose to implement restrictions), 
+                or sunk cost fallacy (entrenchment in the status-quo if you did not previously chose to implement restrictions).
             `
         }
     }
 };
 export const evt_2_3: Event = {
     title: `Where Is My Mind?`,
-    description: `There are increasing reports that lockdown is negatively effecting people's wellbeing and mental health. Charities have started advocating for relaxing restrictions.`,
+    description: `People are struggling. Social deprivation, being restricted in where and who they can visit, and other personal hardships have lead to a negative effect on people's mental health. People feel they have to break restrictions to meet their needs and are asking for relaxed restrictions.`,
     extraDetails: {
         public: {
             speech: `I'm not one to complain about mental health but I'm not doing great. Apparently, young people more likely to be depressed now.`,
@@ -573,7 +573,7 @@ export const evt_2_3: Event = {
             }
         },
         medical: {
-            speech: `Mental health is important, but COVID is not entirely eliminated. Another period of lockdown could eradicate it.`,
+            speech: `Mental health is important, but COVID is not entirely eliminated. Another period of restrictions could eradicate it.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -582,7 +582,7 @@ export const evt_2_3: Event = {
         }
     },
     response1: {
-        label: `Relax lockdown`,
+        label: `Relax social restrictions`,
         getParentEvent: () => {
             return evt_2_3
         },
@@ -616,11 +616,11 @@ export const evt_2_3: Event = {
         sourceDetails: {
             sourceName: `YouGov`,
             link: `https://docs.cdn.yougov.com/fn83kzrj9i/International%20COVID%20personal%20impact.pdf`,
-            description: `84% of UK respondents in early 2021 believe that mental health is at least as important as physical health so would be likely to support relaxing lockdown for this reason.`
+            description: `84% of UK respondents in early 2021 believe that mental health is at least as important as physical health so would be likely to support relaxing restrictions for this reason.`
         }
     },
     response2: {
-        label: `No exceptions`,
+        label: `Let's eliminate COVID while we can.`,
         getParentEvent: () => {
             return evt_2_3
         },
@@ -644,7 +644,7 @@ export const evt_2_3: Event = {
         }, {
             type: `meme`,
             isHappy: false,
-            head: ` ...`,
+            head: `That was kinda harsh...`,
             content: `https://i.kym-cdn.com/photos/images/newsfeed/001/298/697/ab0.jpg`
         }],
         getNextEvent: () => {
@@ -654,7 +654,7 @@ export const evt_2_3: Event = {
         sourceDetails: {
           sourceName: `YouGov`,
           link: `https://docs.cdn.yougov.com/fn83kzrj9i/International%20COVID%20personal%20impact.pdf`,
-          description: `84% of UK respondents in early 2021 believe that mental health is at least as important as physical health so would be likely to support relaxing lockdown for this reason.`
+          description: `84% of UK respondents in early 2021 believe that mental health is at least as important as physical health so would be likely to support relaxing restrictions for this reason.`
         }
     }
 };
@@ -704,12 +704,12 @@ export const ending: Event = {
         socialMediaResponse: [{
             type: `article`,
             isHappy: true,
-            head: `Medicine Today`,
+            head: ``,
             content: ``
         }, {
             type: `article`,
             isHappy: true,
-            head: `Stock Box`,
+            head: ``,
             content: ``
         }, {
             type: `tweet`,
