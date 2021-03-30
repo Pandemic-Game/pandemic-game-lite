@@ -12,24 +12,29 @@ import * as LeaderStyle from "./components/leaderStyles";
 import { Tweet, News, Meme } from "./components/socialFeedback";
 import { Splash, Introduction } from "./components/views/start";
 import { SourceScreen } from "./components/views/source";
-import { EventScreen, EventExtra } from "./components/views/event";
+import { EventScreen, EventExtra, EventResponse } from "./components/views/event";
 import {
   FeedbackScreen1,
   FeedbackScreen2,
   FeedbackExtra,
 } from "./components/views/feedback";
-import { Ending, AllEndings, ViewEnding } from "./components/views/end";
+import { Ending, AllEndings, EndLeaderStyle } from "./components/views/end";
 import FontFaceObserver from "fontfaceobserver";
 import { ToastContainer } from "react-toastify";
 import { ImageCacheInstance } from "./ImageCache";
 /** image assets */
 import EndCoronaVirusLogo from "./assets/PNG/ecvlogo.png";
 import GameLogo from "./assets/SVG/gamelogo.svg";
-import IconForGenghisCannot from "./assets/SVG/IconForGenghisCannot.svg";
 import ButtonSneaky from "./assets/PNG/Psst2.png";
 import ButtonSneakySVG_alt from "./assets/PNG/psst_data.png";
 import lockdownCoin from "./assets/SVG/coin-lockdown.svg";
 import medicalCoin from "./assets/SVG/coin-medical.svg";
+import iconFlipflop from "./assets/SVG/icon-flipflop.svg";
+import iconGenghis from "./assets/SVG/icon-genghis.svg";
+import iconGuru from "./assets/SVG/icon-guru.svg";
+import iconTerminator from "./assets/SVG/icon-terminator.svg";
+import { toast } from "react-toastify";
+
 // Load story
 const firstEvent = Story.evt_0_0;
 
@@ -42,6 +47,9 @@ const GameLoop: React.FC = () => {
   const [view, setView] = useState<string>("start");
   const [previousView, setPreviousView] = useState<string>("start");
   const [ending, setEnding] = useState<string>("");
+  const [delayUntilOpening, setDelayUntilOpening] = useState<number>(5);
+  const [canOpenAllRestrictions, setCanOpenAllRestrictions] = useState<boolean>(false);
+  const [openAllRestrictions, setOpenAllRestrictions] = useState<boolean>(false);
   const [sourceToView, setSourceToView] = useState<SourceDetails>({
     sourceName: "",
     link: "",
@@ -70,22 +78,30 @@ const GameLoop: React.FC = () => {
     show("sources");
   };
 
-  const endings: Record<string, { ele: JSX.Element; bg: string }> = {
+  const endings: Record<string, { ele: JSX.Element; bg: string, winTitle: string, winDescription:string }> = {
     GenghisCannot: {
       ele: <LeaderStyle.GenghisCannot onClickSource={showSource} />,
       bg: "bg-yellow-400",
+      winTitle: "Based on your choices you can’t open back up for a long time!",
+      winDescription: "You have a high number of cases, lots of people are ending up in hospital and even dying. People are scared."
     },
     FlipFlopper: {
       ele: <LeaderStyle.FlipFlopper onClickSource={showSource} />,
       bg: "bg-red-200",
+      winTitle: "Based on your choices you can’t open back up yet",
+      winDescription: "By re-opening too early, cases will rise, leading to a need for restrictions in the future."
     },
     CovidTerminator: {
       ele: <LeaderStyle.CovidTerminator onClickSource={showSource} />,
       bg: "bg-green-400",
+      winTitle: "Based on your choices you can safely open up!",
+      winDescription: "Cases have gone to zero. People are satisfied and demand a return to normality! With no need for further restrictions the only sensible option is to re-open"
     },
     BusinessGuru: {
       ele: <LeaderStyle.BusinessGuru onClickSource={showSource} />,
       bg: "bg-blue-400",
+      winTitle: "Based on your choices you will be able to open up.. soon",
+      winDescription: "While navigating the trade-off between re-opening businesses yet keeping cases low, the end of the pandemic is in sight. Through continued cycles of opening and closing, with some patience, the end will come."
     },
   };
 
@@ -104,6 +120,11 @@ const GameLoop: React.FC = () => {
     // Show new event or if at end show ending
     if (playerChoice.ending) {
       setEnding(playerChoice.ending);
+      setDelayUntilOpening(playerChoice.updatedIndicators.newCases * 5);
+      setTimeout( function(){
+        setCanOpenAllRestrictions(true);
+        }, (playerChoice.updatedIndicators.newCases + 1) * 1000
+      );
     } else {
       setEvent(playerChoice.getNextEvent());
     }
@@ -179,8 +200,7 @@ const GameLoop: React.FC = () => {
       return (
         <EventScreen
           event={event}
-          onClickResponse={processPlayerChoice}
-          onClickExtraInfo={() => show("eventExtra")}
+          onClick={() => show("eventExtra")}
         />
       );
     case "eventExtra":
@@ -188,7 +208,14 @@ const GameLoop: React.FC = () => {
         <EventExtra
           event={event}
           onClickSource={showSource}
-          onClickBack={() => show("event")}
+          onClickBack={() => show("eventResponse")}
+        />
+      );
+    case "eventResponse":
+      return (
+        <EventResponse
+          event={event}
+          onClick={processPlayerChoice}
         />
       );
 
@@ -236,6 +263,22 @@ const GameLoop: React.FC = () => {
       return (
         <Ending
           leaderStyle={endings[ending]}
+          delay={delayUntilOpening}
+          opened={openAllRestrictions}
+          canOpenAllRestrictions={canOpenAllRestrictions}
+          onClick={{
+            openButton: {
+              enabled: function(){setOpenAllRestrictions(true)},
+              disabled: function(){toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`)}
+            },
+            continue: function(){show("leaderStyle")}
+        }}
+      />
+      );
+    case "leaderStyle":
+      return (
+        <EndLeaderStyle
+          leaderStyle={endings[ending]}
           onClick={() => {
             show("allEndings");
           }}
@@ -244,20 +287,8 @@ const GameLoop: React.FC = () => {
     case "allEndings":
       return (
         <AllEndings
-          onClick={(name: string) => {
-            setEnding(name);
-            show("viewEnding");
-          }}
+          onClick={showSource}
           onReplay={reset}
-        />
-      );
-    case "viewEnding":
-      return (
-        <ViewEnding
-          leaderStyle={endings[ending]}
-          onClick={() => {
-            show("allEndings");
-          }}
         />
       );
     default:
@@ -295,14 +326,26 @@ const preloadAssets = () => {
     new FontFaceObserver("Playfair Display").load(),
     ImageCacheInstance.read(EndCoronaVirusLogo),
     ImageCacheInstance.read(GameLogo),
-    ImageCacheInstance.read(IconForGenghisCannot),
     ImageCacheInstance.read(ButtonSneaky),
     ImageCacheInstance.read(ButtonSneakySVG_alt),
     ImageCacheInstance.read(lockdownCoin),
     ImageCacheInstance.read(medicalCoin),
+    ImageCacheInstance.read(iconFlipflop),
+    ImageCacheInstance.read(iconGenghis),
+    ImageCacheInstance.read(iconGuru),
+    ImageCacheInstance.read(iconTerminator),
     /*ImageCacheInstance.read(
       `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy.gif`
     ), - 6MB asset!!!*/
+    ImageCacheInstance.read(
+      `https://giphy.com/gifs/hulu-cbs-star-trek-the-next-generation-3o7TKCskhXtrq3nsBy`
+    ),
+    ImageCacheInstance.read(
+      `https://media1.giphy.com/media/6901DbEbbm4o0/giphy.gif`
+    ),
+    ImageCacheInstance.read(
+      `https://giphy.com/gifs/fail-failing-what-teachers-think-1BQdjXovIqSLS`
+    ),
     ImageCacheInstance.read(
       `https://thumbs.gfycat.com/DeliriousDenseArgali-small.gif`
     ),

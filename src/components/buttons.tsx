@@ -1,8 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
-import ButtonSneaky from "../assets/PNG/Psst2.png";
-import ButtonSneakySVG_alt from "../assets/PNG/psst_data.png";
+import ButtonSneaky from "../assets/SVG/ButtonSneaky.svg";
+import ButtonSneakySVG_alt from "../assets/SVG/ButtonSneaky_alt.svg";
 import { SourceDetails } from "../model/Event";
 import { Img } from "../ImageCache";
 
@@ -61,13 +61,44 @@ export const ViewSource = (props: {
   } else {
     return (
       <button
-        className={`m-2 text-red-500 animate-pulse`}
+        className={`m-2 px-1 text-white bg-red-500 rounded-xl`}
         onClick={() => {
           props.onClick(props.sourceDetails);
         }}
       >
-        <FontAwesomeIcon icon={faQuestionCircle} />
+        Why
+        <FontAwesomeIcon icon={faQuestionCircle} size='lg' className='p-1 animate-pulse' />
       </button>
     );
   }
 };
+
+
+export function SafeOpening(props: {onClick: Function, delay: number, opened: boolean}) {
+  return (
+    <button 
+      className='w-full m-2'
+      onClick={() => {
+        props.onClick();
+      }}
+    >
+      <div 
+        className="relative pt-1"
+      >
+        <div className={
+          `overflow-hidden w-full mb-4 text-xs flex rounded bg-green-200 
+          ${props.opened ? 'animate__animated animate__tada' : ''}`
+        }>
+          <div 
+            style={{
+              animation: `grow ${props.delay}s linear forwards`
+            }}
+            className="shadow-none p-2 flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
+          >
+            <p className='text-xl'> Return to normality </p>
+          </div>
+        </div>
+      </div>
+    </button>
+  );
+}

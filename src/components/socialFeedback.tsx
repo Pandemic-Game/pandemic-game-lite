@@ -10,13 +10,6 @@ export function Tweet(props: { fb: ResponseItem; animation: string }) {
     <div
       className={`w-auto p-3 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl ${props.animation}`}
     >
-      <div className="absolute -top-2 -left-2 rounded-full bg-white">
-        <FontAwesomeIcon
-          icon={props.fb.isHappy ? faLaughBeam : faAngry}
-          color={props.fb.isHappy ? "green" : "red"}
-          size="lg"
-        />
-      </div>
       <div className="flex flex-row">
         <FontAwesomeIcon icon={faTwitter} color="dodgerblue" size="lg" />
         <h5 className="text-blue-500"> {props.fb.head} </h5>
@@ -31,13 +24,6 @@ export function News(props: { fb: ResponseItem; animation: string }) {
     <div
       className={`w-auto p-3 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl ${props.animation}`}
     >
-      <div className="absolute -top-2 -left-2 rounded-full bg-white">
-        <FontAwesomeIcon
-          icon={props.fb.isHappy ? faLaughBeam : faAngry}
-          color={props.fb.isHappy ? "green" : "red"}
-          size="lg"
-        />
-      </div>
       <p
         className="text-left text-2xl font-medium"
         style={{ fontFamily: "Playfair Display" }}
@@ -54,13 +40,6 @@ export function Meme(props: { fb: ResponseItem; animation: string }) {
     <div
       className={`w-auto p-3 m-2 flex flex-col justify-center items-center relative bg-white rounded-xl ${props.animation}`}
     >
-      <div className="absolute -top-2 -left-2 rounded-full bg-white">
-        <FontAwesomeIcon
-          icon={props.fb.isHappy ? faLaughBeam : faAngry}
-          color={props.fb.isHappy ? "green" : "red"}
-          size="lg"
-        />
-      </div>
       <p className="p-2 text-light text-xl" style={{ fontFamily: "Impact" }}>
         {props.fb.head}
       </p>

@@ -265,7 +265,7 @@ export function EconomyGraphic(props: {
               value={`${
                 props.indicators.lockdownCosts === 0
                   ? "Very little or none"
-                  : `$${props.indicators.lockdownCosts}Billion`
+                  : `$${props.indicators.lockdownCosts} Billion`
               } `}
               col="white"
             />
