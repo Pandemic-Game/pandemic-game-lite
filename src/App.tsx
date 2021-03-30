@@ -21,10 +21,15 @@ import {
 import { Ending, AllEndings, ViewEnding } from "./components/views/end";
 import FontFaceObserver from "fontfaceobserver";
 import { ToastContainer } from "react-toastify";
-import { Img, ImgCache } from "./ImageCache";
+import { ImageCacheInstance } from "./ImageCache";
+/** image assets */
 import EndCoronaVirusLogo from "./assets/PNG/ecvlogo.png";
 import GameLogo from "./assets/SVG/gamelogo.svg";
-
+import IconForGenghisCannot from "./assets/SVG/IconForGenghisCannot.svg";
+import ButtonSneaky from "./assets/PNG/Psst2.png";
+import ButtonSneakySVG_alt from "./assets/PNG/psst_data.png";
+import lockdownCoin from "./assets/SVG/coin-lockdown.svg";
+import medicalCoin from "./assets/SVG/coin-medical.svg";
 // Load story
 const firstEvent = Story.evt_0_0;
 
@@ -260,75 +265,77 @@ const GameLoop: React.FC = () => {
   }
 };
 
+/**
+ * Inline styles are used on purpose so we don't need to load tailwind css.
+ */
 const Loading: React.FC = () => {
-  console.log("Loading");
-  return <h1>Loading...</h1>;
-};
-
-const wrapPromise = (promise: Promise<unknown>) => {
-  let status = "pending";
-  let result: unknown;
-  let suspender = promise.then(
-    (r) => {
-      status = "success";
-      result = r;
-    },
-    (e) => {
-      console.error("Error loading");
-      console.log(e);
-      status = "error";
-      result = e;
-    }
+  return (
+    <div
+      style={{
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
+        height: "95vh",
+      }}
+    >
+      <div className="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   );
-  return {
-    read() {
-      if (status === "pending") {
-        throw suspender;
-      } else if (status === "error") {
-        throw result;
-      } else if (status === "success") {
-        return result;
-      }
-    },
-  };
 };
 
 const preloadAssets = () => {
   const assets = [
     new FontFaceObserver("Bebas Neue").load(),
     new FontFaceObserver("Playfair Display").load(),
-    ImgCache.read("https://source.unsplash.com/random/4000x2000"),
-    ImgCache.read(EndCoronaVirusLogo),
-    ImgCache.read(GameLogo),
+    ImageCacheInstance.read(EndCoronaVirusLogo),
+    ImageCacheInstance.read(GameLogo),
+    ImageCacheInstance.read(IconForGenghisCannot),
+    ImageCacheInstance.read(ButtonSneaky),
+    ImageCacheInstance.read(ButtonSneakySVG_alt),
+    ImageCacheInstance.read(lockdownCoin),
+    ImageCacheInstance.read(medicalCoin),
+    /*ImageCacheInstance.read(
+      `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy.gif`
+    ), - 6MB asset!!!*/
+    ImageCacheInstance.read(
+      `https://thumbs.gfycat.com/DeliriousDenseArgali-small.gif`
+    ),
+    ImageCacheInstance.read(
+      `https://media1.giphy.com/media/6901DbEbbm4o0/giphy.gif`
+    ),
+    ImageCacheInstance.read(
+      `https://i.kym-cdn.com/photos/images/newsfeed/001/846/426/fc0.gif`
+    ),
   ];
 
-  return wrapPromise(Promise.all(assets));
-};
-
-const preloader = preloadAssets();
-const Game: React.FC = () => {
-  useEffect(() => {
-    console.log("Re-rendering");
-    preloader.read();
-  }, []);
-  return (
-    <>
-      <Img
-        src="https://source.unsplash.com/random/4000x2000"
-        alt="a very big image"
-      />
-      <GameLoop />
-    </>
-  );
+  return Promise.all(assets);
 };
 
 const App: React.FC = () => {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    preloadAssets()
+      .catch((err) => {
+        console.error(err);
+        setReady(true);
+      })
+      .then(() => {
+        console.log("RESOURCES READY");
+        setReady(true);
+      });
+  }, []);
+
   return (
     <>
       <ToastContainer />
-      <React.Suspense fallback={<Loading />}>
-        <Game />
-      </React.Suspense>
+      {ready ? <GameLoop /> : <Loading />}
     </>
   );
 };

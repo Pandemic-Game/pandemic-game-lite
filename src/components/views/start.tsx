@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import EndCoronaVirusLogo from "../../assets/PNG/ecvlogo.png";
 import GameLogo from "../../assets/SVG/gamelogo.svg";
+import { Img } from "../../ImageCache";
 import { useThemeContext } from "../../ThemeProvider";
 import * as Btn from "../buttons";
 import * as Txt from "../text";
@@ -24,22 +25,22 @@ export function Splash(props: { onClick: Function }) {
           target="_blank"
           className="text-blue-900"
         >
-          <img
+          <Img
             src={EndCoronaVirusLogo}
             alt="EndCoronaVirusLogo"
             className="m-2 w-auto h-14 rounded-lg"
-          ></img>
+          />
         </a>
       </div>
       <div
         className="m-2 flex m-2 flex-col justify-center items-center"
         style={{ marginTop: "auto" }}
       >
-        <img
+        <Img
           src={GameLogo}
           alt="GameLogo"
           className="m-2 w-auto h-20 rounded-lg"
-        ></img>
+        />
         <Txt.Subtitle
           value={"A five minute game to end lockdown."}
           col="black"

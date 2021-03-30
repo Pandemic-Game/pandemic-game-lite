@@ -1,41 +1,40 @@
 import React from "react";
 
-const cache: Map<String, any> = new Map<String, any>();
+class ImgCache {
+  private cache: Map<String, any> = new Map<String, any>();
 
-export const ImgCache = {
-  read: (src: string) => {
-    console.log("Storing image: " + src);
-    const currentValue = cache.get(src);
+  public read(src: string) {
+    console.debug("Storing image: " + src);
+    const currentValue = this.cache.get(src);
 
     if (!currentValue) {
-      console.log("Cache miss: " + src);
-      const promise = new Promise((resolve, reject) => {
+      console.debug("Cache miss: " + src);
+      return new Promise((resolve, reject) => {
         const img = new Image();
         img.src = src;
         img.onload = () => {
-          cache.set(src, img);
+          this.cache.set(src, img);
           resolve(img);
         };
         img.onerror = reject;
       });
-
-      cache.set(src, promise);
-      return promise;
     } else {
-      console.log("Cache hit: " + src);
+      console.debug("Cache hit: " + src);
       return Promise.resolve(currentValue);
     }
-  },
-};
+  }
+}
 
 interface ImgProps {
   src: string;
   alt: string;
 }
 
-export const Img: React.FC<ImgProps> = ({ src, alt, ...rest }) => {
-  console.log("Rendering image" + src);
-  ImgCache.read(src);
+export const ImageCacheInstance = new ImgCache();
+
+export const Img: React.FC<any & ImgProps> = ({ src, alt, ...rest }) => {
+  console.debug("Rendering image" + src);
+  ImageCacheInstance.read(src);
 
   return <img src={src} alt={alt} {...rest} />;
 };
