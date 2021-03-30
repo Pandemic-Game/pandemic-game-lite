@@ -5,6 +5,7 @@ const SESSION_STORAGE_KEY = "PANDEMIC_GAME_SESSION";
 
 interface GameSession {
   sessionId: string;
+  playthroughId: string;
   timestamp: string;
   eventType: "GameStart" | "GameEnd";
   codeVersion: string;
@@ -14,6 +15,7 @@ interface GameSession {
 
 export class DataCollector {
   private sessionId: string;
+  private playthroughId: string;
   private apiUrl: string;
 
   constructor() {
@@ -21,11 +23,14 @@ export class DataCollector {
     if (this.apiUrl === "") {
       throw new Error("API endpoint not correctly set");
     }
+
     const existingSessionId = sessionStorage.getItem(SESSION_STORAGE_KEY);
     this.sessionId = existingSessionId || uuidv4();
     if (!existingSessionId) {
       sessionStorage.setItem(SESSION_STORAGE_KEY, this.sessionId);
     }
+
+    this.playthroughId = uuidv4();
   }
 
   async sendGameStartSignal() {
@@ -33,6 +38,7 @@ export class DataCollector {
       const event: GameSession = {
         eventType: "GameStart",
         sessionId: this.sessionId,
+        playthroughId: this.playthroughId,
         timestamp: new Date().toISOString(),
         codeVersion: process.env.REACT_APP_VERSION || "local-dev",
         leadershipStyle: null,
@@ -51,6 +57,7 @@ export class DataCollector {
       const event: GameSession = {
         eventType: "GameStart",
         sessionId: this.sessionId,
+        playthroughId: this.playthroughId,
         timestamp: new Date().toISOString(),
         codeVersion: process.env.REACT_APP_VERSION || "local-dev",
         leadershipStyle: leadershipStyle,
