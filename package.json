@@ -11,6 +11,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "animate.css": "^4.1.1",
     "animate.css-react": "^1.1.0",
+    "axios": "^0.21.1",
     "clonedeep": "^2.0.0",
     "fontfaceobserver": "^2.1.0",
     "jstat": "^1.9.4",
@@ -20,6 +21,7 @@
     "react-dom": "^17.0.1",
     "react-toastify": "^7.0.3",
     "react-transition-group": "^4.4.1",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.0"
   },
   "devDependencies": {
@@ -35,6 +37,7 @@
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/react-dom": "^17.0.1",
     "@types/react-transition-group": "^4.4.1",
+    "@types/uuid": "^8.3.0",
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.35",
     "react-scripts": "4.0.2",
