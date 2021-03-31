@@ -55,7 +55,7 @@ export class DataCollector {
   async sendGameEndSignal(leadershipStyle: string, history: any[]) {
     try {
       const event: GameSession = {
-        eventType: "GameStart",
+        eventType: "GameEnd",
         sessionId: this.sessionId,
         playthroughId: this.playthroughId,
         timestamp: new Date().toISOString(),
