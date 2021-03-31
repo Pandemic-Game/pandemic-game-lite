@@ -41,7 +41,7 @@ export class DataCollector {
         playthroughId: this.playthroughId,
         timestamp: new Date().toISOString(),
         codeVersion: process.env.REACT_APP_VERSION || "local-dev",
-        leadershipStyle: null,
+        leadershipStyle: "",
         choices: [],
       };
 
