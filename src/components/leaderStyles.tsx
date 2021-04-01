@@ -42,11 +42,11 @@ const LeadershipStyle = (props: {
       <Txt.Text value={props.description} col="black" />
       <br></br>
       <div className="max-w-xs flex flex-row">
+        <Txt.Text value={`This response is similar to ${props.example.name}`} col="black" />
         <Btn.ViewSource
           sourceDetails={props.example.sourceDetails}
           onClick={props.onClickSource}
         />
-        <Txt.Text value={`This response is similar to ${props.example.name}`} col="black" />
       </div>
     </div>
   );

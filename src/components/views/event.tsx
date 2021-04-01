@@ -104,7 +104,6 @@ export function EventResponse(props:
         </div>
         <div className='w-4/5 flex mt-4 flex-col justify-between items-center '>
             <Txt.Title value={'Choose your response'} col='black' />
-            <Lines.Hr my={0} col='black' />
             <Btn.Rounded
                 value={props.event.response1.label}
                 bg={'purple-900'}

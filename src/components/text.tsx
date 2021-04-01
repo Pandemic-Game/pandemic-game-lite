@@ -39,7 +39,7 @@ export function Paragraph(props: { value: string, col: string }) { // Line break
     return (
         <div className={`max-w-lg flex flex-col text-lg text-left text-${props.col} font-sans font-medium`}
         >
-            {props.value.split(/(?:\r\n|\r|\n|\.)/g).map((str, idx) => <p key={idx} className='m-1'>{str}.</p>)}
+            {props.value.split(/(?:\r\n|\r|\n|\.)/g).map((str, idx) => <p key={idx} className='m-1'>{str}</p>)}
         </div>
     );
 }

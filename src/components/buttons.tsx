@@ -5,6 +5,7 @@ import ButtonSneaky from "../assets/SVG/ButtonSneaky.svg";
 import ButtonSneakySVG_alt from "../assets/SVG/ButtonSneaky_Alt.svg";
 import { SourceDetails } from "../model/Event";
 import { Img } from "../ImageCache";
+import * as Txt from './text';
 
 // Primary button
 export function Rounded(props: any) {
@@ -83,24 +84,30 @@ export function SafeOpening(props: {
   opened: boolean;
 }) {
   return (
-    <button
-      className="w-full m-2"
+    <button 
+      className='w-full'
       onClick={() => {
         props.onClick();
       }}
     >
-      <div className="relative pt-1">
-        <div
-          className={`overflow-hidden w-full mb-4 text-xs flex rounded bg-green-200 
-          ${props.opened ? "animate__animated animate__tada" : ""}`}
+      <div 
+        className="relative pt-1"
+      >
+        <div 
+          className={`overflow-hidden w-full mb-4 text-xs rounded-full bg-purple-500
+            ${props.opened ? 'animate__animated animate__tada' : ''}`
+          }
+          style={{
+            animation: `appear ${props.delay}s linear forwards`
+          }}
         >
-          <div
+          <div 
             style={{
               animation: `grow ${props.delay}s linear forwards`,
             }}
-            className="shadow-none p-2 flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
+            className="shadow-none p-2 flex flex-col text-center whitespace-nowrap justify-center font-custom text-white  text-3xl bg-purple-900"
           >
-            <p className="text-xl"> Return to normality </p>
+            Return to normality
           </div>
         </div>
       </div>

@@ -11,12 +11,8 @@ import * as Story from "./assets/events";
 import * as LeaderStyle from "./components/leaderStyles";
 import { Tweet, News, Meme } from "./components/socialFeedback";
 import { Splash, Introduction } from "./components/views/start";
-import { SourceScreen } from "./components/views/source";
-import {
-  EventScreen,
-  EventExtra,
-  EventResponse,
-} from "./components/views/event";
+import { SourceScreen, ExplanationScreen } from "./components/views/source";
+import { EventScreen, EventExtra, EventResponse } from "./components/views/event";
 import {
   FeedbackScreen1,
   FeedbackScreen2,
@@ -88,6 +84,10 @@ const GameLoop: React.FC = () => {
     setSourceToView(src);
     show("sources");
   };
+  const showExplanation = (src: SourceDetails) => {
+    setSourceToView(src);
+    show("explanation");
+  };
 
   const endings: Record<
     string,
@@ -137,11 +137,12 @@ const GameLoop: React.FC = () => {
 
     // Show new event or if at end show ending
     if (playerChoice.ending) {
-      setEnding(playerChoice.ending);
       setDelayUntilOpening(playerChoice.updatedIndicators.newCases * 5);
-      setTimeout(function () {
+      setEnding(playerChoice.ending);
+      setTimeout( function(){
         setCanOpenAllRestrictions(true);
-      }, (playerChoice.updatedIndicators.newCases + 1) * 1000);
+        }, playerChoice.updatedIndicators.newCases * 5000
+      );
     } else {
       setEvent(playerChoice.getNextEvent());
     }
@@ -236,6 +237,15 @@ const GameLoop: React.FC = () => {
           }}
         />
       );
+    case "explanation":
+      return (
+        <ExplanationScreen
+          sourceDetails={sourceToView}
+          onClick={() => {
+            show(previousView);
+          }}
+        />
+      );
 
     // Feedback screens
     case "feedback1":
@@ -285,18 +295,18 @@ const GameLoop: React.FC = () => {
           canOpenAllRestrictions={canOpenAllRestrictions}
           onClick={{
             openButton: {
-              enabled: function () {
+              enabled: function(){
                 setOpenAllRestrictions(true);
+                setTimeout(function(){
+                  setView('leaderStyle');
+                }, 2000)
               },
-              disabled: function () {
-                toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`);
-              },
+              disabled: function(){toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`)}
             },
-            continue: function () {
-              show("leaderStyle");
-            },
-          }}
-        />
+            continue: function(){show("leaderStyle")},
+            why: showExplanation
+        }}
+      />
       );
     case "leaderStyle":
       return (

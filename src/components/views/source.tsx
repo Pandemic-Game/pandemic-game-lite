@@ -35,3 +35,24 @@ export function SourceScreen(props: { sourceDetails: SourceDetails, onClick: Fun
         </div>
     )
 }
+
+export function ExplanationScreen(props: { sourceDetails: SourceDetails, onClick: Function }) {
+    const bgColorClass = "bg-yellow-400"
+    const context = useThemeContext()
+
+    useEffect(() => {
+        context.changeBgColorClass(bgColorClass)
+    })
+
+    return (
+        <div className={`min-h-full p-2 flex flex-col justify-around items-center ${bgColorClass}`}>
+            <Txt.Title value='Why?' col='black' />
+            <div className='p-4'>
+                <Txt.Paragraph value={props.sourceDetails.description} col='black' />
+            </div>
+            <div style={{ marginTop: "auto" }}>
+                <Btn.Bouncy value='Back' onClick={props.onClick} />
+            </div>
+        </div>
+    )
+}

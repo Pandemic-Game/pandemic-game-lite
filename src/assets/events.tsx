@@ -50,7 +50,7 @@ export const evt_0_0: Event = {
             type: `meme`,
             isHappy: true,
             head: `TFW I can actually see my friends`,
-            content: `https://giphy.com/gifs/hulu-cbs-star-trek-the-next-generation-3o7TKCskhXtrq3nsBy`
+            content: `https://media.giphy.com/media/3o7TKCskhXtrq3nsBy/giphy.gif`
         }, {
             type: `tweet`,
             isHappy: false,

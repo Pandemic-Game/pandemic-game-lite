@@ -190,10 +190,15 @@ export function CaseGraphic(props: {
   lastTurn: Indicators;
   delay: number;
 }) {
-  const getTitle = () =>
-    props.thisTurn.newCases > props.lastTurn.newCases
-      ? "COVID-19 cases are rising!"
-      : "COVID-19 cases are falling";
+  const getTitle = () => {
+    if(props.thisTurn.newCases === props.lastTurn.newCases){
+      return "COVID-19 cases are still high!"
+    } else if(props.thisTurn.newCases > props.lastTurn.newCases){
+      return "COVID-19 cases are rising!"
+    } else { 
+      return "COVID-19 cases are falling"
+    }
+  }
   const delay = 2;
   return (
     <div
