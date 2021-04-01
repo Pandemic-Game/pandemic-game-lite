@@ -11,7 +11,7 @@ import * as Txt from './text';
 export function Rounded(props: any) {
   return (
     <button
-      className={`m-2 p-3 w-full rounded-full bg-${props.bg} ${Txt.textSize(Txt.subtitleSize)} text-${props.col} font-custom animate-${props.animate} ${props.class}`}
+      className={`m-2 p-3 w-full rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom animate-${props.animate} ${props.class}`}
       onClick={props.onClick}
       disabled={props.disabled}
     >
@@ -23,7 +23,7 @@ export function Rounded(props: any) {
 export const Bouncy = (props: any) => {
   return (
     <button
-      className={`m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize(Txt.subtitleSize)} text-${props.col} font-custom animate-bounce`}
+      className={`m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom animate-bounce`}
       onClick={props.onClick}
     >
       {props.value}
@@ -35,7 +35,8 @@ export const Bouncy = (props: any) => {
 export const Sneaky = (props: {onClick: Function, bg: string, type: 'wannaSeeData' | 'wannaSeeModel'}) => {
   return (
     <Img
-      className={`h-auto w-60 sm:w-64 md:w-72 lg:w-80 xl:w-96 rounded-3xl bg-${props.bg}`}
+      className={`h-auto p-2 w-60 sm:w-64 md:w-72 lg:w-80 xl:w-96 rounded-3xl bg-${props.bg}`}
+      style={{cursor: 'pointer'}}
       src={props.type==='wannaSeeData' ? SVGWannaSeeData : SVGWannaSeeModel}
       alt="Detective sneaky question button - 'Psst wanna see some data / our data model?'"
       onClick={props.onClick}

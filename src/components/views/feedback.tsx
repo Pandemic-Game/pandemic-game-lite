@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import * as Btn from '../buttons';
 import * as Txt from '../text';
 import * as Gfx from '../infographics';
-import * as Lines from '../lines';
 import { Response } from '../../model/Response';
 import { Indicators } from '../../model/Indicators';
 import { useThemeContext } from '../../ThemeProvider';
@@ -60,7 +59,7 @@ export function FeedbackScreen2(props:
         />
         <div className='flex flex-col justify-center align-center' style={{ marginTop: "auto" }}>
             <Btn.Rounded
-                value={'Start next month'}
+                value={'End event'}
                 col='gray-900'
                 bg='yellow-500'
                 onClick={() => { props.onClickContinue() }}

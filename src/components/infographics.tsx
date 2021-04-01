@@ -20,24 +20,24 @@ const Bar = (props: {support: number; opposition: number}) => {
   const barWidth = {
     support: Math.max(
       props.support,
-      20
+      25
     ),
     opposition: Math.max(
       props.opposition,
-      20
+      25
     ),
   };
   return(
     <div className="w-full p-2 flex flex-row justify-center items-center">
       <div
-        className="h-full flex flex-row justify-center items-center text-center rounded-l-xl bg-green-500 z-20 overflow-visible"
+        className="h-full flex flex-row justify-center items-center text-center rounded-l-xl text-green-900 bg-green-400 z-20 overflow-visible"
         style={{ width: `${barWidth.support}%` }}
       >
         <FontAwesomeIcon icon={faThumbsUp} size="lg" />
         <i className="fas fa-thumbs-up"></i>
         <Txt.Subtitle
           value={`${props.support}%`}
-          col="black"
+          col="green-900"
         />
       </div>
       <div
@@ -47,13 +47,13 @@ const Bar = (props: {support: number; opposition: number}) => {
         <Txt.Subtitle value={`.`} col="white" />
       </div>
       <div
-        className="h-full flex flex-row justify-center items-center text-center rounded-r-xl bg-red-500 z-20 overflow-visible"
+        className="h-full flex flex-row justify-center items-center text-center rounded-r-xl text-red-900 bg-red-400 z-20 overflow-visible"
         style={{ width: `${barWidth.opposition}%` }}
       >
         <FontAwesomeIcon icon={faThumbsDown} size="lg" />
         <Txt.Subtitle
           value={`${props.opposition}%`}
-          col="black"
+          col="red-900"
         />
       </div>
     </div>
@@ -80,7 +80,7 @@ export function SupportBar(props: {
         support={props.response.updatedIndicators.supportForLastResponse} 
         opposition={props.response.updatedIndicators.oppositionToLastResponse} 
       />
-      <div className="flex flex-row items-center text-center">
+      <div className="flex flex-row items-center text-center justify-center">
         <Txt.Text value={responseText} col={"white"} />
         <Btn.ViewSource
           sourceDetails={props.response.sourceDetails}
@@ -224,11 +224,11 @@ export function CaseGraphic(props: {
           delay={delay}
         />
         <Txt.SmallText value={`Last month: ${props.lastTurn.newCases} cases`} col='white' />
-        <strong className="animate__animated animate__fadeIn"
+        <div className="animate__animated animate__fadeIn"
           style={{ animationDelay: `${delay}s` }}
         >
           <Txt.SmallText value={`This month: ${props.thisTurn.newCases} cases`} col='white'/>
-        </strong>
+        </div>
       </div>
     </div>
   );
