@@ -10,18 +10,10 @@ import { UK } from "./model/Scenario";
 import * as Story from "./assets/events";
 import * as LeaderStyle from "./components/leaderStyles";
 import { Tweet, News, Meme } from "./components/socialFeedback";
-import { Splash, Introduction } from "./components/views/start";
-import { SourceScreen } from "./components/views/source";
-import {
-  EventScreen,
-  EventExtra,
-  EventResponse,
-} from "./components/views/event";
-import {
-  FeedbackScreen1,
-  FeedbackScreen2,
-  FeedbackExtra,
-} from "./components/views/feedback";
+import { Splash, Introduction, Data } from "./components/views/start";
+import { SourceScreen, ExplanationScreen } from "./components/views/source";
+import { EventScreen, EventExtra, EventResponse } from "./components/views/event";
+import { FeedbackScreen1, FeedbackScreen2 } from "./components/views/feedback";
 import { Ending, AllEndings, EndLeaderStyle } from "./components/views/end";
 import FontFaceObserver from "fontfaceobserver";
 import { ToastContainer } from "react-toastify";
@@ -29,8 +21,10 @@ import { ImageCacheInstance } from "./ImageCache";
 /** image assets */
 import EndCoronaVirusLogo from "./assets/PNG/ecvlogo.png";
 import GameLogo from "./assets/SVG/gamelogo.svg";
-import ButtonSneaky from "./assets/PNG/Psst2.png";
-import ButtonSneakySVG_alt from "./assets/PNG/psst_data.png";
+import endClosed from "./assets/SVG/ending_restrictions.svg";
+import endOpened from "./assets/SVG/ending_opened.svg";
+import SVGWannaSeeData from "./assets/SVG/sneaky-wannaSeeData.svg";
+import SVGWannaSeeModel from "./assets/SVG/sneaky-wannaSeeModel.svg";
 import lockdownCoin from "./assets/SVG/coin-lockdown.svg";
 import medicalCoin from "./assets/SVG/coin-medical.svg";
 import iconFlipflop from "./assets/SVG/icon-flipflop.svg";
@@ -88,6 +82,10 @@ const GameLoop: React.FC = () => {
     setSourceToView(src);
     show("sources");
   };
+  const showExplanation = (src: SourceDetails) => {
+    setSourceToView(src);
+    show("explanation");
+  };
 
   const endings: Record<
     string,
@@ -137,11 +135,12 @@ const GameLoop: React.FC = () => {
 
     // Show new event or if at end show ending
     if (playerChoice.ending) {
-      setEnding(playerChoice.ending);
       setDelayUntilOpening(playerChoice.updatedIndicators.newCases * 5);
-      setTimeout(function () {
+      setEnding(playerChoice.ending);
+      setTimeout( function(){
         setCanOpenAllRestrictions(true);
-      }, (playerChoice.updatedIndicators.newCases + 1) * 1000);
+        }, playerChoice.updatedIndicators.newCases * 5000
+      );
     } else {
       setEvent(playerChoice.getNextEvent());
     }
@@ -205,10 +204,24 @@ const GameLoop: React.FC = () => {
     case "introduction":
       return (
         <Introduction
-          onClickContinue={() => {
-            show("event");
+          onClick = {{
+            continue: () => {
+              show("event");
+            },
+            source: showSource,
+            data: () => {
+              show("data");
+            }
           }}
-          onClickSource={showSource}
+        />
+      );
+    case "data":
+      return (
+        <Data
+          onClick = {{
+            back: () => show("introduction"),
+            source: showSource
+          }}
         />
       );
 
@@ -230,6 +243,15 @@ const GameLoop: React.FC = () => {
     case "sources":
       return (
         <SourceScreen
+          sourceDetails={sourceToView}
+          onClick={() => {
+            show(previousView);
+          }}
+        />
+      );
+    case "explanation":
+      return (
+        <ExplanationScreen
           sourceDetails={sourceToView}
           onClick={() => {
             show(previousView);
@@ -262,15 +284,6 @@ const GameLoop: React.FC = () => {
               show("event");
             }
           }}
-          onClickExtra={() => show("feedbackExtra")}
-          onClickSource={showSource}
-        />
-      );
-    case "feedbackExtra":
-      return (
-        <FeedbackExtra
-          response={getLastResponse()}
-          onClickBack={() => show("feedback2")}
           onClickSource={showSource}
         />
       );
@@ -285,18 +298,19 @@ const GameLoop: React.FC = () => {
           canOpenAllRestrictions={canOpenAllRestrictions}
           onClick={{
             openButton: {
-              enabled: function () {
+              enabled: function(){
                 setOpenAllRestrictions(true);
+                toast.success(`Continuing to end screen in 5s...`)
+                setTimeout(function(){
+                  setView('leaderStyle');
+                }, 5000)
               },
-              disabled: function () {
-                toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`);
-              },
+              disabled: function(){toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`)}
             },
-            continue: function () {
-              show("leaderStyle");
-            },
-          }}
-        />
+            continue: function(){show("leaderStyle")},
+            why: showExplanation
+        }}
+      />
       );
     case "leaderStyle":
       return (
@@ -344,8 +358,10 @@ const preloadAssets = () => {
     new FontFaceObserver("Playfair Display").load(),
     ImageCacheInstance.read(EndCoronaVirusLogo),
     ImageCacheInstance.read(GameLogo),
-    ImageCacheInstance.read(ButtonSneaky),
-    ImageCacheInstance.read(ButtonSneakySVG_alt),
+    ImageCacheInstance.read(SVGWannaSeeData),
+    ImageCacheInstance.read(SVGWannaSeeModel),
+    ImageCacheInstance.read(endClosed),
+    ImageCacheInstance.read(endOpened),
     ImageCacheInstance.read(lockdownCoin),
     ImageCacheInstance.read(medicalCoin),
     ImageCacheInstance.read(iconFlipflop),

@@ -50,7 +50,7 @@ export const evt_0_0: Event = {
             type: `meme`,
             isHappy: true,
             head: `TFW I can actually see my friends`,
-            content: `https://giphy.com/gifs/hulu-cbs-star-trek-the-next-generation-3o7TKCskhXtrq3nsBy`
+            content: `https://media.giphy.com/media/3o7TKCskhXtrq3nsBy/giphy.gif`
         }, {
             type: `tweet`,
             isHappy: false,
@@ -170,7 +170,7 @@ export const evt_1_1: Event = {
         sourceDetails: {
             sourceName: `YouGov`,
             link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
-            description: `67% of UK respondents in early 2021 support closing schools and universities.`
+            description: `67% of UK respondents in early 2021 support closing schools and universities. However, this alone is not enough to completely stop cases.`
         }
     },
     response2: {
@@ -208,7 +208,7 @@ export const evt_1_1: Event = {
         sourceDetails: {
           sourceName: `YouGov`,
           link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
-          description: `67% of UK respondents in early 2021 support closing schools and universities.`
+          description: `67% of UK respondents in early 2021 support closing schools and universities. However, this alone is not enough to completely stop cases.`
         }
     }
 };

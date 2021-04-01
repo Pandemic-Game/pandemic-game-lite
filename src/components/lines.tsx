@@ -1,10 +1,10 @@
 
-export function OR(){
+export function OR(props: {col: string}){
     return (
         <div className='w-full flex flex-row justify-center items-center'>
-            <hr className='w-full border-black border-t-2'/> 
-                <h1 className={`my-1 mx-3 flex text-xl text-center font-custom`}> OR </h1>
-            <hr className='w-full border-black border-t-2'/>
+            <hr className={`w-full border-${props.col} border-t-2`}/> 
+                <h1 className={`my-1 mx-3 flex text-xl text-center text-${props.col} font-custom`}> OR </h1>
+            <hr className={`w-full border-${props.col} border-t-2`}/>
         </div>
     )
 }

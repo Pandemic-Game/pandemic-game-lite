@@ -9,8 +9,8 @@
     to { width: 100% }
 }
 @keyframes appear {
-    0% { opacity: 0 }
-    99% { opacity: 0 }
-    100% { opacity: 1 }
+    0% { border-color: 'none' }
+    99% { border-color: 'none' }
+    100% { border-color: 'black' }
 }
 

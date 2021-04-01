@@ -15,6 +15,51 @@ import {
 import { Img } from "../ImageCache";
 
 // Public support
+
+const Bar = (props: {support: number; opposition: number}) => {
+  const barWidth = {
+    support: Math.max(
+      props.support,
+      20
+    ),
+    opposition: Math.max(
+      props.opposition,
+      20
+    ),
+  };
+  return(
+    <div className="w-full p-2 flex flex-row justify-center items-center">
+      <div
+        className="h-full flex flex-row justify-center items-center text-center rounded-l-xl bg-green-500 z-20 overflow-visible"
+        style={{ width: `${barWidth.support}%` }}
+      >
+        <FontAwesomeIcon icon={faThumbsUp} size="lg" />
+        <i className="fas fa-thumbs-up"></i>
+        <Txt.Subtitle
+          value={`${props.support}%`}
+          col="black"
+        />
+      </div>
+      <div
+        className="h-full flex flex-row justify-center items-center text-center bg-gray-50 z-10 overflow-visible"
+        style={{ width: `${100 - barWidth.support - barWidth.opposition}%` }}
+      >
+        <Txt.Subtitle value={`.`} col="white" />
+      </div>
+      <div
+        className="h-full flex flex-row justify-center items-center text-center rounded-r-xl bg-red-500 z-20 overflow-visible"
+        style={{ width: `${barWidth.opposition}%` }}
+      >
+        <FontAwesomeIcon icon={faThumbsDown} size="lg" />
+        <Txt.Subtitle
+          value={`${props.opposition}%`}
+          col="black"
+        />
+      </div>
+    </div>
+  )
+}
+
 export function SupportBar(props: {
   indicators: Indicators;
   response: Response;
@@ -25,57 +70,22 @@ export function SupportBar(props: {
     props.response.updatedIndicators.supportForLastResponse > 50
       ? "People liked that!"
       : "Ooh... People found that controversial!";
-  const barWidth = {
-    support: Math.max(
-      props.response.updatedIndicators.supportForLastResponse,
-      20
-    ),
-    opposition: Math.max(
-      props.response.updatedIndicators.oppositionToLastResponse,
-      20
-    ),
-  };
   return (
     <div
       className="m-2 w-full animate__animated animate__backInDown"
       style={{ animationDelay: `${props.delay}s` }}
     >
       <Txt.Title value={"Public support"} col={"white"} />
-      <div className="flex flex-row justify-center items-center">
+      <Bar 
+        support={props.response.updatedIndicators.supportForLastResponse} 
+        opposition={props.response.updatedIndicators.oppositionToLastResponse} 
+      />
+      <div className="flex flex-row items-center text-center">
         <Txt.Text value={responseText} col={"white"} />
         <Btn.ViewSource
           sourceDetails={props.response.sourceDetails}
           onClick={props.onClickSource}
         />
-      </div>
-      <div className="w-full p-2 flex flex-row justify-center items-center">
-        <div
-          className="h-full flex flex-row justify-center items-center text-center rounded-l-xl bg-green-500 z-20 overflow-visible"
-          style={{ width: `${barWidth.support}%` }}
-        >
-          <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-          <i className="fas fa-thumbs-up"></i>
-          <Txt.Subtitle
-            value={`${props.indicators.supportForLastResponse}%`}
-            col="black"
-          />
-        </div>
-        <div
-          className="h-full flex flex-row justify-center items-center text-center bg-gray-50 z-10 overflow-visible"
-          style={{ width: `${100 - barWidth.support - barWidth.opposition}%` }}
-        >
-          <Txt.Subtitle value={`.`} col="white" />
-        </div>
-        <div
-          className="h-full flex flex-row justify-center items-center text-center rounded-r-xl bg-red-500 z-20 overflow-visible"
-          style={{ width: `${barWidth.opposition}%` }}
-        >
-          <FontAwesomeIcon icon={faThumbsDown} size="lg" />
-          <Txt.Subtitle
-            value={`${props.indicators.oppositionToLastResponse}%`}
-            col="black"
-          />
-        </div>
       </div>
     </div>
   );
@@ -190,10 +200,15 @@ export function CaseGraphic(props: {
   lastTurn: Indicators;
   delay: number;
 }) {
-  const getTitle = () =>
-    props.thisTurn.newCases > props.lastTurn.newCases
-      ? "COVID-19 cases are rising!"
-      : "COVID-19 cases are falling";
+  const getTitle = () => {
+    if(props.thisTurn.newCases === props.lastTurn.newCases){
+      return "Cases are high!"
+    } else if(props.thisTurn.newCases > props.lastTurn.newCases){
+      return "Cases are rising!"
+    } else { 
+      return "Cases are falling"
+    }
+  }
   const delay = 2;
   return (
     <div
@@ -201,25 +216,19 @@ export function CaseGraphic(props: {
       style={{ animationDelay: `${props.delay}s` }}
     >
       <Txt.Title value={getTitle()} col="white" />
-      <div className="m-2 p-2 flex flex-col justify-start items-start animate__delay-1s animate__animated animate__fadeIn">
-        <em className="w-80">Total cases this month per 1000 people</em>
-        <div className="w-auto flex flex-col justify-center items-start">
-          <CaseCircles
-            thisTurn={props.thisTurn}
-            lastTurn={props.lastTurn}
-            delay={delay}
-          />
-          <div className="w-full flex flex-row justify-start items-center"></div>
-        </div>
-        <div className="flex flex-col flex-wrap justify-start items-start">
-          <p> Last month: {props.lastTurn.newCases} cases </p>
-          <strong
-            className="animate__animated animate__fadeIn"
-            style={{ animationDelay: `${delay}s` }}
-          >
-            This month: {props.thisTurn.newCases} cases
-          </strong>
-        </div>
+      <div className="m-2 p-2 flex flex-col items-start animate__delay-1s animate__animated animate__fadeIn">
+        <Txt.SmallText value='Total cases this month per 1000 people' col='white' />
+        <CaseCircles
+          thisTurn={props.thisTurn}
+          lastTurn={props.lastTurn}
+          delay={delay}
+        />
+        <Txt.SmallText value={`Last month: ${props.lastTurn.newCases} cases`} col='white' />
+        <strong className="animate__animated animate__fadeIn"
+          style={{ animationDelay: `${delay}s` }}
+        >
+          <Txt.SmallText value={`This month: ${props.thisTurn.newCases} cases`} col='white'/>
+        </strong>
       </div>
     </div>
   );
@@ -230,10 +239,6 @@ export function EconomyGraphic(props: {
   indicators: Indicators;
   delay: number;
 }) {
-  const getTitle = () =>
-    props.indicators.medicalCosts > props.indicators.lockdownCosts
-      ? "Medical costs are high!"
-      : "Economy";
   const calculateArea = (value: number): number =>
     Math.sqrt((value * 100) / 3.14) * 2;
   return (
@@ -241,7 +246,7 @@ export function EconomyGraphic(props: {
       className="m-2 w-full m-2 flex flex-col justify-center items-center text-white animate__animated animate__backInDown"
       style={{ animationDelay: `${props.delay}s` }}
     >
-      <Txt.Title value={getTitle()} col="white" />
+      <Txt.Title value='Economy' col="white" />
       <div className="flex flex-row">
         <div className="flex flex-col items-center">
           <p className="p-2 text-lg font-medium">Medical costs </p>

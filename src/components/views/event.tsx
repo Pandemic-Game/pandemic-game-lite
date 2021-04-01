@@ -43,10 +43,8 @@ export function EventScreen(props:
 
 export function EventExtra(props: { event: Event, onClickSource: Function, onClickBack: Function }) {
     return <div className='min-h-full p-2 flex flex-col items-center bg-yellow-400'>
-        <div className='flex flex-col justify-between items-center'>
-            <Txt.Subtitle value={'Event:'} col='black' />
-            <Txt.Title value={props.event.title} col='gray-900' />
-        </div>
+        <Txt.Subtitle value={'Event:'} col='black' />
+        <Txt.Title value={props.event.title} col='gray-900' />
         <Txt.SpeechBubble
             extraDetail={props.event.extraDetails.public}
             person='Joe the Regular Joe'
@@ -102,16 +100,15 @@ export function EventResponse(props:
             </div>
             <Txt.Paragraph value={props.event.description} col='black' />
         </div>
-        <div className='w-4/5 flex mt-4 flex-col justify-between items-center '>
+        <div className='w-4/5 flex flex-col justify-between items-center' style={{ marginTop: "auto" }}>
             <Txt.Title value={'Choose your response'} col='black' />
-            <Lines.Hr my={0} col='black' />
             <Btn.Rounded
                 value={props.event.response1.label}
                 bg={'purple-900'}
                 col={'white'}
                 onClick={() => { props.onClick(props.event.response1) }}
             />
-            <Lines.OR />
+            <Lines.OR col='black' />
             <Btn.Rounded
                 value={props.event.response2.label}
                 bg={'purple-900'}
