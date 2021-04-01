@@ -356,6 +356,7 @@ const preloadAssets = () => {
   const assets = [
     new FontFaceObserver("Bebas Neue").load(),
     new FontFaceObserver("Playfair Display").load(),
+    new FontFaceObserver("Open Sans").load(),
     ImageCacheInstance.read(EndCoronaVirusLogo),
     ImageCacheInstance.read(GameLogo),
     ImageCacheInstance.read(SVGWannaSeeData),
@@ -368,6 +369,9 @@ const preloadAssets = () => {
     ImageCacheInstance.read(iconGenghis),
     ImageCacheInstance.read(iconGuru),
     ImageCacheInstance.read(iconTerminator),
+    ImageCacheInstance.read(
+      `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy.gif`
+    ),
     ImageCacheInstance.read(
       `https://giphy.com/gifs/hulu-cbs-star-trek-the-next-generation-3o7TKCskhXtrq3nsBy`
     ),
