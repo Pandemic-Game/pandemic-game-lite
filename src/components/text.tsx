@@ -3,17 +3,16 @@ import { ExtraDetail } from '../model/Event';
 import * as Btn from './buttons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export function BigTitle(props: { value: string }) {
-    return (
-        <h1 className='m-4 p-2 text-7xl text-center font-custom'>
-            {props.value}
-        </h1>
-    );
+export const textSize = (s: string) => {
+    const sizes = ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', '8xl', '9xl'];
+    const n = sizes.indexOf(s);
+    return `text-${sizes[n]} sm:text-${sizes[n+1]} md:text-${sizes[n+2]} lg:text-${sizes[n+3]} xl:text-${sizes[n+3]} 2xl:text-${sizes[n+3]}`
 }
+export const subtitleSize = 'xl';
 
 export function Title(props: { value: string, col: string | undefined }) {
     return (
-        <h1 className={`m-2 p-2 text-4xl text-center text-${props.col} font-custom border-b-2 border-${props.col}`}>
+        <h1 className={`m-2 p-2 ${textSize('3xl')} text-center text-${props.col} font-custom border-b-2 border-${props.col}`}>
             {props.value}
         </h1>
     );
@@ -21,15 +20,7 @@ export function Title(props: { value: string, col: string | undefined }) {
 
 export function Subtitle(props: { value: string, col: string }) {
     return (
-        <h1 className={`m-1 text-xl text-center text-${props.col} font-custom`}>
-            {props.value}
-        </h1>
-    );
-}
-
-export function SectionTitle(props: { value: string, col: string }) {
-    return (
-        <h1 className={`m-4 p-4 text-3xl text-center text-${props.col} font-custom border-b-2 border-${props.col}`}>
+        <h1 className={`m-1 ${textSize(subtitleSize)} text-center text-${props.col} font-custom`}>
             {props.value}
         </h1>
     );
@@ -37,34 +28,37 @@ export function SectionTitle(props: { value: string, col: string }) {
 
 export function Paragraph(props: { value: string, col: string }) { // Line break split into new p for new line
     return (
-        <div className={`max-w-lg flex flex-col text-lg text-left text-${props.col} font-sans font-medium`}
+        <div className={`max-w-lg flex flex-col`}
         >
-            {props.value.split(/(?:\r\n|\r|\n|\.)/g).map((str, idx) => <p key={idx} className='m-1'>{str}</p>)}
+            {props.value.split(/(?:\r\n|\r|\n|\.)/g).map((str, idx) => 
+                <p key={idx} className={`m-1 ${textSize('base')} text-left text-${props.col} font-sans font-medium`}>{str}</p>
+            )}
         </div>
     );
 }
 
 export function Text(props: { value: string, col: string }) { // Line break split into new p for new line
     return (
-        <p className={`max-w-lg text-lg text-${props.col} font-sans font-medium`}> {props.value} </p>
+        <p className={`max-w-lg ${textSize('base')} text-${props.col} font-sans font-medium`}> {props.value} </p>
     );
 }
-export function TextLite(props: { value: string, col: string }) { // Line break split into new p for new line
+
+export function SmallText(props: { value: string, col: string }) { // Line break split into new p for new line
     return (
-        <p className={`max-w-lg text-lg text-${props.col} font-sans font-light`}> {props.value} </p>
+        <p className={`${textSize('sm')} text-${props.col} font-sans font-light`}> {props.value} </p>
     );
 }
 
 export function SpeechBubble(props: { extraDetail: ExtraDetail, person: string, icon: any, onClick: Function, delay: number }) {
     return (
-        <div className={`w-4/5 m-2 flex flex-col text-lg text-left font-sans font-medium`}>
-            <p className={`m-2 p-2 bg-white rounded-xl animate__animated animate__fadeInRight animate__delay-${props.delay}s`}>
+        <div className={`w-4/5 m-2 flex flex-col ${textSize('base')} text-left font-sans font-medium`}>
+            <p className={`m-2 p-4 bg-white rounded-xl animate__animated animate__fadeInRight animate__delay-${props.delay}s`}>
                 {props.extraDetail.speech}
                 <Btn.ViewSource sourceDetails={props.extraDetail.sourceDetails} onClick={props.onClick} />
             </p>
-            <div className={`flex flex-row align-center  animate__animated animate__fadeInLeft animate__delay-${props.delay}s`}>
+            <div className={`flex flex-row align-center animate__animated animate__fadeInLeft animate__delay-${props.delay}s`}>
                 <FontAwesomeIcon icon={props.icon} size='2x' />
-                <p className='mx-2 text-black'> {props.person} </p>
+                <p className='mx-2'> {props.person} </p>
             </div>
         </div>
     );

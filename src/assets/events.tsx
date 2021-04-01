@@ -170,7 +170,7 @@ export const evt_1_1: Event = {
         sourceDetails: {
             sourceName: `YouGov`,
             link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
-            description: `67% of UK respondents in early 2021 support closing schools and universities.`
+            description: `67% of UK respondents in early 2021 support closing schools and universities. However, this alone is not enough to completely stop cases.`
         }
     },
     response2: {
@@ -208,7 +208,7 @@ export const evt_1_1: Event = {
         sourceDetails: {
           sourceName: `YouGov`,
           link: `https://docs.cdn.yougov.com/42ib2mxynp/Globalism%20-%20lockdown%20measures.pdf`,
-          description: `67% of UK respondents in early 2021 support closing schools and universities.`
+          description: `67% of UK respondents in early 2021 support closing schools and universities. However, this alone is not enough to completely stop cases.`
         }
     }
 };

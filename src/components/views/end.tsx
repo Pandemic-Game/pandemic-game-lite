@@ -3,9 +3,9 @@ import { useThemeContext } from "../../ThemeProvider";
 import * as Btn from "../buttons";
 import { EndResultCopyToClipboard } from "../GameResultCopyToClipboard";
 import * as Txt from "../text";
-import { Img } from "../../ImageCache";
-import EndImgOpened from "../../assets/PNG/ending_open.png"
-import EndImgClosed from "../../assets/PNG/ending_restrictions.png"
+import { Img } from "../../ImageCache";    
+import EndImgClosed from "../../assets/SVG/ending_restrictions.svg";
+import EndImgOpened from "../../assets/SVG/ending_opened.svg";
 import * as LeaderStyle from "../leaderStyles";
 
 export function Ending(props: {
@@ -31,7 +31,7 @@ export function Ending(props: {
 
   return (
     <div
-      className={`h-full p-2 flex flex-col justify-between items-center bg-yellow-500`}
+      className={`h-full p-2 flex flex-col justify-between items-center`}
     >
       <Txt.Subtitle value={'You reached the end'} col='black' />
       <Txt.Title value={props.leaderStyle.winTitle} col='black' />
@@ -92,7 +92,7 @@ export function EndLeaderStyle(props: {
             Twitter
           </a>
           <EndResultCopyToClipboard
-            bg="yellow-500"
+            bg="yellow-600"
             col="black"
             btnLabel="Other (copy link)"
             textToCopy="Can you end lockdown? Play OutBreak the game: https://outbtreak.endcoronavirus.org"
@@ -105,7 +105,7 @@ export function EndLeaderStyle(props: {
         <p className='text-xl text-center font-semibold'>and once you're done...</p>
         <Btn.Rounded
           value={"View all endings!"}
-          bg="yellow-500"
+          bg="gray-200"
           col='black'
           onClick={() => {
             props.onClick();
