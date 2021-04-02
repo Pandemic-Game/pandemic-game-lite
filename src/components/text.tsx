@@ -7,7 +7,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export const textSize = (s: string) => {
     const sizes = ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', '8xl', '9xl'];
     const n = sizes.indexOf(s);
-    return `text-${sizes[n]} sm:text-${sizes[n+1]} md:text-${sizes[n+2]} lg:text-${sizes[n+2]} xl:text-${sizes[n+2]} 2xl:text-${sizes[n+3]}`
+    const string = 
+        'text-' + 
+        `${sizes[n]} ` + 
+        'sm:text-' + 
+        `${sizes[n+1]} ` + 
+        'md:text-' + 
+        `${sizes[n+2]} ` + 
+        'lg:text-' + 
+        `${sizes[n+2]} ` + 
+        'xl:text-' + 
+        `${sizes[n+2]} ` + 
+        '2xl:text-' + 
+        `${sizes[n+3]}`
+    return string;
 }
 export const subtitleSize = 'xl';
 export const mainFont = `'Open Sans', sans-serif`;
