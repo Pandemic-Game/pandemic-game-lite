@@ -13,7 +13,7 @@ export function Rounded(props: any) {
   return (
     <button
       className={`w-full m-2 p-4 rounded-full bg-${props.bg} ${Txt.textSize(
-        "2xl"
+        "xl"
       )} text-${props.col} font-custom`}
       style={{ marginTop: "auto" }}
       onClick={props.onClick}
@@ -27,7 +27,7 @@ export const Bouncy = (props: any) => {
   return (
     <button
       className={`w-full m-2 p-4 rounded-full bg-${props.bg} ${Txt.textSize(
-        "2xl"
+        "xl"
       )} text-${props.col} font-custom animate-bounce`}
       style={{ marginTop: "auto" }}
       onClick={props.onClick}
