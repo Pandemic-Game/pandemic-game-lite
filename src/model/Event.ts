@@ -22,3 +22,10 @@ export interface Event {
     response1: Response;
     response2: Response;
 }
+
+export interface Ending {
+    ele: JSX.Element; 
+    bg: string; 
+    winTitle: string; 
+    winDescription: string
+}

@@ -7,7 +7,7 @@ import { Indicators } from '../../model/Indicators';
 import { useThemeContext } from '../../ThemeProvider';
 
 export function FeedbackScreen1(props: { response: Response, feedback: JSX.Element, onClick: Function }) {
-    const bgColorClass = "bg-purple-900"
+    const bgColorClass = "bg-gray-900"
     const context = useThemeContext()
 
     useEffect(() => {
@@ -15,12 +15,8 @@ export function FeedbackScreen1(props: { response: Response, feedback: JSX.Eleme
     })
 
     return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
-        <div className='flex flex-col justify-between items-center'>
-            <Txt.Title value={'The immediate reaction...'} col={'white'} />
-        </div>    
-        <div className="m-2">
-            {props.feedback}
-        </div>
+        <Txt.Title value={'The immediate reaction...'} col={'white'} />
+        {props.feedback}
         <div style={{ marginTop: "auto" }}>
             <Btn.Sneaky onClick={() => { props.onClick() }} bg='yellow-500' type='wannaSeeData' col='black' />
         </div>
@@ -34,7 +30,7 @@ export function FeedbackScreen2(props:
         onClickContinue: Function,
         onClickSource: Function
     }) {
-    const bgColorClass = "bg-purple-900"
+    const bgColorClass = "bg-gray-900"
     const context = useThemeContext()
 
     useEffect(() => {
@@ -57,14 +53,12 @@ export function FeedbackScreen2(props:
             onClickSource={props.onClickSource} 
             delay={6}
         />
-        <div className='flex flex-col justify-center align-center' style={{ marginTop: "auto" }}>
-            <Btn.Rounded
-                value={'End event'}
-                col='gray-900'
-                bg='yellow-500'
-                onClick={() => { props.onClickContinue() }}
-            />
-        </div>
+        <Btn.Rounded
+            value={'End event'}
+            col='gray-900'
+            bg='yellow-500'
+            onClick={() => { props.onClickContinue() }}
+        />
     </div>
 }
 
