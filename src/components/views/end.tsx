@@ -3,57 +3,73 @@ import { useThemeContext } from "../../ThemeProvider";
 import * as Btn from "../buttons";
 import { EndResultCopyToClipboard } from "../GameResultCopyToClipboard";
 import * as Txt from "../text";
-import { Img } from "../../ImageCache";    
+import { Img } from "../../ImageCache";
 import EndImgClosed from "../../assets/SVG/ending_restrictions.svg";
 import EndImgOpened from "../../assets/SVG/ending_opened.svg";
 import * as LeaderStyle from "../leaderStyles";
 
 export function Ending(props: {
-  leaderStyle: { ele: JSX.Element; bg: string, winTitle: string, winDescription:string };
+  leaderStyle: {
+    ele: JSX.Element;
+    bg: string;
+    winTitle: string;
+    winDescription: string;
+  };
   delay: number;
   opened: boolean;
-  canOpenAllRestrictions: boolean
+  canOpenAllRestrictions: boolean;
   onClick: {
     openButton: {
-      enabled: Function,
-      disabled: Function
-    },
-    continue: Function,
-    why: Function
-  }
+      enabled: Function;
+      disabled: Function;
+    };
+    continue: Function;
+    why: Function;
+  };
 }) {
   const context = useThemeContext();
   useEffect(() => {
     context.changeBgColorClass(props.leaderStyle.bg);
   });
 
-  const onClickOpenButton = props.canOpenAllRestrictions ? props.onClick.openButton.enabled : props.onClick.openButton.disabled;
+  const onClickOpenButton = props.canOpenAllRestrictions
+    ? props.onClick.openButton.enabled
+    : props.onClick.openButton.disabled;
 
   return (
-    <div
-      className={`h-full p-2 flex flex-col justify-between items-center`}
-    >
-      <Txt.Subtitle value={'You reached the end'} col='black' />
-      <Txt.Title value={props.leaderStyle.winTitle} col='black' />
+    <div className={`h-full p-2 flex flex-col justify-between items-center`}>
+      <Txt.Subtitle value={"You reached the end"} col="black" />
+      <Txt.Title value={props.leaderStyle.winTitle} col="black" />
 
-      <div className='max-w-sm p-4 flex flex-col justify-center items-center'>
-        <Txt.Text value={props.leaderStyle.winDescription} col='black' />
+      <div className="max-w-sm p-4 flex flex-col justify-center items-center">
+        <Txt.Text value={props.leaderStyle.winDescription} col="black" />
       </div>
-    
-      <Img 
-        className={`${props.opened ? 'animate__animated animate__tada' : ''}`}
-        src={props.opened ? EndImgOpened : EndImgClosed} 
-        alt={'Covid-19 restrictions'} 
+
+      <Img
+        className={`${props.opened ? "animate__animated animate__tada" : ""}`}
+        src={props.opened ? EndImgOpened : EndImgClosed}
+        alt={"Covid-19 restrictions"}
       />
-      <div className='flex flex-row justify-center align-center' style={{ marginTop: "auto" }}>
-        <Txt.Subtitle value={`You can return to normality in... ${props.delay} seconds!`} col='black' />
+      <div
+        className="flex flex-row justify-center align-center"
+        style={{ marginTop: "auto" }}
+      >
+        <Txt.Subtitle
+          value={`You can return to normality in... ${props.delay} seconds!`}
+          col="black"
+        />
       </div>
       <Btn.SafeOpening
         delay={props.delay}
-        onClick={()=>{onClickOpenButton()}}
+        onClick={() => {
+          onClickOpenButton();
+        }}
         opened={props.opened}
       />
-      <div className='animate__animated animate__bounceInRight animate__delay-3s' style={{display: props.delay>5  ? 'flex' : 'none'}}>
+      <div
+        className="animate__animated animate__bounceInRight animate__delay-3s"
+        style={{ display: props.delay > 5 ? "flex" : "none" }}
+      >
         <Btn.Rounded
           col={"white"}
           bg={"black"}
@@ -68,7 +84,12 @@ export function Ending(props: {
 }
 
 export function EndLeaderStyle(props: {
-  leaderStyle: { ele: JSX.Element; bg: string, winTitle: string, winDescription:string };
+  leaderStyle: {
+    ele: JSX.Element;
+    bg: string;
+    winTitle: string;
+    winDescription: string;
+  };
   onClick: Function;
 }) {
   const context = useThemeContext();
@@ -81,16 +102,15 @@ export function EndLeaderStyle(props: {
     <div
       className={`min-h-full p-2 flex flex-col justify-between items-center bg-${props.leaderStyle.bg}`}
     >
-      <Txt.Title value='Your ending...' col='black' />
-      <div className='animate__animated animate__bounceIn animate__delay-1s'>
+      <Txt.Title value="Your ending..." col="black" />
+      <div className="animate__animated animate__bounceIn animate__delay-1s">
         {props.leaderStyle.ele}
       </div>
-      <div className='flex flex-col justify-center align-center animate__animated animate__bounceIn animate__delay-2s'>
-        <Txt.Title value='Share' col='black' />
-        <div className='flex flex-row justify-center align-center'>
-          <a href='./' className='p-2 flex flex-col text-center justify-center align-center rounded-full bg-blue-500'>
-            Twitter
-          </a>
+      <div className="flex flex-col justify-center align-center animate__animated animate__bounceIn animate__delay-2s">
+        <Txt.Title value="Share" col="black" />
+        <div className="flex flex-row justify-center align-center">
+          <Btn.TwitterShare shareText="Can you end lockdown? Play OutBreak the game: https://outbtreak.endcoronavirus.org" />
+
           <EndResultCopyToClipboard
             bg="yellow-600"
             col="black"
@@ -101,12 +121,14 @@ export function EndLeaderStyle(props: {
         </div>
       </div>
 
-      <div className='mt-4 flex flex-col justify-center align-center'>
-        <p className='text-xl text-center font-semibold'>and once you're done...</p>
+      <div className="mt-4 flex flex-col justify-center align-center">
+        <p className="text-xl text-center font-semibold">
+          and once you're done...
+        </p>
         <Btn.Rounded
           value={"View all endings!"}
           bg="gray-200"
-          col='black'
+          col="black"
           onClick={() => {
             props.onClick();
           }}

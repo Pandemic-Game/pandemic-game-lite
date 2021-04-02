@@ -5,14 +5,16 @@ import SVGWannaSeeData from "../assets/SVG/sneaky-wannaSeeData.svg";
 import SVGWannaSeeModel from "../assets/SVG/sneaky-wannaSeeModel.svg";
 import { SourceDetails } from "../model/Event";
 import { Img } from "../ImageCache";
-import * as Txt from './text';
+import * as Txt from "./text";
 
 // Primary button
 export function Rounded(props: any) {
   return (
     <button
-      className={`w-full m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom`}
-      style={{marginTop: 'auto'}}
+      className={`w-full m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize(
+        "2xl"
+      )} text-${props.col} font-custom`}
+      style={{ marginTop: "auto" }}
       onClick={props.onClick}
     >
       {props.value}
@@ -23,8 +25,10 @@ export function Rounded(props: any) {
 export const Bouncy = (props: any) => {
   return (
     <button
-      className={`w-full m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom animate-bounce`}
-      style={{marginTop: 'auto'}}
+      className={`w-full m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize(
+        "2xl"
+      )} text-${props.col} font-custom animate-bounce`}
+      style={{ marginTop: "auto" }}
       onClick={props.onClick}
     >
       {props.value}
@@ -33,23 +37,40 @@ export const Bouncy = (props: any) => {
 };
 
 // Extra info
-export const Sneaky = (props: {onClick: Function, bg: string, col: string, type: 'wannaSeeData' | 'wannaSeeModel'}) => {
+export const Sneaky = (props: {
+  onClick: Function;
+  bg: string;
+  col: string;
+  type: "wannaSeeData" | "wannaSeeModel";
+}) => {
   return (
     <button
-      className={`w-full m-2 p-3 rounded-full bg-${props.bg} text-${props.col} ${Txt.textSize('2xl')} font-custom`}
-      style={{marginTop: 'auto'}}
-      onClick={()=>{props.onClick()}}
+      className={`w-full m-2 p-3 rounded-full bg-${props.bg} text-${
+        props.col
+      } ${Txt.textSize("2xl")} font-custom`}
+      style={{ marginTop: "auto" }}
+      onClick={() => {
+        props.onClick();
+      }}
     >
-      <div className='flex flex-row justify-center'>
+      <div className="flex flex-row justify-center">
         <Img
           className={`h-auto w-xs p-2`}
-          src={props.type==='wannaSeeData' ? SVGWannaSeeData : SVGWannaSeeModel}
+          src={
+            props.type === "wannaSeeData" ? SVGWannaSeeData : SVGWannaSeeModel
+          }
           alt="Detective sneaky question button - 'Psst wanna see some data / our data model?'"
         />
         <div>
-          <p className={`${Txt.textSize('lg')}`}> No, not that kind of model.  </p>
+          <p className={`${Txt.textSize("lg")}`}>
+            {" "}
+            No, not that kind of model.{" "}
+          </p>
           <br></br>
-          <p className={`${Txt.textSize('base')}`}> Click here to learn more. </p>
+          <p className={`${Txt.textSize("base")}`}>
+            {" "}
+            Click here to learn more.{" "}
+          </p>
         </div>
       </div>
     </button>
@@ -65,7 +86,9 @@ export const ViewSource = (props: {
   } else {
     return (
       <button
-        className={`m-2 px-1 bg-red-500 rounded-xl text-white ${Txt.textSize('base')}`}
+        className={`m-2 px-1 bg-red-500 rounded-xl text-white ${Txt.textSize(
+          "base"
+        )}`}
         onClick={() => {
           props.onClick(props.sourceDetails);
         }}
@@ -87,28 +110,27 @@ export function SafeOpening(props: {
   opened: boolean;
 }) {
   return (
-    <button 
-      className='w-full'
+    <button
+      className="w-full"
       onClick={() => {
         props.onClick();
       }}
     >
-      <div 
-        className="relative pt-1"
-      >
-        <div 
+      <div className="relative pt-1">
+        <div
           className={`overflow-hidden w-full mb-4 rounded-full bg-purple-500
-            ${props.opened ? 'animate__animated animate__tada' : ''}`
-          }
+            ${props.opened ? "animate__animated animate__tada" : ""}`}
           style={{
-            animation: `appear ${props.delay}s linear forwards`
+            animation: `appear ${props.delay}s linear forwards`,
           }}
         >
-          <div 
+          <div
             style={{
               animation: `grow ${props.delay}s linear forwards`,
             }}
-            className={`shadow-none p-2 flex flex-col text-center whitespace-nowrap justify-center font-custom text-white ${Txt.textSize(Txt.subtitleSize)} bg-purple-900`}
+            className={`shadow-none p-2 flex flex-col text-center whitespace-nowrap justify-center font-custom text-white ${Txt.textSize(
+              Txt.subtitleSize
+            )} bg-purple-900`}
           >
             Return to normality
           </div>
@@ -117,3 +139,33 @@ export function SafeOpening(props: {
     </button>
   );
 }
+
+// twitter share
+interface TwitterShareProps {
+  shareText: string;
+}
+
+export const TwitterShare: React.FC<TwitterShareProps> = (
+  props: TwitterShareProps
+) => {
+  const urlEncodedText = encodeURI(props.shareText);
+  const openShareLink = () => {
+    window
+      ?.open(
+        `https://twitter.com/intent/tweet?text=${urlEncodedText}`,
+        "_blank"
+      )
+      ?.focus();
+  };
+
+  return (
+    <button
+      className="p-2 flex flex-col text-center justify-center align-center rounded-full bg-blue-500 text-white"
+      onClick={() => {
+        openShareLink();
+      }}
+    >
+      Twitter
+    </button>
+  );
+};
