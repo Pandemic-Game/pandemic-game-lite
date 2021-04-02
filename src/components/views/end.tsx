@@ -141,16 +141,14 @@ export function AllEndings(props: { onClick: Function; onReplay: Function }) {
       <LeaderStyle.CovidTerminator onClickSource={props.onClick} />
       <LeaderStyle.BusinessGuru onClickSource={props.onClick} />
 
-      <div style={{ marginTop: "auto" }}>
-        <Btn.Bouncy
-          value={"Play again"}
-          bg={"purple-900"}
-          col={"white"}
-          onClick={() => {
-            props.onReplay();
-          }}
-        />
-      </div>
+      <Btn.Bouncy
+        value={"Play again"}
+        bg={"purple-900"}
+        col={"white"}
+        onClick={() => {
+          props.onReplay();
+        }}
+      />
     </div>
   );
 }

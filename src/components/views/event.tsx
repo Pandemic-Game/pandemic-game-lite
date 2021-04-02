@@ -34,7 +34,7 @@ export function EventScreen(props:
             <Btn.Bouncy
                 value='Consult advisors'
                 bg={'yellow-600'}
-                col={'black'}
+                col={'white'}
                 onClick={() => { props.onClick() }}
             />
         </div>
@@ -68,8 +68,8 @@ export function EventExtra(props: { event: Event, onClickSource: Function, onCli
         />
         <div style={{ marginTop: "auto" }}>
             <Btn.Rounded
-                value={'Respond'}
-                bg={'purple-900'}
+                value={'Make your response'}
+                bg={'yellow-600'}
                 col={'white'}
                 onClick={() => { props.onClickBack() }}
             />

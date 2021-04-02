@@ -11,9 +11,9 @@ import * as Txt from './text';
 export function Rounded(props: any) {
   return (
     <button
-      className={`m-2 p-3 w-full rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom animate-${props.animate} ${props.class}`}
+      className={`w-full m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom`}
+      style={{marginTop: 'auto'}}
       onClick={props.onClick}
-      disabled={props.disabled}
     >
       {props.value}
     </button>
@@ -23,7 +23,8 @@ export function Rounded(props: any) {
 export const Bouncy = (props: any) => {
   return (
     <button
-      className={`m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom animate-bounce`}
+      className={`w-full m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom animate-bounce`}
+      style={{marginTop: 'auto'}}
       onClick={props.onClick}
     >
       {props.value}
@@ -32,15 +33,26 @@ export const Bouncy = (props: any) => {
 };
 
 // Extra info
-export const Sneaky = (props: {onClick: Function, bg: string, type: 'wannaSeeData' | 'wannaSeeModel'}) => {
+export const Sneaky = (props: {onClick: Function, bg: string, col: string, type: 'wannaSeeData' | 'wannaSeeModel'}) => {
   return (
-    <Img
-      className={`h-auto p-2 w-60 sm:w-64 md:w-72 lg:w-80 xl:w-96 rounded-3xl bg-${props.bg}`}
-      style={{cursor: 'pointer'}}
-      src={props.type==='wannaSeeData' ? SVGWannaSeeData : SVGWannaSeeModel}
-      alt="Detective sneaky question button - 'Psst wanna see some data / our data model?'"
-      onClick={props.onClick}
-    />
+    <button
+      className={`w-full m-2 p-3 rounded-full bg-${props.bg} text-${props.col} ${Txt.textSize('2xl')} font-custom`}
+      style={{marginTop: 'auto'}}
+      onClick={()=>{props.onClick()}}
+    >
+      <div className='flex flex-row justify-center'>
+        <Img
+          className={`h-auto w-xs p-2`}
+          src={props.type==='wannaSeeData' ? SVGWannaSeeData : SVGWannaSeeModel}
+          alt="Detective sneaky question button - 'Psst wanna see some data / our data model?'"
+        />
+        <div>
+          <p className={`${Txt.textSize('lg')}`}> No, not that kind of model.  </p>
+          <br></br>
+          <p className={`${Txt.textSize('base')}`}> Click here to learn more. </p>
+        </div>
+      </div>
+    </button>
   );
 };
 

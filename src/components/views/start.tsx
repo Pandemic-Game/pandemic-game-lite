@@ -46,18 +46,16 @@ export function Splash(props: { onClick: Function }) {
           value={"A five minute game to return to normality."}
           col="black"
         />
-      <br></br>
-      <Txt.Text value='How would you end COVID-19 restrictions?' col='black' />
-      <Txt.Text value='Lead your country, navigate the first few months of 2021 and find out.' col='black' />
+        <br></br>
+        <Txt.Text value='How would you end COVID-19 restrictions?' col='black' />
+        <Txt.Text value='Lead your country, navigate the first few months of 2021 and find out.' col='black' />
       </div>
-      <div style={{ marginTop: "auto" }}>
-        <Btn.Bouncy
-          value="Play the game"
-          bg="purple-900"
-          col="white"
-          onClick={props.onClick}
-        />
-      </div>
+      <Btn.Bouncy
+        value="Play the game"
+        bg="purple-900"
+        col="white"
+        onClick={props.onClick}
+      />
     </div>
   );
 }
@@ -69,8 +67,14 @@ export function Introduction(props: {
     data: Function
   }
 }) {
+  const bgColorClass = "bg-yellow-400";
+  const context = useThemeContext();
+  useEffect(() => {
+    context.changeBgColorClass(bgColorClass);
+  });
+
   return (
-    <div className="min-h-full p-2 flex flex-col justify-center items-center bg-yellow-400">
+    <div className={`min-h-full p-2 flex flex-col justify-center items-center ${bgColorClass}`}>
       <div className="flex flex-col justify-between items-center">
         <Txt.Subtitle value={"El presidente!"} col="black" />
         <Txt.Title value="How to play" col="gray-900" />
@@ -90,17 +94,15 @@ export function Introduction(props: {
         </p>
       </div>
       <div className="max-w-xs m-auto mb-4 flex flex-col justify-center items-center">
-        <Txt.Subtitle value={`Made with real data`} col="black" />
-        <Btn.Sneaky onClick={props.onClick.data} type='wannaSeeModel' bg='yellow-600' />
+        <Txt.Subtitle value={`Made with real models`} col="black" />
+        <Btn.Sneaky onClick={props.onClick.data} type='wannaSeeModel' bg='yellow-600' col='black' />
       </div>
-      <div style={{ marginTop: "auto" }}>
-        <Btn.Bouncy
-          value="Start"
-          bg="purple-900"
-          col="white"
-          onClick={props.onClick.continue}
-        />
-      </div>
+      <Btn.Rounded
+        value="Start"
+        bg="purple-900"
+        col="white"
+        onClick={props.onClick.continue}
+      />
     </div>
   );
 }

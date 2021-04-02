@@ -22,7 +22,7 @@ export function FeedbackScreen1(props: { response: Response, feedback: JSX.Eleme
             {props.feedback}
         </div>
         <div style={{ marginTop: "auto" }}>
-            <Btn.Sneaky onClick={() => { props.onClick() }} bg='yellow-500' type='wannaSeeData' />
+            <Btn.Sneaky onClick={() => { props.onClick() }} bg='yellow-500' type='wannaSeeData' col='black' />
         </div>
     </div>
 }
