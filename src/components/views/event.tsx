@@ -30,14 +30,12 @@ export function EventScreen(props:
             </div>
             <Txt.Paragraph value={props.event.description} col='black' />
         </div>
-        <div style={{marginTop: 'auto'}}>
-            <Btn.Rounded
-                value='Consult advisors'
-                bg={'yellow-500'}
-                col={'gray-900'}
-                onClick={() => { props.onClick() }}
-            />
-        </div>
+        <Btn.Rounded
+            value='Consult advisors'
+            bg={'yellow-500'}
+            col={'gray-900'}
+            onClick={() => { props.onClick() }}
+        />
     </div>
 }
 

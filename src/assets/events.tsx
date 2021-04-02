@@ -606,7 +606,7 @@ export const evt_2_3: Event = {
             type: `article`,
             isHappy: false,
             head: `The Blues News`,
-            content: `COVID cases increase sharply, flooding hospitals `
+            content: `COVID cases low compared to other countries`
         }, {
             type: `tweet`,
             isHappy: true,

@@ -8,7 +8,7 @@ import * as Txt from "./text";
 export function Tweet(props: { fb: ResponseItem; animation: string }) {
   return (
     <div
-      className={`w-auto p-3 m-2 flex flex-col items-start relative bg-white rounded-xl ${props.animation}`}
+      className={`max-w-2xl p-3 m-2 flex flex-col items-start relative bg-white rounded-xl ${props.animation}`}
     >
       <div className={`flex flex-row text-left ${Txt.textSize('lg')} `}>
         <FontAwesomeIcon icon={faTwitter} color="dodgerblue" size="lg" />
@@ -24,7 +24,7 @@ export function Tweet(props: { fb: ResponseItem; animation: string }) {
 export function News(props: { fb: ResponseItem; animation: string }) {
   return (
     <div
-      className={`w-auto p-3 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl ${props.animation}`}
+      className={`max-w-2xl p-3 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl ${props.animation}`}
     >
       <p
         className={`text-left ${Txt.textSize('lg')} font-medium`}
@@ -40,7 +40,7 @@ export function News(props: { fb: ResponseItem; animation: string }) {
 export function Meme(props: { fb: ResponseItem; animation: string }) {
   return (
     <div
-      className={`w-auto p-3 pt-1 m-2 flex flex-col justify-center items-center relative bg-white rounded-xl ${props.animation}`}
+      className={`max-w-2xl p-3 pt-1 m-2 flex flex-col justify-center items-center relative bg-white rounded-xl ${props.animation}`}
     >
       <p className={`p-2 text-light ${Txt.textSize('lg')} `} style={{ fontFamily: "Impact" }}>
         {props.fb.head}

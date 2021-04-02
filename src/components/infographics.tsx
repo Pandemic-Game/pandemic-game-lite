@@ -201,8 +201,12 @@ export function CaseGraphic(props: {
   delay: number;
 }) {
   const getTitle = () => {
-    if(props.thisTurn.newCases === props.lastTurn.newCases){
-      return "Cases are high!"
+    if(props.thisTurn.newCases >= 90){
+      return "Cases are still high!"
+    }else if(props.thisTurn.newCases === 1){
+      return "Cases are low"
+    }else if(props.thisTurn.newCases === props.lastTurn.newCases){
+      return "Cases are stable"
     } else if(props.thisTurn.newCases > props.lastTurn.newCases){
       return "Cases are rising!"
     } else { 
