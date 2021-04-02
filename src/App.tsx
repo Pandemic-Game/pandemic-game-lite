@@ -358,13 +358,13 @@ const preloadAssets = () => {
       `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy-downsized.gif`
     ),
     ImageCacheInstance.read(
-      `https://giphy.com/gifs/hulu-cbs-star-trek-the-next-generation-3o7TKCskhXtrq3nsBy`
+      `https://media.giphy.com/media/3o7TKCskhXtrq3nsBy/giphy.gif`
     ),
     ImageCacheInstance.read(
       `https://media.giphy.com/media/1BQdjXovIqSLS/giphy.gif`
     ),
     ImageCacheInstance.read(
-      `https://giphy.com/gifs/fail-failing-what-teachers-think-1BQdjXovIqSLS`
+      `https://media.giphy.com/media/1BQdjXovIqSLS/giphy.gif`
     ),
     ImageCacheInstance.read(
       `https://thumbs.gfycat.com/DeliriousDenseArgali-small.gif`
