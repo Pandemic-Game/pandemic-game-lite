@@ -30,6 +30,12 @@ export function End(props: {
     props.delay > 0
       ? `You can return to normality in ... ${props.delay} seconds!`
       : `You can return to normality now!`;
+  const showContinueAnywayButton = ():Boolean => {
+    if (props.state==='opened'){return false}
+    else if (props.state==='enabled'){return false}
+    else if (props.delay <= 5){return false}
+    else{return true}
+  }
 
   return (
     <div
@@ -61,8 +67,8 @@ export function End(props: {
         />
       </div>
       <div
-        className="animate__animated animate__bounceInRight animate__delay-3s"
-        style={{ display: props.delay > 5 ? "flex" : "none" }}
+        className="animate__animated animate__bounceInLeft animate__delay-3s"
+        style={{ display: showContinueAnywayButton() ? "flex" : "none" }}
       >
         <Btn.Rounded
           col={"white"}
@@ -135,7 +141,7 @@ export function AllEndings(props: {
     <div
       className={`min-h-full flex flex-col items-center text-center ${bgColorClass}`}
     >
-      <div className="max-w-xs flex flex-col justify-between items-center ">
+      <div className="flex flex-col justify-between items-center ">
         <Txt.Title value="All endings" col="black" />
         <Txt.Paragraph
           col="black"

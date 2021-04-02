@@ -28,7 +28,7 @@ const Bar = (props: {support: number; opposition: number}) => {
     ),
   };
   return(
-    <div className="w-full p-2 flex flex-row justify-center items-center">
+    <div className="w-full max-w-lg p-2 flex flex-row justify-center items-center">
       <div
         className="h-full flex flex-row justify-center items-center text-center rounded-l-xl text-green-900 bg-green-400 z-20 overflow-visible"
         style={{ width: `${barWidth.support}%` }}
@@ -216,7 +216,7 @@ export function CaseGraphic(props: {
       style={{ animationDelay: `${props.delay}s` }}
     >
       <Txt.Title value={getTitle()} col="white" />
-      <div className="m-2 p-2 flex flex-col items-start animate__delay-1s animate__animated animate__fadeIn">
+      <div className="max-w-lg m-2 p-2 flex flex-col items-start animate__delay-1s animate__animated animate__fadeIn">
         <Txt.SmallText value='Total cases this month per 1000 people' col='white' />
         <CaseCircles
           thisTurn={props.thisTurn}
