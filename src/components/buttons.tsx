@@ -6,6 +6,7 @@ import SVGWannaSeeModel from "../assets/SVG/sneaky-wannaSeeModel.svg";
 import { SourceDetails } from "../model/Event";
 import { Img } from "../ImageCache";
 import * as Txt from "./text";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 // Primary button
 export function Rounded(props: any) {
@@ -165,7 +166,7 @@ export const TwitterShare: React.FC<TwitterShareProps> = (
         openShareLink();
       }}
     >
-      Twitter
+      <FontAwesomeIcon icon={faTwitter} color="white" size="lg" />
     </button>
   );
 };

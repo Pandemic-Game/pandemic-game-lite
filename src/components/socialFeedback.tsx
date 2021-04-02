@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLaughBeam, faAngry } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { ResponseItem } from "../model/Response";
 import React from "react";
@@ -12,9 +11,11 @@ export function Tweet(props: { fb: ResponseItem; animation: string }) {
     >
       <div className="flex flex-row">
         <FontAwesomeIcon icon={faTwitter} color="dodgerblue" size="lg" />
-        <h5 className="pl-1 text-blue-500" > {props.fb.head} </h5>
+        <h5 className="pl-1 text-blue-500"> {props.fb.head} </h5>
       </div>
-      <p className="p-2 text-light" style={{fontFamily: 'helvetica'}}>{props.fb.content}</p>
+      <p className="p-2 text-light" style={{ fontFamily: "helvetica" }}>
+        {props.fb.content}
+      </p>
     </div>
   );
 }
@@ -43,7 +44,11 @@ export function Meme(props: { fb: ResponseItem; animation: string }) {
       <p className="p-2 text-light text-xl" style={{ fontFamily: "Impact" }}>
         {props.fb.head}
       </p>
-      <Img src={props.fb.content} className="h-52 w-auto rounded-xl" alt="Meme reaction" />
+      <Img
+        src={props.fb.content}
+        className="h-52 w-auto rounded-xl"
+        alt="Meme reaction"
+      />
     </div>
   );
 }
