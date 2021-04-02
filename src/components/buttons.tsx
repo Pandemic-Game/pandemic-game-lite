@@ -5,7 +5,7 @@ import SVGWannaSeeData from "../assets/SVG/sneaky-wannaSeeData.svg";
 import SVGWannaSeeModel from "../assets/SVG/sneaky-wannaSeeModel.svg";
 import { SourceDetails } from "../model/Event";
 import { Img } from "../ImageCache";
-import * as Txt from './text';
+import * as Txt from "./text";
 
 // Primary button
 export function Rounded(props: any) {
@@ -33,7 +33,12 @@ export const Bouncy = (props: any) => {
 };
 
 // Extra info
-export const Sneaky = (props: {onClick: Function, bg: string, col: string, type: 'wannaSeeData' | 'wannaSeeModel'}) => {
+export const Sneaky = (props: {
+  onClick: Function;
+  bg: string;
+  col: string;
+  type: "wannaSeeData" | "wannaSeeModel";
+}) => {
   return (
     <button
       className={`w-full m-2 p-1 flex rounded-3xl bg-${props.bg} text-${props.col} ${Txt.textSize('2xl')} font-custom`}
@@ -68,7 +73,9 @@ export const ViewSource = (props: {
   } else {
     return (
       <button
-        className={`m-2 px-1 bg-red-500 rounded-xl text-white ${Txt.textSize('base')}`}
+        className={`m-2 px-1 bg-red-500 rounded-xl text-white ${Txt.textSize(
+          "base"
+        )}`}
         onClick={() => {
           props.onClick(props.sourceDetails);
         }}
@@ -97,8 +104,8 @@ export function SafeOpening(props: {
     }
   };
   return (
-    <button 
-      className='w-full'
+    <button
+      className="w-full"
       onClick={() => {
         props.onClick();
       }}
@@ -116,3 +123,33 @@ export function SafeOpening(props: {
     </button>
   );
 }
+
+// twitter share
+interface TwitterShareProps {
+  shareText: string;
+}
+
+export const TwitterShare: React.FC<TwitterShareProps> = (
+  props: TwitterShareProps
+) => {
+  const urlEncodedText = encodeURI(props.shareText);
+  const openShareLink = () => {
+    window
+      ?.open(
+        `https://twitter.com/intent/tweet?text=${urlEncodedText}`,
+        "_blank"
+      )
+      ?.focus();
+  };
+
+  return (
+    <button
+      className="p-2 flex flex-col text-center justify-center align-center rounded-full bg-blue-500 text-white"
+      onClick={() => {
+        openShareLink();
+      }}
+    >
+      Twitter
+    </button>
+  );
+};

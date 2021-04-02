@@ -84,17 +84,16 @@ export function EndLeaderStyle(props: {
       <div className='animate__animated animate__bounceIn animate__delay-1s'>
         {props.ending.ele}
       </div>
-      <div className='flex flex-col justify-center align-center animate__animated animate__bounceIn animate__delay-2s'>
-        <Txt.Title value='Share' col='black' />
-        <div className='flex flex-row justify-center align-center'>
-          <a href='./' className='p-2 flex flex-col text-center justify-center align-center rounded-full bg-blue-500'>
-            Twitter
-          </a>
+      <div className="flex flex-col justify-center align-center animate__animated animate__bounceIn animate__delay-2s">
+        <Txt.Title value="Share" col="black" />
+        <div className="flex flex-row justify-center align-center">
+          <Btn.TwitterShare shareText="Can you end lockdown? Play OutBreak the game: https://outbreak.endcoronavirus.org" />
+
           <EndResultCopyToClipboard
             bg="yellow-600"
             col="black"
             btnLabel="Other (copy link)"
-            textToCopy="Can you end lockdown? Play OutBreak the game: https://outbtreak.endcoronavirus.org"
+            textToCopy="Can you end lockdown? Play OutBreak the game: https://outbreak.endcoronavirus.org"
             showText={false}
           />
         </div>
