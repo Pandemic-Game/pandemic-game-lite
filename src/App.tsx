@@ -12,7 +12,11 @@ import { Endings } from "./assets/endings";
 import { Tweet, News, Meme } from "./components/socialFeedback";
 import { Splash, Introduction, Data } from "./components/views/start";
 import { SourceScreen, ExplanationScreen } from "./components/views/source";
-import { EventScreen, EventExtra, EventResponse } from "./components/views/event";
+import {
+  EventScreen,
+  EventExtra,
+  EventResponse,
+} from "./components/views/event";
 import { FeedbackScreen1, FeedbackScreen2 } from "./components/views/feedback";
 import { End, AllEndings, EndLeaderStyle } from "./components/views/end";
 import FontFaceObserver from "fontfaceobserver";
@@ -80,6 +84,7 @@ const GameLoop: React.FC = () => {
 
   const showSource = (src: SourceDetails) => {
     setSourceToView(src);
+    dataCollectorContext.dataCollector.sendSourceClickEventSignal(src);
     show("sources");
   };
 
@@ -102,15 +107,17 @@ const GameLoop: React.FC = () => {
   // Applies the response and advances to the next turn
   const processPlayerChoice = (playerChoice: Response) => {
     setHistory(history.concat(playerChoice));
-
+    dataCollectorContext.dataCollector.sendChoiceClickEventSignal({
+      label: playerChoice.label,
+      updatedIndicators: playerChoice.updatedIndicators,
+    });
     // Show new event or if at end show ending
     if (playerChoice.ending) {
       setDelayUntilOpening(playerChoice.updatedIndicators.newCases * 5);
       setEnding(playerChoice.ending);
-      setTimeout( function(){
+      setTimeout(function () {
         setCanOpenAllRestrictions(true);
-        }, playerChoice.updatedIndicators.newCases * 5000
-      );
+      }, playerChoice.updatedIndicators.newCases * 5000);
     } else {
       setEvent(playerChoice.getNextEvent());
     }
@@ -174,23 +181,23 @@ const GameLoop: React.FC = () => {
     case "introduction":
       return (
         <Introduction
-          onClick = {{
+          onClick={{
             continue: () => {
               show("event");
             },
             source: showSource,
             data: () => {
               show("data");
-            }
+            },
           }}
         />
       );
     case "data":
       return (
         <Data
-          onClick = {{
+          onClick={{
             back: () => show("introduction"),
-            source: showSource
+            source: showSource,
           }}
         />
       );
@@ -245,10 +252,7 @@ const GameLoop: React.FC = () => {
           indicatorsLastTurn={getIndicatorsLastMonth()}
           onClickContinue={() => {
             if (ending) {
-              dataCollectorContext.dataCollector.sendGameEndSignal(
-                ending,
-                history
-              );
+              dataCollectorContext.dataCollector.sendGameEndSignal(ending);
               show("end");
             } else {
               show("event");
@@ -261,10 +265,14 @@ const GameLoop: React.FC = () => {
     // End show
     case "end":
       const state = () => {
-        if(openAllRestrictions){return 'opened'}
-        else if(canOpenAllRestrictions){return 'enabled'}
-        else{return 'disabled'}
-      }
+        if (openAllRestrictions) {
+          return "opened";
+        } else if (canOpenAllRestrictions) {
+          return "enabled";
+        } else {
+          return "disabled";
+        }
+      };
       return (
         <End
           ending={endings[ending]}
@@ -272,14 +280,22 @@ const GameLoop: React.FC = () => {
           state={state()}
           onClick={{
             openButton: {
-              disabled: function(){toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`)},
-              enabled: function(){setOpenAllRestrictions(true)},
-              opened: function(){setView('leaderStyle')}
+              disabled: function () {
+                toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`);
+              },
+              enabled: function () {
+                setOpenAllRestrictions(true);
+              },
+              opened: function () {
+                setView("leaderStyle");
+              },
             },
-            continue: function(){show("leaderStyle")},
-            why: showExplanation
-        }}
-      />
+            continue: function () {
+              show("leaderStyle");
+            },
+            why: showExplanation,
+          }}
+        />
       );
     case "leaderStyle":
       return (
@@ -291,10 +307,7 @@ const GameLoop: React.FC = () => {
         />
       );
     case "allEndings":
-      return <AllEndings 
-        onReplay={reset}  
-        endings={endings}
-      />;
+      return <AllEndings onReplay={reset} endings={endings} />;
     default:
       return <></>;
   }

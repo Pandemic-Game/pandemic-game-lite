@@ -19,10 +19,11 @@ interface GameSession {
   playthroughId: string;
   timestamp: string;
   browserInfo: BrowserInfo;
-  eventType: "GameStart" | "ChoiceClick" | "DetailClick" | "GameEnd";
+  eventType: "GameStart" | "ChoiceClick" | "SourceClick" | "GameEnd";
   codeVersion: string;
   leadershipStyle: string | null;
   choice: PlayerChoice | null;
+  source: any | null;
 }
 
 export class DataCollector {
@@ -55,6 +56,7 @@ export class DataCollector {
         codeVersion: process.env.REACT_APP_VERSION || "local-dev",
         leadershipStyle: "",
         choice: null,
+        source: null,
         browserInfo: this.collectBrowserInfo(),
       };
 
@@ -75,6 +77,7 @@ export class DataCollector {
         codeVersion: process.env.REACT_APP_VERSION || "local-dev",
         leadershipStyle: "",
         choice: playerChoice,
+        source: null,
         browserInfo: this.collectBrowserInfo(),
       };
 
@@ -85,10 +88,10 @@ export class DataCollector {
     }
   }
 
-  async sendDetailClickEventSignal() {
+  async sendSourceClickEventSignal(src: any) {
     try {
       const event: GameSession = {
-        eventType: "DetailClick",
+        eventType: "SourceClick",
         sessionId: this.sessionId,
         playthroughId: this.playthroughId,
         timestamp: new Date().toISOString(),
@@ -96,6 +99,7 @@ export class DataCollector {
         leadershipStyle: "",
         choice: null,
         browserInfo: this.collectBrowserInfo(),
+        source: src,
       };
 
       await axios.post(this.apiUrl, event);
@@ -116,6 +120,7 @@ export class DataCollector {
         leadershipStyle: leadershipStyle,
         choice: null,
         browserInfo: this.collectBrowserInfo(),
+        source: null,
       };
 
       await axios.post(this.apiUrl, event);
