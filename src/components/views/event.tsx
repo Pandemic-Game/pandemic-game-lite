@@ -22,7 +22,7 @@ export function EventScreen(props:
     return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
         <div className='flex flex-col justify-between items-center'>
             <Txt.Subtitle value={'Event:'} col='black' />
-            <Txt.Title value={props.event.title} col='gray-900' />
+            <Txt.Title value={props.event.title} col='black' />
         </div>
         <div className='animate__animated animate__fadeIn m-2 p-2 flex flex-row items-start'>
             <div className='m-2 p-2 flex flex-row'>
@@ -33,7 +33,7 @@ export function EventScreen(props:
         <Btn.Rounded
             value='Consult advisors'
             bg={'yellow-500'}
-            col={'gray-900'}
+            col={'black'}
             onClick={() => { props.onClick() }}
         />
     </div>
@@ -66,7 +66,7 @@ export function EventExtra(props: { event: Event, onClickSource: Function, onCli
         <Btn.Rounded
             value={'Make your response'}
             bg={'yellow-500'}
-            col={'gray-900'}
+            col={'black'}
             onClick={() => { props.onClickBack() }}
         />
     </div>

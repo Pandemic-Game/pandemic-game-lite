@@ -86,7 +86,7 @@ export function Introduction(props: {
 
   return (
     <div className={`min-h-full p-2 flex flex-col items-center text-center ${bgColorClass}`}>
-      <Txt.Title value="How to play" col="gray-900" />
+      <Txt.Title value="How to play" col="black" />
       <br/>
       <Txt.Subtitle value="Your goal" col="black" />
       <Txt.Text value="End COVID-19 restrictions!" col="black" />
@@ -267,7 +267,7 @@ export function Data(props: {
 
       <Btn.Rounded
         value={"Back to the game"}
-        col="gray-900"
+        col="black"
         bg="yellow-500"
         onClick={() => {
           props.onClick.back();

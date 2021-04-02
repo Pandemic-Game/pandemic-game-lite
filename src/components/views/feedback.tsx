@@ -53,7 +53,7 @@ export function FeedbackScreen2(props:
         />
         <Btn.Rounded
             value={'Continue'}
-            col='gray-900'
+            col='black'
             bg='yellow-500'
             onClick={() => { props.onClickContinue() }}
         />
