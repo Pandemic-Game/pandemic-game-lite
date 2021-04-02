@@ -141,14 +141,16 @@ export function AllEndings(props: {
     <div
       className={`min-h-full flex flex-col items-center text-center ${bgColorClass}`}
     >
-      <div className="flex flex-col justify-between items-center ">
+      <div className="flex flex-col items-center justify-center">
         <Txt.Title value="All endings" col="black" />
-        <Txt.Paragraph
-          col="black"
-          value={`
-          We showed you a scenario where you could have responded in different ways. 
-          Your responses had consequences later down the line, like a story tree.`}
-        />
+        <div className='p-4'>
+          <Txt.Paragraph
+            col="black"
+            value={`
+            We showed you a scenario where you could have responded in different ways. 
+            Your responses had consequences later down the line, like a story tree.`}
+          />
+        </div>
       </div>
 
       <div className={`m-4 p-2 rounded-xl ${props.endings.GenghisCannot.bg}`}>
