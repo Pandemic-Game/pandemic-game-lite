@@ -499,7 +499,7 @@ export const evt_2_2: Event = {
             type: `meme`,
             isHappy: true,
             head: `us vs covid restrictions`,
-            content: `https://giphy.com/gifs/fail-failing-what-teachers-think-1BQdjXovIqSLS`
+            content: `https://media.giphy.com/media/1BQdjXovIqSLS/giphy.gif`
         }],
         getNextEvent: () => {
             return ending

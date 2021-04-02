@@ -32,18 +32,16 @@ export function End(props: {
       : `You can return to normality now!`;
 
   return (
-    <div className={`h-full p-2 flex flex-col items-center`}>
-      <Txt.Subtitle value={"You reached the end"} col="black" />
-      <div className="w-full flex-col animate__animated animate__bounceIn">
-        <div className="flex justify-center">
-          <Txt.Title value={"Your country:"} col="black" />
-        </div>
-        <Img
-          className={`m-2 my-5 ${
-            props.state === "opened" ? "animate__animated animate__tada" : ""
-          }`}
-          src={props.state === "opened" ? EndImgOpened : EndImgClosed}
-          alt={"Covid-19 restrictions"}
+    <div
+      className={`h-full p-2 flex flex-col items-center`}
+    >
+      <Txt.Subtitle value={'You reached the end'} col='black' />
+      <div className='w-full flex flex-col justify-center align-center animate__animated animate__bounceIn'>
+        <div className='flex justify-center'><Txt.Title value={'Your country:'} col='black' /></div>
+        <Img 
+          className={`m-auto w-5/6 m-2 my-5 ${props.state==='opened' ? 'animate__animated animate__tada' : ''}`}
+          src={props.state==='opened' ? EndImgOpened : EndImgClosed} 
+          alt={'Covid-19 restrictions'} 
         />
       </div>
 
@@ -98,36 +96,26 @@ export function EndLeaderStyle(props: {
     <div
       className={`min-h-full p-2 flex flex-col justify-between items-center bg-${props.ending.bg}`}
     >
-      <Txt.Title value="Your ending..." col="black" />
-      <div className="animate__animated animate__bounceIn animate__delay-1s">
-        {props.ending.ele}
-      </div>
-      <div className="flex flex-col justify-center align-center animate__animated animate__bounceIn animate__delay-2s">
-        <Txt.Title value="Share" col="black" />
-        <div className="flex flex-row justify-center align-center">
-          <Btn.TwitterShare shareText="Can you end lockdown? Play OutBreak the game: https://outbreak.endcoronavirus.org" />
-
-          <EndResultCopyToClipboard
-            bg="yellow-600"
-            col="black"
-            btnLabel="Other (copy link)"
-            textToCopy="Can you end lockdown? Play OutBreak the game: https://outbreak.endcoronavirus.org"
-            showText={false}
-          />
-        </div>
-      </div>
-
-      <div className="mt-4 flex flex-col align-center text-center">
-        <Txt.Subtitle value="and once you're done..." col="black" />
-        <Btn.Rounded
-          value={"View all endings!"}
-          bg="yellow-600"
-          col="black"
-          onClick={() => {
-            props.onClick();
-          }}
+      <Txt.Title value='Your ending...' col='black' />
+      {props.ending.ele}
+      <div className="w-xs p-2 mb-4 flex flex-row justify-end align-start rounded-xl rounded-t-none bg-gray-900 border border-t-0 border-gray-700">
+        <Txt.Subtitle value="Share" col="white" />
+        <Btn.TwitterShare shareText="Can you return to normality? Play OutBreak the game: https://outbreak.endcoronavirus.org" />
+        <Btn.MailShare shareText="Can you return to normality? Play OutBreak the game: https://outbreak.endcoronavirus.org" />
+        <EndResultCopyToClipboard
+          textToCopy="Can you return to normality? Play OutBreak the game: https://outbreak.endcoronavirus.org"
+          showText={false}
         />
       </div>
+
+      <Btn.Rounded
+        value={"View all endings!"}
+        bg="yellow-600"
+        col='black'
+        onClick={() => {
+          props.onClick();
+        }}
+      />
     </div>
   );
 }
@@ -157,17 +145,17 @@ export function AllEndings(props: {
         />
       </div>
 
-      <div className={`m-4 rounded-xl ${props.endings.GenghisCannot.bg}`}>
+      <div className={`m-4 p-2 rounded-xl ${props.endings.GenghisCannot.bg}`}>
         {props.endings.GenghisCannot.ele}
       </div>
-      <div className={`m-4 rounded-xl ${props.endings.FlipFlopper.bg}`}>
+      <div className={`m-4 p-2 rounded-xl ${props.endings.FlipFlopper.bg}`}>
         {props.endings.FlipFlopper.ele}
       </div>
-      <div className={`m-4 rounded-xl ${props.endings.BusinessGuru.bg}`}>
+      <div className={`m-4 p-2 rounded-xl ${props.endings.BusinessGuru.bg}`}>
         {props.endings.BusinessGuru.ele}
       </div>
       <div
-        className={`m-4 mb-12 rounded-xl ${props.endings.CovidTerminator.bg}`}
+        className={`m-4 mb-12 p-2 rounded-xl ${props.endings.CovidTerminator.bg}`}
       >
         {props.endings.CovidTerminator.ele}
       </div>
