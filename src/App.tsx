@@ -8,13 +8,13 @@ import { Response, ResponseItem } from "./model/Response";
 import { Indicators } from "./model/Indicators";
 import { UK } from "./model/Scenario";
 import * as Story from "./assets/events";
-import * as LeaderStyle from "./components/leaderStyles";
+import { Endings } from "./assets/endings";
 import { Tweet, News, Meme } from "./components/socialFeedback";
 import { Splash, Introduction, Data } from "./components/views/start";
 import { SourceScreen, ExplanationScreen } from "./components/views/source";
 import { EventScreen, EventExtra, EventResponse } from "./components/views/event";
 import { FeedbackScreen1, FeedbackScreen2 } from "./components/views/feedback";
-import { Ending, AllEndings, EndLeaderStyle } from "./components/views/end";
+import { End, AllEndings, EndLeaderStyle } from "./components/views/end";
 import FontFaceObserver from "fontfaceobserver";
 import { ToastContainer } from "react-toastify";
 import { ImageCacheInstance } from "./ImageCache";
@@ -82,43 +82,10 @@ const GameLoop: React.FC = () => {
     setSourceToView(src);
     show("sources");
   };
+
   const showExplanation = (src: SourceDetails) => {
     setSourceToView(src);
     show("explanation");
-  };
-
-  const endings: Record<
-    string,
-    { ele: JSX.Element; bg: string; winTitle: string; winDescription: string }
-  > = {
-    GenghisCannot: {
-      ele: <LeaderStyle.GenghisCannot onClickSource={showSource} />,
-      bg: "bg-yellow-400",
-      winTitle: "Based on your choices you can’t open back up for a long time!",
-      winDescription:
-        "You have a high number of cases, lots of people are ending up in hospital and even dying. People are scared.",
-    },
-    FlipFlopper: {
-      ele: <LeaderStyle.FlipFlopper onClickSource={showSource} />,
-      bg: "bg-red-200",
-      winTitle: "Based on your choices you can’t open back up yet",
-      winDescription:
-        "By re-opening too early, cases will rise, leading to a need for restrictions in the future.",
-    },
-    CovidTerminator: {
-      ele: <LeaderStyle.CovidTerminator onClickSource={showSource} />,
-      bg: "bg-green-400",
-      winTitle: "Based on your choices you can safely open up!",
-      winDescription:
-        "Cases have gone to zero. People are satisfied and demand a return to normality! With no need for further restrictions the only sensible option is to re-open",
-    },
-    BusinessGuru: {
-      ele: <LeaderStyle.BusinessGuru onClickSource={showSource} />,
-      bg: "bg-blue-400",
-      winTitle: "Based on your choices you will be able to open up.. soon",
-      winDescription:
-        "While navigating the trade-off between re-opening businesses yet keeping cases low, the end of the pandemic is in sight. Through continued cycles of opening and closing, with some patience, the end will come.",
-    },
   };
 
   const getLastResponse = (): Response =>
@@ -128,6 +95,9 @@ const GameLoop: React.FC = () => {
     history.length === 1
       ? initialScenario
       : cloneDeep(history[history.length - 2].updatedIndicators);
+
+  // Load endings
+  const endings = Endings(showSource);
 
   // Applies the response and advances to the next turn
   const processPlayerChoice = (playerChoice: Response) => {
@@ -290,22 +260,21 @@ const GameLoop: React.FC = () => {
 
     // End show
     case "end":
+      const state = () => {
+        if(openAllRestrictions){return 'opened'}
+        else if(canOpenAllRestrictions){return 'enabled'}
+        else{return 'disabled'}
+      }
       return (
-        <Ending
-          leaderStyle={endings[ending]}
+        <End
+          ending={endings[ending]}
           delay={delayUntilOpening}
-          opened={openAllRestrictions}
-          canOpenAllRestrictions={canOpenAllRestrictions}
+          state={state()}
           onClick={{
             openButton: {
-              enabled: function(){
-                setOpenAllRestrictions(true);
-                toast.success(`Continuing to end screen in 5s...`)
-                setTimeout(function(){
-                  setView('leaderStyle');
-                }, 5000)
-              },
-              disabled: function(){toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`)}
+              disabled: function(){toast.success(`Can't open up yet, wait ${delayUntilOpening}s!`)},
+              enabled: function(){setOpenAllRestrictions(true)},
+              opened: function(){setView('leaderStyle')}
             },
             continue: function(){show("leaderStyle")},
             why: showExplanation
@@ -315,14 +284,17 @@ const GameLoop: React.FC = () => {
     case "leaderStyle":
       return (
         <EndLeaderStyle
-          leaderStyle={endings[ending]}
+          ending={endings[ending]}
           onClick={() => {
             show("allEndings");
           }}
         />
       );
     case "allEndings":
-      return <AllEndings onClick={showSource} onReplay={reset} />;
+      return <AllEndings 
+        onReplay={reset}  
+        endings={endings}
+      />;
     default:
       return <></>;
   }

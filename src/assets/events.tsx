@@ -2,10 +2,11 @@ import {Event} from '../model/Event';
 
 export const evt_0_0: Event = {
     title: `Welcome to the jungle`,
-    description: `24 in 1000 people have caught COVID-19 this month and the number of new cases is rising. You are being pressured to make a response to the situation by either enforcing restrictions or remaining open.`,
+    description: `24 in 1000 people have caught COVID-19 this month and the number of new cases is rising. 
+    You are being pressured to make a response to the situation by either enforcing restrictions or remaining open.`,
     extraDetails: {
         public: {
-            speech: `If you wanna close businesses, that's cool, but people probably won't obey restrictions as much the longer it goes on.`,
+            speech: `If make restrictions people will probably stop obeying them after a while.`,
             sourceDetails: {
                 sourceName: `YouGov `,
                 link: `https://docs.cdn.yougov.com/pkv90of78k/SunOnSunday_CoronaResults_210115.pdf`,
@@ -13,7 +14,7 @@ export const evt_0_0: Event = {
             }
         },
         business: {
-            speech: `"Closing businesses for a short time is tolerable, if displaced workers get unemployment payments, but this won't be sustainable long-term.`,
+            speech: `Closing businesses is not sustainable in the long-term, and will displace a lot of workers in the short-term.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -92,8 +93,8 @@ export const evt_0_0: Event = {
         }, {
             type: `meme`,
             isHappy: true,
-            head: `Me in public places this year`,
-            content: `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy.gif`
+            head: `Me when I see someone sneeze`,
+            content: `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy-downsized.gif`
         }],
         getNextEvent: () => {
             return evt_1_2
@@ -108,10 +109,11 @@ export const evt_0_0: Event = {
 };
 export const evt_1_1: Event = {
     title: `2 KOOL 4 SKOOL`,
-    description: `Exams are coming up. Keeping schools and universities open would create a spike in cases. However, continuing with distance learning will interrupt exams and teaching`,
+    description: `Exams are coming up. Keeping schools and universities open would create a spike in cases. 
+    However, continuing with distance learning will interrupt exams and teaching...`,
     extraDetails: {
         public: {
-            speech: `Sure, opening schools sounds great, but putting our kids at risk right now without the proper precautions is shady af.`,
+            speech: `Homeschooling will be difficult but schools aren't safe right now...`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -119,7 +121,7 @@ export const evt_1_1: Event = {
             }
         },
         business: {
-            speech: `Lots of businesses rely on students for customers, and if they don't they still rely on qualified and trained employees!`,
+            speech: `Lots of businesses rely on students for customers and others rely on qualified and trained employees!`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -127,11 +129,11 @@ export const evt_1_1: Event = {
             }
         },
         medical: {
-            speech: `Opening schools and universities is the single fastest way to increase cases.`,
+            speech: `Opening schools and universities is one of the fastest ways to increase cases.`,
             sourceDetails: {
-                sourceName: ``,
-                link: ``,
-                description: ``
+                sourceName: `EpidemicForecasting`,
+                link: `http://epidemicforecasting.org`,
+                description: `Closing schools and universities is estimated to reduce R by as much as 33%, whereas limiting gatherings to 10 people is estimated around 24%.`
             }
         }
     },
@@ -214,10 +216,11 @@ export const evt_1_1: Event = {
 };
 export const evt_1_2: Event = {
     title: `Cabin Fever`,
-    description: `People are itching to get back to their normal lives. For some, it's becoming a need. Many have lost their jobs and others, particularly young people, are ignoring the restrictions anyway.`,
+    description: `People are itching to get back to their normal lives. For some, it's becoming a need. 
+    Many have lost their jobs and others, particularly young people, are ignoring the restrictions anyway.`,
     extraDetails: {
         public: {
-            speech: `My mate Paul just ended his relationship and blamed COVID. Apparently it's happened to other people too.`,
+            speech: `My mate Paul just broke up with his partner. It wasn't him, it was covid. Apparently he's not the only one...`,
             sourceDetails: {
                 sourceName: `YouGov`,
                 link: `https://docs.cdn.yougov.com/4v7zasn014/International%20COVID%20personal%20impact[1].pdf`,
@@ -225,7 +228,7 @@ export const evt_1_2: Event = {
             }
         },
         business: {
-            speech: `The only way to get back to a normal economy is to end the pandemic but the unemployment rate is really high... people are really suffering.`,
+            speech: `The unemployment rate is really high... displaced workers are suffering.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -233,7 +236,7 @@ export const evt_1_2: Event = {
             }
         },
         medical: {
-            speech: `Cases are falling very fast! That said, we have to consider the effects of things like loneliness or we may end up with a mental health crisis...`,
+            speech: `Cases are falling very fast but we are seeing a rise in loneliness. We could be on the verge of a wellbeing crisis.`,
             sourceDetails: {
                 sourceName: `YouGov`,
                 link: `https://yougov.co.uk/topics/health/survey-results/daily/2020/10/09/26286/3`,
@@ -320,7 +323,10 @@ export const evt_1_2: Event = {
 };
 export const evt_2_1: Event = {
     title: `But at what cost?`,
-    description: `Experts are recommending much stronger restrictions, immediately. Doctors, epidemiologists, economists, and even your dentist are telling you to get those case numbers down. This is a tough choice. While the rest of the world has reduced their infection rate via careful restrictions, your people have at least enjoyed something resembling a normal lifestyle.`,
+    description: `Experts are recommending much stronger restrictions, immediately. 
+    Doctors, epidemiologists, economists, and even your dentist are telling you to get those case numbers down. 
+    This is a tough choice. 
+    While the rest of the world has reduced their infection rate via careful restrictions, your people have at least enjoyed something resembling a normal lifestyle.`,
     extraDetails: {
         public: {
             speech: `We enjoy our freedom. Please don't take that away! Pretty, pretty please!`,
@@ -331,7 +337,7 @@ export const evt_2_1: Event = {
             }
         },
         business: {
-            speech: `We haven't really been affected by restrictions yet and we're not gonna start now.`,
+            speech: `We're getting less customers and we're facing logistical challenges but restrictions would cost us more.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -339,7 +345,7 @@ export const evt_2_1: Event = {
             }
         },
         medical: {
-            speech: `Hospital capacity is completely maxed out - so maxed out that people have started self-isolating on their own.`,
+            speech: `Hospitals are completely full. People are scared and have started self-isolating on their own.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -416,7 +422,7 @@ export const evt_2_1: Event = {
         }, {
             type: `meme`,
             isHappy: false,
-            head: `King Arthur @RoundTable4Lyfe`,
+            head: `The only thing you're restricting is freedom`,
             content: `https://i.kym-cdn.com/photos/images/newsfeed/001/846/426/fc0.gif`
         }],
         getNextEvent: () => {
@@ -438,10 +444,12 @@ export const evt_2_1: Event = {
 };
 export const evt_2_2: Event = {
     title: `Bad Moon Rising`,
-    description: `The number of COVID-19 cases has reached an all-time high. Hospitals are filling up quickly. The media is flooded with climbing case numbers. Your citizens are becoming worried.`,
+    description: `The number of COVID-19 cases has reached an all-time high. 
+    Hospitals are filling up quickly. The media is flooded with climbing case numbers. 
+    Your citizens are becoming worried.`,
     extraDetails: {
         public: {
-            speech: `Have you seen those case numbers? I'm scared to go out... `,
+            speech: `Have you seen those case numbers? I'm scared to go out.. `,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -449,7 +457,7 @@ export const evt_2_2: Event = {
             }
         },
         business: {
-            speech: `We can open if we take the proper precautions. We are much more prepared to do this now than we have been before.`,
+            speech: `Restrictions might make businesses unprofitable. Some may go out of business..`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,
@@ -554,10 +562,11 @@ export const evt_2_2: Event = {
 };
 export const evt_2_3: Event = {
     title: `Where Is My Mind?`,
-    description: `People are struggling. Social deprivation, being restricted in where and who they can visit, and other personal hardships have lead to a negative effect on people's mental health. People feel they have to break restrictions to meet their needs and are asking for relaxed restrictions.`,
+    description: `People are struggling. 
+    Social deprivation, being restricted in where and who they can visit, and other personal hardships have lead to a negative effect on people's mental health. People feel they have to break restrictions to meet their needs and are asking for relaxed restrictions.`,
     extraDetails: {
         public: {
-            speech: `I'm not one to complain about mental health but I'm not doing great. Apparently, young people more likely to be depressed now.`,
+            speech: `I'm not one to complain about mental health but I'm not doing great. Apparently, young people more likely to report depression now.`,
             sourceDetails: {
                 sourceName: `YouGov`,
                 link: `https://yougov.co.uk/topics/lifestyle/articles-reports/2021/02/04/yougov-2020-personality-study-impact-covid-19`,
@@ -573,7 +582,7 @@ export const evt_2_3: Event = {
             }
         },
         medical: {
-            speech: `Mental health is important, but COVID is not entirely eliminated. Another period of restrictions could eradicate it.`,
+            speech: `Wellbeing and mental health are important, but another period of restrictions could eradicate COVID-19 entirely.`,
             sourceDetails: {
                 sourceName: ``,
                 link: ``,

@@ -72,10 +72,10 @@ export function SupportBar(props: {
       : "Ooh... People found that controversial!";
   return (
     <div
-      className="m-2 w-full animate__animated animate__backInDown"
+      className="m-2 w-full flex flex-col items-center rounded-xl bg-gray-700 animate__animated animate__backInDown"
       style={{ animationDelay: `${props.delay}s` }}
     >
-      <Txt.Title value={"Public support"} col={"white"} />
+      <Txt.Title value={"Immediate public reaction"} col={"white"} />
       <Bar 
         support={props.response.updatedIndicators.supportForLastResponse} 
         opposition={props.response.updatedIndicators.oppositionToLastResponse} 
@@ -212,7 +212,7 @@ export function CaseGraphic(props: {
   const delay = 2;
   return (
     <div
-      className="m-2 w-100 flex flex-col justify-between items-center text-white animate__animated animate__backInDown"
+      className="m-2 w-100 flex flex-col items-center text-white rounded-xl bg-green-600 animate__animated animate__backInDown"
       style={{ animationDelay: `${props.delay}s` }}
     >
       <Txt.Title value={getTitle()} col="white" />
@@ -243,7 +243,7 @@ export function EconomyGraphic(props: {
     Math.sqrt((value * 100) / 3.14) * 2;
   return (
     <div
-      className="m-2 w-full m-2 flex flex-col justify-center items-center text-white animate__animated animate__backInDown"
+      className="w-full m-2 p-2 flex flex-col items-center text-white rounded-xl bg-yellow-600 animate__animated animate__backInDown"
       style={{ animationDelay: `${props.delay}s` }}
     >
       <Txt.Title value='Economy' col="white" />

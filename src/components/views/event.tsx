@@ -31,10 +31,10 @@ export function EventScreen(props:
             <Txt.Paragraph value={props.event.description} col='black' />
         </div>
         <div style={{marginTop: 'auto'}}>
-            <Btn.Bouncy
+            <Btn.Rounded
                 value='Consult advisors'
-                bg={'yellow-600'}
-                col={'white'}
+                bg={'yellow-500'}
+                col={'gray-900'}
                 onClick={() => { props.onClick() }}
             />
         </div>
@@ -43,8 +43,7 @@ export function EventScreen(props:
 
 export function EventExtra(props: { event: Event, onClickSource: Function, onClickBack: Function }) {
     return <div className='min-h-full p-2 flex flex-col items-center bg-yellow-400'>
-        <Txt.Subtitle value={'Event:'} col='black' />
-        <Txt.Title value={props.event.title} col='gray-900' />
+        <Txt.Subtitle value={props.event.title} col='black' />
         <Txt.SpeechBubble
             extraDetail={props.event.extraDetails.public}
             person='Joe the Regular Joe'
@@ -69,8 +68,8 @@ export function EventExtra(props: { event: Event, onClickSource: Function, onCli
         <div style={{ marginTop: "auto" }}>
             <Btn.Rounded
                 value={'Make your response'}
-                bg={'yellow-600'}
-                col={'white'}
+                bg={'yellow-500'}
+                col={'gray-900'}
                 onClick={() => { props.onClickBack() }}
             />
         </div>
@@ -90,10 +89,7 @@ export function EventResponse(props:
     })
 
     return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
-        <div className='flex flex-col justify-between items-center'>
-            <Txt.Subtitle value={'Event:'} col='black' />
-            <Txt.Title value={props.event.title} col='gray-900' />
-        </div>
+        <Txt.Subtitle value={props.event.title} col='black' />
         <div className='animate__animated animate__fadeIn m-2 p-2 flex flex-row items-start'>
             <div className='m-2 p-2 flex flex-row'>
                 <WarningSign />

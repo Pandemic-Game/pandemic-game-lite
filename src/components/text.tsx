@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export const textSize = (s: string) => {
     const sizes = ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', '8xl', '9xl'];
     const n = sizes.indexOf(s);
-    return `text-${sizes[n]} sm:text-${sizes[n+1]} md:text-${sizes[n+2]} lg:text-${sizes[n+3]} xl:text-${sizes[n+3]} 2xl:text-${sizes[n+3]}`
+    return `text-${sizes[n]} sm:text-${sizes[n+1]} md:text-${sizes[n+1]} lg:text-${sizes[n+1]} xl:text-${sizes[n+1]} 2xl:text-${sizes[n+2]}`
 }
 export const subtitleSize = 'xl';
 export const mainFont = `'Open Sans', sans-serif`;
@@ -33,7 +33,7 @@ export function Paragraph(props: { value: string, col: string }) { // Line break
     return (
         <div className={`max-w-lg flex flex-col`}
         >
-            {props.value.split(/(?:\r\n|\r|\n|\.)/g).map((str, idx) => 
+            {props.value.split(/(?:\r\n|\r|\n)/g).map((str, idx) => 
                 <p key={idx} className={`m-1 ${textSize('base')} font-semibold text-left text-${props.col}`} style={{fontFamily: mainFont}}>{str}</p>
             )}
         </div>
@@ -54,8 +54,8 @@ export function SmallText(props: { value: string, col: string }) { // Line break
 
 export function SpeechBubble(props: { extraDetail: ExtraDetail, person: string, icon: any, onClick: Function, delay: number }) {
     return (
-        <div className={`w-4/5 m-2 flex flex-col ${textSize('base')} text-left`} style={{fontFamily: mainFont}}>
-            <p className={`m-2 p-4 bg-white rounded-xl animate__animated animate__fadeInRight animate__delay-${props.delay}s`}>
+        <div className={`w-4/5 m-2 flex flex-col ${textSize('base')}`} style={{fontFamily: mainFont}}>
+            <p className={`m-2 p-2 bg-white rounded-xl animate__animated animate__fadeInRight animate__delay-${props.delay}s`}>
                 {props.extraDetail.speech}
                 <Btn.ViewSource sourceDetails={props.extraDetail.sourceDetails} onClick={props.onClick} />
             </p>

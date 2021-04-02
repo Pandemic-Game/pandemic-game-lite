@@ -4,19 +4,19 @@ import * as Btn from "../buttons";
 import { EndResultCopyToClipboard } from "../GameResultCopyToClipboard";
 import * as Txt from "../text";
 import { Img } from "../../ImageCache";    
+import { Ending } from '../../model/Event';
 import EndImgClosed from "../../assets/SVG/ending_restrictions.svg";
 import EndImgOpened from "../../assets/SVG/ending_opened.svg";
-import * as LeaderStyle from "../leaderStyles";
 
-export function Ending(props: {
-  leaderStyle: { ele: JSX.Element; bg: string, winTitle: string, winDescription:string };
+export function End(props: {
+  ending: Ending;
   delay: number;
-  opened: boolean;
-  canOpenAllRestrictions: boolean
+  state: 'enabled' | 'disabled' | 'opened';
   onClick: {
     openButton: {
       enabled: Function,
-      disabled: Function
+      disabled: Function,
+      opened: Function
     },
     continue: Function,
     why: Function
@@ -24,35 +24,34 @@ export function Ending(props: {
 }) {
   const context = useThemeContext();
   useEffect(() => {
-    context.changeBgColorClass(props.leaderStyle.bg);
+    context.changeBgColorClass(props.ending.bg);
   });
-
-  const onClickOpenButton = props.canOpenAllRestrictions ? props.onClick.openButton.enabled : props.onClick.openButton.disabled;
+  const timeTilOpen = props.delay>0 ? `You can return to normality in ... ${props.delay} seconds!` : `You can return to normality now!`;
 
   return (
     <div
-      className={`h-full p-2 flex flex-col justify-between items-center`}
+      className={`h-full p-2 flex flex-col items-center`}
     >
       <Txt.Subtitle value={'You reached the end'} col='black' />
-      <Txt.Title value={props.leaderStyle.winTitle} col='black' />
+      <div className='w-full flex-col animate__animated animate__bounceIn'>
+        <div className='flex justify-center'><Txt.Title value={'Your country:'} col='black' /></div>
+        <Img 
+          className={`m-2 my-5 ${props.state==='opened' ? 'animate__animated animate__tada' : ''}`}
+          src={props.state==='opened' ? EndImgOpened : EndImgClosed} 
+          alt={'Covid-19 restrictions'} 
+        />
+      </div>
 
-      <div className='max-w-sm p-4 flex flex-col justify-center items-center'>
-        <Txt.Text value={props.leaderStyle.winDescription} col='black' />
+      <div className='w-full flex flex-col text-center animate__animated animate__bounceIn animate__delay-1s'>
+        <Txt.Subtitle value={`${props.state==='opened' ? 'Normality!' : timeTilOpen}`} col='black' />
+        <Txt.Text value={props.ending.winDescription} col='black' />
+        <br/>
+        <Btn.SafeOpening
+          delay={props.delay-1}
+          onClick={()=>{props.onClick.openButton[props.state]()}}
+          state={props.state}
+        />
       </div>
-    
-      <Img 
-        className={`${props.opened ? 'animate__animated animate__tada' : ''}`}
-        src={props.opened ? EndImgOpened : EndImgClosed} 
-        alt={'Covid-19 restrictions'} 
-      />
-      <div className='flex flex-row justify-center align-center' style={{ marginTop: "auto" }}>
-        <Txt.Subtitle value={`You can return to normality in... ${props.delay} seconds!`} col='black' />
-      </div>
-      <Btn.SafeOpening
-        delay={props.delay}
-        onClick={()=>{onClickOpenButton()}}
-        opened={props.opened}
-      />
       <div className='animate__animated animate__bounceInRight animate__delay-3s' style={{display: props.delay>5  ? 'flex' : 'none'}}>
         <Btn.Rounded
           col={"white"}
@@ -68,22 +67,22 @@ export function Ending(props: {
 }
 
 export function EndLeaderStyle(props: {
-  leaderStyle: { ele: JSX.Element; bg: string, winTitle: string, winDescription:string };
+  ending: { ele: JSX.Element; bg: string, winTitle: string, winDescription:string };
   onClick: Function;
 }) {
   const context = useThemeContext();
 
   useEffect(() => {
-    context.changeBgColorClass(props.leaderStyle.bg);
+    context.changeBgColorClass(props.ending.bg);
   });
 
   return (
     <div
-      className={`min-h-full p-2 flex flex-col justify-between items-center bg-${props.leaderStyle.bg}`}
+      className={`min-h-full p-2 flex flex-col justify-between items-center bg-${props.ending.bg}`}
     >
       <Txt.Title value='Your ending...' col='black' />
       <div className='animate__animated animate__bounceIn animate__delay-1s'>
-        {props.leaderStyle.ele}
+        {props.ending.ele}
       </div>
       <div className='flex flex-col justify-center align-center animate__animated animate__bounceIn animate__delay-2s'>
         <Txt.Title value='Share' col='black' />
@@ -101,11 +100,11 @@ export function EndLeaderStyle(props: {
         </div>
       </div>
 
-      <div className='mt-4 flex flex-col justify-center align-center'>
-        <p className='text-xl text-center font-semibold'>and once you're done...</p>
+      <div className='mt-4 flex flex-col align-center text-center'>
+        <Txt.Subtitle value="and once you're done..." col='black' />
         <Btn.Rounded
           value={"View all endings!"}
-          bg="gray-200"
+          bg="yellow-600"
           col='black'
           onClick={() => {
             props.onClick();
@@ -116,7 +115,7 @@ export function EndLeaderStyle(props: {
   );
 }
 
-export function AllEndings(props: { onClick: Function; onReplay: Function }) {
+export function AllEndings(props: { endings: Record<string, Ending>; onReplay: Function }) {
   const bgColorClass = "bg-yellow-500";
   const context = useThemeContext();
 
@@ -128,18 +127,18 @@ export function AllEndings(props: { onClick: Function; onReplay: Function }) {
     <div
       className={`min-h-full flex flex-col items-center text-center ${bgColorClass}`}
     >
-      <div className="max-w-xs p-2 flex flex-col justify-between items-center ">
-        <Txt.Title value="All leadership styles" col="black" />
-        <Txt.Text
-          value="We showed you a scenario where you could have responded in different ways. Your responses had consequences later down the line, like a story tree. Here are all the different endings..."
-          col="black"
+      <div className="max-w-xs flex flex-col justify-between items-center ">
+        <Txt.Title value="All endings" col="black" />
+        <Txt.Paragraph col="black" value={`
+          We showed you a scenario where you could have responded in different ways. 
+          Your responses had consequences later down the line, like a story tree.`}
         />
       </div>
-
-      <LeaderStyle.GenghisCannot onClickSource={props.onClick} />
-      <LeaderStyle.FlipFlopper onClickSource={props.onClick} />
-      <LeaderStyle.CovidTerminator onClickSource={props.onClick} />
-      <LeaderStyle.BusinessGuru onClickSource={props.onClick} />
+      
+      <div className={`m-4 rounded-xl ${props.endings.GenghisCannot.bg}`}>{props.endings.GenghisCannot.ele}</div>
+      <div className={`m-4 rounded-xl ${props.endings.FlipFlopper.bg}`}>{props.endings.FlipFlopper.ele}</div>
+      <div className={`m-4 rounded-xl ${props.endings.BusinessGuru.bg}`}>{props.endings.BusinessGuru.ele}</div>
+      <div className={`m-4 mb-12 rounded-xl ${props.endings.CovidTerminator.bg}`}>{props.endings.CovidTerminator.ele}</div>
 
       <Btn.Bouncy
         value={"Play again"}

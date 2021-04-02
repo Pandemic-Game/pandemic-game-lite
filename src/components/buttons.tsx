@@ -11,7 +11,7 @@ import * as Txt from './text';
 export function Rounded(props: any) {
   return (
     <button
-      className={`w-full m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom`}
+      className={`w-full m-2 p-4 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom`}
       style={{marginTop: 'auto'}}
       onClick={props.onClick}
     >
@@ -23,7 +23,7 @@ export function Rounded(props: any) {
 export const Bouncy = (props: any) => {
   return (
     <button
-      className={`w-full m-2 p-3 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom animate-bounce`}
+      className={`w-full m-2 p-4 rounded-full bg-${props.bg} ${Txt.textSize('2xl')} text-${props.col} font-custom animate-bounce`}
       style={{marginTop: 'auto'}}
       onClick={props.onClick}
     >
@@ -36,20 +36,23 @@ export const Bouncy = (props: any) => {
 export const Sneaky = (props: {onClick: Function, bg: string, col: string, type: 'wannaSeeData' | 'wannaSeeModel'}) => {
   return (
     <button
-      className={`w-full m-2 p-3 rounded-full bg-${props.bg} text-${props.col} ${Txt.textSize('2xl')} font-custom`}
+      className={`w-full m-2 p-1 flex rounded-3xl bg-${props.bg} text-${props.col} ${Txt.textSize('2xl')} font-custom`}
       style={{marginTop: 'auto'}}
       onClick={()=>{props.onClick()}}
     >
-      <div className='flex flex-row justify-center'>
+      <div className='flex flex-row'>
         <Img
-          className={`h-auto w-xs p-2`}
+          className={`h-auto w-16 p-2`}
           src={props.type==='wannaSeeData' ? SVGWannaSeeData : SVGWannaSeeModel}
           alt="Detective sneaky question button - 'Psst wanna see some data / our data model?'"
         />
-        <div>
-          <p className={`${Txt.textSize('lg')}`}> No, not that kind of model.  </p>
-          <br></br>
-          <p className={`${Txt.textSize('base')}`}> Click here to learn more. </p>
+        <div className='flex flex-col justify-center align-center'>
+          <p className={`text-left ${Txt.textSize('lg')}`}>  
+            { props.type==='wannaSeeData' ? 'PSST. I got some data.' : 'No, not that kind of model.' } 
+          </p>
+          <p className={`text-left ${Txt.textSize('base')}`}>  
+            { props.type==='wannaSeeData' ? "Click here and let's check it out." : 'Click here to learn more.' } 
+          </p>
         </div>
       </div>
     </button>
@@ -84,8 +87,15 @@ export const ViewSource = (props: {
 export function SafeOpening(props: {
   onClick: Function;
   delay: number;
-  opened: boolean;
+  state: 'opened' | 'disabled' | 'enabled';
 }) {
+  const style = () => {
+    switch(props.state){
+      case 'disabled': return 'bg-purple-700';
+      case 'enabled': return 'bg-purple-900';
+      case 'opened': return 'bg-yellow-600';
+    }
+  };
   return (
     <button 
       className='w-full'
@@ -93,25 +103,14 @@ export function SafeOpening(props: {
         props.onClick();
       }}
     >
-      <div 
-        className="relative pt-1"
-      >
+      <div className={`overflow-hidden w-full m-4 rounded-full bg-purple-500 font-custom text-white text-center ${props.state==='enabled' ? 'animate-bounce' : '' }`}>
         <div 
-          className={`overflow-hidden w-full mb-4 rounded-full bg-purple-500
-            ${props.opened ? 'animate__animated animate__tada' : ''}`
-          }
           style={{
-            animation: `appear ${props.delay}s linear forwards`
+            animation: `grow ${props.delay}s linear forwards`,
           }}
+          className={`${style()} ${Txt.textSize('2xl')} p-4 flex flex-col justify-center shadow-none whitespace-nowrap` }
         >
-          <div 
-            style={{
-              animation: `grow ${props.delay}s linear forwards`,
-            }}
-            className={`shadow-none p-2 flex flex-col text-center whitespace-nowrap justify-center font-custom text-white ${Txt.textSize(Txt.subtitleSize)} bg-purple-900`}
-          >
-            Return to normality
-          </div>
+          {props.state==='opened' ? 'See your ending' : 'Return to normality'}
         </div>
       </div>
     </button>

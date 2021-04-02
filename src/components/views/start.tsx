@@ -74,12 +74,9 @@ export function Introduction(props: {
   });
 
   return (
-    <div className={`min-h-full p-2 flex flex-col justify-center items-center ${bgColorClass}`}>
-      <div className="flex flex-col justify-between items-center">
-        <Txt.Subtitle value={"El presidente!"} col="black" />
-        <Txt.Title value="How to play" col="gray-900" />
-      </div>
-      <div className="max-w-md p-6 flex flex-col items-center text-center list-disc m-2 font-sans animate__animated animate__fadeIn">
+    <div className={`min-h-full p-2 flex flex-col justify-between items-center ${bgColorClass}`}>
+      <Txt.Title value="How to play" col="gray-900" />
+      <div className="flex flex-col text-center list-disc m-2 font-sans animate__animated animate__fadeIn">
         <Txt.Subtitle value="Your goal" col="black" />
         <p className="p-2 pb-4">End COVID-19 restrictions!</p>
         <Txt.Subtitle value="How? Navigate a few events.." col="black" />
@@ -93,9 +90,9 @@ export function Introduction(props: {
           choices available!
         </p>
       </div>
-      <div className="max-w-xs m-auto mb-4 flex flex-col justify-center items-center">
+      <div className="m-auto mb-4 flex flex-col justify-center items-center">
         <Txt.Subtitle value={`Made with real models`} col="black" />
-        <Btn.Sneaky onClick={props.onClick.data} type='wannaSeeModel' bg='yellow-600' col='black' />
+        <Btn.Sneaky onClick={props.onClick.data} type='wannaSeeModel' bg='green-400' col='black' />
       </div>
       <Btn.Rounded
         value="Start"

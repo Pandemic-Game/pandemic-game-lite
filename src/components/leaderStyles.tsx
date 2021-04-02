@@ -1,6 +1,7 @@
 import React from "react";
 import * as Btn from "./buttons";
 import * as Txt from "./text";
+import * as Line from "./lines";
 import { SourceDetails } from "../model/Event";
 import { Img } from "../ImageCache";
 import iconFlipflop from "../assets/SVG/icon-flipflop.svg";
@@ -16,6 +17,7 @@ const LeadershipStyle = (props: {
   };
   icon: string;
   description: string;
+  normalityEnding: string;
   values: {
     public: number;
     economy: number;
@@ -29,13 +31,13 @@ const LeadershipStyle = (props: {
 }) => {
   return (
     <div
-      className={`min-h-full max-w-xs p-2 m-2 flex flex-col justify-between items-center text-${props.style.col}`}
+      className={`min-h-full max-w-xs p-2 m-2 flex flex-col items-center text-${props.style.col}`}
     >
       <Img 
         src={props.icon} 
         className='m-2'
         style={{ width: "25%" }} 
-        alt="Leadership style icon" 
+        alt="Ending icon" 
       />
       <Txt.Title value={props.name} col="black" />
       
@@ -48,10 +50,10 @@ const LeadershipStyle = (props: {
           onClick={props.onClickSource}
         />
       </div>
+      <Line.Hr my={2} col='black'/>
+      <Txt.Subtitle value={`Ending: ${props.normalityEnding}`} col='black'/>
     </div>
   );
-  // To-Do: Implement icons: <Img src={props.icon} className='m-2' alt='Leadership style icon'/>
-  // To-Do: Example description extra info popover
 };
 
 export function GenghisCannot(props: { onClickSource: Function }) {
@@ -69,6 +71,7 @@ export function GenghisCannot(props: { onClickSource: Function }) {
       }}
       icon={iconGenghis}
       description={`Once Gheghis Cannots make a choice they stick with it no matter what.`}
+      normalityEnding={`Slowest return to normality`}
       values={{ // Currently not used
         public: 75,
         economy: 20,
@@ -98,6 +101,7 @@ export function CovidTerminator(props: { onClickSource: Function }) {
       }}
       icon={iconTerminator}
       description={`COVID eliminators seek to achieve a zero-covid world by implementing severe but short-term restrictions.`}
+      normalityEnding={`Fastest return to normality`}
       values={{
         public: 75,
         economy: 20,
@@ -127,6 +131,7 @@ export function BusinessGuru(props: { onClickSource: Function }) {
       }}
       icon={iconGuru}
       description={`Business Gurus implement restrictions early so that businesses can open back up sooner, but do not entirely eliminate covid.`}
+      normalityEnding={`Faster return to normality`}
       values={{
         public: 75,
         economy: 20,
@@ -157,6 +162,7 @@ export function FlipFlopper(props: { onClickSource: Function }) {
       }}
       icon={iconFlipflop}
       description={`Flip-floppers try to please everyone so they change their mind a lot... and end up pleasing no-one.`}
+      normalityEnding={`Slow return to normality`}
       values={{
         public: 75,
         economy: 20,
