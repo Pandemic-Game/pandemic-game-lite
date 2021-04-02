@@ -12,7 +12,7 @@ export const Endings = (showSource: Function):Record<string, Ending> => {
         },
         FlipFlopper: {
             ele: <LeaderStyle.FlipFlopper onClickSource={showSource} />,
-            bg: "bg-red-200",
+            bg: "bg-red-400",
             winTitle: "Based on your choices you can’t open back up yet",
             winDescription:
             "By re-opening too early, cases will rise, leading to a need for restrictions in the future.",

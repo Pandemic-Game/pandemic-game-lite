@@ -55,7 +55,7 @@ export function SmallText(props: { value: string, col: string }) { // Line break
 export function SpeechBubble(props: { extraDetail: ExtraDetail, person: string, icon: any, onClick: Function, delay: number }) {
     return (
         <div className={`w-4/5 m-2 flex flex-col ${textSize('base')}`} style={{fontFamily: mainFont}}>
-            <p className={`m-2 p-2 bg-white rounded-xl animate__animated animate__fadeInRight animate__delay-${props.delay}s`}>
+            <p className={`m-2 p-2 bg-white rounded-xl animate__animated animate__fadeInLeft animate__delay-${props.delay}s`}>
                 {props.extraDetail.speech}
                 <Btn.ViewSource sourceDetails={props.extraDetail.sourceDetails} onClick={props.onClick} />
             </p>

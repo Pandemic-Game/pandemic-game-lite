@@ -342,13 +342,13 @@ const preloadAssets = () => {
     ImageCacheInstance.read(iconGuru),
     ImageCacheInstance.read(iconTerminator),
     ImageCacheInstance.read(
-      `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy.gif`
+      `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy-downsized.gif`
     ),
     ImageCacheInstance.read(
       `https://giphy.com/gifs/hulu-cbs-star-trek-the-next-generation-3o7TKCskhXtrq3nsBy`
     ),
     ImageCacheInstance.read(
-      `https://media1.giphy.com/media/6901DbEbbm4o0/giphy.gif`
+      `https://media.giphy.com/media/1BQdjXovIqSLS/giphy.gif`
     ),
     ImageCacheInstance.read(
       `https://giphy.com/gifs/fail-failing-what-teachers-think-1BQdjXovIqSLS`

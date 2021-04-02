@@ -65,14 +65,12 @@ export function EventExtra(props: { event: Event, onClickSource: Function, onCli
             onClick={props.onClickSource}
             delay={2}
         />
-        <div style={{ marginTop: "auto" }}>
-            <Btn.Rounded
-                value={'Make your response'}
-                bg={'yellow-500'}
-                col={'gray-900'}
-                onClick={() => { props.onClickBack() }}
-            />
-        </div>
+        <Btn.Rounded
+            value={'Make your response'}
+            bg={'yellow-500'}
+            col={'gray-900'}
+            onClick={() => { props.onClickBack() }}
+        />
     </div>
 }
 

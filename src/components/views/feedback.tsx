@@ -17,9 +17,7 @@ export function FeedbackScreen1(props: { response: Response, feedback: JSX.Eleme
     return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
         <Txt.Title value={'The immediate reaction...'} col={'white'} />
         {props.feedback}
-        <div style={{ marginTop: "auto" }}>
-            <Btn.Sneaky onClick={() => { props.onClick() }} bg='yellow-500' type='wannaSeeData' col='black' />
-        </div>
+        <Btn.Rounded onClick={() => { props.onClick() }} value='See data over time'  bg='yellow-500' col='black' />
     </div>
 }
 
@@ -54,7 +52,7 @@ export function FeedbackScreen2(props:
             delay={6}
         />
         <Btn.Rounded
-            value={'End event'}
+            value={'Continue'}
             col='gray-900'
             bg='yellow-500'
             onClick={() => { props.onClickContinue() }}

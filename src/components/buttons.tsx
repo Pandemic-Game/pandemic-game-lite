@@ -1,12 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faQuestionCircle, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import SVGWannaSeeData from "../assets/SVG/sneaky-wannaSeeData.svg";
 import SVGWannaSeeModel from "../assets/SVG/sneaky-wannaSeeModel.svg";
 import { SourceDetails } from "../model/Event";
 import { Img } from "../ImageCache";
 import * as Txt from "./text";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 // Primary button
 export function Rounded(props: any) {
@@ -123,13 +123,13 @@ export function SafeOpening(props: {
   };
   return (
     <button
-      className="w-full"
+      className="w-full p-2 flex flex-col justify-center align-center"
       onClick={() => {
         props.onClick();
       }}
     >
       <div
-        className={`overflow-hidden w-full m-4 rounded-full bg-purple-500 font-custom text-white text-center ${
+        className={`overflow-hidden w-full m-auto rounded-full bg-purple-500 font-custom text-white text-center ${
           props.state === "enabled" ? "animate-bounce" : ""
         }`}
       >
@@ -149,12 +149,12 @@ export function SafeOpening(props: {
 }
 
 // twitter share
-interface TwitterShareProps {
+interface ShareProps {
   shareText: string;
 }
 
-export const TwitterShare: React.FC<TwitterShareProps> = (
-  props: TwitterShareProps
+export const TwitterShare: React.FC<ShareProps> = (
+  props: ShareProps
 ) => {
   const urlEncodedText = encodeURI(props.shareText);
   const openShareLink = () => {
@@ -167,13 +167,37 @@ export const TwitterShare: React.FC<TwitterShareProps> = (
   };
 
   return (
-    <button
-      className="w-full m-2 p-4 rounded-full text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl text-black font-custom rounded-full bg-blue-500 text-white"
-      onClick={() => {
-        openShareLink();
-      }}
-    >
-      <FontAwesomeIcon icon={faTwitter} color="white" size="lg" />
-    </button>
+    <div>
+      <button
+        className="p-2 m-1 rounded-xl text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl text-black bg-blue-600 text-white"
+        onClick={() => {
+          openShareLink();
+        }}
+      >
+        <FontAwesomeIcon
+          icon={faTwitter}
+          size="lg"
+          className="animate-pulse"
+        />
+      </button>
+    </div>
   );
 };
+
+export const MailShare: React.FC<ShareProps> = (
+  props: ShareProps
+) => {
+  return (
+    <a href="mailto:?subject=COVID19 OutBreak Game&amp;body=Check out OutBreak the game: https://outbreak.endcoronavirus.org."
+      title="Share by Email">
+      <button className="p-2 m-1 rounded-xl text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl text-black  bg-red-500 text-white">
+        <FontAwesomeIcon
+          icon={faEnvelope}
+          size="lg"
+          className="animate-pulse"
+        />
+      </button>
+    </a>
+  );
+};
+

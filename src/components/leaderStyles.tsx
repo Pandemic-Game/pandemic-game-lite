@@ -31,7 +31,7 @@ const LeadershipStyle = (props: {
 }) => {
   return (
     <div
-      className={`min-h-full max-w-xs p-2 m-2 flex flex-col items-center text-${props.style.col}`}
+      className={`min-h-full w-xs p-2 m-2 pb-0 mb-0 flex flex-col justify-center items-center text-${props.style.col} animate__animated animate__bounceIn`}
     >
       <Img 
         src={props.icon} 
@@ -39,19 +39,23 @@ const LeadershipStyle = (props: {
         style={{ width: "25%" }} 
         alt="Ending icon" 
       />
-      <Txt.Title value={props.name} col="black" />
-      
-      <Txt.Text value={props.description} col="black" />
-      <br></br>
-      <div className="max-w-xs flex flex-row">
-        <Txt.Text value={`This response is similar to ${props.example.name}`} col="black" />
+      <div className='w-full flex flex-col'>
+        <Txt.Title value={props.name} col="black" />
+      </div>
+      <div className='p-2 text-center'>
+        <Txt.Subtitle value={`${props.normalityEnding}`} col='black'/>
+        <Txt.Text value={props.description} col="black" />
+      </div>
+      <div className="max-w-xs mb-2 flex flex-row">
+        <div className='p-2'>
+          <Txt.Text value={`Similar to ${props.example.name}`} col="black" />
+        </div>
         <Btn.ViewSource
           sourceDetails={props.example.sourceDetails}
           onClick={props.onClickSource}
         />
       </div>
-      <Line.Hr my={2} col='black'/>
-      <Txt.Subtitle value={`Ending: ${props.normalityEnding}`} col='black'/>
+      <Line.Hr my={0} col='black'/>
     </div>
   );
 };
@@ -61,7 +65,7 @@ export function GenghisCannot(props: { onClickSource: Function }) {
     <LeadershipStyle
       name="Genghis Cannot"
       example={{
-        name: "The United States of America",
+        name: "the USA",
         sourceDetails: {
           sourceName: "Their response to COVID-19",
           link: "https://www.bbc.co.uk/news/world-us-canada-52407177",
@@ -100,7 +104,7 @@ export function CovidTerminator(props: { onClickSource: Function }) {
         },
       }}
       icon={iconTerminator}
-      description={`COVID eliminators seek to achieve a zero-covid world by implementing severe but short-term restrictions.`}
+      description={`COVID Terminators seek to achieve a zero-covid world by implementing severe but short-term restrictions.`}
       normalityEnding={`Fastest return to normality`}
       values={{
         public: 75,
@@ -151,7 +155,7 @@ export function FlipFlopper(props: { onClickSource: Function }) {
     <LeadershipStyle
       name="Flip-flopper"
       example={{
-        name: "The United Kingdom",
+        name: "the UK",
         sourceDetails: {
           sourceName: "Their response to COVID-19",
           link:
