@@ -28,7 +28,7 @@ export const mainFont = `'Open Sans', sans-serif`;
 // Components
 export function Title(props: { value: string, col: string | undefined }) {
     return (
-        <h1 className={`m-2 p-2 ${textSize('3xl')} text-center text-${props.col} font-custom border-b-2 border-${props.col}`}>
+        <h1 className={`m-2 p-2 ${textSize('xl')} text-center text-${props.col} font-custom border-b-2 border-${props.col}`}>
             {props.value}
         </h1>
     );
@@ -36,7 +36,7 @@ export function Title(props: { value: string, col: string | undefined }) {
 
 export function Subtitle(props: { value: string, col: string }) {
     return (
-        <h1 className={`m-1 ${textSize(subtitleSize)} text-center text-${props.col} font-custom`}>
+        <h1 className={`m-1 ${textSize('lg')} text-center text-${props.col} font-custom`}>
             {props.value}
         </h1>
     );
