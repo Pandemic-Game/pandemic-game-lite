@@ -3,14 +3,26 @@ import { v4 as uuidv4 } from "uuid";
 
 const SESSION_STORAGE_KEY = "PANDEMIC_GAME_SESSION";
 
+interface PlayerChoice {
+  label: string;
+  updatedIndicators: any;
+}
+
+interface BrowserInfo {
+  viewportWidthPx: number;
+  viewportHeightPx: number;
+  userAgent: string;
+}
+
 interface GameSession {
   sessionId: string;
   playthroughId: string;
   timestamp: string;
-  eventType: "GameStart" | "GameEnd";
+  browserInfo: BrowserInfo;
+  eventType: "GameStart" | "ChoiceClick" | "DetailClick" | "GameEnd";
   codeVersion: string;
   leadershipStyle: string | null;
-  choices: any[];
+  choice: PlayerChoice | null;
 }
 
 export class DataCollector {
@@ -42,7 +54,8 @@ export class DataCollector {
         timestamp: new Date().toISOString(),
         codeVersion: process.env.REACT_APP_VERSION || "local-dev",
         leadershipStyle: "",
-        choices: [],
+        choice: null,
+        browserInfo: this.collectBrowserInfo(),
       };
 
       await axios.post(this.apiUrl, event);
@@ -52,7 +65,47 @@ export class DataCollector {
     }
   }
 
-  async sendGameEndSignal(leadershipStyle: string, history: any[]) {
+  async sendChoiceClickEventSignal(playerChoice: PlayerChoice) {
+    try {
+      const event: GameSession = {
+        eventType: "ChoiceClick",
+        sessionId: this.sessionId,
+        playthroughId: this.playthroughId,
+        timestamp: new Date().toISOString(),
+        codeVersion: process.env.REACT_APP_VERSION || "local-dev",
+        leadershipStyle: "",
+        choice: playerChoice,
+        browserInfo: this.collectBrowserInfo(),
+      };
+
+      await axios.post(this.apiUrl, event);
+    } catch (err) {
+      console.error("Error sending end telemetry");
+      console.error(err);
+    }
+  }
+
+  async sendDetailClickEventSignal() {
+    try {
+      const event: GameSession = {
+        eventType: "DetailClick",
+        sessionId: this.sessionId,
+        playthroughId: this.playthroughId,
+        timestamp: new Date().toISOString(),
+        codeVersion: process.env.REACT_APP_VERSION || "local-dev",
+        leadershipStyle: "",
+        choice: null,
+        browserInfo: this.collectBrowserInfo(),
+      };
+
+      await axios.post(this.apiUrl, event);
+    } catch (err) {
+      console.error("Error sending end telemetry");
+      console.error(err);
+    }
+  }
+
+  async sendGameEndSignal(leadershipStyle: string) {
     try {
       const event: GameSession = {
         eventType: "GameEnd",
@@ -61,7 +114,8 @@ export class DataCollector {
         timestamp: new Date().toISOString(),
         codeVersion: process.env.REACT_APP_VERSION || "local-dev",
         leadershipStyle: leadershipStyle,
-        choices: history,
+        choice: null,
+        browserInfo: this.collectBrowserInfo(),
       };
 
       await axios.post(this.apiUrl, event);
@@ -69,5 +123,13 @@ export class DataCollector {
       console.error("Error sending end telemetry");
       console.error(err);
     }
+  }
+
+  private collectBrowserInfo() {
+    return {
+      viewportWidthPx: window.screen.width,
+      viewportHeightPx: window.screen.height,
+      userAgent: navigator.userAgent,
+    };
   }
 }
