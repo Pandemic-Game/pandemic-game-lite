@@ -85,32 +85,28 @@ export function Introduction(props: {
   });
 
   return (
-    <div className={`min-h-full p-2 flex flex-col items-center text-center justify-between ${bgColorClass}`}>
+    <div className={`min-h-full p-2 flex flex-col items-center text-center ${bgColorClass}`}>
       <Txt.Title value="How to play" col="gray-900" />
-      <div>
-        <Txt.Subtitle value="Your goal" col="black" />
-        <Txt.Text value="End COVID-19 restrictions!" col="black" />
-      </div>
-      <div>
-        <Txt.Subtitle value="How? Navigate a few events.." col="black" />
-        <Txt.Text value="You will have a limited choice of responses (you won't be able to change society all at once!)" col="black" />
-      </div>
-      <div>
-        <Txt.Subtitle value=".. but be careful!" col="black" />
-        <Txt.Text value="One wrong step can put you in an out-of-control situation with no good choices available!" col="black" />
-      </div>
-      <div className="flex flex-col justify-center items-center">
+      <br/>
+      <Txt.Subtitle value="Your goal" col="black" />
+      <Txt.Text value="End COVID-19 restrictions!" col="black" />
+      <br/>
+      <Txt.Subtitle value="How? Navigate a few events.." col="black" />
+      <Txt.Text value="You will have a limited choice of responses (you won't be able to change society all at once!)" col="black" />
+      <br/>
+      <Txt.Subtitle value=".. but be careful!" col="black" />
+      <Txt.Text value="One wrong step can put you in an out-of-control situation with no good choices available!" col="black" />
+      <br/>
+      <div className="p-4 flex flex-col justify-center items-center">
         <Txt.Subtitle value={`Made with real models`} col="black" />
         <Btn.Sneaky onClick={props.onClick.data} type='wannaSeeModel' bg='green-400' col='black' />
       </div>
-      <div className='w-full'>
-        <Btn.Rounded
-          value="Start"
-          bg="purple-900"
-          col="white"
-          onClick={props.onClick.continue}
-        />
-      </div>
+      <Btn.Rounded
+        value="Start"
+        bg="purple-900"
+        col="white"
+        onClick={props.onClick.continue}
+      />
     </div>
   );
 }
