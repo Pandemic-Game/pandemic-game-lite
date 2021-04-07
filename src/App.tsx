@@ -204,7 +204,13 @@ const GameLoop: React.FC = () => {
 
     // Event screens
     case "event":
-      return <EventScreen event={event} onClick={() => show("eventExtra")} />;
+      return <EventScreen 
+        event={event} 
+        onClick={{
+          consult: () => show("eventExtra"),
+          decide: () => show("eventResponse")
+        }} 
+      />;
     case "eventExtra":
       return (
         <EventExtra

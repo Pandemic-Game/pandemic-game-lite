@@ -6,7 +6,7 @@ export const evt_0_0: Event = {
     You are being pressured to make a response to the situation by either enforcing restrictions or remaining open.`,
     extraDetails: {
         public: {
-            speech: `If make restrictions people will probably stop obeying them after a while.`,
+            speech: `If we make restrictions people might stop obeying them after a while.`,
             sourceDetails: {
                 sourceName: `YouGov `,
                 link: `https://docs.cdn.yougov.com/pkv90of78k/SunOnSunday_CoronaResults_210115.pdf`,

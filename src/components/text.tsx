@@ -1,7 +1,7 @@
 import React from 'react';
 import { ExtraDetail } from '../model/Event';
 import * as Btn from './buttons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Img } from "../ImageCache";
 
 // Global font properties */
 export const textSize = (s: string) => {
@@ -65,17 +65,26 @@ export function SmallText(props: { value: string, col: string }) { // Line break
     );
 }
 
-export function SpeechBubble(props: { extraDetail: ExtraDetail, person: string, icon: any, onClick: Function, delay: number }) {
+export function SpeechBubble(props: { extraDetail: ExtraDetail, person: string, icon: string, onClick: Function, delay: number }) {
+    const people = (person: string) => {
+        switch(person){
+            case 'Joe': return 'Public';
+            case 'Bob': return 'Business';
+            case 'Daisy': return 'Medical';
+        }
+    }
     return (
-        <div className={`max-w-2xl m-2 flex flex-col ${textSize('base')}`} style={{fontFamily: mainFont}}>
-            <p className={`m-2 p-2 bg-white rounded-xl animate__animated animate__fadeInLeft animate__delay-${props.delay}s`}>
+        <div className={`max-w-2xl m-2 flex flex-row ${textSize('base')}`} style={{fontFamily: mainFont}}>
+            <div className='w-32 flex flex-col justify-center text-center'>
+                <Img src={props.icon} width='24rem' height='auto' style={{marginLeft: 'auto', marginRight: 'auto'}} />
+                <div className='p-2 bg-yellow-200 rounded-bl-xl rounded-br-xl'>
+                    <p className='font-semibold' style={{fontFamily: mainFont}}> {people(props.person)} </p>
+                </div>
+            </div>
+            <p className={`m-2 p-4 bg-white rounded-xl rounded-bl-none animate__animated animate__fadeInLeft animate__delay-${props.delay}s`}>
                 {props.extraDetail.speech}
                 <Btn.ViewSource sourceDetails={props.extraDetail.sourceDetails} onClick={props.onClick} />
             </p>
-            <div className={`flex flex-row align-center animate__animated animate__fadeInLeft animate__delay-${props.delay}s`}>
-                <FontAwesomeIcon icon={props.icon} size='2x' />
-                <p className='mx-2 font-semibold' style={{fontFamily: mainFont}}> {props.person} </p>
-            </div>
         </div>
     );
 }

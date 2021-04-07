@@ -50,15 +50,6 @@ export function Splash(props: { onClick: Function }) {
           value={"A five minute game to return to normality."}
           col="black"
         />
-        <br></br>
-        <Txt.Text
-          value="How would you end COVID-19 restrictions?"
-          col="black"
-        />
-        <Txt.Text
-          value="Lead your country, navigate the first few months of 2021 and find out."
-          col="black"
-        />
       </div>
 
       <Btn.Bouncy
