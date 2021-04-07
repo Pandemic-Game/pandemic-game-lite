@@ -68,21 +68,23 @@ export function SmallText(props: { value: string, col: string }) { // Line break
 export function SpeechBubble(props: { extraDetail: ExtraDetail, person: string, icon: string, onClick: Function, delay: number }) {
     const people = (person: string) => {
         switch(person){
-            case 'Joe': return 'Public';
-            case 'Bob': return 'Business';
-            case 'Daisy': return 'Medical';
+            case 'Joe': return 'Regular guy';
+            case 'Bob': return 'Business owner';
+            case 'Daisy': return 'Doctor';
+            default: return '';
         }
     }
     return (
-        <div className={`max-w-2xl m-2 flex flex-row ${textSize('base')}`} style={{fontFamily: mainFont}}>
-            <div className='w-32 flex flex-col justify-center text-center'>
-                <Img src={props.icon} width='24rem' height='auto' style={{marginLeft: 'auto', marginRight: 'auto'}} />
+        <div className={`w-full max-w-2xl m-2 flex flex-row ${textSize('base')}`} style={{fontFamily: mainFont}}>
+            <div className='w-1/4 flex flex-col justify-center text-center'>
+                <Img src={props.icon} className='mx-auto' />
                 <div className='p-2 bg-yellow-200 rounded-bl-xl rounded-br-xl'>
-                    <p className='font-semibold' style={{fontFamily: mainFont}}> {people(props.person)} </p>
+                    <strong><Text value={props.person} col='black' /></strong>
+                    <SmallText value={people(props.person)} col='black' />
                 </div>
             </div>
-            <p className={`m-2 p-4 bg-white rounded-xl rounded-bl-none animate__animated animate__fadeInLeft animate__delay-${props.delay}s`}>
-                {props.extraDetail.speech}
+            <p className={`w-3/4 m-auto mx-2 p-2 bg-white text-center rounded-xl rounded-tl-none animate__animated animate__fadeInLeft animate__delay-${props.delay}s`}>
+                <Text value={props.extraDetail.speech} col='black' />
                 <Btn.ViewSource sourceDetails={props.extraDetail.sourceDetails} onClick={props.onClick} />
             </p>
         </div>

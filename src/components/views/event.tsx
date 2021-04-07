@@ -9,6 +9,7 @@ import { WarningSign } from '../warning-sign';
 import Joe from "../../assets/SVG/advisor-joe.svg";
 import Daisy from "../../assets/SVG/advisor-daisy.svg";
 import Bob from "../../assets/SVG/advisor-bob.svg";
+import { Img } from "../../ImageCache";
 
 export function EventScreen(props:
     {
@@ -49,13 +50,13 @@ export function EventScreen(props:
         </div>
         <div className='w-full flex flex-col' style={{marginTop: 'auto'}}>
             <Btn.Rounded
-                value='Consult your advisors'
+                value='Consult some people'
                 bg={'yellow-500'}
                 col={'black'}
                 onClick={() => { props.onClick.consult() }}
             />
             <Btn.Rounded
-                value='Make decision without advisors'
+                value='Make decision without discussion'
                 bg={'yellow-600'}
                 col={'black'}
                 onClick={() => { props.onClick.decide() }}
@@ -66,8 +67,7 @@ export function EventScreen(props:
 
 export function EventExtra(props: { event: Event, onClickSource: Function, onClickBack: Function }) {
     return <div className='min-h-full p-2 flex flex-col items-center bg-yellow-400'>
-        <Txt.Subtitle value={props.event.title} col='black' />
-        <Txt.Title value='Your advisors say...' col='black' />
+        <Txt.Title value='Discussion' col='black' />
         <Txt.SpeechBubble
             extraDetail={props.event.extraDetails.public}
             person='Joe'
@@ -76,16 +76,16 @@ export function EventExtra(props: { event: Event, onClickSource: Function, onCli
             delay={0}
         />
         <Txt.SpeechBubble
-            extraDetail={props.event.extraDetails.business}
-            person='Bob'
-            icon={Bob}
+            extraDetail={props.event.extraDetails.medical}
+            person='Daisy'
+            icon={Daisy}
             onClick={props.onClickSource}
             delay={1}
         />
         <Txt.SpeechBubble
-            extraDetail={props.event.extraDetails.medical}
-            person='Daisy'
-            icon={Daisy}
+            extraDetail={props.event.extraDetails.business}
+            person='Bob'
+            icon={Bob}
             onClick={props.onClickSource}
             delay={2}
         />
