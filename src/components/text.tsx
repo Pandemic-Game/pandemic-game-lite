@@ -75,7 +75,7 @@ export function SpeechBubble(props: { extraDetail: ExtraDetail, person: string, 
         }
     }
     return (
-        <div className={`w-full max-w-2xl m-2 flex flex-row ${textSize('base')}`} style={{fontFamily: mainFont}}>
+        <div className={`w-full max-w-2xl m-2 flex flex-row ${textSize('base')} animate__animated animate__fadeInLeft animate__delay-${props.delay}s`} style={{fontFamily: mainFont}}>
             <div className='w-1/4 flex flex-col justify-center text-center'>
                 <Img src={props.icon} className='mx-auto' />
                 <div className='p-2 bg-yellow-200 rounded-bl-xl rounded-br-xl'>
@@ -83,7 +83,7 @@ export function SpeechBubble(props: { extraDetail: ExtraDetail, person: string, 
                     <SmallText value={people(props.person)} col='black' />
                 </div>
             </div>
-            <p className={`w-3/4 m-auto mx-2 p-2 bg-white text-center rounded-xl rounded-tl-none animate__animated animate__fadeInLeft animate__delay-${props.delay}s`}>
+            <p className='w-3/4 m-auto mx-2 p-2 bg-white text-center rounded-xl rounded-tl-none'>
                 <Text value={props.extraDetail.speech} col='black' />
                 <Btn.ViewSource sourceDetails={props.extraDetail.sourceDetails} onClick={props.onClick} />
             </p>

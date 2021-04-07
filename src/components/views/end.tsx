@@ -105,7 +105,7 @@ export function EndLeaderStyle(props: {
       <Txt.Title value='Your ending...' col='black' />
       {props.ending.ele}
       <div className="w-xs p-2 mb-4 flex flex-row justify-end align-start rounded-xl rounded-t-none bg-gray-900 border border-t-0 border-gray-700">
-        <Txt.Subtitle value="Share" col="white" />
+        <Txt.Subtitle value="Share Your Result" col="white" />
         <Btn.TwitterShare shareText="Can you return to normality? Play OutBreak the game: https://outbreak.endcoronavirus.org" />
         <Btn.MailShare shareText="Can you return to normality? Play OutBreak the game: https://outbreak.endcoronavirus.org" />
         <EndResultCopyToClipboard
