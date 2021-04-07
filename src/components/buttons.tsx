@@ -138,7 +138,7 @@ export function SafeOpening(props: {
             animation: `grow ${props.delay}s linear forwards`,
           }}
           className={`${style()} ${Txt.textSize(
-            "2xl"
+            "xl"
           )} p-4 flex flex-col justify-center shadow-none whitespace-nowrap`}
         >
           {props.state === "opened" ? "See your ending" : "Return to normality"}
