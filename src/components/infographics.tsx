@@ -66,27 +66,26 @@ export function SupportBar(props: {
   onClickSource: Function;
   delay: number;
 }) {
-  const responseText =
-    props.response.updatedIndicators.supportForLastResponse > 50
-      ? "People liked that!"
-      : "Ooh... People found that controversial!";
+  const survey = (a:number):string => {
+    if(a < 50){ return 'People are unhappy'}
+    if(a === 50){ return 'People are mostly happy'}
+    else{ return 'People are happy'}
+  }
+  const responseText:string = survey(props.response.updatedIndicators.supportForLastResponse);
   return (
     <div
       className="m-2 w-full flex flex-col items-center rounded-xl bg-gray-700 animate__animated animate__backInDown"
       style={{ animationDelay: `${props.delay}s` }}
     >
-      <Txt.Title value={"Immediate public reaction"} col={"white"} />
+      <Txt.Title value={"The survey says.."} col={"white"} />
+      <div className="flex flex-row items-center text-center justify-center">
+        <Txt.Text value={responseText} col={"white"} />
+      </div>
       <Bar 
         support={props.response.updatedIndicators.supportForLastResponse} 
         opposition={props.response.updatedIndicators.oppositionToLastResponse} 
       />
-      <div className="flex flex-row items-center text-center justify-center">
-        <Txt.Text value={responseText} col={"white"} />
-        <Btn.ViewSource
-          sourceDetails={props.response.sourceDetails}
-          onClick={props.onClickSource}
-        />
-      </div>
+      <Txt.Text value={`${props.response.updatedIndicators.supportForLastResponse}% people agree with the response to the pandemic`} col='white' />
     </div>
   );
 }
@@ -250,7 +249,12 @@ export function EconomyGraphic(props: {
       className="w-full m-2 p-2 flex flex-col items-center text-white rounded-xl bg-yellow-600 animate__animated animate__backInDown"
       style={{ animationDelay: `${props.delay}s` }}
     >
-      <Txt.Title value='Economy' col="white" />
+      <Txt.Title 
+        value={props.indicators.medicalCosts > props.indicators.lockdownCosts ? 'Restrictions are saving money' : 'Restrictions are costing money'} 
+        col="white" />
+      <p className='max-w-xs text-gray-900'>
+        Restrictions save money when the costs of treating COVID-19 are higher than the cost of lost business activity
+      </p>
       <div className="flex flex-row">
         <div className="flex flex-col items-center">
           <p className="p-2 text-lg font-medium">Medical costs </p>

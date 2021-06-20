@@ -126,6 +126,16 @@ const GameLoop: React.FC = () => {
     show("feedback1");
   };
 
+  /*
+    START of conversion hacks for research game 
+  */
+  if(view === 'introduction'){
+    processPlayerChoice(Story.evt_0_0.response2);
+    show("feedback1");
+  }
+
+  /* END of conversion hacks */
+
   // Show feedback
   const getSocialFeedback = (feedback: ResponseItem[]): JSX.Element => {
     function constructElement(it: ResponseItem, i: number) {
@@ -183,7 +193,7 @@ const GameLoop: React.FC = () => {
         <Introduction
           onClick={{
             continue: () => {
-              show("event");
+              show("feedback1");
             },
             source: showSource,
             data: () => {
@@ -211,7 +221,7 @@ const GameLoop: React.FC = () => {
           decide: () => show("eventResponse")
         }} 
       />;
-    case "eventExtra":
+    case "eventExtra": // UNUSED
       return (
         <EventExtra
           event={event}
@@ -248,7 +258,10 @@ const GameLoop: React.FC = () => {
         <FeedbackScreen1
           response={getLastResponse()}
           feedback={getSocialFeedback(getLastResponse().socialMediaResponse)}
-          onClick={() => show("feedback2")}
+          onClick={{
+            extraInfo: () => show("feedback2"),
+            continue:  () => show("eventResponse")
+          }}
         />
       );
     case "feedback2":
@@ -261,7 +274,7 @@ const GameLoop: React.FC = () => {
               dataCollectorContext.dataCollector.sendGameEndSignal(ending);
               show("end");
             } else {
-              show("event");
+              show("eventResponse");
             }
           }}
           onClickSource={showSource}

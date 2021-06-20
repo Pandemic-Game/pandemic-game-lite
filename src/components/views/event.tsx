@@ -50,15 +50,9 @@ export function EventScreen(props:
         </div>
         <div className='w-full flex flex-col' style={{marginTop: 'auto'}}>
             <Btn.Rounded
-                value='Consult some people'
-                bg={'yellow-500'}
-                col={'black'}
-                onClick={() => { props.onClick.consult() }}
-            />
-            <Btn.Rounded
-                value='Make decision without discussion'
-                bg={'yellow-600'}
-                col={'black'}
+                value='Make a decision'
+                bg={''}
+                col={'blue-700'}
                 onClick={() => { props.onClick.decide() }}
             />
         </div>
@@ -120,17 +114,19 @@ export function EventResponse(props:
         </div>
         <div className='w-4/5 flex flex-col justify-between items-center' style={{ marginTop: "auto" }}>
             <Txt.Title value={'Choose your response'} col='black' />
-            <Btn.Rounded
-                value={props.event.response1.label}
-                bg={'purple-900'}
-                col={'white'}
-                onClick={() => { props.onClick(props.event.response1) }}
-            />
+            <div className='w-full animate__animated animate__tada'>
+                <Btn.Rounded
+                    value={props.event.response1.label}
+                    bg={'green-600'}
+                    col={'yellow-100'}
+                    onClick={() => { props.onClick(props.event.response1) }}
+                />
+            </div>
             <Lines.OR col='black' />
             <Btn.Rounded
                 value={props.event.response2.label}
-                bg={'purple-900'}
-                col={'white'}
+                bg={'black'}
+                col={'red-600'}
                 onClick={() => { props.onClick(props.event.response2) }}
             />
             <Lines.Hr my={0} col='black' />

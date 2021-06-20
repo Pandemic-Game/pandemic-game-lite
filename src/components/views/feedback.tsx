@@ -6,7 +6,10 @@ import { Response } from '../../model/Response';
 import { Indicators } from '../../model/Indicators';
 import { useThemeContext } from '../../ThemeProvider';
 
-export function FeedbackScreen1(props: { response: Response, feedback: JSX.Element, onClick: Function }) {
+export function FeedbackScreen1(props: { response: Response, feedback: JSX.Element, onClick: {
+    extraInfo: Function;
+    continue:  Function;
+} }) {
     const bgColorClass = "bg-gray-900"
     const context = useThemeContext()
 
@@ -15,9 +18,18 @@ export function FeedbackScreen1(props: { response: Response, feedback: JSX.Eleme
     })
 
     return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
-        <Txt.Title value={'The immediate reaction...'} col={'white'} />
+        <Txt.Title value={'Main Stream News'} col={'white'} />
+        <Gfx.SupportBar 
+            indicators={props.response.updatedIndicators} 
+            response={props.response} 
+            onClickSource={()=>{}} 
+            delay={-1}
+        />
         {props.feedback}
-        <Btn.Rounded onClick={() => { props.onClick() }} value='See data over time'  bg='yellow-500' col='black' />
+        <div className='w-full mt-auto'>
+            <Btn.Rounded onClick={() => { props.onClick.extraInfo() }} value='See alternative news'  bg='' col='blue-600' />
+            <Btn.Rounded onClick={() => { props.onClick.continue() }} value='Continue'  bg='green-600' col='yellow-100' />
+        </div>
     </div>
 }
 
@@ -45,16 +57,10 @@ export function FeedbackScreen2(props:
             indicators={props.response.updatedIndicators} 
             delay={4}
         />
-        <Gfx.SupportBar 
-            indicators={props.response.updatedIndicators} 
-            response={props.response} 
-            onClickSource={props.onClickSource} 
-            delay={6}
-        />
         <Btn.Rounded
             value={'Continue'}
-            col='black'
-            bg='yellow-500'
+            col='yellow-100'
+            bg='green-600'
             onClick={() => { props.onClickContinue() }}
         />
     </div>
