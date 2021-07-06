@@ -1,5 +1,11 @@
 import {Event} from '../model/Event';
 
+/*
+Developer note:
+    Compared to the original OutBreak, response1 is now always a lockdown action, and response 2 is a no-lockdown action.
+    ALL social feedback is carried on response1.
+*/
+
 export const evt_0_0: Event = {
     title: `Welcome to the jungle`,
     description: `24 in 1000 people have caught COVID-19 this month and the number of new cases is rising. 
@@ -30,7 +36,7 @@ export const evt_0_0: Event = {
             }
         }
     },
-    response1: {
+    response2: {
         label: `Keep everything open`,
         getParentEvent: () => {
             return evt_0_0
@@ -42,22 +48,7 @@ export const evt_0_0: Event = {
             lockdownCosts: 1,
             medicalCosts: 40
         },
-        socialMediaResponse: [{
-            type: `article`,
-            isHappy: false,
-            head: `Daily Bugle`,
-            content: `New cases rising sharply`
-        }, {
-            type: `meme`,
-            isHappy: true,
-            head: `TFW I can actually see my friends`,
-            content: `https://media.giphy.com/media/3o7TKCskhXtrq3nsBy/giphy.gif`
-        }, {
-            type: `tweet`,
-            isHappy: false,
-            head: `Chan Chan Man @ChanandalerBong`,
-            content: `Could the COVID cases BE any higher???`
-        }],
+        socialMediaResponse: [],
         getNextEvent: () => {
             return evt_1_1
         },
@@ -68,7 +59,7 @@ export const evt_0_0: Event = {
             description: `85% of UK respondents say that they support the implementation of a second lockdown in early 2021 for the UK.`
         }
     },
-    response2: {
+    response1: {
         label: `Let's close non-essential businesses..`,
         getParentEvent: () => {
             return evt_0_0
@@ -95,6 +86,21 @@ export const evt_0_0: Event = {
             isHappy: true,
             head: `Me when I see someone sneeze`,
             content: `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy-downsized.gif`
+        },{
+            type: `article`,
+            isHappy: false,
+            head: `Daily Bugle`,
+            content: `New cases rising sharply`
+        }, {
+            type: `meme`,
+            isHappy: true,
+            head: `TFW I can actually see my friends`,
+            content: `https://media.giphy.com/media/3o7TKCskhXtrq3nsBy/giphy.gif`
+        }, {
+            type: `tweet`,
+            isHappy: false,
+            head: `Chan Chan Man @ChanandalerBong`,
+            content: `Could the COVID cases BE any higher???`
         }],
         getNextEvent: () => {
             return evt_1_2
@@ -137,7 +143,7 @@ export const evt_1_1: Event = {
             }
         }
     },
-    response1: {
+    response2: {
         label: `Keep schools open`,
         getParentEvent: () => {
             return evt_1_1
@@ -149,22 +155,7 @@ export const evt_1_1: Event = {
             lockdownCosts: 1,
             medicalCosts: 104
         },
-        socialMediaResponse: [{
-            type: `article`,
-            isHappy: false,
-            head: `New Fork Times`,
-            content: `Health Secretary: 'Be prepared for a rise in cases'`
-        }, {
-            type: `tweet`,
-            isHappy: false,
-            head: `Kevin @KoolKevin22`,
-            content: `My kids CANNOT be expected to wear a mask all day. This is RIDICULOUS.`
-        }, {
-            type: `tweet`,
-            isHappy: true,
-            head: `Kared @AllBoutThatGlitter`,
-            content: `The kids are back in school!!! #HelloFreedom #Winning`
-        }],
+        socialMediaResponse: [],
         getNextEvent: () => {
             return evt_2_1
         },
@@ -175,7 +166,7 @@ export const evt_1_1: Event = {
             description: `67% of UK respondents in early 2021 support closing schools and universities. However, this alone is not enough to completely stop cases.`
         }
     },
-    response2: {
+    response1: {
         label: `Close schools`,
         getParentEvent: () => {
             return evt_2_2
@@ -202,6 +193,21 @@ export const evt_1_1: Event = {
             isHappy: false,
             head: `Hermione @BooksAndCleverness`,
             content: `ALL THAT STUDYING FOR NOTHING 😭😭`
+        },{
+            type: `article`,
+            isHappy: false,
+            head: `New Fork Times`,
+            content: `Health Secretary: 'Be prepared for a rise in cases'`
+        }, {
+            type: `tweet`,
+            isHappy: false,
+            head: `Kevin @KoolKevin22`,
+            content: `My kids CANNOT be expected to wear a mask all day. This is RIDICULOUS.`
+        }, {
+            type: `tweet`,
+            isHappy: true,
+            head: `Kared @AllBoutThatGlitter`,
+            content: `The kids are back in school!!! #HelloFreedom #Winning`
         }],
         getNextEvent: () => {
             return evt_2_2
@@ -244,7 +250,7 @@ export const evt_1_2: Event = {
             }
         }
     },
-    response1: {
+    response2: {
         label: `Let my people work!`,
         getParentEvent: () => {
             return evt_1_2
@@ -256,22 +262,7 @@ export const evt_1_2: Event = {
             lockdownCosts: 1,
             medicalCosts: 3
         },
-        socialMediaResponse: [{
-            type: `article`,
-            isHappy: false,
-            head: `The Nightly Mail`,
-            content: `Healthcare workers overwhelmed as cases continue to rise`
-        }, {
-            type: `tweet`,
-            isHappy: false,
-            head: `Peter Cottontail @ParanoidPete`,
-            content: `People... people everywhere...`
-        }, {
-            type: `meme`,
-            isHappy: true,
-            head: `Me when I go outside for the first time in 525,600 days`,
-            content: `https://thumbs.gfycat.com/DeliriousDenseArgali-small.gif`
-        }],
+        socialMediaResponse: [],
         getNextEvent: () => {
             return evt_2_2
         },
@@ -282,7 +273,7 @@ export const evt_1_2: Event = {
             description: `The split reaction here is meant to model how lockdown fatigue can make people change their mind on lockdown. Taken together with the split opinion on whether they have felt lonely during the pandemic (source linked), this choice was estimated to split public support.`
         }
     },
-    response2: {
+    response1: {
         label: `Stay inside, please`,
         getParentEvent: () => {
             return evt_1_2
@@ -309,6 +300,21 @@ export const evt_1_2: Event = {
             isHappy: false,
             head: `Eugene H. Krabs @TheKrustyKrab`,
             content: `Me restaurant hasn't had any customers in months. LIFT RESTRICTIONS NOW!!!`
+        },{
+            type: `article`,
+            isHappy: false,
+            head: `The Nightly Mail`,
+            content: `Healthcare workers overwhelmed as cases continue to rise`
+        }, {
+            type: `tweet`,
+            isHappy: false,
+            head: `Peter Cottontail @ParanoidPete`,
+            content: `People... people everywhere...`
+        }, {
+            type: `meme`,
+            isHappy: true,
+            head: `Me when I go outside for the first time in 525,600 days`,
+            content: `https://thumbs.gfycat.com/DeliriousDenseArgali-small.gif`
         }],
         getNextEvent: () => {
             return evt_2_3
@@ -353,7 +359,7 @@ export const evt_2_1: Event = {
             }
         }
     },
-    response1: {
+    response2: {
         label: `No. We stay the course.`,
         getParentEvent: () => {
             return evt_2_1
@@ -365,22 +371,7 @@ export const evt_2_1: Event = {
             lockdownCosts: 1,
             medicalCosts: 104
         },
-        socialMediaResponse: [{
-            type: `article`,
-            isHappy: false,
-            head: `The Quarterly Prophet`,
-            content: `As cases rise, concerned citizens turn to self-isolation`
-        }, {
-            type: `meme`,
-            isHappy: true,
-            head: `Lynyrd Skynyrd @FreeBird72`,
-            content: `https://media1.giphy.com/media/6901DbEbbm4o0/giphy.gif`
-        }, {
-            type: `tweet`,
-            isHappy: false,
-            head: `Navi @EyyOcarina`,
-            content: `Hey, listen! Listen to experts!`
-        }],
+        socialMediaResponse: [],
         getNextEvent: () => {
             return ending
         },
@@ -397,7 +388,7 @@ export const evt_2_1: Event = {
             `
         }
     },
-    response2: {
+    response1: {
         label: `Tick tock it's restriction o'clock`,
         getParentEvent: () => {
             return evt_2_1
@@ -424,6 +415,21 @@ export const evt_2_1: Event = {
             isHappy: false,
             head: `The only thing you're restricting is freedom`,
             content: `https://i.kym-cdn.com/photos/images/newsfeed/001/846/426/fc0.gif`
+        },{
+            type: `article`,
+            isHappy: false,
+            head: `The Quarterly Prophet`,
+            content: `As cases rise, concerned citizens turn to self-isolation`
+        }, {
+            type: `meme`,
+            isHappy: true,
+            head: `Lynyrd Skynyrd @FreeBird72`,
+            content: `https://media1.giphy.com/media/6901DbEbbm4o0/giphy.gif`
+        }, {
+            type: `tweet`,
+            isHappy: false,
+            head: `Navi @EyyOcarina`,
+            content: `Hey, listen! Listen to experts!`
         }],
         getNextEvent: () => {
             return ending
@@ -473,7 +479,7 @@ export const evt_2_2: Event = {
             }
         }
     },
-    response1: {
+    response2: {
         label: `Things are in hand. As you were.`,
         getParentEvent: () => {
             return evt_2_2
@@ -485,22 +491,7 @@ export const evt_2_2: Event = {
             lockdownCosts: 1,
             medicalCosts: 39
         },
-        socialMediaResponse: [{
-            type: `article`,
-            isHappy: false,
-            head: `Quarterly Prophet`,
-            content: `As cases rise, concerned citizens turn to self-isolation`
-        }, {
-            type: `tweet`,
-            isHappy: false,
-            head: `Confused Callie @FloofyCooz`,
-            content: `Why are we keeping things open while cases are rising???? MAKE IT MAKE SENSE.`
-        }, {
-            type: `meme`,
-            isHappy: true,
-            head: `us vs covid restrictions`,
-            content: `https://media.giphy.com/media/1BQdjXovIqSLS/giphy.gif`
-        }],
+        socialMediaResponse: [],
         getNextEvent: () => {
             return ending
         },
@@ -516,7 +507,7 @@ export const evt_2_2: Event = {
             `
         }
     },
-    response2: {
+    response1: {
         label: `STOP THE BUSINESSES!`,
         getParentEvent: () => {
             return evt_2_2
@@ -543,6 +534,21 @@ export const evt_2_2: Event = {
             isHappy: true,
             head: `Henry the Hippo @HelpfulHenry`,
             content: `To everyone struggling with staying inside, just know we're ending the pandemic 💪`
+        },{
+            type: `article`,
+            isHappy: false,
+            head: `Quarterly Prophet`,
+            content: `As cases rise, concerned citizens turn to self-isolation`
+        }, {
+            type: `tweet`,
+            isHappy: false,
+            head: `Confused Callie @FloofyCooz`,
+            content: `Why are we keeping things open while cases are rising???? MAKE IT MAKE SENSE.`
+        }, {
+            type: `meme`,
+            isHappy: true,
+            head: `us vs covid restrictions`,
+            content: `https://media.giphy.com/media/1BQdjXovIqSLS/giphy.gif`
         }],
         getNextEvent: () => {
             return ending
@@ -590,7 +596,7 @@ export const evt_2_3: Event = {
             }
         }
     },
-    response1: {
+    response2: {
         label: `Relax social restrictions`,
         getParentEvent: () => {
             return evt_2_3
@@ -602,22 +608,7 @@ export const evt_2_3: Event = {
             lockdownCosts: 5.5,
             medicalCosts: 0.5
         },
-        socialMediaResponse: [{
-            type: `article`,
-            isHappy: false,
-            head: `The Blues News`,
-            content: `COVID cases low compared to other countries`
-        }, {
-            type: `tweet`,
-            isHappy: true,
-            head: `Your Yoga Instructor @ZenToTheMax`,
-            content: `Mental health first!! #PowerToThePeople`
-        }, {
-            type: `meme`,
-            isHappy: true,
-            head: `Me when I go outside for the first time in 525,600 days`,
-            content: `https://thumbs.gfycat.com/DeliriousDenseArgali-small.gif`
-        }],
+        socialMediaResponse: [],
         getNextEvent: () => {
             return ending
         },
@@ -628,7 +619,7 @@ export const evt_2_3: Event = {
             description: `84% of UK respondents in early 2021 believe that mental health is at least as important as physical health so would be likely to support relaxing restrictions for this reason.`
         }
     },
-    response2: {
+    response1: {
         label: `Let's eliminate COVID while we can.`,
         getParentEvent: () => {
             return evt_2_3
@@ -655,6 +646,21 @@ export const evt_2_3: Event = {
             isHappy: false,
             head: `That was kinda harsh...`,
             content: `https://i.kym-cdn.com/photos/images/newsfeed/001/298/697/ab0.jpg`
+        },{
+            type: `article`,
+            isHappy: false,
+            head: `The Blues News`,
+            content: `COVID cases low compared to other countries`
+        }, {
+            type: `tweet`,
+            isHappy: true,
+            head: `Your Yoga Instructor @ZenToTheMax`,
+            content: `Mental health first!! #PowerToThePeople`
+        }, {
+            type: `meme`,
+            isHappy: true,
+            head: `Me when I go outside for the first time in 525,600 days`,
+            content: `https://thumbs.gfycat.com/DeliriousDenseArgali-small.gif`
         }],
         getNextEvent: () => {
             return ending

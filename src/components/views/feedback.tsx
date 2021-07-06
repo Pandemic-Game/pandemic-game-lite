@@ -2,68 +2,122 @@ import React, { useEffect } from 'react';
 import * as Btn from '../buttons';
 import * as Txt from '../text';
 import * as Gfx from '../infographics';
-import { Response } from '../../model/Response';
-import { Indicators } from '../../model/Indicators';
+import { Event } from '../../model/Event';
 import { useThemeContext } from '../../ThemeProvider';
+import { Response, ResponseItem } from '../../model/Response';
+import { Indicators } from '../../model/Indicators';
 
-export function FeedbackScreen1(props: { response: Response, feedback: JSX.Element, onClick: {
-    extraInfo: Function;
-    continue:  Function;
-} }) {
-    const bgColorClass = "bg-gray-900"
-    const context = useThemeContext()
+export function Information(props: {
+    event: Event;
+    feedItems: JSX.Element;
+    preferences: 'recommended' | 'all';
+    onClick: {
+        extraInfo: Function;
+        continue:  Function;
+    } 
+}) {
+    const bgColorClass = "bg-gray-900";
+    const context = useThemeContext();
+
+    // Information (science & social)
+    const scienceDataForLockdown = {
+        newCases:{
+            lockdown: props.event.response1.updatedIndicators.newCases,  // response1 = lockdown
+            noLockdown: props.event.response2.updatedIndicators.newCases  // response2 = no lockdown
+        },
+        lockdownCosts:{
+            lockdown: props.event.response1.updatedIndicators.lockdownCosts,
+            noLockdown: props.event.response2.updatedIndicators.lockdownCosts
+        },
+        medicalCosts:{
+            lockdown: props.event.response1.updatedIndicators.medicalCosts,
+            noLockdown: props.event.response2.updatedIndicators.medicalCosts
+        }
+    }
+    const socialDataAgainstLockdown = {
+        pollUnsure: 100 - props.event.response1.updatedIndicators.supportForLastResponse, // n unsure about lockdown
+        feedAgainst: props.feedItems
+    }
 
     useEffect(() => {
         context.changeBgColorClass(bgColorClass)
     })
-
-    return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
-        <Txt.Title value={'Main Stream News'} col={'white'} />
-        <Gfx.SupportBar 
-            indicators={props.response.updatedIndicators} 
-            response={props.response} 
-            onClickSource={()=>{}} 
-            delay={-1}
-        />
-        {props.feedback}
-        <div className='w-full mt-auto'>
-            <Btn.Rounded onClick={() => { props.onClick.extraInfo() }} value='See alternative news'  bg='' col='blue-600' />
-            <Btn.Rounded onClick={() => { props.onClick.continue() }} value='Continue'  bg='green-600' col='yellow-100' />
+    return (
+        <div>
+            <div className='p-2 flex justify-end align-end text-white'>
+                {Btn.Dropdown(
+                    { 
+                        onClick: props.onClick.extraInfo, 
+                        preferences: props.preferences 
+                    }
+                )}
+            </div>
+            <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
+                <Txt.Title value={'News feed'} col={'white'} />
+                <div id='social'>
+                    <Gfx.SupportBar 
+                        n={socialDataAgainstLockdown.pollUnsure}
+                        delay={0}
+                    />
+                    {socialDataAgainstLockdown.feedAgainst}
+                </div>
+                <AdditionalInfo
+                    science={scienceDataForLockdown}
+                    preferences = {props.preferences}
+                    onClickContinue={props.onClick.continue}
+                />
+                <div className='w-full mt-auto'>
+                    <Btn.Rounded onClick={props.onClick.continue} value='Continue'  bg='green-600' col='yellow-100' />
+                </div>
+            </div>
         </div>
-    </div>
+    )
+    
+    //Old button: <Btn.Rounded onClick={() => { props.onClick.extraInfo() }} value='See alternative news'  bg='' col='blue-600' />
 }
 
-export function FeedbackScreen2(props:
-    {
-        response: Response,
-        indicatorsLastTurn: Indicators,
-        onClickContinue: Function,
-        onClickSource: Function
-    }) {
+export function AdditionalInfo(props:{
+    science:{
+        newCases:{
+            lockdown: number;
+            noLockdown: number;
+        },
+        lockdownCosts:{
+            lockdown: number;
+            noLockdown: number;
+        },
+        medicalCosts:{
+            lockdown: number;
+            noLockdown: number;
+        }
+    };
+    preferences: 'recommended' | 'all';
+    onClickContinue: Function;
+}) {
     const bgColorClass = "bg-gray-900"
     const context = useThemeContext()
 
     useEffect(() => {
         context.changeBgColorClass(bgColorClass)
     })
-    
-    return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
-        <Gfx.CaseGraphic 
-            thisTurn={props.response.updatedIndicators} 
-            lastTurn={props.indicatorsLastTurn}
-            delay={0}
-        />
-        <Gfx.EconomyGraphic 
-            indicators={props.response.updatedIndicators} 
-            delay={4}
-        />
-        <Btn.Rounded
-            value={'Continue'}
-            col='yellow-100'
-            bg='green-600'
-            onClick={() => { props.onClickContinue() }}
-        />
-    </div>
+    switch(props.preferences){
+        case 'all': return (
+            <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
+                <div id='science'>
+                    <Gfx.CaseGraphic 
+                        newCases = {props.science.newCases}
+                        delay={0}
+                    />
+                    <Gfx.EconomyGraphic 
+                        lockdownCosts={props.science.lockdownCosts}
+                        medicalCosts={props.science.medicalCosts}
+                        delay={3}
+                    />
+                </div>
+            </div>
+        );
+        default: return <></>
+    }
 }
 
 /* 

@@ -15,8 +15,7 @@ export function EventScreen(props:
     {
         event: Event,
         onClick: {
-            consult: Function,
-            decide: Function
+            consult: Function
         }
     }) {
     const bgColorClass = "bg-yellow-400"
@@ -48,14 +47,12 @@ export function EventScreen(props:
             </div>
             <Txt.Paragraph value={props.event.description} col='black' />
         </div>
-        <div className='w-full flex flex-col' style={{marginTop: 'auto'}}>
-            <Btn.Rounded
-                value='Make a decision'
-                bg={''}
-                col={'blue-700'}
-                onClick={() => { props.onClick.decide() }}
-            />
-        </div>
+        <Btn.Rounded
+            value={'Continue'}
+            bg={'purple-800'}
+            col={'white'}
+            onClick={() => { props.onClick.consult() }}
+        />
     </div>
 }
 
@@ -116,18 +113,18 @@ export function EventResponse(props:
             <Txt.Title value={'Choose your response'} col='black' />
             <div className='w-full animate__animated animate__tada'>
                 <Btn.Rounded
-                    value={props.event.response1.label}
+                    value={props.event.response2.label}
                     bg={'green-600'}
                     col={'yellow-100'}
-                    onClick={() => { props.onClick(props.event.response1) }}
+                    onClick={() => { props.onClick(props.event.response2) }}
                 />
             </div>
             <Lines.OR col='black' />
             <Btn.Rounded
-                value={props.event.response2.label}
+                value={props.event.response1.label}
                 bg={'black'}
                 col={'red-600'}
-                onClick={() => { props.onClick(props.event.response2) }}
+                onClick={() => { props.onClick(props.event.response1) }}
             />
             <Lines.Hr my={0} col='black' />
         </div>

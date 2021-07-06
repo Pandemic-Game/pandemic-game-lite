@@ -17,7 +17,7 @@ import {
   EventExtra,
   EventResponse,
 } from "./components/views/event";
-import { FeedbackScreen1, FeedbackScreen2 } from "./components/views/feedback";
+import { Information } from "./components/views/feedback";
 import { End, AllEndings, EndLeaderStyle } from "./components/views/end";
 import FontFaceObserver from "fontfaceobserver";
 import { ToastContainer } from "react-toastify";
@@ -62,6 +62,7 @@ const GameLoop: React.FC = () => {
     link: "",
     description: "",
   });
+  const [preferences, setPreferences] = useState<'recommended' | 'all'>('recommended');
 
   const dataCollectorContext = useDataCollectorContext();
 
@@ -121,53 +122,32 @@ const GameLoop: React.FC = () => {
     } else {
       setEvent(playerChoice.getNextEvent());
     }
-
     // Show feedback for choice
-    show("feedback1");
+    show("event");
   };
-
-  /*
-    START of conversion hacks for research game 
-  */
-  if(view === 'introduction'){
-    processPlayerChoice(Story.evt_0_0.response2);
-    show("feedback1");
-  }
-
-  /* END of conversion hacks */
 
   // Show feedback
   const getSocialFeedback = (feedback: ResponseItem[]): JSX.Element => {
+    const feed: JSX.Element[] = [];
     function constructElement(it: ResponseItem, i: number) {
       switch (it.type) {
         case "tweet":
-          return (
-            <Tweet
-              fb={it}
-              animation={`animate__delay-${i}s	animate__animated animate__bounceIn`}
-            />
-          );
+          feed.push( <Tweet fb={it} delay={Math.sqrt(i)} /> );
+          break;
         case "meme":
-          return (
-            <Meme
-              fb={it}
-              animation={`animate__delay-${i}s	animate__animated animate__bounceIn`}
-            />
-          );
+          feed.push( <Meme fb={it} delay={Math.sqrt(i)} /> );
+          break;
         case "article":
-          return (
-            <News
-              fb={it}
-              animation={`animate__delay-${i}s	animate__animated animate__bounceIn`}
-            />
-          );
+          feed.push( <News fb={it} delay={Math.sqrt(i)} /> );
+          break;
       }
+    }
+    for (let i = 0; i < feedback.length; i++) {
+      constructElement(feedback[i], i+1)
     }
     return (
       <div className="max-w-full w-full p-2 m-2 flex flex-col justify-center items-center ">
-        {constructElement(feedback[0], 0)}
-        {constructElement(feedback[1], 1)}
-        {constructElement(feedback[2], 2)}
+        {feed}
       </div>
     );
   };
@@ -193,7 +173,7 @@ const GameLoop: React.FC = () => {
         <Introduction
           onClick={{
             continue: () => {
-              show("feedback1");
+              show("event");
             },
             source: showSource,
             data: () => {
@@ -217,8 +197,7 @@ const GameLoop: React.FC = () => {
       return <EventScreen 
         event={event} 
         onClick={{
-          consult: () => show("eventExtra"),
-          decide: () => show("eventResponse")
+          consult: () => show("feedback1")
         }} 
       />;
     case "eventExtra": // UNUSED
@@ -255,31 +234,26 @@ const GameLoop: React.FC = () => {
     // Feedback screens
     case "feedback1":
       return (
-        <FeedbackScreen1
-          response={getLastResponse()}
-          feedback={getSocialFeedback(getLastResponse().socialMediaResponse)}
+        <Information
+          event = {event}
+          feedItems = {getSocialFeedback(event.response1.socialMediaResponse)}
+          preferences={preferences}
           onClick={{
-            extraInfo: () => show("feedback2"),
-            continue:  () => show("eventResponse")
+            extraInfo: (value: 'recommended' | 'all') => {setPreferences(value)},
+            continue: () => {
+              if (ending) {
+                dataCollectorContext.dataCollector.sendGameEndSignal(ending);
+                show("end");
+              } else {
+                setPreferences('recommended');
+                show("eventResponse");
+              }
+            }
           }}
         />
       );
     case "feedback2":
-      return (
-        <FeedbackScreen2
-          response={getLastResponse()}
-          indicatorsLastTurn={getIndicatorsLastMonth()}
-          onClickContinue={() => {
-            if (ending) {
-              dataCollectorContext.dataCollector.sendGameEndSignal(ending);
-              show("end");
-            } else {
-              show("eventResponse");
-            }
-          }}
-          onClickSource={showSource}
-        />
-      );
+      return <>Error: Called unused component (feedback2)</>;
 
     // End show
     case "end":

@@ -5,11 +5,12 @@ import React from "react";
 import { Img } from "../ImageCache";
 import * as Txt from "./text";
 
-export function Tweet(props: { fb: ResponseItem; animation: string }) {
+export function Tweet(props: { fb: ResponseItem; delay: number }) {
   return (
     <div
-      className={`max-w-2xl p-3 m-2 flex flex-col items-start relative bg-white rounded-xl ${props.animation}`}
-    >
+      className='max-w-2xl p-3 m-2 flex flex-col items-start relative bg-white rounded-xl	animate__animated animate__bounceIn'
+      style={{ animationDelay: `${props.delay}s` }}
+    >      
       <div className={`flex flex-row text-left ${Txt.textSize('lg')} `}>
         <FontAwesomeIcon icon={faTwitter} color="dodgerblue" size="lg" />
         <h5 className={`pl-1 text-blue-500`}> {props.fb.head} </h5>
@@ -21,10 +22,11 @@ export function Tweet(props: { fb: ResponseItem; animation: string }) {
   );
 }
 
-export function News(props: { fb: ResponseItem; animation: string }) {
+export function News(props: { fb: ResponseItem; delay: number }) {
   return (
     <div
-      className={`max-w-2xl p-3 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl ${props.animation}`}
+      className='max-w-2xl p-3 m-2 flex flex-col justify-center items-start relative bg-white rounded-xl animate__animated animate__bounceIn'
+      style={{ animationDelay: `${props.delay}s` }}
     >
       <p
         className={`text-left ${Txt.textSize('lg')} font-medium`}
@@ -37,10 +39,11 @@ export function News(props: { fb: ResponseItem; animation: string }) {
   );
 }
 
-export function Meme(props: { fb: ResponseItem; animation: string }) {
+export function Meme(props: { fb: ResponseItem; delay: number }) {
   return (
     <div
-      className={`max-w-2xl p-3 pt-1 m-2 flex flex-col justify-center items-center relative bg-white rounded-xl ${props.animation}`}
+      className='max-w-2xl p-3 pt-1 m-2 flex flex-col justify-center items-center relative bg-white rounded-xl animate__animated animate__bounceIn'
+      style={{ animationDelay: `${props.delay}s` }}
     >
       <p className={`p-2 text-light ${Txt.textSize('lg')} `} style={{ fontFamily: "Impact" }}>
         {props.fb.head}
