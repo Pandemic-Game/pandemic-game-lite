@@ -48,7 +48,7 @@ export function EventScreen(props:
             <Txt.Paragraph value={props.event.description} col='black' />
         </div>
         <Btn.Rounded
-            value={'Continue'}
+            value={'Show me some advice'}
             bg={'purple-800'}
             col={'white'}
             onClick={() => { props.onClick.consult() }}
@@ -122,8 +122,8 @@ export function EventResponse(props:
             <Lines.OR col='black' />
             <Btn.Rounded
                 value={props.event.response1.label}
-                bg={'black'}
-                col={'red-600'}
+                bg={'red-600'}
+                col={'yellow-100'}
                 onClick={() => { props.onClick(props.event.response1) }}
             />
             <Lines.Hr my={0} col='black' />

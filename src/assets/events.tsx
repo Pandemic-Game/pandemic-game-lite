@@ -29,7 +29,8 @@ const no_source = {
 export const evt_0_0: Event = {
     title: `Welcome to the jungle`,
     description: `24 in 1000 people have caught COVID-19 this month and the number of new cases is rising. 
-    You are being pressured to make a response to the situation by either enforcing restrictions or remaining open.`,
+    You are being pressured to make a response to the situation by either enforcing restrictions or remaining open.
+    The information on the next page will give you some guidance.`,
     extraDetails: no_extra_details,
     response2: { //response2 = no lockdown (for all events)
         label: `Keep everything open`,
@@ -72,25 +73,20 @@ export const evt_0_0: Event = {
             isHappy: false,
             head: `Noah @arcDeTriumph`,
             content: `We don't need lockdown, we need Jesus`
-        }, {
-            type: `meme`,
-            isHappy: true,
-            head: `Me when I see someone sneeze`,
-            content: `https://media.giphy.com/media/gGaEm6jMNs98JuWiPv/giphy-downsized.gif`
         },{
             type: `article`,
             isHappy: false,
             head: `The Chronicle`,
-            content: `Lockdown won't be taken seriously. NEW POLL indicates 3 in 4 people think this.`
+            content: `Lockdown won't be taken seriously. NEW POLL indicates 3 in 4 people agree.`
         }, {
             type: `meme`,
             isHappy: true,
             head: `TFW I can actually see my friends`,
             content: `https://media.giphy.com/media/3o7TKCskhXtrq3nsBy/giphy.gif`
         },{
-            type: `article`,
+            type: `tweet`,
             isHappy: false,
-            head: `YOU weekly`,
+            head: `YOU Weekly @YOUWeeklyOnline`,
             content: `NO END IN SIGHT: What are we gonna do, stay in lockdown forever? 71% of people agree pandemic won't end soon.`
         }],
         getNextEvent: () => {
@@ -102,8 +98,9 @@ export const evt_0_0: Event = {
 };
 export const evt_1_1: Event = {
     title: `2 KOOL 4 SKOOL`,
-    description: `Exams are coming up. Keeping schools and universities open would create a spike in cases. 
-    However, continuing with distance learning will interrupt exams and teaching...`,
+    description: `Exams are coming up. Opening up schools and universities would create a spike in cases. 
+    However, continuing with distanced learning will interrupt exams and teaching...
+    You are being pressured to make a decision whether to open schools back up or not.`,
     extraDetails: no_extra_details,
     response2: {
         label: `Keep schools open`,
@@ -140,7 +137,7 @@ export const evt_1_1: Event = {
             type: `tweet`,
             isHappy: true,
             head: `Karen @AllBoutThatGlitter`,
-            content: `The kids might go back on school!?!?! #HelloFreedom #Winning`
+            content: `The kids might go back to school!?!?! #HelloFreedom #Winning`
         },{
             type: `article`,
             isHappy: false,
@@ -150,7 +147,7 @@ export const evt_1_1: Event = {
             type: `article`,
             isHappy: false,
             head: `Universal News`,
-            content: `Lockdown would deprive students of formative social experience`
+            content: `Lockdown would deprive students of formative social experiences`
         },{
             type: `meme`,
             isHappy: false,
@@ -167,7 +164,8 @@ export const evt_1_1: Event = {
 export const evt_1_2: Event = {
     title: `Cabin Fever`,
     description: `People are itching to get back to their normal lives. For some, it's becoming a need. 
-    Many have lost their jobs and others, particularly young people, are ignoring the restrictions anyway.`,
+    Many have lost their jobs and others, particularly young people, are ignoring the restrictions anyway.
+    People are asking you to lift lockdown.`,
     extraDetails: no_extra_details,
     response2: {
         label: `Let my people work!`,
@@ -300,7 +298,7 @@ export const evt_2_1: Event = {
             type: `article`,
             isHappy: false,
             head: `The New Fork Times`,
-            content: `People are feeling satisfied: Country ranks best for social satisfaction.`
+            content: `People are feeling fulfilled: Country ranks best for social satisfaction.`
         }],
         getNextEvent: () => {
             return ending
@@ -313,7 +311,7 @@ export const evt_2_2: Event = {
     title: `Bad Moon Rising`,
     description: `The number of COVID-19 cases has reached an all-time high. 
     Hospitals are filling up quickly. The media is flooded with climbing case numbers. 
-    Your citizens are becoming worried.`,
+    You need to make a decision now whether to reverse your decision and implement a lockdown.`,
     extraDetails: no_extra_details,
     response2: {
         label: `Things are in hand. As you were.`,
@@ -350,17 +348,17 @@ export const evt_2_2: Event = {
             type: `article`,
             isHappy: false,
             head: `The Daily Planet`,
-            content: `Inconsistent response to pandemic causes mass confusion`
+            content: `Inconsistent response to pandemic will cause mass confusion`
         }, {
             type: `article`,
             isHappy: false,
             head: `The Informant`,
-            content: `Businesses struggle to adapt with constantly changing rules`
+            content: `Businesses would struggle to adapt to constantly changing rules`
         }, {
-            type: `article`,
+            type: `tweet`,
             isHappy: false,
-            head: `The Clock`,
-            content: `Opinion: Choose the decision to END lockdown and STICK to it.`
+            head: `Hickory @TheClock`,
+            content: `The government should choose to END lockdown and STICK to it.`
         },{
             type: `meme`,
             isHappy: true,
@@ -377,7 +375,8 @@ export const evt_2_2: Event = {
 export const evt_2_3: Event = {
     title: `Where Is My Mind?`,
     description: `People are struggling. 
-    Social deprivation, being restricted in where and who they can visit, and other personal hardships have lead to a negative effect on people's mental health. People feel they have to break restrictions to meet their needs and are asking for relaxed restrictions.`,
+    Citizens feel they have to break restrictions to meet their needs and are asking for relaxed restrictions.
+    However, the end is in sight, maybe another round of restrictions would end COVID-19 for good?`,
     extraDetails: no_extra_details,
     response2: {
         label: `Relax social restrictions`,
@@ -414,7 +413,7 @@ export const evt_2_3: Event = {
             type: `article`,
             isHappy: true,
             head: `The Nightly Mail`,
-            content: `Country set to experience mental health crisis. Depression rises by 50% in 18-24 year olds.`
+            content: `Country set to experience mental health crisis. Depression up by 50% and may continue to rise.`
         },{
             type: `article`,
             isHappy: false,

@@ -24,7 +24,7 @@ const Bar = (props: {n: number}) => {
       </div>
       <div
         className="h-full p-2 flex flex-row justify-center items-center text-center rounded-r-xl z-20 overflow-visible"
-        style={{ width: `${100-props.n}%`, background: 'rgba(0,0,0,0.5)'}}
+        style={{ width: `${100-props.n}%`, background: 'rgba(0,0,0,0.8)'}}
       >
         <Txt.Subtitle value={`Oppose lockdown`} col="white"/>
       </div>
@@ -38,14 +38,14 @@ export function SupportBar(props: {
 }) {
   return (
     <div
-      className="m-2 w-full flex flex-col items-center rounded-xl bg-gray-700 animate__animated animate__backInDown"
+      className="m-2 mb-5 w-full flex flex-col items-center rounded-xl bg-white"
       style={{ animationDelay: `${props.delay}s` }}
     >
-      <Txt.Title value={"Government polling:"} col={"white"} />
+      <Txt.Subtitle value={"Government polling:"} col={"gray-800"} />
       <div className="flex flex-row items-center text-center justify-center">
         <Txt.Text value={
-          `Many people don't support additional restrictions!`
-        } col={"white"} />
+          `Many people oppose additional restrictions at this time!`
+        } col={"gray-800"} />
       </div>
       <Bar n={props.n} />
     </div>

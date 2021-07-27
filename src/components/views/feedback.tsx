@@ -53,13 +53,23 @@ export function Information(props: {
                 )}
             </div>
             <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
-                <Txt.Title value={'News feed'} col={'white'} />
+                <div className='rounded border mb-3 p-2'>
+                    <Txt.Title value={`People are arguing that you should:`} col='white'/>
+                    <div className='rounded bg-green-500'>
+                        <Txt.Subtitle value={`${props.event.response2.label}`} col='white'/>
+                    </div>
+                    <Txt.Title value={`but should not:`} col='white'/>
+                    <div className='rounded bg-red-500'>
+                        <Txt.Subtitle value={`${props.event.response1.label}`} col='white'/>
+                    </div>
+                </div>
+                <Txt.Title value={`News feed`} col='white'/>
                 <div id='social'>
+                    {socialDataAgainstLockdown.feedAgainst}
                     <Gfx.SupportBar 
                         n={socialDataAgainstLockdown.pollUnsure}
                         delay={0}
                     />
-                    {socialDataAgainstLockdown.feedAgainst}
                 </div>
                 <AdditionalInfo
                     science={scienceDataForLockdown}
@@ -67,7 +77,7 @@ export function Information(props: {
                     onClickContinue={props.onClick.continue}
                 />
                 <div className='w-full mt-auto'>
-                    <Btn.Rounded onClick={props.onClick.continue} value='Continue'  bg='green-600' col='yellow-100' />
+                    <Btn.Rounded onClick={props.onClick.continue} value='Continue'  bg='purple-700' col='white' />
                 </div>
             </div>
         </div>
