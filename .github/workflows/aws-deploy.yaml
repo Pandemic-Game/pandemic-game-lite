@@ -2,14 +2,12 @@ name: s3-deployment
 on:
   push:
     branches:
-      - "main"
-      - "master"
       - "research"
 jobs:
   deploy:
     name: Deploy /build to S3 bucket
     runs-on: ubuntu-latest
-    environment: production
+    environment: research
     env:
       REACT_APP_VERSION: ${{ github.sha }}
       REACT_APP_API_URL: ${{ secrets.TELEMETRY_API }}
