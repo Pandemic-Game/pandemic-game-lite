@@ -4,6 +4,7 @@ on:
     branches:
       - "main"
       - "master"
+      - "research"
 jobs:
   deploy:
     name: Deploy /build to S3 bucket
