@@ -141,14 +141,15 @@ export function AllEndings(props: {
     <div
       className={`min-h-full flex flex-col items-center text-center ${bgColorClass}`}
     >
+    <Txt.Title value='Thank you for playing!' col='black' />
+      
       <div className="flex flex-col items-center justify-center">
-        <Txt.Title value="All endings" col="black" />
+        <Txt.Subtitle value="All endings" col="black" />
         <div className='p-4'>
           <Txt.Paragraph
             col="black"
             value={`
-            We showed you a scenario where you could have responded in different ways. 
-            Your responses had consequences later down the line, like a story tree.`}
+            We showed you a scenario where you could have responded in different ways. Your choices had consequences later down the line, like a story tree. We recorded your choices and they will help us understand how we make decisions online!`}
           />
         </div>
       </div>
@@ -168,14 +169,7 @@ export function AllEndings(props: {
         {props.endings.CovidTerminator.ele}
       </div>
 
-      <Btn.Bouncy
-        value={"Play again"}
-        bg={"purple-900"}
-        col={"white"}
-        onClick={() => {
-          props.onReplay();
-        }}
-      />
+      <Txt.Title value='Thank you for playing!' col='black' />
     </div>
   );
 }

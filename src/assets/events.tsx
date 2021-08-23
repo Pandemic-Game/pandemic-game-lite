@@ -30,7 +30,8 @@ export const evt_0_0: Event = {
     title: `Welcome to the jungle`,
     description: `24 in 1000 people have caught COVID-19 this month and the number of new cases is rising. 
     You are being pressured to make a response to the situation by either enforcing restrictions or remaining open.
-    The information on the next page will give you some guidance.`,
+
+    As a policy maker you are bombarded with information from the public and experts. On the next page we will show you what people are saying! You can toggle what we show you at any time using the controls in the top-right corner.`,
     extraDetails: no_extra_details,
     response2: { //response2 = no lockdown (for all events)
         label: `Keep everything open`,
@@ -52,7 +53,7 @@ export const evt_0_0: Event = {
         sourceDetails: no_source
     },
     response1: { //response1 = lockdown (for all events)
-        label: `Let's close non-essential businesses..`,
+        label: `Close non-essential businesses..`,
         getParentEvent: () => {
             return evt_0_0
         },
@@ -103,7 +104,7 @@ export const evt_1_1: Event = {
     You are being pressured to make a decision whether to open schools back up or not.`,
     extraDetails: no_extra_details,
     response2: {
-        label: `Keep schools open`,
+        label: `Re-open schools`,
         getParentEvent: () => {
             return evt_1_1
         },
@@ -122,7 +123,7 @@ export const evt_1_1: Event = {
         sourceDetails: no_source
     },
     response1: {
-        label: `Close schools`,
+        label: `Keep schools closed`,
         getParentEvent: () => {
             return evt_2_2
         },
@@ -168,7 +169,7 @@ export const evt_1_2: Event = {
     People are asking you to lift lockdown.`,
     extraDetails: no_extra_details,
     response2: {
-        label: `Let my people work!`,
+        label: `Let people outside again`,
         getParentEvent: () => {
             return evt_1_2
         },
@@ -187,7 +188,7 @@ export const evt_1_2: Event = {
         sourceDetails: no_source
     },
     response1: {
-        label: `Stay inside, please`,
+        label: `Re-enforce stay at home order`,
         getParentEvent: () => {
             return evt_1_2
         },
@@ -239,7 +240,7 @@ export const evt_2_1: Event = {
     While the rest of the world has reduced their infection rate via careful restrictions, your people have at least enjoyed something resembling a normal lifestyle.`,
     extraDetails: no_extra_details,
     response2: {
-        label: `No. We stay the course.`,
+        label: `Maintain freedom`,
         getParentEvent: () => {
             return evt_2_1
         },
@@ -258,7 +259,7 @@ export const evt_2_1: Event = {
         sourceDetails: no_source
     },
     response1: {
-        label: `Tick tock it's restriction o'clock`,
+        label: `Go into lockdown`,
         getParentEvent: () => {
             return evt_2_1
         },
@@ -314,7 +315,7 @@ export const evt_2_2: Event = {
     You need to make a decision now whether to reverse your decision and implement a lockdown.`,
     extraDetails: no_extra_details,
     response2: {
-        label: `Things are in hand. As you were.`,
+        label: `Stand by your decision`,
         getParentEvent: () => {
             return evt_2_2
         },
@@ -333,7 +334,7 @@ export const evt_2_2: Event = {
         sourceDetails: no_source
     },
     response1: {
-        label: `STOP THE BUSINESSES!`,
+        label: `Change your mind: Lockdown!`,
         getParentEvent: () => {
             return evt_2_2
         },
@@ -398,7 +399,7 @@ export const evt_2_3: Event = {
         sourceDetails: no_source
     },
     response1: {
-        label: `Let's eliminate COVID while we can.`,
+        label: `Continue all restrictions`,
         getParentEvent: () => {
             return evt_2_3
         },

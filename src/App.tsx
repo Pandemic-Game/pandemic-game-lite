@@ -63,6 +63,7 @@ const GameLoop: React.FC = () => {
     description: "",
   });
   const [preferences, setPreferences] = useState<'recommended' | 'all'>('recommended');
+  const [condition, setCondition] = useState<'science' | 'social'>('social');
 
   const dataCollectorContext = useDataCollectorContext();
 
@@ -166,6 +167,9 @@ const GameLoop: React.FC = () => {
           onClick={() => {
             show("introduction");
           }}
+          setCondition={(cond: 'social' | 'science') => {
+            setCondition(cond);
+          }}
         />
       );
     case "introduction":
@@ -209,7 +213,11 @@ const GameLoop: React.FC = () => {
         />
       );
     case "eventResponse":
-      return <EventResponse event={event} onClick={processPlayerChoice} />;
+      return <EventResponse 
+        condition={condition}
+        event={event} 
+        onClick={processPlayerChoice} 
+      />;
 
     // View sources show
     case "sources":
@@ -235,8 +243,9 @@ const GameLoop: React.FC = () => {
     case "feedback1":
       return (
         <Information
-          event = {event}
-          feedItems = {getSocialFeedback(event.response1.socialMediaResponse)}
+          condition={condition}
+          event={event}
+          feedItems={getSocialFeedback(event.response1.socialMediaResponse)}
           preferences={preferences}
           onClick={{
             extraInfo: (value: 'recommended' | 'all') => {setPreferences(value)},

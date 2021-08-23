@@ -229,7 +229,7 @@ export const Dropdown: React.FC<{
       return (
         <div className='flex flex-col justify-start align-start'>
           <button className='justify-self-end' onClick={open}> 
-            News preferences  
+            Preferences  
             <FontAwesomeIcon icon={faCaretDown}/> 
           </button>
         </div>

@@ -49,7 +49,7 @@ export function EventScreen(props:
         </div>
         <Btn.Rounded
             value={'Show me some advice'}
-            bg={'purple-800'}
+            bg={'green-600'}
             col={'white'}
             onClick={() => { props.onClick.consult() }}
         />
@@ -91,8 +91,9 @@ export function EventExtra(props: { event: Event, onClickSource: Function, onCli
 
 export function EventResponse(props:
     {
-        event: Event,
-        onClick: Function
+        condition: 'science' | 'social';
+        event: Event;
+        onClick: Function;
     }) {
     const bgColorClass = "bg-yellow-400"
     const context = useThemeContext()
@@ -111,20 +112,20 @@ export function EventResponse(props:
         </div>
         <div className='w-4/5 flex flex-col justify-between items-center' style={{ marginTop: "auto" }}>
             <Txt.Title value={'Choose your response'} col='black' />
-            <div className='w-full animate__animated animate__tada'>
+            <div className='w-full animate__animated animate__flipInX'>
                 <Btn.Rounded
-                    value={props.event.response2.label}
+                    value={props.condition==='science' ? props.event.response1.label : props.event.response2.label}
                     bg={'green-600'}
                     col={'yellow-100'}
-                    onClick={() => { props.onClick(props.event.response2) }}
+                    onClick={() => { props.onClick(props.condition==='science' ? props.event.response1 : props.event.response2) }}
                 />
             </div>
             <Lines.OR col='black' />
             <Btn.Rounded
-                value={props.event.response1.label}
-                bg={'red-600'}
-                col={'yellow-100'}
-                onClick={() => { props.onClick(props.event.response1) }}
+                value={props.condition==='science' ? props.event.response2.label : props.event.response1.label}
+                bg={'none'}
+                col={'black'}
+                onClick={() => { props.onClick(props.condition==='science' ? props.event.response2 : props.event.response1) }}
             />
             <Lines.Hr my={0} col='black' />
         </div>

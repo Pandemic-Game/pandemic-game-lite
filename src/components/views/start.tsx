@@ -7,7 +7,7 @@ import * as Btn from "../buttons";
 import * as Txt from "../text";
 import * as Lines from "../lines";
 
-export function Splash(props: { onClick: Function }) {
+export function Splash(props: { onClick: Function; setCondition: Function }) {
   const bgColorClass = "bg-yellow-400";
   const context = useThemeContext();
 
@@ -47,14 +47,20 @@ export function Splash(props: { onClick: Function }) {
           models
         />
         <Txt.Subtitle
-          value={"A five minute game to return to normality."}
+          value={"A five minute game for science."}
           col="black"
         />
       </div>
+      
+      <div className='mt-auto p-2 text-xl'>
+        <Txt.Title value='Preview condition' col='black'/>
+        <input type="radio" value="Science" name="condition"onClick={props.setCondition('science')} checked/> Science<br/>
+        <input type="radio" value="Social" name="condition" onClick={props.setCondition('social')} /> Social<br/>
+      </div>
 
       <Btn.Bouncy
-        value="Play the game"
-        bg="purple-900"
+        value="Play"
+        bg="green-600"
         col="white"
         onClick={props.onClick}
       />
@@ -79,22 +85,17 @@ export function Introduction(props: {
     <div className={`min-h-full p-2 flex flex-col items-center text-center ${bgColorClass}`}>
       <Txt.Title value="How to play" col="black" />
       <br/>
-      <Txt.Subtitle value="Your goal" col="black" />
-      <Txt.Text value="End COVID-19 restrictions!" col="black" />
+      <Txt.Subtitle value="What do I do?" col="black" />
+      <Txt.Text value="Suggest the correct response to the COVID-19 pandemic..." col="black" />
       <br/>
-      <Txt.Subtitle value="How? Navigate a few events.." col="black" />
-      <Txt.Text value="You will have a limited choice of responses (you won't be able to change society all at once!)" col="black" />
+      <Txt.Subtitle value="How?" col="black" />
+      <Txt.Text value="In this game you are a policy maker! You will be given choices on how to navigate three real-world issues." col="black" />
       <br/>
-      <Txt.Subtitle value=".. but be careful!" col="black" />
-      <Txt.Text value="One wrong step can put you in an out-of-control situation with no good choices available!" col="black" />
-      <br/>
-      <div className="p-4 flex flex-col justify-center items-center">
-        <Txt.Subtitle value={`Made with real models`} col="black" />
-        <Btn.Sneaky onClick={props.onClick.data} type='wannaSeeModel' bg='green-400' col='black' />
-      </div>
+      <Txt.Subtitle value="How do I win?" col="black" />
+      <Txt.Text value="How do you win a pandemic? We don't know. Suggest your answer by playing!" col="black" />
       <Btn.Rounded
         value="Start"
-        bg="purple-900"
+        bg="green-600"
         col="white"
         onClick={props.onClick.continue}
       />
@@ -108,7 +109,7 @@ export function Data(props: {
     source: Function;
   };
 }) {
-  const bgColorClass = "bg-purple-900";
+  const bgColorClass = "bg-green-600";
   const context = useThemeContext();
 
   useEffect(() => {

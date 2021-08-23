@@ -1,21 +1,5 @@
-update intro text
-intro info with news preferences
-
-info as feed
-infographics more clear (green n red; white background); ask linda
-
-social feed summary - play around & add to science (say its a summary)
-"scroll for details..."
-
 Ending: where you were now youre here
 
-data logging:
-timestamp,
-what they clicked on (all buttons),
-event#,
-session ID,
-mobile/desktop,
+data logging
 
-log when: peopel press preference
-
-talk to blake
+make button names work on summary

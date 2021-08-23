@@ -6,8 +6,11 @@ import { Event } from '../../model/Event';
 import { useThemeContext } from '../../ThemeProvider';
 import { Response, ResponseItem } from '../../model/Response';
 import { Indicators } from '../../model/Indicators';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
 
 export function Information(props: {
+    condition: 'science' | 'social';
     event: Event;
     feedItems: JSX.Element;
     preferences: 'recommended' | 'all';
@@ -38,6 +41,32 @@ export function Information(props: {
         pollUnsure: 100 - props.event.response1.updatedIndicators.supportForLastResponse, // n unsure about lockdown
         feedAgainst: props.feedItems
     }
+    const social = ():JSX.Element => {
+        return(
+            <div id='social'>
+                {socialDataAgainstLockdown.feedAgainst}
+                <Gfx.SupportBar 
+                    n={socialDataAgainstLockdown.pollUnsure}
+                    delay={0}
+                />
+            </div>
+        )
+    }
+    const science = ():JSX.Element => {
+        return(
+            <div id='science'>
+                <Gfx.CaseGraphic 
+                    newCases = {scienceDataForLockdown.newCases}
+                    delay={0}
+                />
+                <Gfx.EconomyGraphic 
+                    lockdownCosts={scienceDataForLockdown.lockdownCosts}
+                    medicalCosts={scienceDataForLockdown.medicalCosts}
+                    delay={3}
+                />
+            </div>
+        )
+    }
 
     useEffect(() => {
         context.changeBgColorClass(bgColorClass)
@@ -53,31 +82,26 @@ export function Information(props: {
                 )}
             </div>
             <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
-                <div className='rounded border mb-3 p-2'>
-                    <Txt.Title value={`People are arguing that you should:`} col='white'/>
-                    <div className='rounded bg-green-500'>
-                        <Txt.Subtitle value={`${props.event.response2.label}`} col='white'/>
-                    </div>
-                    <Txt.Title value={`but should not:`} col='white'/>
-                    <div className='rounded bg-red-500'>
-                        <Txt.Subtitle value={`${props.event.response1.label}`} col='white'/>
+                <div className='mb-3 p-2'>
+                    <Txt.Title col='white' value={'Summary'}/>
+                    <Txt.Text value={`People are asking you to...`} col='white'/>
+                    <div className='rounded bg-green-600'>
+                        <Txt.Subtitle value={`${props.condition==='science' ? props.event.response1.label : props.event.response2.label}`} col='white'/>
                     </div>
                 </div>
-                <Txt.Title value={`News feed`} col='white'/>
-                <div id='social'>
-                    {socialDataAgainstLockdown.feedAgainst}
-                    <Gfx.SupportBar 
-                        n={socialDataAgainstLockdown.pollUnsure}
-                        delay={0}
-                    />
+                <div className='flex flex-row items-center'>
+                    <FontAwesomeIcon icon={faAngleDoubleDown}  className='m-2 animate__animated animate__fadeOutDown animate__delay-2s animate__slower animate__repeat-3' size="lg" color="white" />
+                    <Txt.Title value={`What people are saying...`} col='white'/>
+                    <FontAwesomeIcon icon={faAngleDoubleDown}  className='m-2 animate__animated animate__fadeOutDown animate__delay-2s animate__slower animate__repeat-3' size="lg" color="white" />
                 </div>
+                {props.condition==='science' ? science() : social()}
                 <AdditionalInfo
-                    science={scienceDataForLockdown}
+                    hiddenInfo={props.condition==='science' ? social() : science()}
                     preferences = {props.preferences}
                     onClickContinue={props.onClick.continue}
                 />
                 <div className='w-full mt-auto'>
-                    <Btn.Rounded onClick={props.onClick.continue} value='Continue'  bg='purple-700' col='white' />
+                    <Btn.Rounded onClick={props.onClick.continue} value='Continue'  bg='green-600' col='white' />
                 </div>
             </div>
         </div>
@@ -87,20 +111,7 @@ export function Information(props: {
 }
 
 export function AdditionalInfo(props:{
-    science:{
-        newCases:{
-            lockdown: number;
-            noLockdown: number;
-        },
-        lockdownCosts:{
-            lockdown: number;
-            noLockdown: number;
-        },
-        medicalCosts:{
-            lockdown: number;
-            noLockdown: number;
-        }
-    };
+    hiddenInfo:JSX.Element;
     preferences: 'recommended' | 'all';
     onClickContinue: Function;
 }) {
@@ -113,17 +124,7 @@ export function AdditionalInfo(props:{
     switch(props.preferences){
         case 'all': return (
             <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
-                <div id='science'>
-                    <Gfx.CaseGraphic 
-                        newCases = {props.science.newCases}
-                        delay={0}
-                    />
-                    <Gfx.EconomyGraphic 
-                        lockdownCosts={props.science.lockdownCosts}
-                        medicalCosts={props.science.medicalCosts}
-                        delay={3}
-                    />
-                </div>
+                {props.hiddenInfo}
             </div>
         );
         default: return <></>

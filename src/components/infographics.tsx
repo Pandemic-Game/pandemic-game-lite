@@ -1,10 +1,15 @@
 import React from "react";
 import * as Txt from "./text";
 import medicalCoin from "../assets/SVG/coin-medical.svg";
+import lockdownCoin from "../assets/SVG/coin-lockdown.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsDown,
   faCircle,
+  faAngleDoubleDown,
+  faMinusCircle,
+  faPlusCircle,
+  faAngleUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { Img } from "../ImageCache";
 
@@ -26,7 +31,7 @@ const Bar = (props: {n: number}) => {
         className="h-full p-2 flex flex-row justify-center items-center text-center rounded-r-xl z-20 overflow-visible"
         style={{ width: `${100-props.n}%`, background: 'rgba(0,0,0,0.8)'}}
       >
-        <Txt.Subtitle value={`Oppose lockdown`} col="white"/>
+        <Txt.Subtitle value={`oppose lockdown`} col="white"/>
       </div>
     </div>
   )
@@ -44,7 +49,7 @@ export function SupportBar(props: {
       <Txt.Subtitle value={"Government polling:"} col={"gray-800"} />
       <div className="flex flex-row items-center text-center justify-center">
         <Txt.Text value={
-          `Many people oppose additional restrictions at this time!`
+          `PROTEST RISK: Upto ${props.n}% of the population may PROTEST lockdown`
         } col={"gray-800"} />
       </div>
       <Bar n={props.n} />
@@ -60,10 +65,10 @@ export function CaseCircle(props: {
   switch (props.type) {
     case "increase": return (
       <FontAwesomeIcon
-        icon={faCircle}
+        icon={faPlusCircle}
         size="sm"
-        color={"orangered"}
-        className="m-1 animate__animated animate-fadeIn"
+        color={"red"}
+        className="m-1 animate__animated animate__fadeIn"
         style={{ animationDelay: `${props.animationDelay}s` }}
       />
     )
@@ -71,7 +76,7 @@ export function CaseCircle(props: {
       <FontAwesomeIcon
         icon={faCircle}
         size="sm"
-        color={"yellow"}
+        color={"black"}
         className="m-1"
       />
     )
@@ -101,7 +106,7 @@ function CaseCircles(props: {
       <CaseCircle
         key={`increase-${i}`}
         type="increase"
-        animationDelay={props.delay + (i/10)}
+        animationDelay={props.delay + (i/props.noLockdown)}
       />
     );
   }
@@ -129,20 +134,21 @@ export function CaseGraphic(props: {
   const delay = 1.5;
   return (
     <div
-      className="m-2 w-100 flex flex-col items-center text-white rounded-xl bg-green-600 animate__animated animate__backInDown"
+      className="m-2 p-2 w-100 flex flex-col items-center text-white rounded-xl bg-white animate__animated animate__backInDown"
       style={{ animationDelay: `${props.delay}s` }}
     >
-      <Txt.Text value='Health service report:' col='white'/>
-      <Txt.Title value={getTitle()} col="white" />
+      <Txt.Text value='Projected cases' col='black'/>
+      <Txt.Subtitle value={getTitle()} col="black" />
       <div className="max-w-lg m-2 p-2 flex flex-col items-start animate__delay-1s animate__animated animate__fadeIn">
         <CaseCircles
           lockdown={props.newCases.lockdown}
           noLockdown={props.newCases.noLockdown}
           delay={delay}
         />
-        <Txt.Text value={`Cases after lockdown: ${props.newCases.lockdown}`} col='white'/>
-        <div className='p-1 rounded-full bg-red-500'>
-          <Txt.Text value={`Cases with no lockdown: ${props.newCases.noLockdown}`} col='white'/>
+        <p className="text-lg font-medium text-center text-black self-center">{`With restrictions: ${props.newCases.lockdown * 10}`}</p>
+        <div className='flex flex-row self-center'>
+          <p className="text-lg font-medium text-center text-red-500">{`Without restrictions: ${props.newCases.noLockdown * 10}`}</p>
+          <FontAwesomeIcon icon={faAngleUp} color='red' className='animate__animated animate__delay-1s animate__fadeInUp animate__repeat-3' size="lg" />
         </div>
       </div>
     </div>
@@ -167,31 +173,30 @@ export function EconomyGraphic(props: {
   const costOfNoLockdown = props.lockdownCosts.noLockdown + props.medicalCosts.noLockdown;
   return (
     <div
-      className="w-full m-2 p-2 flex flex-col items-center text-white rounded-xl bg-yellow-600 animate__animated animate__backInDown"
+      className="w-full m-2 p-2 flex flex-col items-center text-white rounded-xl bg-white animate__animated animate__backInDown"
       style={{ animationDelay: `${props.delay}s` }}
     >
-      <Txt.Text value='Economy report:' col='white'/>
-      <Txt.Title 
+      <Txt.Text value='Economy projection:' col='black'/>
+      <Txt.Subtitle 
         value={costOfNoLockdown > costOfLockdown ? 'Restrictions will save money' : 'Restrictions may save money'} 
-        col="white" />
-      <div className="flex flex-row">
+        col="black" />
+      <div className="flex flex-row items-end text-black">
         <div className="flex flex-col items-center">
-          <p className="p-2 text-lg font-medium text-center">Cost of lockdown*</p>
           <div className="">
             <Txt.Text
               value={`$${props.medicalCosts.lockdown} Billion`}
-              col="white"
+              col="black"
             />
           </div>
           <Img
-            src={medicalCoin}
+            src={lockdownCoin}
             style={{ height: calculateArea(props.medicalCosts.lockdown) }}
-            alt="Costs with lockdown"
+            alt="With restrictions"
             className=""
           />
+          <p className="p-2 text-lg font-medium text-center">With restrictions</p>
         </div>
-        <div className="mb-4 flex flex-col items-center">
-          <p className="p-2 text-lg font-medium text-center">Cost of no lockdown</p>
+        <div className="flex flex-col items-center">
           <div className="">
             <Txt.Text
               value={`${
@@ -199,21 +204,19 @@ export function EconomyGraphic(props: {
                   ? "Very little or none"
                   : `$${props.medicalCosts.noLockdown} Billion`
               } `}
-              col="white"
+              col="red-500"
             />
           </div>
           <Img
             src={medicalCoin}
             style={{ height: calculateArea(props.medicalCosts.noLockdown) }}
-            alt="Medical costs without lockdown"
+            alt="Without restrictions"
             className=""
           />
+          <p className="p-2 text-lg font-medium text-center text-red-500">Without restrictions</p>
         </div>
       </div>
-        <Txt.Text
-            value={`*Medical costs only. Lockdown would also cost $${props.lockdownCosts.lockdown} Billion in lost business activity.`}
-            col="white"
-        />
+      <small className='text-gray-600'>*Medical costs only. Lockdown would also cost ${props.lockdownCosts.lockdown} Billion in lost business activity.</small>
     </div>
   );
 }
