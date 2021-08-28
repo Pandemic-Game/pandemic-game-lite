@@ -54,8 +54,8 @@ export function Splash(props: { onClick: Function; setCondition: Function }) {
       
       <div className='mt-auto p-2 text-xl'>
         <Txt.Title value='Preview condition' col='black'/>
-        <input type="radio" value="Science" name="condition"onClick={props.setCondition('science')} checked/> Science<br/>
-        <input type="radio" value="Social" name="condition" onClick={props.setCondition('social')} /> Social<br/>
+        <input type="radio" value="Science" name="condition" onClick={()=>{props.setCondition('science')}} checked/> Science<br/>
+        <input type="radio" value="Social" name="condition" onClick={()=>{props.setCondition('social')}} /> Social<br/>
       </div>
 
       <Btn.Bouncy
