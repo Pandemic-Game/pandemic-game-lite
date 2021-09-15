@@ -93,7 +93,7 @@ export function EventExtra(props: { event: Event, onClickSource: Function, onCli
         <Btn.Rounded
             value={'Make decision'}
             bg={'yellow-600'}
-            col={'black'}
+            col={'white'}
             onClick={() => { props.onClickBack() }}
         />
     </div>
@@ -126,7 +126,7 @@ export function EventResponse(props:
                 <Btn.Rounded
                     value={props.condition==='science' ? props.event.response1.label : props.event.response2.label}
                     bg={'green-600'}
-                    col={'yellow-100'}
+                    col={'white'}
                     onClick={() => { props.onClick(props.condition==='science' ? props.event.response1 : props.event.response2) }}
                 />
             </div>

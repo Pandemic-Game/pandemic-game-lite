@@ -106,7 +106,15 @@ export function Introduction(props: {
       <div className='p-2'/>
 
       <Txt.Subtitle value='What is PULSE?' col='black' />
-      <button className='bg-green-600 p-3 rounded-full text-white font-medium' onClick={()=>{props.onClick.continue()}}>Click here to find out</button>
+      
+      <div className='flex flex-col justify-center items-center'>
+          <Btn.Rounded 
+              value={'Click here to find out'}
+              bg={'green-600'}
+              col={'white'}
+              onClick={props.onClick.continue}
+          />
+      </div>
       
       <div></div>
     </div>
