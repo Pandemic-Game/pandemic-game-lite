@@ -29,9 +29,7 @@ const no_source = {
 export const evt_0_0: Event = {
     title: `Welcome to the jungle`,
     description: `2% of the population have caught COVID-19 this month and the number of new cases is rising. 
-    You are being pressured to make a response to the situation by either enforcing restrictions or remaining open.
-
-    (Tutorial: As a policy maker you are bombarded with information from the public and experts. Your choices may impact people's health and quality of life. On the next page we will show you what people are saying! You can toggle what we show you at any time using the controls in the top-right corner)`,
+    You are being pressured to make a response to the situation by either enforcing restrictions or remaining open.`,
     extraDetails: no_extra_details,
     response2: { //response2 = no lockdown (for all events)
         label: `Keep everything open`,

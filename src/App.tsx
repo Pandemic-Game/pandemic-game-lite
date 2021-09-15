@@ -135,7 +135,7 @@ const GameLoop: React.FC = () => {
       setEvent(playerChoice.getNextEvent());
     }
     // Show feedback for choice
-    show("event");
+    show("feedback1");
   };
 
   // Show feedback
@@ -207,8 +207,8 @@ const GameLoop: React.FC = () => {
         <Introduction
           onClick={{
             continue: () => {
-              show("event");
-              save('start_dismissIntro');
+              show("data");
+              save('start_dismissIntro1');
             },
             source: showSource,
             data: () => {
@@ -221,20 +221,23 @@ const GameLoop: React.FC = () => {
       return (
         <Data
           onClick={{
-            back: () => show("introduction"),
+            back: () => {
+              show("feedback1");
+              save('start_dismissIntro2');
+            },
             source: showSource,
           }}
         />
       );
 
     // Event screens
-    case "event":
+    case "event": 
       return <EventScreen 
         event={event} 
         onClick={{
           consult: () => {
-            show("feedback1");
-            save('event_showInfo');
+            show("eventResponse");
+            save('event_newEvent');
           }
         }} 
       />;
@@ -296,7 +299,7 @@ const GameLoop: React.FC = () => {
                 show("end");
               } else {
                 setPreferences('recommended');
-                show("eventResponse");
+                show("event");
               }
             }
           }}

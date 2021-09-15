@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Event } from '../../model/Event';
-import { faUserMd, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import * as Btn from '../buttons';
 import * as Txt from '../text';
 import * as Lines from '../lines';
@@ -36,23 +37,32 @@ export function EventScreen(props:
         }
     }
 
-    return <div className={`min-h-full p-2 flex flex-col items-center ${bgColorClass}`}>
-        <div className='flex flex-col justify-between items-center'>
-            <Txt.Subtitle value={`Event ${getStageNumber(props.event.title)} of 3`} col='black' />
-            <Txt.Title value={props.event.title} col='black' />
-        </div>
-        <div className='animate__animated animate__fadeIn m-2 p-2 flex flex-row items-start'>
-            <div className='m-2 p-2 flex flex-row'>
-                <WarningSign />
+    return <div className={`min-h-full flex flex-col justify-center items-center ${bgColorClass}`}>
+        <div className='p-5 flex flex-col ring-2 ring-red-700 rounded-3xl bg-red-500 justify-center items-center  animate__animated animate__tada'>
+            <FontAwesomeIcon 
+                icon={faExclamationCircle}
+                size='3x'
+                color='black'
+                className='animate__animated animate__repeat-3 animate__tada'
+            />
+            <Txt.Title value='EVENT!' col='black' />
+            <Txt.Text value='An event has happened:' col='black' />
+            
+            <Txt.Subtitle value={props.event.title} col='black' />
+            
+            <div className='flex flex-col justify-center items-center'>
+                <Btn.Rounded 
+                    value={'Confront'}
+                    bg={'green-600'}
+                    col={'white'}
+                    onClick={props.onClick.consult}
+                />
             </div>
-            <Txt.Paragraph value={props.event.description} col='black' />
+
+            <small className='text-red-900'> 
+                Event {getStageNumber(props.event.title)} of 3 
+            </small>
         </div>
-        <Btn.Rounded
-            value={'Show me some advice'}
-            bg={'green-600'}
-            col={'white'}
-            onClick={() => { props.onClick.consult() }}
-        />
     </div>
 }
 

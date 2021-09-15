@@ -1,5 +1,9 @@
-Ending: where you were now youre here
+To-do:
+- Pilot with three conditions (science, social, control)
 
-data logging
-
-make button names work on summary
+Linda points
+- infographics are a bit confusing
+- intro should be replaced with graphic tutorial
+- science info shoudl be more similar to social, in that it is varied, similar in number and presented as social tweets
+- preferences wil not be clicked on. could rework into a true social media feed where half the info is hidden behidn a scroll down button
+- could encorpoate static infographics into social and science feeds

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestionCircle, faEnvelope, faCaretDown, faCaretUp, faSearch, faSquare, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
+import { faQuestionCircle, faEnvelope, faCaretDown, faCaretUp, faSearch, faSquare, faCheckSquare, faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import SVGWannaSeeData from "../assets/SVG/sneaky-wannaSeeData.svg";
 import SVGWannaSeeModel from "../assets/SVG/sneaky-wannaSeeModel.svg";
@@ -210,48 +210,10 @@ export const Dropdown: React.FC<{
     onClick: Function; 
     preferences:'recommended' | 'all';
   }
-) => {
-  const [state, setState] = useState<'open' | 'closed'>('closed');
-  const open = () => {
-    setState('open');
-    setTimeout(
-      ()=>{ setState('closed') },
-      3000
-    );
-  }
-  const close = () => {
-    setState('closed');
-  }
-  
-  // Drop down menu
-  switch (state) {
-    case 'closed':
-      return (
-        <div className='flex flex-col justify-start align-start'>
-          <button className='justify-self-end' onClick={open}> 
-            Preferences  
-            <FontAwesomeIcon icon={faCaretDown}/> 
-          </button>
-        </div>
-      );
-    case 'open':
-      return (
-        <div className='flex flex-col justify-start align-start'>
-          <button className='justify-self-end' onClick={close}> 
-            News preferences  
-            <FontAwesomeIcon icon={faCaretUp}/> 
-          </button>
-          <button onClick={()=>{props.onClick('recommended')}}> 
-            <FontAwesomeIcon icon={ props.preferences==='recommended' ? faCheckSquare : faSquare }/> 
-            Recommended 
-          </button>
-          <button onClick={()=>{props.onClick('all')}}> 
-            <FontAwesomeIcon icon={ props.preferences==='all' ? faCheckSquare : faSquare }/> 
-            All news 
-          </button>
-        </div>
-      );
-    default:
-      return <></>;
-  }
+) => {  
+  return(
+    <button className='p-2 m-2 justify-self-end text-blue-400' onClick={()=>{props.onClick('all')}}> 
+      <FontAwesomeIcon icon={faCaretDown}/> More news <FontAwesomeIcon icon={faCaretDown}/>
+    </button>
+  )
 }
